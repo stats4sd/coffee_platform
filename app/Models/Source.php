@@ -1,4 +1,3 @@
-
 <?php
 
 namespace App\Models;
@@ -6,7 +5,7 @@ namespace App\Models;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Model;
 
-class SubCharacteristic extends Model
+class Source extends Model
 {
     use CrudTrait;
 
@@ -16,7 +15,7 @@ class SubCharacteristic extends Model
     |--------------------------------------------------------------------------
     */
 
-    protected $table = 'sub_characteristics';
+    protected $table = 'sources';
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     protected $guarded = ['id'];
@@ -35,14 +34,19 @@ class SubCharacteristic extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-    public function characterist()
+    public function indicator_values()
     {
-        return $this->belongsTo(Characteristic::class);
+        return $this->hasMany(IndicatorValue::class);
     }
 
-    public function indicators()
+    public function type()
     {
-        return $this->hasMany(Indicator::class);
+        return $this->belongsTo(Type::class);
+    }
+
+    public function partner()
+    {
+        return $this->belongsTo(Partner::class);
     }
 
     /*

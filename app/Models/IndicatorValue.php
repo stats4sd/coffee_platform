@@ -1,4 +1,3 @@
-
 <?php
 
 namespace App\Models;
@@ -6,7 +5,7 @@ namespace App\Models;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Model;
 
-class SubCharacteristic extends Model
+class IndicatorValue extends Model
 {
     use CrudTrait;
 
@@ -16,7 +15,7 @@ class SubCharacteristic extends Model
     |--------------------------------------------------------------------------
     */
 
-    protected $table = 'sub_characteristics';
+    protected $table = 'indicator_values';
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     protected $guarded = ['id'];
@@ -35,16 +34,46 @@ class SubCharacteristic extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-    public function characterist()
+    public function source()
     {
-        return $this->belongsTo(Characteristic::class);
+        return $this->belongsTo(Source::class);
     }
 
-    public function indicators()
+    public function geo_boundary()
     {
-        return $this->hasMany(Indicator::class);
+        return $this->belongsTo(GeoBoundary::class);
     }
 
+    public function unit()
+    {
+        return $this->belongsTo(Unit::class);
+    }
+
+    public function gender()
+    {
+        return $this->belongsTo(Gender::class);
+    }
+
+    public function smallholder_definition()
+    {
+        return $this->belongsTo(SmallholderDefinition::class);
+    }    
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    } 
+
+    public function purpose_of_collection()
+    {
+        return $this->belongsTo(PurposeOfCollection::class);
+    } 
+
+    public function approach_collection()
+    {
+        return $this->belongsTo(ApproachCollection::class);
+    } 
+    
     /*
     |--------------------------------------------------------------------------
     | SCOPES

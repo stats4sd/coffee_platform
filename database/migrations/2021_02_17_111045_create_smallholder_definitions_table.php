@@ -14,7 +14,7 @@ class CreateSmallholderDefinitionsTable extends Migration
     {
         Schema::create('smallholder_definitions', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->text('description');
+            $table->text('definition');
             $table->timestamps();
         });
     }

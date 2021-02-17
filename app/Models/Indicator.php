@@ -34,6 +34,15 @@ class Indicator extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
+    public function sub_characterist()
+    {
+        return $this->belongsTo(SubCharacteristic::class);
+    }
+
+    public function indicator_values()
+    {
+        return $this->hasMany(IndicatorValue::class);
+    }
 
     /*
     |--------------------------------------------------------------------------
