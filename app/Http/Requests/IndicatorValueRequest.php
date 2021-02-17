@@ -26,7 +26,19 @@ class IndicatorValueRequest extends FormRequest
     public function rules()
     {
         return [
-            // 'name' => 'required|min:5|max:255'
+            'indicator_id' => 'required',
+            'value' => 'required',
+            // 'source_id' => 'required',
+            'geo_boundary_id' => 'required',
+            'unit_id' => 'required',
+            'gender_id' => 'required',
+            'sample_size' => 'required',
+            'smallholder_definition_id' => 'required',
+            'user_id' => 'required',
+            'purpose_of_collection_id' => 'required',
+            'approach_collection_id' => 'required',
+            'scope' => 'required',
+            'year' => 'required|integer|min:1900|digits:4'
         ];
     }
 
