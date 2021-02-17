@@ -22,6 +22,7 @@ class Source extends Model
     // protected $fillable = [];
     // protected $hidden = [];
     // protected $dates = [];
+    protected $casts = ['file' => 'array'];
 
     /*
     |--------------------------------------------------------------------------
@@ -66,4 +67,12 @@ class Source extends Model
     | MUTATORS
     |--------------------------------------------------------------------------
     */
+    public function setFileAttribute($value)
+    {
+        $attribute_name = "file";
+        $disk = "public";
+        $destination_path = "source_files";
+
+        $this->uploadMultipleFilesToDisk($value, $attribute_name, $disk, $destination_path);
+    }
 }

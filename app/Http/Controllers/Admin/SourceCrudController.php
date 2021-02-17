@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\SourceRequest;
+use App\Models\Partner;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
@@ -15,9 +16,11 @@ class SourceCrudController extends CrudController
 {
     use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
+    use \Backpack\CRUD\app\Http\Controllers\Operations\InlineCreateOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
+    use \Backpack\CRUD\app\Http\Controllers\Operations\FetchOperation;
 
     /**
      * Configure the CrudPanel object. Apply settings to all operations.
@@ -39,13 +42,33 @@ class SourceCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        CRUD::setFromDb(); // columns
-
-        /**
-         * Columns can be defined using the fluent syntax or array syntax:
-         * - CRUD::column('price')->type('number');
-         * - CRUD::addColumn(['name' => 'price', 'type' => 'number']); 
-         */
+        $this->crud->addColumns([
+            [
+                'name' => 'name',
+                'type' => 'text',
+            ],
+            [
+                'name' => 'reference',
+                'type' => 'text',
+            ],
+            [
+                'type' => 'relationship',
+                'name' => 'type',
+            ],
+            [
+                'type' => 'relationship',
+                'name' => 'partner',
+            ],
+            [
+                'name' => 'description',
+                'type' => 'text',
+            ],
+            [   
+                'name'      => 'file',
+                'label'     => 'Files',
+                'type'      => 'upload_multiple',
+            ],
+        ]);
     }
 
     /**
@@ -58,13 +81,41 @@ class SourceCrudController extends CrudController
     {
         CRUD::setValidation(SourceRequest::class);
 
-        CRUD::setFromDb(); // fields
-
-        /**
-         * Fields can be defined using the fluent syntax or array syntax:
-         * - CRUD::field('price')->type('number');
-         * - CRUD::addField(['name' => 'price', 'type' => 'number'])); 
-         */
+        $this->crud->addFields([
+            [
+                'name' => 'name',
+                'type' => 'text',
+            ],
+            [
+                'name' => 'reference',
+                'type' => 'text',
+            ],
+            [
+                'type' => 'number',
+                'name' => 'type_id',
+                'ajax' => true,
+                // 'inline_create' => [ 'entity' => 'type' ],
+                'minimum_input_length' => 0,
+            ],
+            [
+                'type' => 'relationship',
+                'name' => 'partner_id',
+                'ajax' => true,
+                'inline_create' => [ 'entity' => 'partner' ],
+                'minimum_input_length' => 0,
+            ],
+            [
+                'name' => 'description',
+                'type' => 'text',
+            ],
+            [   
+                'name'      => 'file',
+                'label'     => 'Files',
+                'type'      => 'upload_multiple',
+                'upload'    => true,
+                'disk'      => 'public',
+            ],
+        ]);
     }
 
     /**
@@ -76,5 +127,15 @@ class SourceCrudController extends CrudController
     protected function setupUpdateOperation()
     {
         $this->setupCreateOperation();
+    }
+
+    public function fetchType()
+    {
+        return $this->fetch(Type::class);
+    }
+
+    public function fetchPartner()
+    {
+        return $this->fetch(Partner::class);
     }
 }

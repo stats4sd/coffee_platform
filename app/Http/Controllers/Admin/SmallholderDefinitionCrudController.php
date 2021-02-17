@@ -15,9 +15,11 @@ class SmallholderDefinitionCrudController extends CrudController
 {
     use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
+    use \Backpack\CRUD\app\Http\Controllers\Operations\InlineCreateOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
+    use \Backpack\CRUD\app\Http\Controllers\Operations\FetchOperation;
 
     /**
      * Configure the CrudPanel object. Apply settings to all operations.
@@ -27,8 +29,8 @@ class SmallholderDefinitionCrudController extends CrudController
     public function setup()
     {
         CRUD::setModel(\App\Models\SmallholderDefinition::class);
-        CRUD::setRoute(config('backpack.base.route_prefix') . '/smallholderdefinition');
-        CRUD::setEntityNameStrings('smallholderdefinition', 'smallholder_definitions');
+        CRUD::setRoute(config('backpack.base.route_prefix') . '/smallholder_definition');
+        CRUD::setEntityNameStrings('smallholder definition', 'smallholder definitions');
     }
 
     /**

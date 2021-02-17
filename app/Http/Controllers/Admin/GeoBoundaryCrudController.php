@@ -15,9 +15,11 @@ class GeoBoundaryCrudController extends CrudController
 {
     use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
+    use \Backpack\CRUD\app\Http\Controllers\Operations\InlineCreateOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
+    use \Backpack\CRUD\app\Http\Controllers\Operations\FetchOperation;
 
     /**
      * Configure the CrudPanel object. Apply settings to all operations.
@@ -27,8 +29,8 @@ class GeoBoundaryCrudController extends CrudController
     public function setup()
     {
         CRUD::setModel(\App\Models\GeoBoundary::class);
-        CRUD::setRoute(config('backpack.base.route_prefix') . '/geoboundary');
-        CRUD::setEntityNameStrings('geoboundary', 'geo_boundaries');
+        CRUD::setRoute(config('backpack.base.route_prefix') . '/geo_boundary');
+        CRUD::setEntityNameStrings('geo boundary', 'geo boundaries');
     }
 
     /**
@@ -39,13 +41,17 @@ class GeoBoundaryCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        CRUD::setFromDb(); // columns
-
-        /**
-         * Columns can be defined using the fluent syntax or array syntax:
-         * - CRUD::column('price')->type('number');
-         * - CRUD::addColumn(['name' => 'price', 'type' => 'number']); 
-         */
+        $this->crud->addColumns([
+            [
+                'type' => 'relationship',
+                'name' => 'country',
+            ],
+            [
+                'name' => 'name',
+                'type' => 'text',
+                'label' => 'Description'
+            ]
+        ]);
     }
 
     /**
@@ -58,13 +64,20 @@ class GeoBoundaryCrudController extends CrudController
     {
         CRUD::setValidation(GeoBoundaryRequest::class);
 
-        CRUD::setFromDb(); // fields
-
-        /**
-         * Fields can be defined using the fluent syntax or array syntax:
-         * - CRUD::field('price')->type('number');
-         * - CRUD::addField(['name' => 'price', 'type' => 'number'])); 
-         */
+        $this->crud->addFields([
+            [
+                'type' => 'relationship',
+                'name' => 'country_id',
+                'attribute' => "name", 
+                'entity' => 'country',
+                'model' => "App\Models\Country",
+            ],
+            [
+                'name' => 'name',
+                'type' => 'text',
+                'label' => 'Description'
+            ]
+        ]);
     }
 
     /**

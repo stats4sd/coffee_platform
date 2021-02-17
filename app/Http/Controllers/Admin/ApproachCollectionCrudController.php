@@ -15,9 +15,11 @@ class ApproachCollectionCrudController extends CrudController
 {
     use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
+    use \Backpack\CRUD\app\Http\Controllers\Operations\InlineCreateOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
+    use \Backpack\CRUD\app\Http\Controllers\Operations\FetchOperation;
 
     /**
      * Configure the CrudPanel object. Apply settings to all operations.
@@ -27,8 +29,8 @@ class ApproachCollectionCrudController extends CrudController
     public function setup()
     {
         CRUD::setModel(\App\Models\ApproachCollection::class);
-        CRUD::setRoute(config('backpack.base.route_prefix') . '/approachcollection');
-        CRUD::setEntityNameStrings('approachcollection', 'approach_collections');
+        CRUD::setRoute(config('backpack.base.route_prefix') . '/approach_collection');
+        CRUD::setEntityNameStrings('approach collection', 'approach collections');
     }
 
     /**

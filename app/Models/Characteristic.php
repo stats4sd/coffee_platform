@@ -18,7 +18,7 @@ class Characteristic extends Model
     protected $table = 'characteristics';
     // protected $primaryKey = 'id';
     // public $timestamps = false;
-    protected $guarded = ['id'];
+    protected $guarded = [];
     // protected $fillable = [];
     // protected $hidden = [];
     // protected $dates = [];
@@ -34,7 +34,7 @@ class Characteristic extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-    public function sub_characterists()
+    public function sub_characteristic()
     {
         return $this->hasMany(SubCharacteristic::class);
     }

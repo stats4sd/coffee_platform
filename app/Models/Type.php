@@ -18,7 +18,7 @@ class Type extends Model
     protected $table = 'types';
     // protected $primaryKey = 'id';
     // public $timestamps = false;
-    protected $guarded = ['id'];
+    protected $guarded = [];
     // protected $fillable = [];
     // protected $hidden = [];
     // protected $dates = [];

@@ -15,9 +15,11 @@ class IndicatorCrudController extends CrudController
 {
     use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
+    use \Backpack\CRUD\app\Http\Controllers\Operations\InlineCreateOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
+    use \Backpack\CRUD\app\Http\Controllers\Operations\FetchOperation;
 
     /**
      * Configure the CrudPanel object. Apply settings to all operations.
@@ -39,13 +41,22 @@ class IndicatorCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        CRUD::setFromDb(); // columns
-
-        /**
-         * Columns can be defined using the fluent syntax or array syntax:
-         * - CRUD::column('price')->type('number');
-         * - CRUD::addColumn(['name' => 'price', 'type' => 'number']); 
-         */
+        $this->crud->addColumns([
+            [
+                'type' => 'relationship',
+                'name' => 'sub_characteristic',
+            ],
+            [
+                'name' => 'code',
+                'type' => 'text',
+                'label' => 'Code'
+            ],
+            [
+                'name' => 'definition',
+                'type' => 'text',
+                'label' => 'Definition'
+            ]
+        ]);
     }
 
     /**
@@ -58,13 +69,25 @@ class IndicatorCrudController extends CrudController
     {
         CRUD::setValidation(IndicatorRequest::class);
 
-        CRUD::setFromDb(); // fields
-
-        /**
-         * Fields can be defined using the fluent syntax or array syntax:
-         * - CRUD::field('price')->type('number');
-         * - CRUD::addField(['name' => 'price', 'type' => 'number'])); 
-         */
+        $this->crud->addFields([
+            [
+                'type' => 'relationship',
+                'name' => 'sub_characteristic_id',
+                'attribute' => "name", 
+                'entity' => 'sub_characteristic',
+                'model' => "App\Models\SubCharacteristic",
+            ],
+            [
+                'name' => 'code',
+                'type' => 'text',
+                'label' => 'Code'
+            ],
+            [
+                'name' => 'definition',
+                'type' => 'text',
+                'label' => 'Definition'
+            ]
+        ]);
     }
 
     /**

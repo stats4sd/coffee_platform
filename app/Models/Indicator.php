@@ -34,7 +34,7 @@ class Indicator extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-    public function sub_characterist()
+    public function sub_characteristic()
     {
         return $this->belongsTo(SubCharacteristic::class);
     }

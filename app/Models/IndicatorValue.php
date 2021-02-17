@@ -34,6 +34,11 @@ class IndicatorValue extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
+    public function indicator()
+    {
+        return $this->belongsTo(Indicator::class);
+    }
+
     public function source()
     {
         return $this->belongsTo(Source::class);

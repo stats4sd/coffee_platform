@@ -1,4 +1,3 @@
-
 <?php
 
 namespace App\Models;
@@ -35,7 +34,7 @@ class SubCharacteristic extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-    public function characterist()
+    public function characteristic()
     {
         return $this->belongsTo(Characteristic::class);
     }

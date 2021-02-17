@@ -15,9 +15,11 @@ class PurposeOfCollectionCrudController extends CrudController
 {
     use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
+    use \Backpack\CRUD\app\Http\Controllers\Operations\InlineCreateOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
+    use \Backpack\CRUD\app\Http\Controllers\Operations\FetchOperation;
 
     /**
      * Configure the CrudPanel object. Apply settings to all operations.
@@ -27,8 +29,8 @@ class PurposeOfCollectionCrudController extends CrudController
     public function setup()
     {
         CRUD::setModel(\App\Models\PurposeOfCollection::class);
-        CRUD::setRoute(config('backpack.base.route_prefix') . '/purposeofcollection');
-        CRUD::setEntityNameStrings('purposeofcollection', 'purpose_of_collections');
+        CRUD::setRoute(config('backpack.base.route_prefix') . '/purpose_of_collection');
+        CRUD::setEntityNameStrings('purpose of collection', 'purpose of collections');
     }
 
     /**
