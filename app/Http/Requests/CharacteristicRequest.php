@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
+use App\Models\Characteristic;
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class CharacteristicRequest extends FormRequest
@@ -26,7 +28,7 @@ class CharacteristicRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|min:5|max:255'
+            'name' => ['required', 'max:255', Rule::unique('characteristics', 'name')->ignore(Characteristic::find(request()->id))],
         ];
     }
 

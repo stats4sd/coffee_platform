@@ -26,19 +26,19 @@ class IndicatorValueRequest extends FormRequest
     public function rules()
     {
         return [
-            'indicator_id' => 'required',
-            'value' => 'required',
-            // 'source_id' => 'required',
-            'geo_boundary_id' => 'required',
-            'unit_id' => 'required',
-            'gender_id' => 'required',
-            'sample_size' => 'required',
-            'smallholder_definition_id' => 'required',
-            'user_id' => 'required',
-            'purpose_of_collection_id' => 'required',
-            'approach_collection_id' => 'required',
-            'scope' => 'required',
-            'year' => 'required|integer|min:1900|digits:4'
+            'indicator_id' => ['required', 'exists:indicators,id'],
+            'value' => ['required', 'numeric'],
+            'source_id' => ['nullable','exists:sources,id'],
+            'geo_boundary_id' => ['required','exists:geo_boundaries,id'],
+            'unit_id' => ['required','exists:units,id'],
+            'gender_id' => ['required','exists:genders,id'],
+            'sample_size' => ['required','integer'],
+            'smallholder_definition_id' => ['required','exists:smallholder_definitions,id'],
+            'user_id' => ['required','exists:users,id'],
+            'purpose_of_collection_id' => ['required','exists:purpose_of_collections,id'],
+            'approach_collection_id' => ['required','exists:approach_collection,id'],
+            'scope' => ['nullable'],
+            'year' => ['required', 'integer', 'min:1900', 'digits:4'],
         ];
     }
 

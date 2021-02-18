@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
+use App\Models\GeoBoundary;
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class GeoBoundaryRequest extends FormRequest
@@ -26,8 +28,8 @@ class GeoBoundaryRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|min:5|max:255',
-            'country_id' => 'required'
+            'name' => ['required', 'max:255', Rule::unique('geo_boundaries', 'name')->ignore(GeoBoundary::find(request()->id))],
+            'country_id' => ['required', 'exists:countries,id'],
         ];
     }
 

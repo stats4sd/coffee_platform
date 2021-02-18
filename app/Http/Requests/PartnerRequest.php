@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Partner;
 use App\Http\Requests\Request;
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class PartnerRequest extends FormRequest
@@ -26,7 +28,7 @@ class PartnerRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|min:5|max:255'
+            'name' => ['required', 'max:255', Rule::unique('partners', 'name')->ignore(Partner::find(request()->id))],
         ];
     }
 

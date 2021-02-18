@@ -26,7 +26,9 @@ class IndicatorRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'sub_characteristic_id' => ['required', 'exists:sub_characteristics,id'],
+            'code' => ['required', 'max:255'],
+            'definition' => ['required'],
         ];
     }
 

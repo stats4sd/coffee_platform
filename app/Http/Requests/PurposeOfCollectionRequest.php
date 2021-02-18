@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
+use Illuminate\Validation\Rule;
+use App\Models\PurposeOfCollection;
 use Illuminate\Foundation\Http\FormRequest;
 
 class PurposeOfCollectionRequest extends FormRequest
@@ -26,7 +28,7 @@ class PurposeOfCollectionRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|min:5|max:255'
+            'name' => ['required', 'max:255', Rule::unique('purpose_of_collections', 'name')->ignore(PurposeOfCollection::find(request()->id))],
         ];
     }
 

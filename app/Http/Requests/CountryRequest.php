@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Country;
 use App\Http\Requests\Request;
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class CountryRequest extends FormRequest
@@ -26,7 +28,7 @@ class CountryRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|min:5|max:255'
+            'name' => ['required', 'max:255', Rule::unique('countries', 'name')->ignore(Country::find(request()->id))],
         ];
     }
 
