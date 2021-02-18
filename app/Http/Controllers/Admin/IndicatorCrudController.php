@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\IndicatorRequest;
+use App\Models\Characteristic;
+use App\Models\SubCharacteristic;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
@@ -23,7 +25,7 @@ class IndicatorCrudController extends CrudController
 
     /**
      * Configure the CrudPanel object. Apply settings to all operations.
-     * 
+     *
      * @return void
      */
     public function setup()
@@ -35,7 +37,7 @@ class IndicatorCrudController extends CrudController
 
     /**
      * Define what happens when the List operation is loaded.
-     * 
+     *
      * @see  https://backpackforlaravel.com/docs/crud-operation-list-entries
      * @return void
      */
@@ -61,7 +63,7 @@ class IndicatorCrudController extends CrudController
 
     /**
      * Define what happens when the Create operation is loaded.
-     * 
+     *
      * @see https://backpackforlaravel.com/docs/crud-operation-create
      * @return void
      */
@@ -71,11 +73,24 @@ class IndicatorCrudController extends CrudController
 
         $this->crud->addFields([
             [
+                'type' => 'select2_from_ajax',
+                'name' => 'characteristic_id',
+                'attribute' => "name",
+                'data_source' => backpack_url('indicator/fetch/characteristic'),
+                'model' => Characteristic::class,
+                'placeholder' => 'Select Characteristic',
+                'minimum_input_length' => 0,
+                'method' => 'post',
+            ],
+            [
                 'type' => 'relationship',
                 'name' => 'sub_characteristic_id',
-                'attribute' => "name", 
+                'attribute' => 'name',
                 'entity' => 'sub_characteristic',
                 'model' => "App\Models\SubCharacteristic",
+                'ajax' => true,
+                'minimum_input_length' => 0,
+                'data_source' => backpack_url('indicator/fetch/sub-characteristic'),
             ],
             [
                 'name' => 'code',
@@ -92,12 +107,32 @@ class IndicatorCrudController extends CrudController
 
     /**
      * Define what happens when the Update operation is loaded.
-     * 
+     *
      * @see https://backpackforlaravel.com/docs/crud-operation-update
      * @return void
      */
     protected function setupUpdateOperation()
     {
         $this->setupCreateOperation();
+    }
+
+    public function fetchCharacteristic()
+    {
+        return $this->fetch(Characteristic::class);
+    }
+
+    public function fetchSubCharacteristic()
+    {
+        $form = collect(request()->input('form'))->pluck('value', 'name');
+
+        return $this->fetch([
+            'model' => SubCharacteristic::class,
+            'query' => function ($model) use ($form) {
+                if (!isset($form['characteristic_id'])) {
+                    return $model;
+                }
+                return $model->where('characteristic_id', $form['characteristic_id']);
+            }
+        ]);
     }
 }
