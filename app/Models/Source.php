@@ -18,7 +18,7 @@ class Source extends Model
     protected $table = 'sources';
     // protected $primaryKey = 'id';
     // public $timestamps = false;
-    protected $guarded = ['id', 'characteristic_id'];
+    protected $guarded = ['id'];
     // protected $fillable = [];
     // protected $hidden = [];
     // protected $dates = [];
