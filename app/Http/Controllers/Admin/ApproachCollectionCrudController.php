@@ -96,7 +96,7 @@ class ApproachCollectionCrudController extends CrudController
         CRUD::field('import_instructions')->type('custom_html')->value('
             <div class="alert">
             <h3>Instructions</h3>
-            Please upload the Excel file containing the new / updated Milestone Target values and comments.
+            Please upload the Excel file containing new approaches to collection.
             <ul>
                 <li>The file should be in the same format as the file downloadable on the main view page.</li>
             </ul>
