@@ -45,6 +45,10 @@ class IndicatorCrudController extends CrudController
     {
         $this->crud->addColumns([
             [
+                'name' => 'sub_characteristic.characteristic.name',
+                'label' => 'Characteristic',
+            ],
+            [
                 'type' => 'relationship',
                 'name' => 'sub_characteristic',
             ],
