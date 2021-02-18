@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
+use App\Models\User;
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UserRequest extends FormRequest
@@ -26,7 +28,9 @@ class UserRequest extends FormRequest
     public function rules()
     {
         return [
-            // 'name' => 'required|min:5|max:255'
+            'email' => ['required', 'max:255', Rule::unique('approach_collections', 'name')->ignore(User::find(request()->id))],
+            'password' => ['sometimes', 'confirmed'],
+            'name' => ['required', 'max:255'],
         ];
     }
 
