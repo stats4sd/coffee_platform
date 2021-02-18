@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
+use Illuminate\Validation\Rule;
+use App\Models\SubCharacteristic;
 use Illuminate\Foundation\Http\FormRequest;
 
 class SubCharacteristicRequest extends FormRequest
@@ -26,7 +28,8 @@ class SubCharacteristicRequest extends FormRequest
     public function rules()
     {
         return [
-            // 'name' => 'required|min:5|max:255'
+            'name' => ['required', 'max:255', Rule::unique('approach_collections', 'name')->ignore(SubCharacteristic::find(request()->id))],
+            'characteristic_id' => ['required', 'exists:characteristics,id'],
         ];
     }
 

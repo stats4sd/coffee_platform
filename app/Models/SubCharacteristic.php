@@ -34,6 +34,15 @@ class SubCharacteristic extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
+    public function characteristic()
+    {
+        return $this->belongsTo(Characteristic::class);
+    }
+
+    public function indicators()
+    {
+        return $this->hasMany(Indicator::class);
+    }
 
     /*
     |--------------------------------------------------------------------------

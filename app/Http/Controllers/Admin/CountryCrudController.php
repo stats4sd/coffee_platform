@@ -2,20 +2,19 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\CharacteristicRequest;
+use App\Http\Requests\CountryRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
 /**
- * Class CharacteristicCrudController
+ * Class CountryCrudController
  * @package App\Http\Controllers\Admin
  * @property-read \Backpack\CRUD\app\Library\CrudPanel\CrudPanel $crud
  */
-class CharacteristicCrudController extends CrudController
+class CountryCrudController extends CrudController
 {
     use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\InlineCreateOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
@@ -27,9 +26,9 @@ class CharacteristicCrudController extends CrudController
      */
     public function setup()
     {
-        CRUD::setModel(\App\Models\Characteristic::class);
-        CRUD::setRoute(config('backpack.base.route_prefix') . '/characteristic');
-        CRUD::setEntityNameStrings('characteristic', 'characteristics');
+        CRUD::setModel(\App\Models\Country::class);
+        CRUD::setRoute(config('backpack.base.route_prefix') . '/country');
+        CRUD::setEntityNameStrings('country', 'countries');
     }
 
     /**
@@ -57,7 +56,7 @@ class CharacteristicCrudController extends CrudController
      */
     protected function setupCreateOperation()
     {
-        CRUD::setValidation(CharacteristicRequest::class);
+        CRUD::setValidation(CountryRequest::class);
 
         CRUD::setFromDb(); // fields
 

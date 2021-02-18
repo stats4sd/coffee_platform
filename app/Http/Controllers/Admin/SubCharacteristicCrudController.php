@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\SubCharacteristicRequest;
+use App\Models\Characteristic;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
@@ -15,6 +16,7 @@ class SubCharacteristicCrudController extends CrudController
 {
     use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
+    use \Backpack\CRUD\app\Http\Controllers\Operations\InlineCreateOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
@@ -27,8 +29,8 @@ class SubCharacteristicCrudController extends CrudController
     public function setup()
     {
         CRUD::setModel(\App\Models\SubCharacteristic::class);
-        CRUD::setRoute(config('backpack.base.route_prefix') . '/subcharacteristic');
-        CRUD::setEntityNameStrings('subcharacteristic', 'sub_characteristics');
+        CRUD::setRoute(config('backpack.base.route_prefix') . '/sub_characteristic');
+        CRUD::setEntityNameStrings('sub characteristic', 'sub characteristics');
     }
 
     /**
@@ -39,13 +41,16 @@ class SubCharacteristicCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        CRUD::setFromDb(); // columns
-
-        /**
-         * Columns can be defined using the fluent syntax or array syntax:
-         * - CRUD::column('price')->type('number');
-         * - CRUD::addColumn(['name' => 'price', 'type' => 'number']); 
-         */
+        $this->crud->addColumns([
+            [
+                'type' => 'relationship',
+                'name' => 'characteristic',
+            ],
+            [
+                'name' => 'name',
+                'type' => 'text',
+            ]
+        ]);
     }
 
     /**
@@ -58,13 +63,21 @@ class SubCharacteristicCrudController extends CrudController
     {
         CRUD::setValidation(SubCharacteristicRequest::class);
 
-        CRUD::setFromDb(); // fields
-
-        /**
-         * Fields can be defined using the fluent syntax or array syntax:
-         * - CRUD::field('price')->type('number');
-         * - CRUD::addField(['name' => 'price', 'type' => 'number'])); 
-         */
+        $this->crud->addFields([
+            [
+                'label'     => "Characteristic",
+                'type'      => 'select',
+                'name'      => 'characteristic_id',
+                'entity'    => 'characteristic', 
+                'model'     => "App\Models\Characteristic",
+                'attribute' => 'name',
+              
+            ],
+            [
+                'name' => 'name',
+                'type' => 'text',
+            ]
+        ]);
     }
 
     /**
@@ -77,4 +90,5 @@ class SubCharacteristicCrudController extends CrudController
     {
         $this->setupCreateOperation();
     }
+
 }

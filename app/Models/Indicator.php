@@ -29,11 +29,27 @@ class Indicator extends Model
     |--------------------------------------------------------------------------
     */
 
+
+    public function getCharacteristicIdAttribute ()
+    {
+       return $this->sub_characteristic->characteristic_id;
+    }
+
+
     /*
     |--------------------------------------------------------------------------
     | RELATIONS
     |--------------------------------------------------------------------------
     */
+    public function sub_characteristic()
+    {
+        return $this->belongsTo(SubCharacteristic::class);
+    }
+
+    public function indicator_values()
+    {
+        return $this->hasMany(IndicatorValue::class);
+    }
 
     /*
     |--------------------------------------------------------------------------

@@ -5,7 +5,7 @@ namespace App\Models;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Model;
 
-class Characteristic extends Model
+class IndicatorValue extends Model
 {
     use CrudTrait;
 
@@ -15,10 +15,10 @@ class Characteristic extends Model
     |--------------------------------------------------------------------------
     */
 
-    protected $table = 'characteristics';
+    protected $table = 'indicator_values';
     // protected $primaryKey = 'id';
     // public $timestamps = false;
-    protected $guarded = [];
+    protected $guarded = ['id'];
     // protected $fillable = [];
     // protected $hidden = [];
     // protected $dates = [];
@@ -34,11 +34,51 @@ class Characteristic extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-    public function sub_characteristic()
+    public function indicator()
     {
-        return $this->hasMany(SubCharacteristic::class);
+        return $this->belongsTo(Indicator::class);
     }
 
+    public function source()
+    {
+        return $this->belongsTo(Source::class);
+    }
+
+    public function geo_boundary()
+    {
+        return $this->belongsTo(GeoBoundary::class);
+    }
+
+    public function unit()
+    {
+        return $this->belongsTo(Unit::class);
+    }
+
+    public function gender()
+    {
+        return $this->belongsTo(Gender::class);
+    }
+
+    public function smallholder_definition()
+    {
+        return $this->belongsTo(SmallholderDefinition::class);
+    }    
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    } 
+
+    public function purpose_of_collection()
+    {
+        return $this->belongsTo(PurposeOfCollection::class);
+    } 
+
+    public function approach_collection()
+    {
+        return $this->belongsTo(ApproachCollection::class);
+    } 
+    
     /*
     |--------------------------------------------------------------------------
     | SCOPES

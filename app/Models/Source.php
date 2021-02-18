@@ -5,7 +5,7 @@ namespace App\Models;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Model;
 
-class Characteristic extends Model
+class Source extends Model
 {
     use CrudTrait;
 
@@ -15,13 +15,14 @@ class Characteristic extends Model
     |--------------------------------------------------------------------------
     */
 
-    protected $table = 'characteristics';
+    protected $table = 'sources';
     // protected $primaryKey = 'id';
     // public $timestamps = false;
-    protected $guarded = [];
+    protected $guarded = ['id', 'characteristic_id'];
     // protected $fillable = [];
     // protected $hidden = [];
     // protected $dates = [];
+    protected $casts = ['file' => 'array'];
 
     /*
     |--------------------------------------------------------------------------
@@ -34,9 +35,19 @@ class Characteristic extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-    public function sub_characteristic()
+    public function indicator_values()
     {
-        return $this->hasMany(SubCharacteristic::class);
+        return $this->hasMany(IndicatorValue::class);
+    }
+
+    public function type()
+    {
+        return $this->belongsTo(Type::class);
+    }
+
+    public function partner()
+    {
+        return $this->belongsTo(Partner::class);
     }
 
     /*
@@ -56,4 +67,12 @@ class Characteristic extends Model
     | MUTATORS
     |--------------------------------------------------------------------------
     */
+    public function setFileAttribute($value)
+    {
+        $attribute_name = "file";
+        $disk = "public";
+        $destination_path = "source_files";
+
+        $this->uploadMultipleFilesToDisk($value, $attribute_name, $disk, $destination_path);
+    }
 }

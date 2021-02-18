@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\CharacteristicRequest;
+use App\Http\Requests\PurposeOfCollectionRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
 /**
- * Class CharacteristicCrudController
+ * Class PurposeOfCollectionCrudController
  * @package App\Http\Controllers\Admin
  * @property-read \Backpack\CRUD\app\Library\CrudPanel\CrudPanel $crud
  */
-class CharacteristicCrudController extends CrudController
+class PurposeOfCollectionCrudController extends CrudController
 {
     use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
@@ -19,6 +19,7 @@ class CharacteristicCrudController extends CrudController
     use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
+    use \Backpack\CRUD\app\Http\Controllers\Operations\FetchOperation;
 
     /**
      * Configure the CrudPanel object. Apply settings to all operations.
@@ -27,9 +28,9 @@ class CharacteristicCrudController extends CrudController
      */
     public function setup()
     {
-        CRUD::setModel(\App\Models\Characteristic::class);
-        CRUD::setRoute(config('backpack.base.route_prefix') . '/characteristic');
-        CRUD::setEntityNameStrings('characteristic', 'characteristics');
+        CRUD::setModel(\App\Models\PurposeOfCollection::class);
+        CRUD::setRoute(config('backpack.base.route_prefix') . '/purpose_of_collection');
+        CRUD::setEntityNameStrings('purpose of collection', 'purpose of collections');
     }
 
     /**
@@ -57,7 +58,7 @@ class CharacteristicCrudController extends CrudController
      */
     protected function setupCreateOperation()
     {
-        CRUD::setValidation(CharacteristicRequest::class);
+        CRUD::setValidation(PurposeOfCollectionRequest::class);
 
         CRUD::setFromDb(); // fields
 

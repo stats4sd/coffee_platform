@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\IndicatorRequest;
-use App\Models\Characteristic;
-use App\Models\SubCharacteristic;
+use App\Models\Type;
+use App\Models\Partner;
+use App\Http\Requests\SourceRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
 /**
- * Class IndicatorCrudController
+ * Class SourceCrudController
  * @package App\Http\Controllers\Admin
  * @property-read \Backpack\CRUD\app\Library\CrudPanel\CrudPanel $crud
  */
-class IndicatorCrudController extends CrudController
+class SourceCrudController extends CrudController
 {
     use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
@@ -30,9 +30,9 @@ class IndicatorCrudController extends CrudController
      */
     public function setup()
     {
-        CRUD::setModel(\App\Models\Indicator::class);
-        CRUD::setRoute(config('backpack.base.route_prefix') . '/indicator');
-        CRUD::setEntityNameStrings('indicator', 'indicators');
+        CRUD::setModel(\App\Models\Source::class);
+        CRUD::setRoute(config('backpack.base.route_prefix') . '/source');
+        CRUD::setEntityNameStrings('source', 'sources');
     }
 
     /**
@@ -45,23 +45,30 @@ class IndicatorCrudController extends CrudController
     {
         $this->crud->addColumns([
             [
-                'name' => 'sub_characteristic.characteristic.name',
-                'label' => 'Characteristic',
+                'name' => 'name',
+                'type' => 'text',
+            ],
+            [
+                'name' => 'reference',
+                'type' => 'text',
             ],
             [
                 'type' => 'relationship',
-                'name' => 'sub_characteristic',
+                'name' => 'type',
             ],
             [
-                'name' => 'code',
-                'type' => 'text',
-                'label' => 'Code'
+                'type' => 'relationship',
+                'name' => 'partner',
             ],
             [
-                'name' => 'definition',
+                'name' => 'description',
                 'type' => 'text',
-                'label' => 'Definition'
-            ]
+            ],
+            [
+                'name'      => 'file',
+                'label'     => 'Files',
+                'type'      => 'upload_multiple',
+            ],
         ]);
     }
 
@@ -73,39 +80,42 @@ class IndicatorCrudController extends CrudController
      */
     protected function setupCreateOperation()
     {
-        CRUD::setValidation(IndicatorRequest::class);
+        CRUD::setValidation(SourceRequest::class);
 
         $this->crud->addFields([
             [
-                'type' => 'select2_from_ajax',
-                'name' => 'characteristic_id',
-                'attribute' => "name",
-                'data_source' => backpack_url('indicator/fetch/characteristic'),
-                'model' => Characteristic::class,
-                'placeholder' => 'Select Characteristic',
+                'name' => 'name',
+                'type' => 'text',
+            ],
+            [
+                'name' => 'reference',
+                'type' => 'text',
+            ],
+            [
+                'type' => 'number',
+                'name' => 'type_id',
+                'ajax' => true,
+                // 'inline_create' => [ 'entity' => 'type' ],
                 'minimum_input_length' => 0,
-                'method' => 'post',
             ],
             [
                 'type' => 'relationship',
-                'name' => 'sub_characteristic_id',
-                'attribute' => 'name',
-                'entity' => 'sub_characteristic',
-                'model' => "App\Models\SubCharacteristic",
+                'name' => 'partner_id',
                 'ajax' => true,
+                'inline_create' => [ 'entity' => 'partner' ],
                 'minimum_input_length' => 0,
-                'data_source' => backpack_url('indicator/fetch/sub-characteristic'),
             ],
             [
-                'name' => 'code',
+                'name' => 'description',
                 'type' => 'text',
-                'label' => 'Code'
             ],
             [
-                'name' => 'definition',
-                'type' => 'text',
-                'label' => 'Definition'
-            ]
+                'name'      => 'file',
+                'label'     => 'Files',
+                'type'      => 'upload_multiple',
+                'upload'    => true,
+                'disk'      => 'public',
+            ],
         ]);
     }
 
@@ -120,23 +130,13 @@ class IndicatorCrudController extends CrudController
         $this->setupCreateOperation();
     }
 
-    public function fetchCharacteristic()
+    public function fetchType()
     {
-        return $this->fetch(Characteristic::class);
+        return $this->fetch(Type::class);
     }
 
-    public function fetchSubCharacteristic()
+    public function fetchPartner()
     {
-        $form = collect(request()->input('form'))->pluck('value', 'name');
-
-        return $this->fetch([
-            'model' => SubCharacteristic::class,
-            'query' => function ($model) use ($form) {
-                if (!isset($form['characteristic_id'])) {
-                    return $model;
-                }
-                return $model->where('characteristic_id', $form['characteristic_id']);
-            }
-        ]);
+        return $this->fetch(Partner::class);
     }
 }

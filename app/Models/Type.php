@@ -5,7 +5,7 @@ namespace App\Models;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Model;
 
-class Characteristic extends Model
+class Type extends Model
 {
     use CrudTrait;
 
@@ -15,7 +15,7 @@ class Characteristic extends Model
     |--------------------------------------------------------------------------
     */
 
-    protected $table = 'characteristics';
+    protected $table = 'types';
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     protected $guarded = [];
@@ -34,9 +34,9 @@ class Characteristic extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-    public function sub_characteristic()
+    public function sources()
     {
-        return $this->hasMany(SubCharacteristic::class);
+        return $this->hasMany(Source::class);
     }
 
     /*

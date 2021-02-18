@@ -19,7 +19,7 @@ class CreateSourcesTable extends Migration
             $table->foreignId('type_id')->constrained()->onDelete('cascade')->nullable();
             $table->foreignId('partner_id')->constrained()->onDelete('cascade')->nullable();
             $table->text('description');
-            $table->json('file')->nullable();
+            $table->text('file')->nullable();
             $table->timestamps();
         });
     }

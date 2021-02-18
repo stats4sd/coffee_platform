@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\CharacteristicRequest;
+use App\Http\Requests\GeoBoundaryRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
 /**
- * Class CharacteristicCrudController
+ * Class GeoBoundaryCrudController
  * @package App\Http\Controllers\Admin
  * @property-read \Backpack\CRUD\app\Library\CrudPanel\CrudPanel $crud
  */
-class CharacteristicCrudController extends CrudController
+class GeoBoundaryCrudController extends CrudController
 {
     use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
@@ -19,6 +19,7 @@ class CharacteristicCrudController extends CrudController
     use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
+    use \Backpack\CRUD\app\Http\Controllers\Operations\FetchOperation;
 
     /**
      * Configure the CrudPanel object. Apply settings to all operations.
@@ -27,9 +28,9 @@ class CharacteristicCrudController extends CrudController
      */
     public function setup()
     {
-        CRUD::setModel(\App\Models\Characteristic::class);
-        CRUD::setRoute(config('backpack.base.route_prefix') . '/characteristic');
-        CRUD::setEntityNameStrings('characteristic', 'characteristics');
+        CRUD::setModel(\App\Models\GeoBoundary::class);
+        CRUD::setRoute(config('backpack.base.route_prefix') . '/geo_boundary');
+        CRUD::setEntityNameStrings('geo boundary', 'geo boundaries');
     }
 
     /**
@@ -40,13 +41,17 @@ class CharacteristicCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        CRUD::setFromDb(); // columns
-
-        /**
-         * Columns can be defined using the fluent syntax or array syntax:
-         * - CRUD::column('price')->type('number');
-         * - CRUD::addColumn(['name' => 'price', 'type' => 'number']); 
-         */
+        $this->crud->addColumns([
+            [
+                'type' => 'relationship',
+                'name' => 'country',
+            ],
+            [
+                'name' => 'name',
+                'type' => 'text',
+                'label' => 'Description'
+            ]
+        ]);
     }
 
     /**
@@ -57,15 +62,22 @@ class CharacteristicCrudController extends CrudController
      */
     protected function setupCreateOperation()
     {
-        CRUD::setValidation(CharacteristicRequest::class);
+        CRUD::setValidation(GeoBoundaryRequest::class);
 
-        CRUD::setFromDb(); // fields
-
-        /**
-         * Fields can be defined using the fluent syntax or array syntax:
-         * - CRUD::field('price')->type('number');
-         * - CRUD::addField(['name' => 'price', 'type' => 'number'])); 
-         */
+        $this->crud->addFields([
+            [
+                'type' => 'relationship',
+                'name' => 'country_id',
+                'attribute' => "name", 
+                'entity' => 'country',
+                'model' => "App\Models\Country",
+            ],
+            [
+                'name' => 'name',
+                'type' => 'text',
+                'label' => 'Description'
+            ]
+        ]);
     }
 
     /**

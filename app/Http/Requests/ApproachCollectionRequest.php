@@ -3,9 +3,11 @@
 namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
+use Illuminate\Validation\Rule;
+use App\Models\ApproachCollection;
 use Illuminate\Foundation\Http\FormRequest;
 
-class IndicatorRequest extends FormRequest
+class ApproachCollectionRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,9 +28,7 @@ class IndicatorRequest extends FormRequest
     public function rules()
     {
         return [
-            'sub_characteristic_id' => ['required', 'exists:sub_characteristics,id'],
-            'code' => ['required', 'max:255'],
-            'definition' => ['required'],
+            'name' => ['required', 'max:255', Rule::unique('approach_collections', 'name')->ignore(ApproachCollection::find(request()->id))],
         ];
     }
 

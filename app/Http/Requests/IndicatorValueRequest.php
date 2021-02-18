@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use App\Http\Requests\Request;
 use Illuminate\Foundation\Http\FormRequest;
 
-class IndicatorRequest extends FormRequest
+class IndicatorValueRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,9 +26,19 @@ class IndicatorRequest extends FormRequest
     public function rules()
     {
         return [
-            'sub_characteristic_id' => ['required', 'exists:sub_characteristics,id'],
-            'code' => ['required', 'max:255'],
-            'definition' => ['required'],
+            'indicator_id' => ['required', 'exists:indicators,id'],
+            'value' => ['required', 'numeric'],
+            'source_id' => ['nullable','exists:sources,id'],
+            'geo_boundary_id' => ['required','exists:geo_boundaries,id'],
+            'unit_id' => ['required','exists:units,id'],
+            'gender_id' => ['required','exists:genders,id'],
+            'sample_size' => ['required','integer'],
+            'smallholder_definition_id' => ['required','exists:smallholder_definitions,id'],
+            'user_id' => ['required','exists:users,id'],
+            'purpose_of_collection_id' => ['required','exists:purpose_of_collections,id'],
+            'approach_collection_id' => ['required','exists:approach_collection,id'],
+            'scope' => ['nullable'],
+            'year' => ['required', 'integer', 'min:1900', 'digits:4'],
         ];
     }
 

@@ -5,7 +5,7 @@ namespace App\Models;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Model;
 
-class Characteristic extends Model
+class GeoBoundary extends Model
 {
     use CrudTrait;
 
@@ -15,10 +15,10 @@ class Characteristic extends Model
     |--------------------------------------------------------------------------
     */
 
-    protected $table = 'characteristics';
+    protected $table = 'geo_boundaries';
     // protected $primaryKey = 'id';
     // public $timestamps = false;
-    protected $guarded = [];
+    protected $guarded = ['id'];
     // protected $fillable = [];
     // protected $hidden = [];
     // protected $dates = [];
@@ -34,9 +34,14 @@ class Characteristic extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-    public function sub_characteristic()
+    public function indicator_values()
     {
-        return $this->hasMany(SubCharacteristic::class);
+        return $this->hasMany(IndicatorValue::class);
+    }
+
+    public function country()
+    {
+        return $this->belongsTo(Country::class);
     }
 
     /*

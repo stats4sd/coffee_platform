@@ -3,9 +3,11 @@
 namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
+use App\Models\User;
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class IndicatorRequest extends FormRequest
+class UserRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,9 +28,9 @@ class IndicatorRequest extends FormRequest
     public function rules()
     {
         return [
-            'sub_characteristic_id' => ['required', 'exists:sub_characteristics,id'],
-            'code' => ['required', 'max:255'],
-            'definition' => ['required'],
+            'email' => ['required', 'max:255', Rule::unique('approach_collections', 'name')->ignore(User::find(request()->id))],
+            'password' => ['sometimes', 'confirmed'],
+            'name' => ['required', 'max:255'],
         ];
     }
 
