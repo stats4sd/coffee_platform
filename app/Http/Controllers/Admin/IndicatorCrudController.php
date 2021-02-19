@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Operations\ImportOperation;
 use App\Http\Requests\IndicatorRequest;
+use App\Imports\IndicatorsSheetImport;
 use App\Models\Characteristic;
 use App\Models\SubCharacteristic;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
@@ -23,6 +25,9 @@ class IndicatorCrudController extends CrudController
     use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\FetchOperation;
 
+    use ImportOperation;
+
+
     /**
      * Configure the CrudPanel object. Apply settings to all operations.
      *
@@ -33,6 +38,8 @@ class IndicatorCrudController extends CrudController
         CRUD::setModel(\App\Models\Indicator::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/indicator');
         CRUD::setEntityNameStrings('indicator', 'indicators');
+
+        CRUD::set('import.importer', IndicatorsSheetImport::class);
     }
 
     /**
