@@ -36,7 +36,7 @@ class IndicatorValueRequest extends FormRequest
             'smallholder_definition_id' => ['required','exists:smallholder_definitions,id'],
             'user_id' => ['required','exists:users,id'],
             'purpose_of_collection_id' => ['required','exists:purpose_of_collections,id'],
-            'approach_collection_id' => ['required','exists:approach_collection,id'],
+            'approach_collection_id' => ['required','exists:approach_collections,id'],
             'scope' => ['nullable'],
             'year' => ['required', 'integer', 'min:1900', 'digits:4'],
         ];
