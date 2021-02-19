@@ -92,10 +92,10 @@ class SourceCrudController extends CrudController
                 'type' => 'text',
             ],
             [
-                'type' => 'number',
+                'type' => 'relationship',
                 'name' => 'type_id',
                 'ajax' => true,
-                // 'inline_create' => [ 'entity' => 'type' ],
+                'inline_create' => [ 'entity' => 'type' ],
                 'minimum_input_length' => 0,
             ],
             [
