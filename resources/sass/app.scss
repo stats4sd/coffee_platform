@@ -1,0 +1,40 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Roberto');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+@import '../../public/packages/line-awesome/scss/line-awesome';
+
+
+h1 {
+    font-family: 'Noto Sans JP', sans-serif;
+}
+
+.full-height {
+    min-height: 100vh;
+}
+
+.sidebar {
+    min-width: 250px;
+}
+.select-card {
+    width: 200px;
+    height: 100px;
+    overflow: hidden;
+}
+
+.card-caption {
+    z-index: 1;
+    text-align: center;
+    width: 100%;
+    margin: 33% 0;
+    position: absolute;
+}
+
+.dark-gradient {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0), #011627e3);
+}

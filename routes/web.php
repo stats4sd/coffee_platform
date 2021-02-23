@@ -13,6 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return redirect('admin');
-});
+Route::view('/', 'home')->name('home');
+Route::view('partners', 'partners')->name('partners');
+Route::view('reports', 'reports')->name('reports');
+Route::view('indicators', 'indicators')->name('indicators');
+
+
