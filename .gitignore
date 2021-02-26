@@ -11,3 +11,10 @@ Homestead.json
 Homestead.yaml
 npm-debug.log
 yarn-error.log
+.Rproj.user
+*.RData
+*.Rhistory
+/scripts/Rscript/.Rproj.user
+/scripts/Rscript/.Rhistory
+/scripts/Rscript/.RData
+/scripts/Rscript/.Ruserdata
