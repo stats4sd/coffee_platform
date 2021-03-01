@@ -22,7 +22,7 @@ class SmallholderDefinitionFactory extends Factory
     public function definition()
     {
         return [
-            'definition' => $this->faker->sentences(5),
+            'definition' => $this->faker->paragraph(5),
         ];
     }
 }

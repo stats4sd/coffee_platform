@@ -16,7 +16,7 @@ class IndicatorValue extends Model
     |--------------------------------------------------------------------------
     */
 
-    protected $table = 'indicatorValues';
+    protected $table = 'indicator_values';
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     protected $guarded = ['id'];

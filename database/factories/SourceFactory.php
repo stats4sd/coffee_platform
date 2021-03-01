@@ -25,10 +25,10 @@ class SourceFactory extends Factory
     {
         return [
             'name' => $this->faker->unique()->word(),
-            'reference' => $this->faker->words(2),
+            'reference' => $this->faker->sentence(2),
             'type_id' => Type::factory(),
             'partner_id' => Partner::factory(),
-            'description' => $this->faker->sentences(5),
+            'description' => $this->faker->paragraph(5),
         ];
     }
 }
