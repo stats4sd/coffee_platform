@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Model;
 
 class Indicator extends Model
 {
-    use CrudTrait;
+    use CrudTrait, HasFactory;
 
     /*
     |--------------------------------------------------------------------------
@@ -30,9 +31,9 @@ class Indicator extends Model
     */
 
 
-    public function getCharacteristicIdAttribute ()
+    public function getCharacteristicIdAttribute()
     {
-       return $this->sub_characteristic->characteristic_id;
+        return $this->sub_characteristic->characteristic_id;
     }
 
 
@@ -41,12 +42,12 @@ class Indicator extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-    public function sub_characteristic()
+    public function subCharacteristic()
     {
         return $this->belongsTo(SubCharacteristic::class);
     }
 
-    public function indicator_values()
+    public function indicatorValues()
     {
         return $this->hasMany(IndicatorValue::class);
     }

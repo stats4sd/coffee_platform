@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Model;
 
 class IndicatorValue extends Model
 {
-    use CrudTrait;
+    use CrudTrait, HasFactory;
 
     /*
     |--------------------------------------------------------------------------
@@ -44,7 +45,7 @@ class IndicatorValue extends Model
         return $this->belongsTo(Source::class);
     }
 
-    public function geo_boundary()
+    public function geoBoundary()
     {
         return $this->belongsTo(GeoBoundary::class);
     }
@@ -59,26 +60,26 @@ class IndicatorValue extends Model
         return $this->belongsTo(Gender::class);
     }
 
-    public function smallholder_definition()
+    public function smallholderDefinition()
     {
         return $this->belongsTo(SmallholderDefinition::class);
-    }    
+    }
 
     public function user()
     {
         return $this->belongsTo(User::class);
-    } 
+    }
 
-    public function purpose_of_collection()
+    public function purposeOfCollection()
     {
         return $this->belongsTo(PurposeOfCollection::class);
-    } 
+    }
 
-    public function approach_collection()
+    public function approachCollection()
     {
         return $this->belongsTo(ApproachCollection::class);
-    } 
-    
+    }
+
     /*
     |--------------------------------------------------------------------------
     | SCOPES

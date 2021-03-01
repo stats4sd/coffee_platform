@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Model;
 
 class Characteristic extends Model
 {
-    use CrudTrait;
+    use CrudTrait, HasFactory;
 
     /*
     |--------------------------------------------------------------------------
@@ -34,7 +35,7 @@ class Characteristic extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-    public function sub_characteristic()
+    public function subCharacteristic()
     {
         return $this->hasMany(SubCharacteristic::class);
     }

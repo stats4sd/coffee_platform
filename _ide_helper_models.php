@@ -18,7 +18,7 @@ namespace App\Models{
  * @property string $name
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\IndicatorValue[] $indicator_values
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\IndicatorValue[] $indicatorValues
  * @property-read int|null $indicator_values_count
  * @method static \Illuminate\Database\Eloquent\Builder|ApproachCollection newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|ApproachCollection newQuery()
@@ -39,7 +39,7 @@ namespace App\Models{
  * @property string $name
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\SubCharacteristic[] $sub_characteristic
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\SubCharacteristic[] $subCharacteristic
  * @property-read int|null $sub_characteristic_count
  * @method static \Illuminate\Database\Eloquent\Builder|Characteristic newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Characteristic newQuery()
@@ -60,7 +60,7 @@ namespace App\Models{
  * @property string $name
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\GeoBoundary[] $geo_boundaries
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\GeoBoundary[] $geoBoundaries
  * @property-read int|null $geo_boundaries_count
  * @method static \Illuminate\Database\Eloquent\Builder|Country newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Country newQuery()
@@ -81,7 +81,7 @@ namespace App\Models{
  * @property string $name
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\IndicatorValue[] $indicator_values
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\IndicatorValue[] $indicatorValues
  * @property-read int|null $indicator_values_count
  * @method static \Illuminate\Database\Eloquent\Builder|Gender newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Gender newQuery()
@@ -104,7 +104,7 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\Country $country
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\IndicatorValue[] $indicator_values
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\IndicatorValue[] $indicatorValues
  * @property-read int|null $indicator_values_count
  * @method static \Illuminate\Database\Eloquent\Builder|GeoBoundary newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|GeoBoundary newQuery()
@@ -129,9 +129,9 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read mixed $characteristic_id
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\IndicatorValue[] $indicator_values
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\IndicatorValue[] $indicatorValues
  * @property-read int|null $indicator_values_count
- * @property-read \App\Models\SubCharacteristic $sub_characteristic
+ * @property-read \App\Models\SubCharacteristic $subCharacteristic
  * @method static \Illuminate\Database\Eloquent\Builder|Indicator newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Indicator newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Indicator query()
@@ -165,12 +165,12 @@ namespace App\Models{
  * @property string|null $scope
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \App\Models\ApproachCollection $approach_collection
+ * @property-read \App\Models\ApproachCollection $approachCollection
  * @property-read \App\Models\Gender $gender
- * @property-read \App\Models\GeoBoundary $geo_boundary
+ * @property-read \App\Models\GeoBoundary $geoBoundary
  * @property-read \App\Models\Indicator $indicator
- * @property-read \App\Models\PurposeOfCollection $purpose_of_collection
- * @property-read \App\Models\SmallholderDefinition $smallholder_definition
+ * @property-read \App\Models\PurposeOfCollection $purposeOfCollection
+ * @property-read \App\Models\SmallholderDefinition $smallholderDefinition
  * @property-read \App\Models\Source $source
  * @property-read \App\Models\Unit $unit
  * @property-read \App\Models\User $user
@@ -226,7 +226,7 @@ namespace App\Models{
  * @property string $name
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\IndicatorValue[] $indicator_values
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\IndicatorValue[] $indicatorValues
  * @property-read int|null $indicator_values_count
  * @method static \Illuminate\Database\Eloquent\Builder|PurposeOfCollection newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|PurposeOfCollection newQuery()
@@ -247,7 +247,7 @@ namespace App\Models{
  * @property string $definition
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\IndicatorValue[] $indicator_values
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\IndicatorValue[] $indicatorValues
  * @property-read int|null $indicator_values_count
  * @method static \Illuminate\Database\Eloquent\Builder|SmallholderDefinition newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|SmallholderDefinition newQuery()
@@ -273,7 +273,7 @@ namespace App\Models{
  * @property array|null $file
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\IndicatorValue[] $indicator_values
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\IndicatorValue[] $indicatorValues
  * @property-read int|null $indicator_values_count
  * @property-read \App\Models\Partner $partner
  * @property-read \App\Models\Type $type
@@ -346,7 +346,7 @@ namespace App\Models{
  * @property string $unit
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\IndicatorValue[] $indicator_values
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\IndicatorValue[] $indicatorValues
  * @property-read int|null $indicator_values_count
  * @method static \Illuminate\Database\Eloquent\Builder|Unit newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Unit newQuery()
@@ -371,7 +371,7 @@ namespace App\Models{
  * @property string|null $remember_token
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\IndicatorValue[] $indicator_values
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\IndicatorValue[] $indicatorValues
  * @property-read int|null $indicator_values_count
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
  * @property-read int|null $notifications_count
