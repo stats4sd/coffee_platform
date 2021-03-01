@@ -2,6 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Models\Characteristic;
+use App\Models\Indicator;
+use App\Models\SubCharacteristic;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -13,6 +16,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        Characteristic::factory()->count(3)
+        ->has(
+            SubCharacteristic::factory()->count(3)
+            ->has(Indicator::factory()->count(4))
+        )
+        ->create();
     }
 }

@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Model;
 
 class IndicatorValue extends Model
 {
-    use CrudTrait;
+    use CrudTrait, HasFactory;
 
     /*
     |--------------------------------------------------------------------------
@@ -62,23 +63,23 @@ class IndicatorValue extends Model
     public function smallholder_definition()
     {
         return $this->belongsTo(SmallholderDefinition::class);
-    }    
+    }
 
     public function user()
     {
         return $this->belongsTo(User::class);
-    } 
+    }
 
     public function purpose_of_collection()
     {
         return $this->belongsTo(PurposeOfCollection::class);
-    } 
+    }
 
     public function approach_collection()
     {
         return $this->belongsTo(ApproachCollection::class);
-    } 
-    
+    }
+
     /*
     |--------------------------------------------------------------------------
     | SCOPES
