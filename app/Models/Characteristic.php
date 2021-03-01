@@ -35,7 +35,7 @@ class Characteristic extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-    public function sub_characteristic()
+    public function subCharacteristic()
     {
         return $this->hasMany(SubCharacteristic::class);
     }

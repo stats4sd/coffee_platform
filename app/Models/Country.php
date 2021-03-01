@@ -35,7 +35,7 @@ class Country extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-    public function geo_boundaries()
+    public function geoBoundaries()
     {
         return $this->hasMany(GeoBoundary::class);
     }

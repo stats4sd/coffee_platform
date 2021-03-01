@@ -35,7 +35,7 @@ class ApproachCollection extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-    public function indicator_values()
+    public function indicatorValues()
     {
         return $this->hasMany(IndicatorValue::class);
     }
