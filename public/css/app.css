@@ -16827,6 +16827,24 @@ a.text-dark:focus {
   width: auto;
 }
 
+.select-card {
+  width: 200px;
+  height: 100px;
+  overflow: hidden;
+}
+
+.select-card.selected {
+  outline: 5px solid #70aeb0;
+}
+
+.card-caption {
+  z-index: 1;
+  text-align: center;
+  width: 100%;
+  margin: 33% 0;
+  position: absolute;
+}
+
 h1 {
   font-family: "Noto Sans JP", sans-serif;
 }
@@ -16837,20 +16855,6 @@ h1 {
 
 .sidebar {
   min-width: 250px;
-}
-
-.select-card {
-  width: 200px;
-  height: 100px;
-  overflow: hidden;
-}
-
-.card-caption {
-  z-index: 1;
-  text-align: center;
-  width: 100%;
-  margin: 33% 0;
-  position: absolute;
 }
 
 .dark-gradient {
