@@ -17,12 +17,25 @@ class Characteristic extends Model
     */
 
     protected $table = 'characteristics';
-    // protected $primaryKey = 'id';
+    protected $primaryKey = 'id';
     // public $timestamps = false;
     protected $guarded = [];
     // protected $fillable = [];
     // protected $hidden = [];
     // protected $dates = [];
+
+    public static function boot()
+    {
+        parent::boot();
+
+        static::saved(function ($characteristic) {
+            $characteristic->subCharacteristic->each(function ($subCharacteristic) {
+                $subCharacteristic->indicators->each(function ($indicator) {
+                    $indicator->indicatorValues->searchable();
+                });
+            });
+        });
+    }
 
     /*
     |--------------------------------------------------------------------------

@@ -1,3 +1,5 @@
+require('./bootstrap.js')
+
 import Vue from 'vue';
 
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'

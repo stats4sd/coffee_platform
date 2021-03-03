@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
+use App\Models\Traits\UpdatesMainSearchIndex;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Model;
 
 class Unit extends Model
 {
-    use CrudTrait, HasFactory;
+    use CrudTrait, HasFactory, UpdatesMainSearchIndex;
 
     /*
     |--------------------------------------------------------------------------
@@ -17,7 +18,7 @@ class Unit extends Model
     */
 
     protected $table = 'units';
-    // protected $primaryKey = 'id';
+    protected $primaryKey = 'id';
     // public $timestamps = false;
     protected $guarded = ['id'];
     // protected $fillable = [];

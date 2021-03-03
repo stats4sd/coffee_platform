@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\IndicatorValueController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,3 +20,4 @@ Route::view('reports', 'reports')->name('reports');
 Route::view('indicators', 'indicators')->name('indicators');
 
 
+Route::get('indicators/search', [IndicatorValueController::class, 'index'])->name('indicators.search');

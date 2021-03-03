@@ -52,18 +52,20 @@ class DatabaseSeeder extends Seeder
         ->for($types->random())
         ->create();
 
-        // create 100 indicator values linked to random lookups:
 
-        IndicatorValue::factory()->count(500)
-        ->for($users->random())
-        ->for($units->random())
-        ->for($gender->random())
-        ->for($approachCollections->random())
-        ->for($smallholderDefinitions->random())
-        ->for($purposeOfCollections->random())
-        ->for(GeoBoundary::all()->random())
-        ->for(Indicator::all()->random())
-        ->for($sources->random())
-        ->create();
+        // Using for loop to ensure each value is assigned a different random relationship
+        for ($i=0; $i < 500; $i++) {
+            IndicatorValue::factory()
+            ->for($users->random())
+            ->for($units->random())
+            ->for($gender->random())
+            ->for($approachCollections->random())
+            ->for($smallholderDefinitions->random())
+            ->for($purposeOfCollections->random())
+            ->for(GeoBoundary::all()->random())
+            ->for(Indicator::all()->random())
+            ->for($sources->random())
+            ->create();
+        }
     }
 }

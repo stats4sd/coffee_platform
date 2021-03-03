@@ -17,12 +17,23 @@ class SubCharacteristic extends Model
     */
 
     protected $table = 'sub_characteristics';
-    // protected $primaryKey = 'id';
+    protected $primaryKey = 'id';
     // public $timestamps = false;
     protected $guarded = ['id'];
     // protected $fillable = [];
     // protected $hidden = [];
     // protected $dates = [];
+
+    public static function boot()
+    {
+        parent::boot();
+
+        static::saved(function ($subCharacteristic) {
+            $subCharacteristic->indicators->each(function ($indicator) {
+                $indicator->indicatorValues->searchable();
+            });
+        });
+    }
 
     /*
     |--------------------------------------------------------------------------

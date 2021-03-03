@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Backpack\CRUD\app\Models\Traits\CrudTrait;
+use Laravel\Scout\Searchable;
 use Illuminate\Database\Eloquent\Model;
+use Backpack\CRUD\app\Models\Traits\CrudTrait;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class IndicatorValue extends Model
 {
-    use CrudTrait, HasFactory;
+    use CrudTrait, HasFactory, Searchable;
 
     /*
     |--------------------------------------------------------------------------
@@ -17,18 +18,42 @@ class IndicatorValue extends Model
     */
 
     protected $table = 'indicator_values';
-    // protected $primaryKey = 'id';
+    protected $primaryKey = 'id';
     // public $timestamps = false;
     protected $guarded = ['id'];
     // protected $fillable = [];
     // protected $hidden = [];
     // protected $dates = [];
+    protected $with = [
+        'indicator',
+    ];
 
     /*
     |--------------------------------------------------------------------------
     | FUNCTIONS
     |--------------------------------------------------------------------------
     */
+
+    public function toSearchableArray()
+    {
+        $array = $this->toArray();
+        $array['indicator'] = $this->indicator;
+        $array['subCharacteristic'] = $this->indicator->subCharacteristic;
+        $array['characteristic'] = $this->indicator->subCharacteristic->characteristic;
+        $array['source'] = $this->source;
+        $array['type'] = $this->source->type;
+        $array['partner'] = $this->source->partner;
+
+        $array['user'] = $this->user;
+        $array['approachCollection'] = $this->approachCollection;
+        $array['purposeOfCollection'] = $this->purposeOfCollection;
+        $array['smallholderDefinition'] = $this->smallholderDefinition;
+        $array['gender'] = $this->gender;
+        $array['unit'] = $this->unit;
+
+        return $array;
+    }
+
 
     /*
     |--------------------------------------------------------------------------
