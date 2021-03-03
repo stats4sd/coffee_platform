@@ -14,24 +14,26 @@
             </div>
             <div class="d-flex flex-column">
                 <ul class="list-group">
-                    <li class="list-group-item">
-                        Indicator Tags
-                    </li>
-                    <li class="list-group-item">
-                        Country
-                    </li>
-                    <li class="list-group-item">
-                        Period
-                    </li>
-                    <li class="list-group-item">
-                        Source Type
-                    </li>
-                    <li class="list-group-item">
-                        Scope
-                    </li>
-                    <li class="list-group-item">
-                        Purpose
-                    </li>
+                    <sidebar-filter
+                        v-model="selectedCountries"
+                        title="Country"
+                        :options="countries"
+                    />
+                    <sidebar-filter
+                        v-model="selectedYears"
+                        title="Years"
+                        :options="years"
+                    />
+                    <sidebar-filter
+                        v-model="selectedSourceTypes"
+                        title="Source Type"
+                        :options="sourceTypes"
+                    />
+                    <sidebar-filter
+                        v-model="selectedPurposes"
+                        title="Purpose"
+                        :options="purposes"
+                    />
                 </ul>
             </div>
         </div>
@@ -138,14 +140,18 @@
 
 <script>
     import SelectWithImages from "./elements/SelectWithImages";
+    import SidebarFilter from "./elements/SidebarFilter"
 
     export default {
         components: {
-            SelectWithImages
+            SelectWithImages,
+            SidebarFilter
         },
 
         data() {
             return {
+
+                // Indicator table
                 indicators: [],
                 indicatorFields: [
                     'code',
@@ -156,21 +162,27 @@
                         class: 'w-25 w-sm-50'
                     },
                 ],
+
+                // Filters
+                countries: [],
+                years: [1999,2000,2001,2005],
+                sourceTypes: [],
+                purposes: [],
+
+                selectedCountries: [],
+                selectedYears: [],
+                selectedSourceTypes: [],
+                selectedPurposes: [],
+
                 characteristics: [],
                 subCharacteristics: [],
-                indicatorTags: [],
-                countries: [],
-                years: [],
-                sourceTypes: [],
-                scopes: [],
-                purposes: [],
-                selectedCharacteristic: null
+
+                selectedCharacteristic: null,
+                selectedSubCharacteristic: null,
             };
         },
 
         mounted() {
-            console.log("Component mounted.");
-
             this.getIndicatorValues();
         },
 

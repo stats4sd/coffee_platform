@@ -28,3 +28,16 @@ h1 {
 .dark-gradient {
     background: linear-gradient(180deg, rgba(255, 255, 255, 0), #011627e3);
 }
+
+.btn-flush {
+    border-radius: 0;
+}
+
+.padded-checkbox-group .custom-checkbox {
+
+    margin: 0.5em 0 0.5em 2em;
+
+    label {
+        padding: 0em 3em 0em 0;
+    }
+}
