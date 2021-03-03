@@ -30,7 +30,7 @@ class Partner extends Model
         parent::boot();
 
         static::saved(function ($partner) {
-            $partner->sourcers->each(function ($source) {
+            $partner->sources->each(function ($source) {
                 $source->indicatorValues->searchable();
             });
         });
