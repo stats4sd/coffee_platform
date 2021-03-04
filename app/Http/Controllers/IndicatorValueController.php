@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\IndicatorValue;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
+use App\Models\IndicatorValue;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\Builder;
 
 class IndicatorValueController extends Controller
 {
@@ -44,5 +45,10 @@ class IndicatorValueController extends Controller
         }
 
         return $results;
+    }
+
+    public function getYears()
+    {
+        return DB::table('indicator_values')->selectRaw('distinct year')->get();
     }
 }

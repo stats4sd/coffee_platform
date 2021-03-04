@@ -1,6 +1,10 @@
 <?php
 
+use App\Http\Controllers\CountryController;
 use App\Http\Controllers\IndicatorValueController;
+use App\Http\Controllers\PurposeOfCollectionController;
+use App\Http\Controllers\TypeController;
+use App\Models\PurposeOfCollection;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,3 +25,8 @@ Route::view('indicators', 'indicators')->name('indicators');
 
 
 Route::get('indicators/search', [IndicatorValueController::class, 'index'])->name('indicators.search');
+
+Route::get('country', [CountryController::class, 'index'])->name('country.index');
+Route::get('year', [IndicatorValueController::class, 'getYears'])->name('year.index');
+Route::get('type', [TypeController::class, 'index'])->name('type.index');
+Route::get('purposeofcollection', [PurposeOfCollectionController::class, 'index'])->name('purposeOfCollection.search');

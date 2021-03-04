@@ -23,11 +23,13 @@
                         v-model="selectedYears"
                         title="Years"
                         :options="years"
+                        display-field="year"
+                        value-field="year"
                     />
                     <sidebar-filter
-                        v-model="selectedSourceTypes"
+                        v-model="selectedtypes"
                         title="Source Type"
-                        :options="sourceTypes"
+                        :options="types"
                     />
                     <sidebar-filter
                         v-model="selectedPurposes"
@@ -165,13 +167,13 @@
 
                 // Filters
                 countries: [],
-                years: [1999,2000,2001,2005],
-                sourceTypes: [],
+                years: [],
+                types: [],
                 purposes: [],
 
                 selectedCountries: [],
                 selectedYears: [],
-                selectedSourceTypes: [],
+                selectedtypes: [],
                 selectedPurposes: [],
 
                 characteristics: [],
@@ -184,6 +186,10 @@
 
         mounted() {
             this.getIndicatorValues();
+            this.getCountries()
+            this.getYears()
+            this.getTypes()
+            this.getPurposes()
         },
 
         methods: {
@@ -194,11 +200,10 @@
                     url += "&search='"+this.searchTerm+"'"
                 }
 
-
                 axios.get(url).then(result => {
                     var values = result.data;
-
                     this.indicators = values;
+                    console.log(values);
                 });
             },
 
@@ -207,7 +212,24 @@
                 this.searchTerm = value;
 
                 this.getIndicatorValues()
-            }, 500)
+            }, 500),
+
+            getCountries() {
+                axios.get('/country').then(result => this.countries = result.data)
+            },
+
+            getYears() {
+                axios.get('/year').then(result => this.years = result.data)
+            },
+
+            getTypes() {
+                axios.get('/type').then(result => this.types = result.data)
+            },
+
+            getPurposes() {
+                axios.get('/purposeofcollection').then(result => this.purposes = result.data)
+            },
+
         }
     };
 </script>
