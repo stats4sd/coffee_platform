@@ -17,6 +17,6 @@ class SubCharacteristicController extends Controller
     {
         return SubCharacteristic::whereHas('indicators', function (Builder $query) {
             $query->Has('indicatorValues');
-        });
+        })->get();
     }
 }

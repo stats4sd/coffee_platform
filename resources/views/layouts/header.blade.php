@@ -1,7 +1,6 @@
 <!-- Navigation / Header Bar -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container">
-        <a class="navbar-brand" href="#">SSCF Initiative</a>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark h-100">
+        <a class="navbar-brand" href="#" class="px-4"><h1 class="big-title">SSCF Initiative</h1></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -25,5 +24,4 @@
                 </li>
             </ul>
         </div>
-    </div>
 </nav>

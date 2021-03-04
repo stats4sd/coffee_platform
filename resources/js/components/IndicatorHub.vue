@@ -67,7 +67,7 @@
                     labore inventore tempore voluptas, nostrum non!
                 </p>
                 <!-- <characteristics> -->
-                <div class="d-flex flex-wrap">
+                <div class="d-flex flex-wrap pb-4">
                     <select-with-images
                         v-model="selectedCharacteristic"
                         :options="characteristics"
@@ -75,7 +75,9 @@
                 </div>
                 <!-- </characteristics> -->
                 <!-- <sub-characteristics> -->
-                <h2>Subcharacteristics</h2>
+                <h2 class="pt-3">
+                    Subcharacteristics
+                </h2>
                 <div class="d-flex flex-wrap">
                     <div
                         v-for="subCharacteristic in subCharacteristics"
@@ -87,60 +89,66 @@
                                     selectedCharacteristic
                             "
                             variant="primary"
-                            class="m-2"
+                            class="m-2 btn-lg"
                         >
-                            {{ subCharacteristic.label }}
+                            {{ subCharacteristic.name }}
                         </b-button>
                     </div>
                 </div>
             </div>
 
-            <div class="bg-light">
-                <!-- </sub-characteristics> -->
+            <div class="bg-light pt-4 flex-grow-1">
+                <div class="container py-4">
+                    <!-- </sub-characteristics> -->
 
-                <!-- </indicator-main> -->
-                <!-- <results-section> -->
-                <div class="mt-4">
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                    Quisquam, error rerum quas repellendus magnam sapiente
-                    maiores dolorem facilis voluptatibus natus perspiciatis
-                    tempore blanditiis obcaecati praesentium non fugit harum
-                    distinctio dolores.
+                    <!-- </indicator-main> -->
+                    <!-- <results-section> -->
+                    <div class="py-4">
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                        Quisquam, error rerum quas repellendus magnam sapiente
+                        maiores dolorem facilis voluptatibus natus perspiciatis
+                        tempore blanditiis obcaecati praesentium non fugit harum
+                        distinctio dolores.
+                    </div>
+
+                    <b-table
+                        :items="indicators"
+                        :fields="indicatorFields"
+                        sticky-header
+                        class="pb-4"
+                        thead-class="bg-light open-top"
+                    >
+                        <template #cell(actions)>
+                            <div class="d-flex justify-content-start align-items-center">
+                                <b-button
+                                    size="sm"
+                                    variant="primary"
+                                    class="ml-2 font-weight-bold"
+                                >
+                                    <i class="las la-eye" />
+                                </b-button>
+                                <b-button
+                                    size="sm"
+                                    variant="primary"
+                                    class="ml-2 font-weight-bold"
+                                >
+                                    <i class="las la-plus" /> Add to Selection
+                                </b-button>
+                                <b-button
+                                    size="sm"
+                                    variant="primary"
+                                    class="ml-2 font-weight-bold"
+                                >
+                                    <i class="las la-download" />
+                                </b-button>
+                            </div>
+                        </template>
+                        <template #cell(code)="data">
+                            <b>{{ data.value }}</b>
+                        </template>
+                    </b-table>
+                    <!-- </results-section> -->
                 </div>
-
-                <h4>No. of Indicators Returned: {{ indicators.length }}</h4>
-
-                <b-table
-                    :items="indicators"
-                    :fields="indicatorFields"
-                >
-                    <template #cell(actions)="row">
-                        <div class="d-flex justify-content-start">
-                            <b-button
-                                size="sm"
-                                variant="primary"
-                                class="mx-2"
-                            >
-                                <i class="las la-eye" />
-                            </b-button>
-                            <b-button
-                                size="sm"
-                                variant="primary"
-                                class="mx-2"
-                            >
-                                <i class="las la-plus" /> Add to Selection
-                            </b-button>
-                            <b-button
-                                size="sm"
-                                variant="primary"
-                                class="mx-2"
-                            >
-                                <i class="las la-download" />
-                            </b-button>
-                        </div>
-                    </template>
-                </b-table>
-            <!-- </results-section> -->
             </div>
         </div>
     </div>
@@ -162,12 +170,18 @@
                 // Indicator table
                 indicators: [],
                 indicatorFields: [
-                    'code',
-                    'definition',
+                    {
+                        key: 'code',
+                        label: 'indicator',
+                    },
+                    {
+                        key: 'definition',
+                        label: 'description',
+                    },
                     {
                         key: 'actions',
                         label: 'Actions',
-                        class: 'w-25 w-sm-50'
+                        class: 'w-33 w-sm-50'
                     },
                 ],
 
@@ -196,6 +210,8 @@
             this.getYears()
             this.getTypes()
             this.getPurposes()
+            this.getCharacteristics()
+            this.getSubCharacteristics()
         },
 
         methods: {
@@ -241,7 +257,7 @@
             },
 
             getSubCharacteristics() {
-                axios.get('/subcharacteristics').then(result => this.subCharacteristics = result.data)
+                axios.get('/subcharacteristic').then(result => this.subCharacteristics = result.data)
             },
 
         }

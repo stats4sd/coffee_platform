@@ -1,5 +1,5 @@
 // Fonts
-@import url('https://fonts.googleapis.com/css?family=Roberto');
+@import url('https://fonts.googleapis.com/css?family=Roboto');
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap');
 
 // Variables
@@ -7,6 +7,7 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+@import '~bootstrap-vue/dist/bootstrap-vue.css';
 @import '../../public/packages/line-awesome/scss/line-awesome';
 
 // Components
@@ -16,6 +17,16 @@
 h1 {
     font-family: 'Noto Sans JP', sans-serif;
     font-weight: 300;
+}
+
+h2 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+
+}
+
+button.btn {
+    border-radius: 0.5em;
 }
 
 .pt-lots {
@@ -28,7 +39,23 @@ h1 {
 }
 
 .full-height {
-    min-height: 100vh;
+    min-height: calc(100vh - 135px);
+}
+
+.h-1 {
+    height: 45px;
+}
+
+.h-2 {
+    height: 90px;
+}
+
+.w-33 {
+    width: 33%;
+}
+
+.b-table-sticky-header {
+    max-height: 500px !important;
 }
 
 .sidebar {
@@ -50,4 +77,9 @@ h1 {
     label {
         padding: 0em 3em 0em 0;
     }
+}
+
+.open-top th {
+    border-top: 0 !important;
+    background-color: $light !important;
 }

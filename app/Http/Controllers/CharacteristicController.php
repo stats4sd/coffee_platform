@@ -19,6 +19,6 @@ class CharacteristicController extends Controller
             $query->whereHas('indicators', function (Builder $query) {
                 $query->Has('indicatorValues');
             });
-        });
+        })->get();
     }
 }

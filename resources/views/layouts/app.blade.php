@@ -15,7 +15,7 @@
 <body>
      <div class="full-height d-flex flex-column bg-white">
 
-        <div class="header-wrapper">
+        <div class="header-wrapper h-2">
         @include('layouts.header')
         </div>
 
@@ -24,9 +24,9 @@
         </div>
 
         <!-- Footer -->
-        <footer class="py-3 mt-auto bg-dark footer">
+        <footer class="py-3 mt-auto bg-dark footer h-1">
             <div class="container d-flex flex-justify-between">
-                <p class="m-0 text-white">Developed By Stats4SD for the FAW Global Trial Coordination Team and the TPP Project</p>
+                <p class="m-0 text-white">Developed By Stats4SD for the SSCF Initiative</p>
             </div>
             <!-- /.container -->
         </footer>
