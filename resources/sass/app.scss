@@ -83,3 +83,18 @@ button.btn {
     border-top: 0 !important;
     background-color: $light !important;
 }
+
+.btn-group.ungrouped-buttons {
+
+    display: flex;
+    justify-content: start;
+    width: 100%;
+
+
+    .btn {
+        display: block;
+        flex: unset;
+        margin-right: 1em;
+        border-radius: 0.5em !important;
+    }
+}

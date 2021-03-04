@@ -71,6 +71,7 @@
                     <select-with-images
                         v-model="selectedCharacteristic"
                         :options="characteristics"
+                        @input="resetSubCharacteristics"
                     />
                 </div>
                 <!-- </characteristics> -->
@@ -79,21 +80,16 @@
                     Subcharacteristics
                 </h2>
                 <div class="d-flex flex-wrap">
-                    <div
-                        v-for="subCharacteristic in subCharacteristics"
-                        :key="subCharacteristic.id"
-                    >
-                        <b-button
-                            v-if="
-                                subCharacteristic.characteristic_id ==
-                                    selectedCharacteristic
-                            "
-                            variant="primary"
-                            class="m-2 btn-lg"
-                        >
-                            {{ subCharacteristic.name }}
-                        </b-button>
-                    </div>
+                    <b-form-checkbox-group
+                        v-model="selectedSubCharacteristics"
+                        :options="subCharacteristics.filter(sub => sub.characteristic_id === selectedCharacteristic)"
+                        text-field="name"
+                        button-variant="primary"
+                        value-field="id"
+                        buttons
+                        class="ungrouped-buttons"
+                        @change="forceSingle"
+                    />
                 </div>
             </div>
 
@@ -201,7 +197,9 @@
                 subCharacteristics: [],
 
                 selectedCharacteristic: null,
-                selectedSubCharacteristic: null,
+
+                // There should only ever be 1 of these, but it's easier to use checkboxes to allow toggle on/off
+                selectedSubCharacteristics: [],
             };
         },
         computed: {
@@ -286,8 +284,8 @@
                     values = values.filter((value) => this.selectedPurposes.includes(value.purpose_id))
                 }
 
-                if(this.selectedSubCharacteristic) {
-                    values = values.filter((value) => this.selectedSubCharacteristic === value.sub_characteristic_id)
+                if(this.selectedSubCharacteristics.length > 0) {
+                    values = values.filter((value) => this.selectedSubCharacteristics.includes(value.sub_characteristic_id))
                 }
 
                 if(this.selectedCharacteristic) {
@@ -318,6 +316,16 @@
 
             getSubCharacteristics() {
                 axios.get('/subcharacteristic').then(result => this.subCharacteristics = result.data)
+            },
+
+            forceSingle() {
+                if(this.selectedSubCharacteristics.length > 1) {
+                    this.selectedSubCharacteristics.shift()
+                }
+            },
+
+            resetSubCharacteristics() {
+                this.selectedSubCharacteristics = [];
             },
 
         }

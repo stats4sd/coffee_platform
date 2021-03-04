@@ -19503,4 +19503,17 @@ button.btn {
   background-color: #f8f9fa !important;
 }
 
+.btn-group.ungrouped-buttons {
+  display: flex;
+  justify-content: start;
+  width: 100%;
+}
+
+.btn-group.ungrouped-buttons .btn {
+  display: block;
+  flex: unset;
+  margin-right: 1em;
+  border-radius: 0.5em !important;
+}
+
 

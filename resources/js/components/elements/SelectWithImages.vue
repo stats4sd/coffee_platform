@@ -9,7 +9,7 @@
                 class="select-card dark-gradient m-2"
                 border-variant="primary"
                 :class="option.value === value ? 'selected' : ''"
-                @click="$emit('input', option.value)"
+                @click="clicked(option.value)"
             >
                 <b-card-img
                     :src="option.image"
@@ -53,6 +53,14 @@
             }
         },
         methods: {
+
+            clicked(value) {
+                if(value === this.value) {
+                    value = null
+                }
+                this.$emit('input', value)
+            },
+
             makeOptions() {
                 var displayField = this.displayField || null
 
