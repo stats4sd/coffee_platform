@@ -29,7 +29,7 @@ class Characteristic extends Model
         parent::boot();
 
         static::saved(function ($characteristic) {
-            $characteristic->subCharacteristic->each(function ($subCharacteristic) {
+            $characteristic->subCharacteristics->each(function ($subCharacteristic) {
                 $subCharacteristic->indicators->each(function ($indicator) {
                     $indicator->indicatorValues->searchable();
                 });
@@ -48,7 +48,7 @@ class Characteristic extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-    public function subCharacteristic()
+    public function subCharacteristics()
     {
         return $this->hasMany(SubCharacteristic::class);
     }
