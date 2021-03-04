@@ -13,7 +13,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
-     <div class="full-height d-flex flex-column">
+     <div class="full-height d-flex flex-column bg-white">
 
         <div class="header-wrapper">
         @include('layouts.header')

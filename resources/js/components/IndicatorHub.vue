@@ -2,8 +2,8 @@
     <div class="d-md-flex d-block">
         <!-- <indicator-sidebar> -->
         <div class="full-height sidebar shadow">
-            <div class="sidebar-header bg-primary p-2 pl-4 mb-0 text-white">
-                <h2>
+            <div class="sidebar-header bg-primary p-4 mb-0 text-white">
+                <h2 class="p-0 m-0">
                     Filters
                     <span
                         class="sidebar-icon"
@@ -40,12 +40,14 @@
             </div>
         </div>
         <!-- </indicator-sidebar> -->
-        <div>
-            <!-- <indicator-main> -->
-
-            <div class="flex-grow-1 p-4 bg-white">
-                <div class="row" />
-                <h1>Search or Browse Indicators</h1>
+        <!-- <indicator-main> -->
+        <div class="flex-grow-1">
+            <div
+                class="pt-lots px-lots pb-4"
+            >
+                <h1 class="text-center pb-4">
+                    Search or Browse Indicators
+                </h1>
                 <b-input-group class="mb-3">
                     <template #append>
                         <b-input-group-text>
@@ -53,11 +55,12 @@
                         </b-input-group-text>
                     </template>
                     <b-form-input
+                        class="bg-light"
                         placeholder="Search for indicators"
                         @input="searchIndicators"
                     />
                 </b-input-group>
-                <p>
+                <p class="pb-4 pt-2">
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos
                     sed vitae fugit quas facilis, dolore cupiditate, quia
                     voluptatum dolorum amet excepturi, consectetur omnis? Neque
@@ -90,6 +93,9 @@
                         </b-button>
                     </div>
                 </div>
+            </div>
+
+            <div class="bg-light">
                 <!-- </sub-characteristics> -->
 
                 <!-- </indicator-main> -->
@@ -134,7 +140,7 @@
                         </div>
                     </template>
                 </b-table>
-                <!-- </results-section> -->
+            <!-- </results-section> -->
             </div>
         </div>
     </div>

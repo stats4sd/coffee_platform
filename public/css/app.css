@@ -16847,6 +16847,16 @@ a.text-dark:focus {
 
 h1 {
   font-family: "Noto Sans JP", sans-serif;
+  font-weight: 300;
+}
+
+.pt-lots {
+  padding-top: 100px;
+}
+
+.px-lots {
+  padding-left: 20%;
+  padding-right: 20%;
 }
 
 .full-height {
