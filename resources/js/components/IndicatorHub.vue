@@ -230,6 +230,14 @@
                 axios.get('/purposeofcollection').then(result => this.purposes = result.data)
             },
 
+            getCharacteristics() {
+                axios.get('/characteristic').then(result => this.characteristics = result.data)
+            },
+
+            getSubCharacteristics() {
+                axios.get('/subcharacteristics').then(result => this.subCharacteristics = result.data)
+            },
+
         }
     };
 </script>
