@@ -9,7 +9,9 @@ trait UpdatesMainSearchIndex
         parent::boot();
 
         static::saved(function ($item) {
-            $item->indicatorValues->searchable();
+            if ($item->indicatorValues) {
+                $item->indicatorValues->searchable();
+            }
         });
     }
 }

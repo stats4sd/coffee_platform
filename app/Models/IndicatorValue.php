@@ -28,6 +28,14 @@ class IndicatorValue extends Model
         'indicator',
     ];
 
+    protected $appends = [
+        'sub_characteristic_id',
+        'characteristic_id',
+        'type_id',
+        'partner_id',
+        'country_id'
+    ];
+
     /*
     |--------------------------------------------------------------------------
     | FUNCTIONS
@@ -37,6 +45,7 @@ class IndicatorValue extends Model
     public function toSearchableArray()
     {
         $array = $this->toArray();
+        //for full-text search;
         $array['indicator'] = $this->indicator;
         $array['subCharacteristic'] = $this->indicator->subCharacteristic;
         $array['characteristic'] = $this->indicator->subCharacteristic->characteristic;
@@ -51,8 +60,48 @@ class IndicatorValue extends Model
         $array['gender'] = $this->gender;
         $array['unit'] = $this->unit;
 
+        $array['geoBoundary'] = $this->geoBoundary;
+        $array['country_'] = $this->geoBoundary->country;
+
+        // for filters
+        $array['sub_characteristic_id'] = $this->indicator->sub_characteristic_id;
+        $array['characteristic_id'] = $this->indicator->subCharacteristic->characteristic_id;
+        $array['type_id'] = $this->source->type_id;
+        $array['partner_id'] = $this->source->partner_id;
+        $array['country_id'] = $this->geoBoundary->country_id;
+
+
         return $array;
     }
+
+    public function getSubCharacteristicIdAttribute()
+    {
+        return $this->indicator->sub_characteristic_id;
+    }
+
+    public function getCharacteristicIdAttribute()
+    {
+        return $this->indicator->subCharacteristic->characteristic_id;
+    }
+
+    public function getTypeIdAttribute()
+    {
+        return $this->source->type_id;
+    }
+
+    public function getPartnerIdAttribute()
+    {
+        return $this->source->partner_id;
+    }
+
+    public function getCountryIdAttribute()
+    {
+        return $this->geoBoundary->country_id;
+    }
+
+
+
+
 
 
     /*

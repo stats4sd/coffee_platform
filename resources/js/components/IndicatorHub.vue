@@ -27,7 +27,7 @@
                         value-field="year"
                     />
                     <sidebar-filter
-                        v-model="selectedtypes"
+                        v-model="selectedTypes"
                         title="Source Type"
                         :options="types"
                     />
@@ -103,6 +103,8 @@
 
                     <!-- </indicator-main> -->
                     <!-- <results-section> -->
+
+                    <h5>Indicator Count: {{ indicators.length }}</h5>
                     <div class="py-4">
                         Lorem ipsum, dolor sit amet consectetur adipisicing elit.
                         Quisquam, error rerum quas repellendus magnam sapiente
@@ -168,7 +170,7 @@
             return {
 
                 // Indicator table
-                indicators: [],
+                allIndicatorValues: [],
                 indicatorFields: [
                     {
                         key: 'code',
@@ -193,15 +195,42 @@
 
                 selectedCountries: [],
                 selectedYears: [],
-                selectedtypes: [],
+                selectedTypes: [],
                 selectedPurposes: [],
-
                 characteristics: [],
                 subCharacteristics: [],
 
                 selectedCharacteristic: null,
                 selectedSubCharacteristic: null,
             };
+        },
+        computed: {
+            indicators() {
+                if(this.filteredIndicatorValues.length < 0) return [];
+
+                var valuesByIndicator = this.filteredIndicatorValues.reduce((result, indicatorValue) => {
+                    result[indicatorValue.indicator_id] = result[indicatorValue.indicator_id] || []
+
+                    result[indicatorValue.indicator_id].push(indicatorValue);
+                    return result;
+                }, Object.create(null))
+
+                var indicators = Object.keys(valuesByIndicator).map((indicator_id) => {
+
+                    return {
+
+                        code: valuesByIndicator[indicator_id][0].indicator.code,
+                        description: valuesByIndicator[indicator_id][0].indicator.description,
+                        values: valuesByIndicator[indicator_id],
+                    }
+                });
+
+                return indicators;
+
+            },
+            filteredIndicatorValues() {
+                return this.filterIndicators(this.allIndicatorValues);
+            }
         },
 
         mounted() {
@@ -213,7 +242,6 @@
             this.getCharacteristics()
             this.getSubCharacteristics()
         },
-
         methods: {
             getIndicatorValues() {
                 var url = "/indicators/search?by-indicator"
@@ -222,10 +250,14 @@
                     url += "&search='"+this.searchTerm+"'"
                 }
 
+                // if(this.activeFilters) {
+                //     this.activeFilters.forEach((filter) => {
+                //         url += `&${encodeURIComponent(filter.type)}=${encodeURIComponent(filter.value)}`
+                //     })
+                // }
+
                 axios.get(url).then(result => {
-                    var values = result.data;
-                    this.indicators = values;
-                    console.log(values);
+                    this.allIndicatorValues = result.data
                 });
             },
 
@@ -235,6 +267,34 @@
 
                 this.getIndicatorValues()
             }, 500),
+
+            filterIndicators(values) {
+                if(this.selectedCountries.length > 0) {
+                    console.log('prefilter', values)
+                    values = values.filter((value) => this.selectedCountries.includes(value.country_id))
+                    console.log('postfilter', values)
+                }
+
+                if(this.selectedYears.length > 0) {
+                    values = values.filter((value) => this.selectedYears.includes(value.year))
+                }
+
+                if(this.selectedTypes.length > 0) {
+                    values = values.filter((value) => this.selectedTypes.includes(value.type_id))
+                }
+                if(this.selectedPurposes.length > 0) {
+                    values = values.filter((value) => this.selectedPurposes.includes(value.purpose_id))
+                }
+
+                if(this.selectedSubCharacteristic) {
+                    values = values.filter((value) => this.selectedSubCharacteristic === value.sub_characteristic_id)
+                }
+
+                if(this.selectedCharacteristic) {
+                    values = values.filter((value) => this.selectedCharacteristic === value.characteristic_id)
+                }
+                return values
+            },
 
             getCountries() {
                 axios.get('/country').then(result => this.countries = result.data)

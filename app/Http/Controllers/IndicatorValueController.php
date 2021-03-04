@@ -23,26 +23,30 @@ class IndicatorValueController extends Controller
         }
 
         //Add filters here;
+        if ($request->exists('countries')) {
+            $query = $query->whereIn('country_id', explode(',', $request->input('countries')));
+        }
 
         $results = $query->get();
 
-        if ($request->exists('by-indicator')) {
-            $results = $results->groupBy('indicator_id');
+
+        // if ($request->exists('by-indicator')) {
+        //     $results = $results->groupBy('indicator_id');
 
 
-            // organise data into indicators, with 'values' containing the IndicatorValues.
+        //     // organise data into indicators, with 'values' containing the IndicatorValues.
 
-            $results = $results->map(function ($values) {
-                $indicatorValue = $values->first();
+        //     $results = $results->map(function ($values) {
+        //         $indicatorValue = $values->first();
 
-                return [
-                    'id' => $indicatorValue->indicator->id,
-                    'code' => $indicatorValue->indicator->code,
-                    'definition' => $indicatorValue->indicator->definition,
-                    'values' => $values,
-                ];
-            })->values();
-        }
+        //         return [
+        //             'id' => $indicatorValue->indicator->id,
+        //             'code' => $indicatorValue->indicator->code,
+        //             'definition' => $indicatorValue->indicator->definition,
+        //             'values' => $values,
+        //         ];
+        //     })->values();
+        // }
 
         return $results;
     }
