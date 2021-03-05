@@ -4,10 +4,12 @@ namespace App\Exports;
 
 use App\Models\IndicatorValue;
 use Illuminate\Database\Eloquent\Builder;
+use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\FromQuery;
 use Maatwebsite\Excel\Concerns\WithHeadings;
+use Maatwebsite\Excel\Concerns\WithMapping;
 
-class IndicatorValuesExport implements FromQuery, WithHeadings
+class IndicatorValuesExport implements FromQuery, WithHeadings, WithMapping
 {
     public $indicators = null;
     public $countries = null;
@@ -20,6 +22,7 @@ class IndicatorValuesExport implements FromQuery, WithHeadings
     public function forIndicators(array $indicators)
     {
         $this->indicators = count($indicators) > 0 ? $indicators : null;
+
         return $this;
     }
 
@@ -52,49 +55,17 @@ class IndicatorValuesExport implements FromQuery, WithHeadings
 
     public function query()
     {
-        $query = IndicatorValue::select(
-            'indicator_values.id',
-            'characteristics.id',
-            'characteristics.name',
-            'sub_characteristics.id',
-            'sub_characteristics.name',
-            'indicators.id',
-            'indicators.code',
-            'indicators.definition',
-            'countries.id',
-            'countries.name',
-            'geo_boundaries.id',
-            'geo_boundaries.name',
-            'indicator_values.year',
-            'indicator_values.value',
-            'indicator_values.unit_id',
-            'units.unit',
-            'indicator_values.approach_collection_id',
-            'approach_collections.name',
-            'indicator_values.gender_id',
-            'genders.name',
-            'indicator_values.purpose_of_collection_id',
-            'purpose_of_collections.name',
-            'indicator_values.sample_size',
-            'indicator_values.scope',
-            'indicator_values.smallholder_definition_id',
-            'smallholder_definitions.definition',
-            'indicator_values.user_id',
-            'users.name',
-            'indicator_values.updated_at',
-        )
-        ->join('indicators', 'indicators.id', '=', 'indicator_values.indicator_id')
-        ->join('sub_characteristics', 'sub_characteristics.id', '=', 'indicators.sub_characteristic_id')
-        ->join('characteristics', 'characteristics.id', '=', 'sub_characteristics.characteristic_id')
-        ->join('geo_boundaries', 'geo_boundaries.id', '=', 'indicator_values.geo_boundary_id')
-        ->join('countries', 'countries.id', '=', 'geo_boundaries.country_id')
-        ->join('units', 'units.id', '=', 'indicator_values.unit_id')
-        ->join('approach_collections', 'approach_collections.id', '=', 'indicator_values.approach_collection_id')
-        ->join('genders', 'genders.id', '=', 'indicator_values.gender_id')
-        ->join('purpose_of_collections', 'purpose_of_collections.id', '=', 'indicator_values.purpose_of_collection_id')
-        ->join('smallholder_definitions', 'smallholder_definitions.id', '=', 'indicator_values.smallholder_definition_id')
-        ->join('users', 'users.id', '=', 'indicator_values.user_id');
-
+        $query = IndicatorValue::with([
+            'indicator.subCharacteristic.characteristic',
+            'source.type',
+            'source.partner',
+            'user',
+            'approachCollection',
+            'purposeOfCollection',
+            'smallholderDefinition',
+            'gender',
+            'unit',
+        ]);
 
         if ($this->indicators) {
             $query = $query->whereIn('indicator_id', $this->indicators);
@@ -124,6 +95,45 @@ class IndicatorValuesExport implements FromQuery, WithHeadings
 
         return $query;
     }
+
+    public function map($value) : array
+    {
+        return [
+            $value->id,
+            $value->indicator->subCharacteristic->characteristic_id,
+            $value->indicator->subCharacteristic->characteristic->name,
+            $value->indicator->sub_characteristic_id,
+            $value->indicator->subCharacteristic->name,
+            $value->indicator_id,
+            $value->indicator->code,
+            $value->indicator->definition,
+            $value->geoBoundary->country_id,
+            $value->geoBoundary->country->name,
+            $value->geo_boundary_id,
+            $value->geoBoundary->name,
+            $value->year,
+            $value->value,
+            $value->unit_id,
+            $value->unit->unit,
+            $value->approach_collection_id,
+            $value->approachCollection->name,
+            $value->gender_id,
+            $value->gender->name,
+            $value->purpose_of_collection_id,
+            $value->purposeOfCollection->name,
+            $value->sample_size,
+            $value->scope,
+            $value->smallholder_definition_id,
+            $value->smallholderDefinition->definition,
+            $value->user_id,
+            $value->user->name,
+            $value->updated_at,
+        ];
+    }
+
+
+
+
 
     public function headings() : array
     {

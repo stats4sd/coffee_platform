@@ -406,7 +406,7 @@
 
                 axios
                     .post("indicators/download", {
-                        indicator: indicator.id,
+                        indicators: [indicator.id],
                         countries: this.selectedCountries,
                         years: this.selectedYears,
                         types: this.selectedTypes,

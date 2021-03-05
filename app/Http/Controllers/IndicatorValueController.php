@@ -65,11 +65,7 @@ class IndicatorValueController extends Controller
 
         // ensure indicators is array - even if only 1 is passed;
         if ($request->has('indicators')) {
-            if (is_array($request->input('indicator'))) {
-                $export = $export->forIndicators($request->input('indicator'));
-            } else {
-                $export = $export->forIndicators([$request->input('indicator')]);
-            }
+            $export = $export->forIndicators($request->input('indicators'));
         }
 
         if ($request->has('countries') && count($request->input('countries')) > 0) {

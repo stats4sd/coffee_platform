@@ -30,11 +30,11 @@ class IndicatorValue extends Model
     ];
 
     protected $appends = [
-        //'sub_characteristic_id',
-        // // 'characteristic_id',
-        // 'type_id',
-        // 'partner_id',
-        // 'country_id'
+        'sub_characteristic_id',
+        'characteristic_id',
+        'type_id',
+        'partner_id',
+        'country_id'
     ];
 
     /*
@@ -75,30 +75,30 @@ class IndicatorValue extends Model
         return $array;
     }
 
-    // public function getSubCharacteristicIdAttribute()
-    // {
-    //     return $this->indicator->sub_characteristic_id;
-    // }
+    public function getSubCharacteristicIdAttribute()
+    {
+        return $this->indicator ? $this->indicator->sub_characteristic_id : null;
+    }
 
-    // public function getCharacteristicIdAttribute()
-    // {
-    //     return $this->indicator->subCharacteristic->characteristic_id;
-    // }
+    public function getCharacteristicIdAttribute()
+    {
+        return $this->indicator ? $this->indicator->subCharacteristic->characteristic_id : null;
+    }
 
-    // public function getTypeIdAttribute()
-    // {
-    //     return $this->source->type_id;
-    // }
+    public function getTypeIdAttribute()
+    {
+        return $this->source ? $this->source->type_id : null;
+    }
 
-    // public function getPartnerIdAttribute()
-    // {
-    //     return $this->source->partner_id;
-    // }
+    public function getPartnerIdAttribute()
+    {
+        return $this->source ? $this->source->partner_id : null;
+    }
 
-    // public function getCountryIdAttribute()
-    // {
-    //     return $this->geoBoundary->country_id;
-    // }
+    public function getCountryIdAttribute()
+    {
+        return $this->geoBoundary->country_id;
+    }
 
 
 
