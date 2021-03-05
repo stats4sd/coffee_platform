@@ -160,6 +160,7 @@
         <indicator-values-preview-pane
             id="valuePreviewModal"
             :values="selectedValues"
+            :indicator="selectedIndicator"
         />
     </div>
 </template>
@@ -187,7 +188,7 @@
                     },
                     {
                         key: "definition",
-                        label: "description"
+                        label: "definition"
                     },
                     {
                         key: "actions",
@@ -214,7 +215,8 @@
                 // There should only ever be 1 of these, but it's easier to use checkboxes to allow toggle on/off
                 selectedSubCharacteristics: [],
 
-                selectedValues: []
+                selectedIndicator: [],
+                selectedValues: [],
             };
         },
         computed: {
@@ -236,9 +238,9 @@
                     indicator_id => {
                         return {
                             code: valuesByIndicator[indicator_id][0].indicator.code,
-                            description:
+                            definition:
                                 valuesByIndicator[indicator_id][0].indicator
-                                    .description,
+                                    .definition,
                             values: valuesByIndicator[indicator_id]
                         };
                     }
@@ -371,8 +373,8 @@
             },
 
             showValues(indicatorRow) {
-                this.selectedValues = indicatorRow.item.values;
-
+                this.selectedValues = indicatorRow.item.values
+                this.selectedIndicator = indicatorRow.item
                 this.$bvModal.show("valuePreviewModal");
             }
         }
