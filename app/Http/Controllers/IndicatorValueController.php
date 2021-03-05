@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\IndicatorValuesExport;
 use Illuminate\Http\Request;
 use App\Models\IndicatorValue;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Builder;
+use Maatwebsite\Excel\Facades\Excel;
 
 class IndicatorValueController extends Controller
 {
@@ -53,5 +56,40 @@ class IndicatorValueController extends Controller
     public function getYears()
     {
         return DB::table('indicator_values')->selectRaw('distinct year')->get();
+    }
+
+    public function download(Request $request)
+    {
+        $export = new IndicatorValuesExport;
+
+
+        // ensure indicators is array - even if only 1 is passed;
+        if ($request->has('indicators')) {
+            if (is_array($request->input('indicator'))) {
+                $export = $export->forIndicators($request->input('indicator'));
+            } else {
+                $export = $export->forIndicators([$request->input('indicator')]);
+            }
+        }
+
+        if ($request->has('countries') && count($request->input('countries')) > 0) {
+            $export = $export->forCountries($request->input('countries'));
+        }
+
+        if ($request->has('years') && count($request->input('years')) > 0) {
+            $export = $export->forYears($request->input('years'));
+        }
+
+        if ($request->has('types') && count($request->input('types')) > 0) {
+            $export = $export->forTypes($request->input('types'));
+        }
+
+        if ($request->has('purposes') && count($request->input('purposes')) > 0) {
+            $export = $export->forPurposes($request->input('purposes'));
+        }
+
+        Excel::store($export, 'test-download'.now()->toDateTimeString().'.xlsx');
+
+        return 'hello';
     }
 }

@@ -74,26 +74,28 @@
                 </div>
                 <!-- </characteristics> -->
                 <!-- <sub-characteristics> -->
-                <h2 class="pt-3">
-                    Subcharacteristics
-                </h2>
-                <div class="d-flex flex-wrap">
-                    <b-form-checkbox-group
-                        v-model="selectedSubCharacteristics"
-                        :options="
-                            subCharacteristics.filter(
-                                (sub) =>
-                                    sub.characteristic_id ===
-                                    selectedCharacteristic
-                            )
-                        "
-                        text-field="name"
-                        button-variant="primary"
-                        value-field="id"
-                        buttons
-                        class="ungrouped-buttons"
-                        @change="forceSingle"
-                    />
+                <div v-if="selectedCharacteristic">
+                    <h2 class="pt-3">
+                        Subcharacteristics
+                    </h2>
+                    <div class="d-flex flex-wrap">
+                        <b-form-checkbox-group
+                            v-model="selectedSubCharacteristics"
+                            :options="
+                                subCharacteristics.filter(
+                                    (sub) =>
+                                        sub.characteristic_id ===
+                                        selectedCharacteristic
+                                )
+                            "
+                            text-field="name"
+                            button-variant="primary"
+                            value-field="id"
+                            buttons
+                            class="ungrouped-buttons"
+                            @change="forceSingle"
+                        />
+                    </div>
                 </div>
             </div>
 
@@ -104,18 +106,32 @@
                     <!-- </indicator-main> -->
                     <!-- <results-section> -->
 
-                    <h5>Indicator Count: {{ indicators.length }}</h5>
-                    <div class="py-4">
-                        Lorem ipsum, dolor sit amet consectetur adipisicing
-                        elit. Quisquam, error rerum quas repellendus magnam
-                        sapiente maiores dolorem facilis voluptatibus natus
-                        perspiciatis tempore blanditiis obcaecati praesentium
-                        non fugit harum distinctio dolores.
+                    <div class="d-flex py-4">
+                        <ul
+                            class="text-small list-style-none w-50 border border-top-0 border-left-0 border-bottom-0 border-secondary pr-4 mr-4"
+                        >
+                            <li class="d-flex justify-content-between">
+                                <div>Indicators Found:</div>
+                                <div class="ml-auto font-weight-bold">
+                                    {{ indicators.length }}
+                                </div>
+                            </li>
+                            <li class="d-flex justify-content-between">
+                                <div>Indicator Values Found:</div>
+                                <div class="ml-auto font-weight-bold">
+                                    {{ filteredIndicatorValues.length }}
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="flex-grow-1">
+                            <b>Filters active: </b>
+                        </div>
                     </div>
 
                     <b-table
                         :items="indicators"
                         :fields="indicatorFields"
+                        :busy="loading"
                         sticky-header
                         class="pb-4"
                         thead-class="bg-light open-top"
@@ -128,7 +144,7 @@
                                     size="sm"
                                     variant="primary"
                                     class="ml-2 font-weight-bold"
-                                    @click="showValues(row)"
+                                    @click="showValues(row.item)"
                                 >
                                     <i class="las la-eye" />
                                 </b-button>
@@ -143,6 +159,7 @@
                                     size="sm"
                                     variant="primary"
                                     class="ml-2 font-weight-bold"
+                                    @click="downloadValues(row.item)"
                                 >
                                     <i class="las la-download" />
                                 </b-button>
@@ -159,7 +176,7 @@
 
         <indicator-values-preview-pane
             id="valuePreviewModal"
-            :values="selectedValues"
+            :values="selectedIndicator.values || []"
             :indicator="selectedIndicator"
         />
     </div>
@@ -179,6 +196,7 @@
 
         data() {
             return {
+                loading: false,
                 // Indicator table
                 allIndicatorValues: [],
                 indicatorFields: [
@@ -207,16 +225,16 @@
                 selectedYears: [],
                 selectedTypes: [],
                 selectedPurposes: [],
+
                 characteristics: [],
                 subCharacteristics: [],
 
                 selectedCharacteristic: null,
-
                 // There should only ever be 1 of these, but it's easier to use checkboxes to allow toggle on/off
                 selectedSubCharacteristics: [],
 
-                selectedIndicator: [],
-                selectedValues: [],
+                selectedIndicator: {},
+                selectedValues: []
             };
         },
         computed: {
@@ -237,6 +255,7 @@
                 var indicators = Object.keys(valuesByIndicator).map(
                     indicator_id => {
                         return {
+                            id: indicator_id,
                             code: valuesByIndicator[indicator_id][0].indicator.code,
                             definition:
                                 valuesByIndicator[indicator_id][0].indicator
@@ -275,10 +294,13 @@
                 //         url += `&${encodeURIComponent(filter.type)}=${encodeURIComponent(filter.value)}`
                 //     })
                 // }
-
-                axios.get(url).then(result => {
-                    this.allIndicatorValues = result.data;
-                });
+                this.loading = true;
+                axios
+                    .get(url)
+                    .then(result => {
+                        this.allIndicatorValues = result.data;
+                    })
+                    .finally(() => (this.loading = false));
             },
 
             searchIndicators: _.debounce(function(value) {
@@ -372,10 +394,27 @@
                 this.selectedSubCharacteristics = [];
             },
 
-            showValues(indicatorRow) {
-                this.selectedValues = indicatorRow.item.values
-                this.selectedIndicator = indicatorRow.item
+            showValues(indicator) {
+                this.selectedValues = indicator.values;
+                this.selectedIndicator = indicator;
                 this.$bvModal.show("valuePreviewModal");
+            },
+
+            downloadValues(indicator) {
+                console.log(indicator);
+
+
+                axios
+                    .post("indicators/download", {
+                        indicator: indicator.id,
+                        countries: this.selectedCountries,
+                        years: this.selectedYears,
+                        types: this.selectedTypes,
+                        purposes: this.selectedPurposess
+                    })
+                    .then(result => {
+                        console.log(result.data);
+                    });
             }
         }
     };

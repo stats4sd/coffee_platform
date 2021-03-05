@@ -28,6 +28,7 @@ Route::view('indicators', 'indicators')->name('indicators');
 
 
 Route::get('indicators/search', [IndicatorValueController::class, 'index'])->name('indicators.search');
+Route::post('indicators/download/', [IndicatorValueController::class, 'download'])->name('indicators.download');
 
 Route::get('country', [CountryController::class, 'index'])->name('country.index');
 Route::get('year', [IndicatorValueController::class, 'getYears'])->name('year.index');
