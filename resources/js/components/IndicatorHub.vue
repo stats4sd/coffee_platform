@@ -42,9 +42,7 @@
         <!-- </indicator-sidebar> -->
         <!-- <indicator-main> -->
         <div class="flex-grow-1">
-            <div
-                class="pt-lots px-lots pb-4"
-            >
+            <div class="pt-lots px-lots pb-4">
                 <h1 class="text-center pb-4">
                     Search or Browse Indicators
                 </h1>
@@ -82,7 +80,13 @@
                 <div class="d-flex flex-wrap">
                     <b-form-checkbox-group
                         v-model="selectedSubCharacteristics"
-                        :options="subCharacteristics.filter(sub => sub.characteristic_id === selectedCharacteristic)"
+                        :options="
+                            subCharacteristics.filter(
+                                (sub) =>
+                                    sub.characteristic_id ===
+                                    selectedCharacteristic
+                            )
+                        "
                         text-field="name"
                         button-variant="primary"
                         value-field="id"
@@ -102,11 +106,11 @@
 
                     <h5>Indicator Count: {{ indicators.length }}</h5>
                     <div class="py-4">
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                        Quisquam, error rerum quas repellendus magnam sapiente
-                        maiores dolorem facilis voluptatibus natus perspiciatis
-                        tempore blanditiis obcaecati praesentium non fugit harum
-                        distinctio dolores.
+                        Lorem ipsum, dolor sit amet consectetur adipisicing
+                        elit. Quisquam, error rerum quas repellendus magnam
+                        sapiente maiores dolorem facilis voluptatibus natus
+                        perspiciatis tempore blanditiis obcaecati praesentium
+                        non fugit harum distinctio dolores.
                     </div>
 
                     <b-table
@@ -116,12 +120,15 @@
                         class="pb-4"
                         thead-class="bg-light open-top"
                     >
-                        <template #cell(actions)>
-                            <div class="d-flex justify-content-start align-items-center">
+                        <template #cell(actions)="row">
+                            <div
+                                class="d-flex justify-content-start align-items-center"
+                            >
                                 <b-button
                                     size="sm"
                                     variant="primary"
                                     class="ml-2 font-weight-bold"
+                                    @click="showValues(row)"
                                 >
                                     <i class="las la-eye" />
                                 </b-button>
@@ -149,38 +156,44 @@
                 </div>
             </div>
         </div>
+
+        <indicator-values-preview-pane
+            id="valuePreviewModal"
+            :values="selectedValues"
+        />
     </div>
 </template>
 
 <script>
     import SelectWithImages from "./elements/SelectWithImages";
-    import SidebarFilter from "./elements/SidebarFilter"
+    import SidebarFilter from "./elements/SidebarFilter";
+    import IndicatorValuesPreviewPane from "./elements/IndicatorValuesPreviewPane";
 
     export default {
         components: {
             SelectWithImages,
-            SidebarFilter
+            SidebarFilter,
+            IndicatorValuesPreviewPane
         },
 
         data() {
             return {
-
                 // Indicator table
                 allIndicatorValues: [],
                 indicatorFields: [
                     {
-                        key: 'code',
-                        label: 'indicator',
+                        key: "code",
+                        label: "indicator"
                     },
                     {
-                        key: 'definition',
-                        label: 'description',
+                        key: "definition",
+                        label: "description"
                     },
                     {
-                        key: 'actions',
-                        label: 'Actions',
-                        class: 'w-33 w-sm-50'
-                    },
+                        key: "actions",
+                        label: "Actions",
+                        class: "w-33 w-sm-50"
+                    }
                 ],
 
                 // Filters
@@ -200,31 +213,38 @@
 
                 // There should only ever be 1 of these, but it's easier to use checkboxes to allow toggle on/off
                 selectedSubCharacteristics: [],
+
+                selectedValues: []
             };
         },
         computed: {
             indicators() {
-                if(this.filteredIndicatorValues.length < 0) return [];
+                if (this.filteredIndicatorValues.length < 0) return [];
 
-                var valuesByIndicator = this.filteredIndicatorValues.reduce((result, indicatorValue) => {
-                    result[indicatorValue.indicator_id] = result[indicatorValue.indicator_id] || []
+                var valuesByIndicator = this.filteredIndicatorValues.reduce(
+                    (result, indicatorValue) => {
+                        result[indicatorValue.indicator_id] =
+                            result[indicatorValue.indicator_id] || [];
 
-                    result[indicatorValue.indicator_id].push(indicatorValue);
-                    return result;
-                }, Object.create(null))
+                        result[indicatorValue.indicator_id].push(indicatorValue);
+                        return result;
+                    },
+                    Object.create(null)
+                );
 
-                var indicators = Object.keys(valuesByIndicator).map((indicator_id) => {
-
-                    return {
-
-                        code: valuesByIndicator[indicator_id][0].indicator.code,
-                        description: valuesByIndicator[indicator_id][0].indicator.description,
-                        values: valuesByIndicator[indicator_id],
+                var indicators = Object.keys(valuesByIndicator).map(
+                    indicator_id => {
+                        return {
+                            code: valuesByIndicator[indicator_id][0].indicator.code,
+                            description:
+                                valuesByIndicator[indicator_id][0].indicator
+                                    .description,
+                            values: valuesByIndicator[indicator_id]
+                        };
                     }
-                });
+                );
 
                 return indicators;
-
             },
             filteredIndicatorValues() {
                 return this.filterIndicators(this.allIndicatorValues);
@@ -233,19 +253,19 @@
 
         mounted() {
             this.getIndicatorValues();
-            this.getCountries()
-            this.getYears()
-            this.getTypes()
-            this.getPurposes()
-            this.getCharacteristics()
-            this.getSubCharacteristics()
+            this.getCountries();
+            this.getYears();
+            this.getTypes();
+            this.getPurposes();
+            this.getCharacteristics();
+            this.getSubCharacteristics();
         },
         methods: {
             getIndicatorValues() {
-                var url = "/indicators/search?by-indicator"
+                var url = "/indicators/search?by-indicator";
 
-                if(this.searchTerm) {
-                    url += "&search='"+this.searchTerm+"'"
+                if (this.searchTerm) {
+                    url += "&search='" + this.searchTerm + "'";
                 }
 
                 // if(this.activeFilters) {
@@ -255,72 +275,94 @@
                 // }
 
                 axios.get(url).then(result => {
-                    this.allIndicatorValues = result.data
+                    this.allIndicatorValues = result.data;
                 });
             },
 
-            searchIndicators: _.debounce(function (value) {
-
+            searchIndicators: _.debounce(function(value) {
                 this.searchTerm = value;
 
-                this.getIndicatorValues()
+                this.getIndicatorValues();
             }, 500),
 
             filterIndicators(values) {
-                if(this.selectedCountries.length > 0) {
-                    console.log('prefilter', values)
-                    values = values.filter((value) => this.selectedCountries.includes(value.country_id))
-                    console.log('postfilter', values)
+                if (this.selectedCountries.length > 0) {
+                    console.log("prefilter", values);
+                    values = values.filter(value =>
+                        this.selectedCountries.includes(value.country_id)
+                    );
+                    console.log("postfilter", values);
                 }
 
-                if(this.selectedYears.length > 0) {
-                    values = values.filter((value) => this.selectedYears.includes(value.year))
+                if (this.selectedYears.length > 0) {
+                    values = values.filter(value =>
+                        this.selectedYears.includes(value.year)
+                    );
                 }
 
-                if(this.selectedTypes.length > 0) {
-                    values = values.filter((value) => this.selectedTypes.includes(value.type_id))
+                if (this.selectedTypes.length > 0) {
+                    values = values.filter(value =>
+                        this.selectedTypes.includes(value.type_id)
+                    );
                 }
-                if(this.selectedPurposes.length > 0) {
-                    values = values.filter((value) => this.selectedPurposes.includes(value.purpose_id))
+                if (this.selectedPurposes.length > 0) {
+                    values = values.filter(value =>
+                        this.selectedPurposes.includes(value.purpose_id)
+                    );
                 }
 
-                if(this.selectedSubCharacteristics.length > 0) {
-                    values = values.filter((value) => this.selectedSubCharacteristics.includes(value.sub_characteristic_id))
+                if (this.selectedSubCharacteristics.length > 0) {
+                    values = values.filter(value =>
+                        this.selectedSubCharacteristics.includes(
+                            value.sub_characteristic_id
+                        )
+                    );
                 }
 
-                if(this.selectedCharacteristic) {
-                    values = values.filter((value) => this.selectedCharacteristic === value.characteristic_id)
+                if (this.selectedCharacteristic) {
+                    values = values.filter(
+                        value =>
+                            this.selectedCharacteristic === value.characteristic_id
+                    );
                 }
-                return values
+                return values;
             },
 
             getCountries() {
-                axios.get('/country').then(result => this.countries = result.data)
+                axios
+                    .get("/country")
+                    .then(result => (this.countries = result.data));
             },
 
             getYears() {
-                axios.get('/year').then(result => this.years = result.data)
+                axios.get("/year").then(result => (this.years = result.data));
             },
 
             getTypes() {
-                axios.get('/type').then(result => this.types = result.data)
+                axios.get("/type").then(result => (this.types = result.data));
             },
 
             getPurposes() {
-                axios.get('/purposeofcollection').then(result => this.purposes = result.data)
+                axios
+                    .get("/purposeofcollection")
+                    .then(result => (this.purposes = result.data));
             },
 
             getCharacteristics() {
-                axios.get('/characteristic').then(result => this.characteristics = result.data)
+                axios
+                    .get("/characteristic")
+                    .then(result => (this.characteristics = result.data));
             },
 
             getSubCharacteristics() {
-                axios.get('/subcharacteristic').then(result => this.subCharacteristics = result.data)
+                axios
+                    .get("/subcharacteristic")
+                    .then(result => (this.subCharacteristics = result.data));
             },
 
             forceSingle() {
-                if(this.selectedSubCharacteristics.length > 1) {
-                    this.selectedSubCharacteristics.shift()
+                if (this.selectedSubCharacteristics.length > 1) {
+                    this.selectedSubCharacteristics.shift();
                 }
             },
 
@@ -328,6 +370,11 @@
                 this.selectedSubCharacteristics = [];
             },
 
+            showValues(indicatorRow) {
+                this.selectedValues = indicatorRow.item.values;
+
+                this.$bvModal.show("valuePreviewModal");
+            }
         }
     };
 </script>

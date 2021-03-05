@@ -25,6 +25,8 @@ class GeoBoundary extends Model
     // protected $hidden = [];
     // protected $dates = [];
 
+    protected $with = ['country'];
+
     /*
     |--------------------------------------------------------------------------
     | FUNCTIONS

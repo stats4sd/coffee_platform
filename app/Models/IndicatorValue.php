@@ -26,6 +26,7 @@ class IndicatorValue extends Model
     // protected $dates = [];
     protected $with = [
         'indicator',
+        'unit',
     ];
 
     protected $appends = [

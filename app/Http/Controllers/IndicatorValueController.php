@@ -29,7 +29,6 @@ class IndicatorValueController extends Controller
 
         $results = $query->get();
 
-
         // if ($request->exists('by-indicator')) {
         //     $results = $results->groupBy('indicator_id');
 
