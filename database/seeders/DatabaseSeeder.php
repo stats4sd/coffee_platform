@@ -55,7 +55,7 @@ class DatabaseSeeder extends Seeder
 
         // Using for loop to ensure each value is assigned a different random relationship
         for ($i=0; $i < 500; $i++) {
-            IndicatorValue::factory()
+            $indicatorValue = IndicatorValue::factory()
             ->for($users->random())
             ->for($units->random())
             ->for($gender->random())

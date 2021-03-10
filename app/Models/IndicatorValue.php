@@ -45,7 +45,9 @@ class IndicatorValue extends Model
 
     public function toSearchableArray()
     {
-        $array = $this->toArray();
+        // handling attributes and relations seperately to avoid issue where an array cannot be tokenised by Scout.
+        $array = $this->attributesToArray();
+
         //for full-text search;
         $array['indicator'] = $this->indicator;
         $array['subCharacteristic'] = $this->indicator->subCharacteristic;
@@ -62,14 +64,15 @@ class IndicatorValue extends Model
         $array['unit'] = $this->unit;
 
         $array['geoBoundary'] = $this->geoBoundary;
-        $array['country_'] = $this->geoBoundary->country;
+        $array['country'] = $this->geoBoundary->country->name;
+
 
         // for filters
         $array['sub_characteristic_id'] = $this->indicator->sub_characteristic_id;
         $array['characteristic_id'] = $this->indicator->subCharacteristic->characteristic_id;
         $array['type_id'] = $this->source->type_id;
         $array['partner_id'] = $this->source->partner_id;
-        $array['country_id'] = $this->geoBoundary->country_id;
+        $array['country_id'] = $this->country_id;
 
 
         return $array;

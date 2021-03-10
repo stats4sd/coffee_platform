@@ -39,8 +39,8 @@ namespace App\Models{
  * @property string $name
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\SubCharacteristic[] $subCharacteristic
- * @property-read int|null $sub_characteristic_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\SubCharacteristic[] $subCharacteristics
+ * @property-read int|null $sub_characteristics_count
  * @method static \Illuminate\Database\Eloquent\Builder|Characteristic newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Characteristic newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Characteristic query()
@@ -168,6 +168,11 @@ namespace App\Models{
  * @property-read \App\Models\ApproachCollection $approachCollection
  * @property-read \App\Models\Gender $gender
  * @property-read \App\Models\GeoBoundary $geoBoundary
+ * @property-read mixed $characteristic_id
+ * @property-read mixed $country_id
+ * @property-read mixed $partner_id
+ * @property-read mixed $sub_characteristic_id
+ * @property-read mixed $type_id
  * @property-read \App\Models\Indicator $indicator
  * @property-read \App\Models\PurposeOfCollection $purposeOfCollection
  * @property-read \App\Models\SmallholderDefinition $smallholderDefinition
