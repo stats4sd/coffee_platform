@@ -63,6 +63,7 @@
                         <a
                             href="#"
                             class="btn btn-primary btn-lg"
+                            @click="$emit('download-xlsx')"
                         >Download XLSX</a>
                     </div>
                     <div class="w-50 align-self-center d-flex flex-column align-items-center my-4">
@@ -78,6 +79,7 @@
                         <a
                             href="#"
                             class="btn btn-primary btn-lg"
+                            @click="$emit('download-pdf')"
                         >Download PDF</a>
                     </div>
                 </div>

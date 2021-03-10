@@ -41,7 +41,7 @@
         <div class="flex-grow-1">
             <indicator-downloader
                 :display-popover="downloadPopoverVisible"
-                @hide="showDownloadPopover = false"
+                @hide="downloadPopoverVisible = false"
                 @show-download-options="showDownloadOptions"
             />
             <indicator-download-options
@@ -49,6 +49,8 @@
                 :indicators="indicators.filter(indicator => selectedIndicators.includes(indicator.id))"
                 @hidden="downloadOptionsVisible = false"
                 @remove-indicator="removeIndicator"
+                @download-xlsx="downloadValues(selectedIndicators)"
+                @download-pdf="downloadReport(selectedIndicators)"
             />
             <div class="pt-4 px-lots pb-4">
                 <h1 class="text-center pb-4">
@@ -173,7 +175,7 @@
                                     size="sm"
                                     variant="primary"
                                     class="ml-2 font-weight-bold"
-                                    @click="downloadValues(row.item)"
+                                    @click="downloadValues([row.item.id])"
                                 >
                                     <i class="las la-download" />
                                 </b-button>
@@ -192,8 +194,9 @@
             id="valuePreviewModal"
             :values="viewedIndicator.values || []"
             :indicator="viewedIndicator"
-            @download="downloadValues(indicator)"
-            @addToSelection="addIndicatortoSelection(indicator)"
+            :selected="selectedIndicators.includes(viewedIndicator.id)"
+            @download="downloadValues"
+            @toggle-indicator="toggleIndicatorSelection"
         />
     </div>
 </template>
@@ -204,6 +207,7 @@
     import IndicatorValuesPreviewPane from "./elements/IndicatorValuesPreviewPane";
     import IndicatorDownloader from './elements/IndicatorDownloader';
     import IndicatorDownloadOptions from './elements/IndicatorDownloadOptions'
+    import axios from 'axios';
 
     export default {
         components: {
@@ -424,22 +428,41 @@
                 this.$bvModal.show("valuePreviewModal");
             },
 
-            downloadValues(indicator) {
-                console.log(indicator);
-
+            downloadValues(selectedIndicators) {
 
                 axios
                     .post("indicators/download", {
-                        indicators: [indicator.id],
+                        indicators: selectedIndicators,
                         countries: this.selectedCountries,
                         years: this.selectedYears,
                         types: this.selectedTypes,
                         purposes: this.selectedPurposess
                     })
                     .then(result => {
-                        console.log(result.data);
+                        // could refactor this at some point to overcome potential issues (i.e. bad error handling, popup blocking by the browser...)
+                        window.open(result.data, '_blank');
                     });
             },
+
+            downloadReport(selectedIndicators) {
+                axios
+                    .post("indicators/report", {
+                        indicators: selectedIndicators,
+                        countries: this.selectedCountries,
+                        years: this.selectedYears,
+                        types: this.selectedTypes,
+                        purposes: this.selectedPurposess
+                    })
+                    .then(result => {
+                        console.log(result)
+
+                        //window.open(result.data, '_blank');
+                        this.$bvToast.toast(`Once linked, this will download the completed report using the indicators and filters selected.`, {
+                            toaster: 'b-toaster-top-center',
+                        })
+                    });
+            },
+
 
             toggleIndicatorSelection(indicator) {
                 if(this.selectedIndicators.includes(indicator.id)) {
@@ -459,7 +482,7 @@
             },
 
             removeIndicator(indicator) {
-                var index = this.selectedIndicators.indexOf(indicator)
+                var index = this.selectedIndicators.indexOf(indicator.id)
                 this.selectedIndicators.splice(index, 1)
             },
 

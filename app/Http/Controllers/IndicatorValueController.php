@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Exports\IndicatorValuesExport;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\IndicatorValue;
-use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Database\Eloquent\Builder;
 use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\IndicatorValuesExport;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Database\Eloquent\Builder;
 
 class IndicatorValueController extends Controller
 {
@@ -84,8 +85,21 @@ class IndicatorValueController extends Controller
             $export = $export->forPurposes($request->input('purposes'));
         }
 
-        Excel::store($export, 'test-download'.now()->toDateTimeString().'.xlsx');
+        $filename = 'indicator-values-'.now()->toDateTimeString().'.xlsx';
+        $success = Excel::store($export, $filename, 'public');
 
-        return 'hello';
+        if (! $success) {
+            return response('Could not export data - please check logs', 500);
+        }
+
+        return Storage::disk('public')->url($filename);
+    }
+
+    public function report(Request $request)
+    {
+
+        // Call the R script, and pass the indicator list and the set of filters from the $request as parameters (or whatever the R script needs)
+
+        return 'this is a temporary holder.';
     }
 }

@@ -27,13 +27,19 @@
             thead-class="bg-light open-top"
         />
 
-        <template #model-footer>
+        <template #modal-footer>
             <b-button
                 size="sm"
-                variant="primary"
-                @click="addToSelection"
+                :variant="selected ? 'info' : 'primary'"
+                class="ml-2 pr-2 font-weight-bold"
+                @click="toggleIndicatorSelection(indicator)"
             >
-                <i class="las la-plus" /> Add to Selection
+                <span v-if="!selected">
+                    <i class="las la-plus" /> Add to selection
+                </span>
+                <span v-if="selected">
+                    <i class="las la-check mr-4" /> selected
+                </span>
             </b-button>
             <b-button
                 size="sm"
@@ -61,6 +67,10 @@
                 type: Object,
                 default: null,
             },
+            selected: {
+                type: Boolean,
+                default: null,
+            }
         },
         data() {
             return {
@@ -82,10 +92,10 @@
 
         methods: {
             downloadValues() {
-                this.$emit('download', this.indicator);
+                this.$emit('download', [this.indicator]);
             },
-            addToSelection() {
-                this.$emit('add', this.indicator);
+            toggleIndicatorSelection() {
+                this.$emit('toggle-indicator', this.indicator);
             }
         }
 
