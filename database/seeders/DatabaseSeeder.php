@@ -28,12 +28,18 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        if (config('app.env') === 'local') {
+            User::factory(['name' => 'test', 'email' => 'test@example.com'])->create(); // factory sets default password to 'password'
+        }
+
+
         Characteristic::factory()->count(5)
         ->has(
             SubCharacteristic::factory()->count(3)
             ->has(Indicator::factory()->count(4))
         )
         ->create();
+
 
         $users = User::factory()->count(5)->create();
         $units = Unit::factory()->count(5)->create();
