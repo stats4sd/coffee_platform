@@ -1,6 +1,5 @@
 <template>
     <div class="d-md-flex d-block">
-        <!-- <indicator-sidebar> -->
         <div class="full-height sidebar shadow">
             <div class="sidebar-header bg-primary p-4 mb-0 text-white">
                 <h2 class="p-0 m-0">
@@ -39,10 +38,19 @@
                 </ul>
             </div>
         </div>
-        <!-- </indicator-sidebar> -->
-        <!-- <indicator-main> -->
         <div class="flex-grow-1">
-            <div class="pt-lots px-lots pb-4">
+            <indicator-downloader
+                :display-popover="downloadPopoverVisible"
+                @hide="showDownloadPopover = false"
+                @show-download-options="showDownloadOptions"
+            />
+            <indicator-download-options
+                :visible="downloadOptionsVisible"
+                :indicators="selectedIndicators"
+                @hidden="downloadOptionsVisible = false"
+                @remove-indicator="removeIndicator"
+            />
+            <div class="pt-4 px-lots pb-4">
                 <h1 class="text-center pb-4">
                     Search or Browse Indicators
                 </h1>
@@ -124,7 +132,7 @@
                             </li>
                         </ul>
                         <div class="flex-grow-1">
-                            <b>Filters active: </b>
+                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolorem veritatis accusantium eius, aut adipisci, nisi sed commodi voluptatibus error ratione quas in repellendus laudantium, doloremque qui? Cumque, officia? Repellat, neque?
                         </div>
                     </div>
 
@@ -152,6 +160,7 @@
                                     size="sm"
                                     variant="primary"
                                     class="ml-2 font-weight-bold"
+                                    @click="addIndicatortoSelection(row.item)"
                                 >
                                     <i class="las la-plus" /> Add to Selection
                                 </b-button>
@@ -176,8 +185,10 @@
 
         <indicator-values-preview-pane
             id="valuePreviewModal"
-            :values="selectedIndicator.values || []"
-            :indicator="selectedIndicator"
+            :values="viewedIndicator.values || []"
+            :indicator="viewedIndicator"
+            @download="downloadValues(indicator)"
+            @addToSelection="addIndicatortoSelection(indicator)"
         />
     </div>
 </template>
@@ -186,17 +197,23 @@
     import SelectWithImages from "./elements/SelectWithImages";
     import SidebarFilter from "./elements/SidebarFilter";
     import IndicatorValuesPreviewPane from "./elements/IndicatorValuesPreviewPane";
+    import IndicatorDownloader from './elements/IndicatorDownloader';
+    import IndicatorDownloadOptions from './elements/IndicatorDownloadOptions'
 
     export default {
         components: {
             SelectWithImages,
             SidebarFilter,
-            IndicatorValuesPreviewPane
+            IndicatorValuesPreviewPane,
+            IndicatorDownloader,
+            IndicatorDownloadOptions,
         },
 
         data() {
             return {
                 loading: false,
+                downloadOptionsVisible: false,
+                downloadPopoverVisible: false,
                 // Indicator table
                 allIndicatorValues: [],
                 indicatorFields: [
@@ -233,11 +250,13 @@
                 // There should only ever be 1 of these, but it's easier to use checkboxes to allow toggle on/off
                 selectedSubCharacteristics: [],
 
-                selectedIndicator: {},
-                selectedValues: []
+                viewedIndicator: {},
+                selectedIndicators: [],
             };
         },
         computed: {
+            // All the filters happen at the indicatorValue level.
+            // So we should build the list of indicators up from the filteredIndicatorValues
             indicators() {
                 if (this.filteredIndicatorValues.length < 0) return [];
 
@@ -395,8 +414,8 @@
             },
 
             showValues(indicator) {
-                this.selectedValues = indicator.values;
-                this.selectedIndicator = indicator;
+
+                this.viewedIndicator = indicator;
                 this.$bvModal.show("valuePreviewModal");
             },
 
@@ -415,6 +434,27 @@
                     .then(result => {
                         console.log(result.data);
                     });
+            },
+
+            addIndicatortoSelection(indicator) {
+                if(this.selectedIndicators.includes(indicator)) {
+                    alert("i'm afraid we've already got one...")
+                } else {
+                    this.selectedIndicators.push(indicator);
+                    this.downloadPopoverVisible = true;
+                }
+
+
+            },
+
+            showDownloadOptions() {
+                console.log('showing download options')
+                this.downloadOptionsVisible = true;
+            },
+
+            removeIndicator(indicator) {
+                var index = this.selectedIndicators.indexOf(indicator)
+                this.selectedIndicators.splice(index, 1)
             }
         }
     };

@@ -4,6 +4,9 @@ $info: #70aeb0;
 $dark: #102125;
 $mid: #b7b6b6;
 
+$white: #fff;
+
+
 $mq-breakpoints: (
     mobile:  320px,
     tablet:  740px,
@@ -11,7 +14,21 @@ $mq-breakpoints: (
     wide:    1300px
 );
 
+$popover-font-size:                 0.9em;
+$popover-bg:                        $white;
+$popover-max-width:                 276px;
+$popover-border-color:              $primary;
 
+$popover-header-bg:                 $primary;
+$popover-header-color:              $white;
+$popover-header-padding-y:          1rem;
+$popover-header-padding-x:          1rem;
+
+// $popover-arrow-width:               0rem;
+// $popover-arrow-height:              0rem;
+$popover-arrow-color:               $primary;
+
+////// DEFAULTS //
 // Body
 $body-bg: #f8fafc;
 

@@ -26,6 +26,23 @@
             sticky-header
             thead-class="bg-light open-top"
         />
+
+        <template #model-footer>
+            <b-button
+                size="sm"
+                variant="primary"
+                @click="addToSelection"
+            >
+                <i class="las la-plus" /> Add to Selection
+            </b-button>
+            <b-button
+                size="sm"
+                variant="primary"
+                @click="downloadValues"
+            >
+                <i class="las la-download" />
+            </b-button>
+        </template>
     </b-modal>
 </template>
 
@@ -60,6 +77,15 @@
                     },
                     'scope',
                 ]
+            }
+        },
+
+        methods: {
+            downloadValues() {
+                this.$emit('download', this.indicator);
+            },
+            addToSelection() {
+                this.$emit('add', this.indicator);
             }
         }
 
