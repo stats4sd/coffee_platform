@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Backpack\CRUD\app\Models\Traits\CrudTrait;
+use App\Models\Traits\HasUploadFields;
 use Illuminate\Database\Eloquent\Model;
+use Backpack\CRUD\app\Models\Traits\CrudTrait;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Characteristic extends Model
 {
-    use CrudTrait, HasFactory;
+    use CrudTrait, HasFactory, HasUploadFields;
 
     /*
     |--------------------------------------------------------------------------
@@ -70,4 +71,13 @@ class Characteristic extends Model
     | MUTATORS
     |--------------------------------------------------------------------------
     */
+
+    public function setCoverImageAttribute($value)
+    {
+        $attribute_name = "cover_image";
+        $disk = "public";
+        $destination_path = "characteristics/";
+
+        $this->uploadImageWithNames($value, $attribute_name, $disk, $destination_path);
+    }
 }

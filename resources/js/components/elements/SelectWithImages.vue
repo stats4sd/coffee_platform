@@ -93,10 +93,12 @@
                 var imageField = this.imageField || null
 
                 if(!imageField) {
-                    if(typeof(this.options[0]['image']) !== 'undefined') {
-                        imageField = 'image'
+                    if(typeof(this.options[0]['cover_image']) !== 'undefined') {
+                        imageField = 'cover_image'
                     } else if (typeof(this.options[0]['avatar']) !== 'undefined') {
                         imageField = 'avatar'
+                    } else if (typeof(this.options[0]['image']) !== 'undefined') {
+                        imageField = 'image'
                     }
                 }
 
