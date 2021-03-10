@@ -46,7 +46,7 @@
             />
             <indicator-download-options
                 :visible="downloadOptionsVisible"
-                :indicators="selectedIndicators"
+                :indicators="indicators.filter(indicator => selectedIndicators.includes(indicator.id))"
                 @hidden="downloadOptionsVisible = false"
                 @remove-indicator="removeIndicator"
             />
@@ -158,11 +158,16 @@
                                 </b-button>
                                 <b-button
                                     size="sm"
-                                    variant="primary"
-                                    class="ml-2 font-weight-bold"
-                                    @click="addIndicatortoSelection(row.item)"
+                                    :variant="selectedIndicators.includes(row.item.id) ? 'info' : 'primary'"
+                                    class="ml-2 pr-2 font-weight-bold"
+                                    @click="toggleIndicatorSelection(row.item)"
                                 >
-                                    <i class="las la-plus" /> Add to Selection
+                                    <span v-if="!selectedIndicators.includes(row.item.id)">
+                                        <i class="las la-plus" /> Add to selection
+                                    </span>
+                                    <span v-if="selectedIndicators.includes(row.item.id)">
+                                        <i class="las la-check mr-4" /> selected
+                                    </span>
                                 </b-button>
                                 <b-button
                                     size="sm"
@@ -279,7 +284,7 @@
                             definition:
                                 valuesByIndicator[indicator_id][0].indicator
                                     .definition,
-                            values: valuesByIndicator[indicator_id]
+                            values: valuesByIndicator[indicator_id],
                         };
                     }
                 );
@@ -436,26 +441,32 @@
                     });
             },
 
+            toggleIndicatorSelection(indicator) {
+                if(this.selectedIndicators.includes(indicator.id)) {
+                    this.removeIndicator(indicator);
+                } else {
+                    this.addIndicatortoSelection(indicator)
+                }
+            },
+
             addIndicatortoSelection(indicator) {
                 if(this.selectedIndicators.includes(indicator)) {
-                    alert("i'm afraid we've already got one...")
+                    console.log('already selected');
                 } else {
-                    this.selectedIndicators.push(indicator);
+                    this.selectedIndicators.push(indicator.id);
                     this.downloadPopoverVisible = true;
                 }
+            },
 
-
+            removeIndicator(indicator) {
+                var index = this.selectedIndicators.indexOf(indicator)
+                this.selectedIndicators.splice(index, 1)
             },
 
             showDownloadOptions() {
                 console.log('showing download options')
                 this.downloadOptionsVisible = true;
             },
-
-            removeIndicator(indicator) {
-                var index = this.selectedIndicators.indexOf(indicator)
-                this.selectedIndicators.splice(index, 1)
-            }
         }
     };
 </script>
