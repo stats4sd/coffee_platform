@@ -29,7 +29,7 @@ class IndicatorValueRequest extends FormRequest
             'indicator_id' => ['required', 'exists:indicators,id'],
             'value' => ['required', 'numeric'],
             'source_id' => ['nullable','exists:sources,id'],
-            'source_public' => ['required'],
+            'source_public' => ['required','boolean'],
             'geo_boundary_id' => ['required','exists:geo_boundaries,id'],
             'unit_id' => ['required','exists:units,id'],
             'gender_id' => ['required','exists:genders,id'],
