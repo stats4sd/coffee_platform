@@ -144,7 +144,6 @@ class IndicatorValueCrudController extends CrudController
             [
                 'name' => 'year',
                 'type' => 'number',
-                'label' => 'Year',
                 'label' => 'Insert the year.',
             ],
             [
@@ -156,6 +155,11 @@ class IndicatorValueCrudController extends CrudController
                 'minimum_input_length' => 0,
                 'label' => 'Select the source that you use to calculate the indicator',
                 'hint' => 'If the source is not in the dropdown select the <b>+Add</b> to add a new one.',
+            ],
+            [
+                'name' => 'source_public',
+                'type' => 'checkbox',
+                'label' => 'Is the source public? ',
             ],
             [
                 'type' => 'relationship',
