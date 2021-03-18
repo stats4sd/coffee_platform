@@ -5,7 +5,7 @@ namespace App\Models;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Model;
 
-class Unit extends Model
+class UnitType extends Model
 {
     use CrudTrait;
 
@@ -15,31 +15,25 @@ class Unit extends Model
     |--------------------------------------------------------------------------
     */
 
-    protected $table = 'units';
-    protected $primaryKey = 'id';
+    protected $table = 'unit_types';
+    // protected $primaryKey = 'id';
     // public $timestamps = false;
     protected $guarded = ['id'];
     // protected $fillable = [];
     // protected $hidden = [];
     // protected $dates = [];
     protected $appends = [
-        'conversion_rate',
+        'name_with_unit',
     ];
-
     /*
     |--------------------------------------------------------------------------
     | FUNCTIONS
     |--------------------------------------------------------------------------
     */
 
-    public function getConversionRateAttribute()
+    public function getNameWithUnitAttribute()
     {
-        if ($this->from_standard) {
-            return $this->from_standard . ':1';
-        }
-        if ($this->to_standard) {
-            return '1:'.$this->to_standard;
-        }
+        return $this->name . ' ( Standard Unit: ' . $this->standard_unit . ')';
     }
 
 
@@ -48,14 +42,10 @@ class Unit extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-    public function indicator_values()
-    {
-        return $this->hasMany(IndicatorValue::class);
-    }
 
-    public function unitType()
+    public function units()
     {
-        return $this->belongsTo(UnitType::class);
+        return $this->hasMany(Unit::class);
     }
 
 
