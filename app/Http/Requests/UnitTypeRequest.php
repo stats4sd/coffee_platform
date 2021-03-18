@@ -26,7 +26,8 @@ class UnitTypeRequest extends FormRequest
     public function rules()
     {
         return [
-            // 'name' => 'required|min:5|max:255'
+            'name' => 'required|max:255',
+            'standard_unit' => 'required|max:255',
         ];
     }
 
