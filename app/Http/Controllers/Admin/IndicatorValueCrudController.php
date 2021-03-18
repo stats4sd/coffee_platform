@@ -14,6 +14,8 @@ use App\Http\Requests\IndicatorValueRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
+use function PHPSTORM_META\type;
+
 /**
  * Class IndicatorValueCrudController
  * @package App\Http\Controllers\Admin
@@ -31,7 +33,7 @@ class IndicatorValueCrudController extends CrudController
 
     /**
      * Configure the CrudPanel object. Apply settings to all operations.
-     * 
+     *
      * @return void
      */
     public function setup()
@@ -43,7 +45,7 @@ class IndicatorValueCrudController extends CrudController
 
     /**
      * Define what happens when the List operation is loaded.
-     * 
+     *
      * @see  https://backpackforlaravel.com/docs/crud-operation-list-entries
      * @return void
      */
@@ -60,6 +62,26 @@ class IndicatorValueCrudController extends CrudController
                 'label' => 'Value'
             ],
             [
+                'type' => 'relationship',
+                'name' => 'unit',
+                'attribute' => 'unit',
+            ],
+            [
+                'name' => 'converted_value',
+                'type' => 'number',
+                'decimals' => '5',
+                'label' => 'Value in Standard Units',
+            ],
+            [
+                'name' => 'standard_unit',
+                'type' => 'text',
+            ],
+            [
+                'name' => 'conversion_rate',
+                'type' => 'text',
+                'label' => 'Conversion Ratio used',
+            ],
+            [
                 'name' => 'year',
                 'type' => 'number',
                 'label' => 'Year'
@@ -67,10 +89,6 @@ class IndicatorValueCrudController extends CrudController
             [
                 'type' => 'relationship',
                 'name' => 'geo_boundary',
-            ],
-            [
-                'type' => 'relationship',
-                'name' => 'unit',
             ],
             [
                 'type' => 'relationship',
@@ -107,7 +125,7 @@ class IndicatorValueCrudController extends CrudController
 
     /**
      * Define what happens when the Create operation is loaded.
-     * 
+     *
      * @see https://backpackforlaravel.com/docs/crud-operation-create
      * @return void
      */
@@ -193,13 +211,13 @@ class IndicatorValueCrudController extends CrudController
             [
                 'label'     => "User",
                 'type'      => 'select2',
-                'name'      => 'user_id', 
+                'name'      => 'user_id',
                 'default'  => backpack_user()->id,
 
                 // optional
-                'entity'    => 'user', 
+                'entity'    => 'user',
                 'model'     => "App\Models\User",
-                'attribute' => 'name', 
+                'attribute' => 'name',
             ],
             [
                 'type' => 'relationship',
@@ -229,7 +247,7 @@ class IndicatorValueCrudController extends CrudController
 
     /**
      * Define what happens when the Update operation is loaded.
-     * 
+     *
      * @see https://backpackforlaravel.com/docs/crud-operation-update
      * @return void
      */

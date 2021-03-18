@@ -21,6 +21,7 @@
         <li class='nav-item'><a class='nav-link' href='{{ backpack_url('characteristic') }}'> Characteristics</a></li>
         <li class='nav-item'><a class='nav-link' href='{{ backpack_url('sub_characteristic') }}'> Sub Characteristics</a></li>
         <li class='nav-item'><a class='nav-link' href='{{ backpack_url('unit') }}'> Units</a></li>
+        <li class='nav-item'><a class='nav-link' href='{{ backpack_url('unittype') }}'><i class='nav-icon la la-question'></i> Unit Types</a></li>
         <li class='nav-item'><a class='nav-link' href='{{ backpack_url('gender') }}'> Genders</a></li>
         <li class='nav-item'><a class='nav-link' href='{{ backpack_url('smallholder_definition') }}'> Smallholder Definitions</a></li>
         <li class='nav-item'><a class='nav-link' href='{{ backpack_url('purpose_of_collection') }}'> Purpose Of Collections</a></li>
