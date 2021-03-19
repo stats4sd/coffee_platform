@@ -16,18 +16,43 @@ class IndicatorValue extends Model
     */
 
     protected $table = 'indicator_values';
-    // protected $primaryKey = 'id';
-    // public $timestamps = false;
     protected $guarded = ['id'];
-    // protected $fillable = [];
-    // protected $hidden = [];
-    // protected $dates = [];
+    protected $appends = [
+        'converted_attribute',
+        'standard_unit',
+        'conversion_rate'
+    ];
+
 
     /*
     |--------------------------------------------------------------------------
     | FUNCTIONS
     |--------------------------------------------------------------------------
     */
+
+    public function getConversionRateAttribute()
+    {
+        return $this->unit->conversion_rate;
+    }
+
+
+    public function getStandardUnitAttribute()
+    {
+        return $this->unit->unitType->standard_unit;
+    }
+
+    public function getConvertedValueAttribute()
+    {
+        if ($this->unit->to_standard) {
+            return $this->value * $this->unit->to_standard;
+        }
+
+        if ($this->unit->from_standard) {
+            return $this->value / $this->unit->from_standard;
+        }
+    }
+
+
 
     /*
     |--------------------------------------------------------------------------
@@ -62,38 +87,20 @@ class IndicatorValue extends Model
     public function smallholder_definition()
     {
         return $this->belongsTo(SmallholderDefinition::class);
-    }    
+    }
 
     public function user()
     {
         return $this->belongsTo(User::class);
-    } 
+    }
 
     public function purpose_of_collection()
     {
         return $this->belongsTo(PurposeOfCollection::class);
-    } 
+    }
 
     public function approach_collection()
     {
         return $this->belongsTo(ApproachCollection::class);
-    } 
-    
-    /*
-    |--------------------------------------------------------------------------
-    | SCOPES
-    |--------------------------------------------------------------------------
-    */
-
-    /*
-    |--------------------------------------------------------------------------
-    | ACCESSORS
-    |--------------------------------------------------------------------------
-    */
-
-    /*
-    |--------------------------------------------------------------------------
-    | MUTATORS
-    |--------------------------------------------------------------------------
-    */
+    }
 }
