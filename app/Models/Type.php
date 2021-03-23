@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Model;
 
 class Type extends Model
 {
-    use CrudTrait;
+    use CrudTrait, HasFactory;
 
     /*
     |--------------------------------------------------------------------------
@@ -16,12 +17,23 @@ class Type extends Model
     */
 
     protected $table = 'types';
-    // protected $primaryKey = 'id';
+    protected $primaryKey = 'id';
     // public $timestamps = false;
     protected $guarded = [];
     // protected $fillable = [];
     // protected $hidden = [];
     // protected $dates = [];
+
+    public static function boot()
+    {
+        parent::boot();
+
+        static::saved(function ($type) {
+            $type->sources->each(function ($source) {
+                $source->indicatorValues->searchable();
+            });
+        });
+    }
 
     /*
     |--------------------------------------------------------------------------

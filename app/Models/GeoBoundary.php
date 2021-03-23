@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
+use App\Models\Traits\UpdatesMainSearchIndex;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Model;
 
 class GeoBoundary extends Model
 {
-    use CrudTrait;
+    use CrudTrait, HasFactory, UpdatesMainSearchIndex;
 
     /*
     |--------------------------------------------------------------------------
@@ -16,12 +18,14 @@ class GeoBoundary extends Model
     */
 
     protected $table = 'geo_boundaries';
-    // protected $primaryKey = 'id';
+    protected $primaryKey = 'id';
     // public $timestamps = false;
     protected $guarded = ['id'];
     // protected $fillable = [];
     // protected $hidden = [];
     // protected $dates = [];
+
+    protected $with = ['country'];
 
     /*
     |--------------------------------------------------------------------------
@@ -34,7 +38,7 @@ class GeoBoundary extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-    public function indicator_values()
+    public function indicatorValues()
     {
         return $this->hasMany(IndicatorValue::class);
     }

@@ -1,0 +1,17 @@
+.select-card {
+    width: 200px;
+    height: 100px;
+    overflow: hidden;
+
+    &.selected {
+        outline: 5px solid $info;
+    }
+}
+
+.card-caption {
+    z-index: 1;
+    text-align: center;
+    width: 100%;
+    margin: 33% 0;
+    position: absolute;
+}

@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Model;
 
 class SubCharacteristic extends Model
 {
-    use CrudTrait;
+    use CrudTrait, HasFactory;
 
     /*
     |--------------------------------------------------------------------------
@@ -16,12 +17,23 @@ class SubCharacteristic extends Model
     */
 
     protected $table = 'sub_characteristics';
-    // protected $primaryKey = 'id';
+    protected $primaryKey = 'id';
     // public $timestamps = false;
     protected $guarded = ['id'];
     // protected $fillable = [];
     // protected $hidden = [];
     // protected $dates = [];
+
+    public static function boot()
+    {
+        parent::boot();
+
+        static::saved(function ($subCharacteristic) {
+            $subCharacteristic->indicators->each(function ($indicator) {
+                $indicator->indicatorValues->searchable();
+            });
+        });
+    }
 
     /*
     |--------------------------------------------------------------------------
