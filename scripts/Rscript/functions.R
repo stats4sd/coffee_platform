@@ -1,5 +1,3 @@
-setwd("C:/Users/AlexThomson/OneDrive - Statistic For Sustainable Development/Coffee Platform R Script")
-
 library(tidyverse)
 library(openxlsx)
 library(kableExtra)
