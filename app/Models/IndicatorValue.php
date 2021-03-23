@@ -34,8 +34,12 @@ class IndicatorValue extends Model
         'characteristic_id',
         'type_id',
         'partner_id',
-        'country_id'
+        'country_id',
+        'converted_attribute',
+        'standard_unit',
+        'conversion_rate'
     ];
+
 
     /*
     |--------------------------------------------------------------------------
@@ -103,6 +107,28 @@ class IndicatorValue extends Model
         return $this->geoBoundary->country_id;
     }
 
+    public function getConversionRateAttribute()
+    {
+        return $this->unit->conversion_rate;
+    }
+
+
+    public function getStandardUnitAttribute()
+    {
+        return $this->unit->unitType->standard_unit;
+    }
+
+    public function getConvertedValueAttribute()
+    {
+        if ($this->unit->to_standard) {
+            return $this->value * $this->unit->to_standard;
+        }
+
+        if ($this->unit->from_standard) {
+            return $this->value / $this->unit->from_standard;
+        }
+    }
+
 
 
 
@@ -157,22 +183,4 @@ class IndicatorValue extends Model
     {
         return $this->belongsTo(ApproachCollection::class);
     }
-
-    /*
-    |--------------------------------------------------------------------------
-    | SCOPES
-    |--------------------------------------------------------------------------
-    */
-
-    /*
-    |--------------------------------------------------------------------------
-    | ACCESSORS
-    |--------------------------------------------------------------------------
-    */
-
-    /*
-    |--------------------------------------------------------------------------
-    | MUTATORS
-    |--------------------------------------------------------------------------
-    */
 }
