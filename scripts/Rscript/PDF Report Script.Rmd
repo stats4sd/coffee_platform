@@ -5,7 +5,7 @@ output:
     toc: true
     number_sections: true
     toc_depth: 1
-date: "`r format(Sys.Time(), `%d, &B, %Y`)"
+date: "`r format(Sys.time(), '%d, %B, %Y')`"
 ---
 
 ```{r setup, include=FALSE}
@@ -31,7 +31,7 @@ cat("  \n#",  data_x$Indicator.name[1], "\n")
 
 cat("  \n##",  data_x$Indicator.name[1], ":Detail Table", "\n")  
 
-print(kable(details_table(Indicators[i])) %>%
+print(kable(details_table(Indicators[i]), booktabs = TRUE) %>%
   column_spec(2, width = "28em")%>%
   collapse_rows())
 
@@ -39,7 +39,7 @@ cat('\n\n<!-- -->\n\n')
 
 cat("  \n##",  data_x$Indicator.name[1], ":Value Table", "\n")  
 
-print(kable(indicator_table(Indicators[i]))%>%
+print(kable(indicator_table(Indicators[i]), booktabs = TRUE)%>%
   column_spec(2, width = "15em")%>%
   collapse_rows(columns = 1))%>%
   
@@ -62,8 +62,8 @@ print(kable(definition_table, row.names = FALSE, longtable = TRUE)%>%
   column_spec(2, width = "28em"))
 
 cat('\n\n<!-- -->\n\n')
-}
 
-cat('\n\n<!-- -->\n\n')
+cat("\n\n\\pagebreak\n")
+}
 ```
 

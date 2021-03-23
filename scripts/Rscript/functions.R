@@ -42,7 +42,8 @@ indicator_table <- function(x){
                 values_from = Value)
   
   Indicator_table <- Indicator_table %>%
-    mutate(across(everything(), as.character))
+    mutate(across(everything(), as.character))%>%
+    arrange(Country)
   
   Indicator_table[is.na(Indicator_table)] <- ""
   
