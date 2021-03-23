@@ -28,7 +28,10 @@ class UnitRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required', 'max:255', Rule::unique('approach_collections', 'name')->ignore(Unit::find(request()->id))],
+            'unit' => ['required', 'max:255'],
+            'unit_type_id' => ['required', 'exists:unit_types,id'],
+            'to_standard' => ['required_without:from_standard', 'prohibited_unless:from_standard,null'],
+            'from_standard' => ['required_without:to_standard','prohibited_unless:to_standard,null'],
         ];
     }
 
@@ -52,7 +55,8 @@ class UnitRequest extends FormRequest
     public function messages()
     {
         return [
-            //
+            'to_standard.prohibited_unless' => 'Please only enter one option for converting to standard units.',
+            'from_standard.prohibited_unless' => 'Please only enter one option for converting to standard units.',
         ];
     }
 }

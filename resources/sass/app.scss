@@ -1,0 +1,168 @@
+// Fonts
+@import url("https://fonts.googleapis.com/css?family=Roboto");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap");
+
+
+// Variables
+@import "variables";
+
+// Bootstrap
+@import "~bootstrap/scss/bootstrap";
+@import "~bootstrap-vue/src/index.scss";
+@import "../../public/packages/line-awesome/scss/line-awesome";
+
+// Components
+@import "./components/SelectWithImages";
+
+h1 {
+    font-family: "Noto Sans JP", sans-serif;
+    font-weight: 300;
+}
+
+h2 {
+    font-weight: 700;
+}
+
+h3 {
+    font-weight: 500;
+}
+
+h4 {
+    font-weight: 400;
+}
+
+button.btn {
+    border-radius: 0.5em;
+}
+
+.pt-lots {
+    padding-top: 100px;
+}
+
+.px-lots {
+    padding-left: 20%;
+    padding-right: 20%;
+}
+
+.full-height {
+    min-height: calc(100vh - 135px);
+}
+
+.h-1 {
+    height: 45px;
+}
+
+.h-2 {
+    height: 90px;
+}
+
+.w-33 {
+    width: 33%;
+}
+
+.b-table-sticky-header {
+    max-height: 500px !important;
+}
+
+.sidebar {
+    min-width: 250px;
+}
+
+.dark-gradient {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0), #011627e3);
+}
+
+.btn-flush {
+    border-radius: 0;
+}
+
+.padded-checkbox-group .custom-checkbox {
+    margin: 0.5em 0 0.5em 2em;
+
+    label {
+        padding: 0em 3em 0em 0;
+    }
+}
+
+.open-top th {
+    border-top: 0 !important;
+    background-color: $light !important;
+}
+
+.btn-group.ungrouped-buttons {
+    display: flex;
+    justify-content: start;
+    width: 100%;
+
+    .btn {
+        display: block;
+        flex: unset;
+        margin-right: 1em;
+        border-radius: 0.5em !important;
+    }
+}
+
+.downloader {
+    width: 75px;
+    height: 75px;
+}
+
+// .popover.bg-primary {
+//     .popover-header {
+//         background-color: $primary;
+//         color: white !important;
+//     }
+
+//     .arrow ::after {
+//         border-bottom-color: $primary !important;
+//     }
+
+// }
+
+.custom-overlay {
+    height: 0; //height of downloader icon + margin
+    overflow-x: visible;
+}
+
+.arrow-up {
+  width: 0;
+  height: 0;
+  border-left: 1em solid transparent;
+  border-right: 1em solid transparent;
+
+  border-bottom: 2em solid $primary;
+  margin-bottom: -2em;
+
+  &.download-centered {
+      position: relative;
+      left: calc(-37.5px + 1em);
+  }
+
+
+}
+
+.mt-arrow {
+    margin-top: 2em;
+}
+
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
+
+
+/* always show scrollbars */
+
+::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 7px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-color: rgba(0, 0, 0, .5);
+  box-shadow: 0 0 1px rgba(255, 255, 255, .5);
+}

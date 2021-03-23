@@ -17,6 +17,7 @@ class CreateIndicatorValuesTable extends Migration
             $table->foreignId('indicator_id')->constrained()->onDelete('cascade');
             $table->decimal('value')->nullable();
             $table->foreignId('source_id')->constrained()->onDelete('cascade')->nullable();
+            $table->tinyInteger('source_public');
             $table->year('year')->nullable();
             $table->foreignId('geo_boundary_id')->constrained('geo_boundaries')->onDelete('cascade')->nullable();
             $table->foreignId('unit_id')->constrained()->onDelete('cascade')->nullable();

@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
+use App\Models\Traits\UpdatesMainSearchIndex;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Model;
 
 class PurposeOfCollection extends Model
 {
-    use CrudTrait;
+    use CrudTrait, HasFactory, UpdatesMainSearchIndex;
 
     /*
     |--------------------------------------------------------------------------
@@ -16,7 +18,7 @@ class PurposeOfCollection extends Model
     */
 
     protected $table = 'purpose_of_collections';
-    // protected $primaryKey = 'id';
+    protected $primaryKey = 'id';
     // public $timestamps = false;
     protected $guarded = ['id'];
     // protected $fillable = [];
@@ -34,7 +36,7 @@ class PurposeOfCollection extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-    public function indicator_values()
+    public function indicatorValues()
     {
         return $this->hasMany(IndicatorValue::class);
     }
