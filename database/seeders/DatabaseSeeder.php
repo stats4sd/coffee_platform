@@ -18,6 +18,7 @@ use App\Models\SubCharacteristic;
 use App\Models\ApproachCollection;
 use App\Models\PurposeOfCollection;
 use App\Models\SmallholderDefinition;
+use App\Models\UnitType;
 
 class DatabaseSeeder extends Seeder
 {
@@ -42,7 +43,10 @@ class DatabaseSeeder extends Seeder
 
 
         $users = User::factory()->count(5)->create();
-        $units = Unit::factory()->count(5)->create();
+        $unitTypes = UnitType::factory()->count(3)->has(
+            Unit::factory()->count(3)
+        )->create();
+
         $gender = Gender::factory()->count(5)->create();
         $smallholderDefinitions = SmallholderDefinition::factory()->count(5)->create();
         $purposeOfCollections = PurposeOfCollection::factory()->count(5)->create();
@@ -58,6 +62,8 @@ class DatabaseSeeder extends Seeder
         ->for($types->random())
         ->create();
 
+
+        $units = Unit::all();
 
         // Using for loop to ensure each value is assigned a different random relationship
         for ($i=0; $i < 500; $i++) {

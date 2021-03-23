@@ -35,7 +35,7 @@ class IndicatorValue extends Model
         'type_id',
         'partner_id',
         'country_id',
-        'converted_attribute',
+        'converted_value',
         'standard_unit',
         'conversion_rate'
     ];

@@ -2,18 +2,17 @@
 
 namespace Database\Factories;
 
-use App\Models\Unit;
 use App\Models\UnitType;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class UnitFactory extends Factory
+class UnitTypeFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Unit::class;
+    protected $model = UnitType::class;
 
     /**
      * Define the model's default state.
@@ -23,8 +22,8 @@ class UnitFactory extends Factory
     public function definition()
     {
         return [
-            'unit' => $this->faker->unique()->word(),
-            'unit_type_id' => UnitType::factory(),
+            'name' => $this->faker->word,
+            'standard_unit' => $this->faker->word,
         ];
     }
 }
