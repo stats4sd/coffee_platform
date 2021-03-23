@@ -1,0 +1,70 @@
+---
+output:
+  pdf_document: default
+  html_document:
+    df_print: paged
+  word_document: default
+---
+
+# State of the Smallholder Coffee farmer
+
+## Indicator Report
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+library(tidyverse)
+library(openxlsx)
+library(kableExtra)
+```
+
+```{r}
+data <- read.xlsx("Fake data.xlsx")
+source("functions.R")
+Indicators <- unique(data$Indicator)
+```
+
+```{r, results='asis'}
+for(i in 1:length(Indicators)){
+
+data_x <- data%>%
+    filter(Indicator == Indicators[i])  
+
+cat("  \n###",  data_x$Indicator.name[1], ":Detail Table", "\n")  
+
+print(kable(details_table(Indicators[i])) %>%
+  column_spec(2, width = "28em")%>%
+  collapse_rows())
+
+cat('\n\n<!-- -->\n\n')
+
+cat("  \n###",  data_x$Indicator.name[1], ":Value Table", "\n")  
+
+print(kable(indicator_table(Indicators[i]))%>%
+  column_spec(2, width = "15em")%>%
+  collapse_rows(columns = 1))%>%
+  
+cat('\n\n<!-- -->\n\n')
+
+cat("  \n###",  data_x$Indicator.name[1], ":Graphs", "\n")  
+
+print(bar_graph(Indicators[i]))
+
+cat('\n\n<!-- -->\n\n')
+
+definition_table <- data_x%>%
+  select(Source, Indicator.definition)%>%
+  unique()
+
+cat("  \n###",  "Definition by Source", "\n")  
+
+print(kable(definition_table, row.names = FALSE, longtable = TRUE)%>%
+  column_spec(1, width = "15em")%>%
+  column_spec(2, width = "28em"))
+
+cat('\n\n<!-- -->\n\n')
+}
+
+cat('\n\n<!-- -->\n\n')
+```
+
+https://github.com/stats4sd/coffee_platform.git
