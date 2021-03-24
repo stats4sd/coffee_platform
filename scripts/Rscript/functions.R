@@ -4,18 +4,18 @@ library(kableExtra)
 library(knitr)
 library(scales)
 
-details_table <- function(x){
+details_table <- function(data, x){
   data <- data%>%
-    filter(Indicator == x)
+    filter(`Indicator code` == x)
   
   details_table <- tibble(
     Detail = c("Indicator", "Definition", "Indicator unit", "Internal indicator code",
                "Member of"))
-  details_table$Comment[1] <- data$Indicator.name[1]
-  details_table$Comment[2] <- data$Indicator.definition[1]
-  details_table$Comment[3] <- "%"
-  details_table$Comment[4] <- data$Indicator[1]
-  details_table$Comment[5] <- "Key farm characteristics"
+  details_table$Comment[1] <- data$Indicator[1]
+  details_table$Comment[2] <- data$`Indicator definition`[1]
+  details_table$Comment[3] <- data$Unit[1]
+  details_table$Comment[4] <- data$`Indicator code`[1]
+  details_table$Comment[5] <- data$`Indicator Group`[1]
   
   details_country <- tibble(Detail = rep("Countries included", length(unique(data$Country))),
                             Comment = sort(unique(data$Country)))
@@ -29,9 +29,9 @@ details_table <- function(x){
   return(details_table)
 }
 
-indicator_table <- function(x){
+indicator_table <- function(data, x){
   data <- data%>%
-    filter(Indicator == x)
+    filter(`Indicator code` == x)
   
   Indicator_table <- data%>%
     select(Country, Source, Year, Value)%>%
@@ -52,10 +52,10 @@ indicator_table <- function(x){
 }
 
 
-bar_graph <- function(x){
+bar_graph <- function(data, x){
 
   data <- data%>%
-    filter(Indicator == x)  
+    filter(`Indicator code` == x)  
   
  p1 <- ggplot(data,
        aes(fill = Country, y = Value/100, x = reorder(Year,desc(Year))))+

@@ -16,43 +16,69 @@ library(kableExtra)
 ```
 
 ```{r}
-data <- read.xlsx("Fake data.xlsx")
+source("IndicatorStatement.R")
 source("functions.R")
-Indicators <- unique(data$Indicator)
+Indicators <- unique(data$`Indicator code`)
 ```
 
 ```{r, results='asis'}
 for(i in 1:length(Indicators)){
   
  data_x <- data%>%
-    filter(Indicator == Indicators[i])   
+    filter(`Indicator code` == Indicators[i])   
  
-cat("  \n#",  data_x$Indicator.name[1], "\n")    
+cat("  \n#",  data_x$Indicator[1], "\n")    
 
-cat("  \n##",  data_x$Indicator.name[1], ":Detail Table", "\n")  
+cat("  \n##",  data_x$Indicator[1], ":Detail Table", "\n")  
 
-print(kable(details_table(Indicators[i]), booktabs = TRUE) %>%
+print(kable(details_table(data_x, Indicators[i]), booktabs = TRUE) %>%
   column_spec(2, width = "28em")%>%
   collapse_rows())
 
 cat('\n\n<!-- -->\n\n')
 
-cat("  \n##",  data_x$Indicator.name[1], ":Value Table", "\n")  
+cat("  \n##",  data_x$Indicator[1], ":Value Table", "\n")  
 
-print(kable(indicator_table(Indicators[i]), booktabs = TRUE)%>%
-  column_spec(2, width = "15em")%>%
-  collapse_rows(columns = 1))%>%
+years <- sort(unique(data_x$Year))
+
+if(length(years)<=6){
+
+print(kable(indicator_table(data_x, Indicators[i]), booktabs = TRUE, )%>%
+  kable_styling(full_width = TRUE)%>%
+  collapse_rows(columns = 1))
+  
+} else if(length(years) >6){
+  
+  a <- years[1:5]
+  b <- years[6:length(years)]
+  
+  data_a <- filter(data_x, Year %in% a)
+  data_b <- filter(data_x, Year %in% b)
+  
+  print(kable(indicator_table(data_a, Indicators[i]), booktabs = TRUE, )%>%
+  kable_styling(full_width = TRUE)%>%
+  column_spec(1:2, width = "10em")%>%
+  collapse_rows(columns = 1))
+  
+  cat('\n\n<!-- -->\n\n')
+  
+  print(kable(indicator_table(data_b, Indicators[i]), booktabs = TRUE, )%>%
+  kable_styling(full_width = TRUE)%>%
+  column_spec(1:2, width = "10em")%>%
+  collapse_rows(columns = 1))
+  
+}
   
 cat('\n\n<!-- -->\n\n')
 
-cat("  \n##",  data_x$Indicator.name[1], ":Graphs", "\n")  
+cat("  \n##",  data_x$Indicator[1], ":Graphs", "\n")  
 
-print(bar_graph(Indicators[i]))
+print(bar_graph(data_x, Indicators[i]))
 
 cat('\n\n<!-- -->\n\n')
 
 definition_table <- data_x%>%
-  select(Source, Indicator.definition)%>%
+  select(Source, `Indicator definition`)%>%
   unique()
 
 cat("  \n##",  "Definition by Source", "\n")  
