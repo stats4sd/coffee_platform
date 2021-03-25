@@ -18,7 +18,6 @@ class CreateIndicatorValuesTable extends Migration
             $table->decimal('value')->nullable();
             $table->foreignId('source_id')->constrained()->onDelete('cascade')->nullable();
             $table->tinyInteger('source_public');
-            $table->year('year')->nullable();
             $table->foreignId('geo_boundary_id')->constrained('geo_boundaries')->onDelete('cascade')->nullable();
             $table->foreignId('unit_id')->constrained()->onDelete('cascade')->nullable();
             $table->foreignId('gender_id')->constrained()->onDelete('cascade')->nullable();
@@ -27,7 +26,6 @@ class CreateIndicatorValuesTable extends Migration
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('purpose_of_collection_id')->constrained()->onDelete('cascade')->nullable();
             $table->foreignId('approach_collection_id')->constrained()->onDelete('cascade')->nullable();
-            $table->text('scope')->nullable();
             $table->timestamps();
         });
     }
