@@ -19,4 +19,5 @@ yarn-error.log
 /scripts/Rscript/.Rhistory
 /scripts/Rscript/.RData
 /scripts/Rscript/.Ruserdata
+/scripts/Rscript/PDF-Report-Script.pdf
 **/~$*.docx
