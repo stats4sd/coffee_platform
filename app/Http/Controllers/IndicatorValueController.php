@@ -8,8 +8,10 @@ use App\Models\IndicatorValue;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\IndicatorValuesExport;
+use Symfony\Component\Process\Process;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\Builder;
+use Symfony\Component\Process\Exception\ProcessFailedException;
 
 class IndicatorValueController extends Controller
 {
@@ -85,7 +87,7 @@ class IndicatorValueController extends Controller
             $export = $export->forPurposes($request->input('purposes'));
         }
 
-        $filename = 'indicator-values-'.now()->toDateTimeString().'.xlsx';
+        $filename = 'indicator-values-exports/indicator-values-'.now()->toDateTimeString().'.xlsx';
         $success = Excel::store($export, $filename, 'public');
 
         if (! $success) {
@@ -97,9 +99,22 @@ class IndicatorValueController extends Controller
 
     public function report(Request $request)
     {
+        $indicatorValueIds = Collect($request->input('indicator_values'))->pluck('id')->toArray();
+        $indicatorValueIds = implode(",", $indicatorValueIds);
 
-        // Call the R script, and pass the indicator list and the set of filters from the $request as parameters (or whatever the R script needs)
+        $process = new Process(['Rscript', 'makeReport.r', $indicatorValueIds]);
+        $process->setWorkingDirectory(base_path('scripts/Rscript'));
 
-        return 'this is a temporary holder.';
+        $process->run();
+
+        if (!$process->isSuccessful()) {
+            throw new ProcessFailedException($process);
+        }
+
+        $filename = 'indicator-values-exports/indicator-values-report-'.now()->toDateTimeString().'.pdf';
+
+        copy(base_path('scripts/Rscript/PDF-Report-Script.pdf'), storage_path('app/public/'.$filename));
+
+        return Storage::disk('public')->url($filename);
     }
 }
