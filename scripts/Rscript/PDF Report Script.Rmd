@@ -47,9 +47,9 @@ years <- sort(unique(data_x$Year))
 
 tb2 <- indicator_table(data_x, Indicators[i])
 
-print(kable(tb2[,2:ncol(tb2)])%>%
+print(kable(tb2[,2:ncol(tb2)], booktabs = TRUE)%>%
   column_spec(1, width = "8em")%>%
-  pack_rows(index = table(tb2$Country)))
+  pack_rows(index = table(tb2$Country), bold = T, italic = T))
   
 cat('\n\n<!-- -->\n\n')
 
