@@ -19,3 +19,4 @@ yarn-error.log
 /scripts/Rscript/.Rhistory
 /scripts/Rscript/.RData
 /scripts/Rscript/.Ruserdata
+**/~$*.docx
