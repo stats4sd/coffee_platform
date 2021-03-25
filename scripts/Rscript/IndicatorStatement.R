@@ -16,5 +16,11 @@ con <- dbConnect(RMySQL::MySQL(),
 
 report_view <- tbl(con, "pdf_report_view")
 
-data <- report_view%>%
+data_cc <- report_view%>%
   collect()
+
+x <- sample(1:length(unique(data_cc$`Indicator code`)), 1)
+
+indicators_filter <- sample(unique(data_cc$`Indicator code`), x, replace = FALSE)
+
+data <-  filter(data_cc, `Indicator code` %in% indicators_filter)
