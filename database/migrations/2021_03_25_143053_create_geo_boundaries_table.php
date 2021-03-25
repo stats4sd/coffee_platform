@@ -12,14 +12,14 @@ class CreateGeoBoundariesTable extends Migration
      * @return void
      */
     public function up()
-    {
+    {   
         Schema::create('geo_boundaries', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('country_id')->nullable();
             $table->unsignedBigInteger('region_id')->nullable();
             $table->unsignedBigInteger('department_id')->nullable();
             $table->text('description');
-            $table->integer('altitude');
+            $table->integer('altitude')->nullable();
             $table->timestamps();
         });
         Schema::table('geo_boundaries', function(Blueprint $table) {

@@ -28,8 +28,10 @@ class GeoBoundaryRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required', 'max:255', Rule::unique('geo_boundaries', 'name')->ignore(GeoBoundary::find(request()->id))],
-            'country_id' => ['required', 'exists:countries,id'],
+            'description' => ['required', 'max:255', Rule::unique('geo_boundaries', 'description')->ignore(GeoBoundary::find(request()->id))],
+            'country_id' => ['nullable', 'exists:countries,id'],
+            'region_id' => ['nullable', 'exists:regions,id'],
+            'department_id' => ['nullable', 'exists:departments,id'],
         ];
     }
 
