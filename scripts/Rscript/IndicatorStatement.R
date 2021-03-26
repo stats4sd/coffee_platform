@@ -4,7 +4,10 @@ library(dotenv)
 
 args <- commandArgs(TRUE)
 
-dotenv::load_dot_env("../../.env")
+indicator_value_ids <- strsplit(args[1], ',')
+indicator_value_ids <- indicator_value_ids[!is.na(indicator_value_ids)]
+indicator_value_ids <- as.integer(indicator_value_ids[[1]])
+# dotenv::load_dot_env("../../.env")
 
 con <- dbConnect(RMySQL::MySQL(),
                  dbname = Sys.getenv("DB_DATABASE"),
@@ -16,11 +19,10 @@ con <- dbConnect(RMySQL::MySQL(),
 
 report_view <- tbl(con, "pdf_report_view")
 
-data_cc <- report_view%>%
+if (length(indicator_value_ids) > 0) {
+   report_view <- report_view %>%
+    filter(ID %in% indicator_value_ids)
+}
+
+data <- report_view%>%
   collect()
-
-x <- sample(1:length(unique(data_cc$`Indicator code`)), 1)
-
-indicators_filter <- sample(unique(data_cc$`Indicator code`), x, replace = FALSE)
-
-data <-  filter(data_cc, `Indicator code` %in% indicators_filter)

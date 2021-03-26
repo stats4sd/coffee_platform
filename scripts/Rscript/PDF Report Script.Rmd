@@ -1,7 +1,7 @@
 ---
 title: "State of the Smallholder Coffee farmer: Indicator Report"
 output:
-  pdf_document: 
+  pdf_document:
     toc: true
     number_sections: true
     toc_depth: 1
@@ -27,11 +27,11 @@ cat('\n\n<!-- -->\n\n')
 cat("\n\n\\pagebreak\n")
 
 for(i in 1:length(Indicators)){
-  
+
  data_x <- data%>%
     filter(`Indicator code` == Indicators[i])
- 
-cat("  \n#",  data_x$Indicator[1], "\n")    
+
+cat("  \n#",  data_x$Indicator[1], "\n")
 
 cat("  \n##",  data_x$Indicator[1], ":Detail Table", "\n")
 
@@ -41,7 +41,7 @@ print(kable(details_table(data_x, Indicators[i]), booktabs = TRUE) %>%
 
 cat('\n\n<!-- -->\n\n')
 
-cat("  \n##",  data_x$Indicator[1], ":Value Table", "\n")  
+cat("  \n##",  data_x$Indicator[1], ":Value Table", "\n")
 
 years <- sort(unique(data_x$Year))
 
@@ -50,10 +50,10 @@ tb2 <- indicator_table(data_x, Indicators[i])
 print(kable(tb2[,2:ncol(tb2)], booktabs = TRUE)%>%
   column_spec(1, width = "8em")%>%
   pack_rows(index = table(tb2$Country), bold = T, italic = T))
-  
+
 cat('\n\n<!-- -->\n\n')
 
-cat("  \n##",  data_x$Indicator[1], ":Graphs", "\n")  
+cat("  \n##",  data_x$Indicator[1], ":Graphs", "\n")
 
 print(bar_graph(data_x, Indicators[i]))
 
@@ -63,7 +63,7 @@ definition_table <- data_x%>%
   select(Source, `Indicator definition`)%>%
   unique()
 
-cat("  \n##",  "Definition by Source", "\n")  
+cat("  \n##",  "Definition by Source", "\n")
 
 print(kable(definition_table, row.names = FALSE, longtable = TRUE)%>%
   column_spec(1, width = "15em")%>%
