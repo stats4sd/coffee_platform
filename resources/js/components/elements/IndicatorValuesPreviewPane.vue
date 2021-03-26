@@ -29,6 +29,15 @@
             <template #cell(source_public)="row">
                 {{ row.item.source_public == 1 ? 'Yes' : 'No' }}
             </template>
+            <template #cell(sample_size)="row">
+                <span :class="row.item.sample_size < 21 ? 'text-danger' : ''">{{ row.item.sample_size }}
+                    <small
+                        v-if="row.item.sample_size < 21"
+                        class="mr-2"
+                    > (Note: Small sample!)</s>
+                    </small>
+                </span>
+            </template>
         </b-table>
 
         <template #modal-footer>
@@ -91,6 +100,10 @@
                     {
                         key: 'unit.unit',
                         label: 'Unit'
+                    },
+                    {
+                        key: 'sample_size',
+                        label: 'Sample size',
                     },
                     {
                         key: 'source_public',

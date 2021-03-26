@@ -13,6 +13,7 @@ IF(indicator_values.source_public = 1, sources.name, 'Not available') AS 'Source
 IF(indicator_values.source_public = 1, sources.reference, 'Not available') AS 'URL',
 approach_collections.name AS 'Approach',
 indicator_values.sample_size AS 'Sample Size',
+IF(indicator_values.sample_size < 21, 'TRUE', 'FALSE') AS 'SmallSize',
 IF(indicator_values.source_public = 1, types.name, 'Not available') AS 'Source Type',
 geo_boundaries.description AS 'Geo-boundaries',
 indicators.definition AS 'Indicator definition',
