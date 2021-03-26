@@ -79,7 +79,7 @@ class IndicatorValuesExport implements FromQuery, WithHeadings, WithMapping
         }
 
         if ($this->years) {
-            $query = $query->whereHas('year', function (Builder $query) {
+            $query = $query->whereHas('years', function (Builder $query) {
                 $query->whereIn('years.id', $this->years);
             });
         }
@@ -112,6 +112,10 @@ class IndicatorValuesExport implements FromQuery, WithHeadings, WithMapping
             $value->indicator->definition,
             $value->geoBoundary->country_id,
             $value->geoBoundary->country->name,
+            $value->geoBoundary->region_id,
+            $value->geoBoundary->region->name,
+            $value->geoBoundary->department_id,
+            $value->geoBoundary->department->name,
             $value->geo_boundary_id,
             $value->geoBoundary->name,
             $value->all_years,
@@ -150,6 +154,10 @@ class IndicatorValuesExport implements FromQuery, WithHeadings, WithMapping
             'indicator_definition',
             'country_id',
             'country',
+            'region_id',
+            'region',
+            'department_id',
+            'department',
             'geo_boundary_id',
             'geo_boundary',
             'year(s)',

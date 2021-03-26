@@ -3,7 +3,7 @@ indicator_values.id AS 'ID',
 indicator_values.indicator_id AS 'Indicator code',
 indicators.code AS 'Indicator',
 countries.name AS 'Country',
-indicator_values.year AS 'Year',
+GROUP_CONCAT(distinct years.year SEPARATOR ", ") AS 'Year',
 indicator_values.value AS 'Value',
 genders.name AS 'Gender',
 IF (indicator_values.gender_id IS NOT NULL, 'TRUE', 'FALSE') AS 'GenderSplit',
@@ -14,7 +14,7 @@ sources.reference AS 'URL',
 approach_collections.name AS 'Approach',
 indicator_values.sample_size AS 'Sample Size',
 types.name AS 'Source Type',
-geo_boundaries.name AS 'Geo-boundaries',
+geo_boundaries.description AS 'Geo-boundaries',
 indicators.definition AS 'Indicator definition',
 units.unit AS 'Unit',
 sub_characteristics.name AS 'Indicator Group',
@@ -31,4 +31,7 @@ LEFT JOIN approach_collections ON approach_collections.id = indicator_values.app
 LEFT JOIN types ON types.id = sources.type_id
 LEFT JOIN units ON units.id = indicator_values.unit_id
 LEFT JOIN sub_characteristics ON sub_characteristics.id = indicators.sub_characteristic_id
-LEFT JOIN smallholder_definitions ON smallholder_definitions.id = indicator_values.smallholder_definition_id;
+LEFT JOIN smallholder_definitions ON smallholder_definitions.id = indicator_values.smallholder_definition_id
+LEFT JOIN _link_years_indicator_values ON _link_years_indicator_values.indicator_value_id = indicator_values.id
+LEFT JOIN years on years.id = _link_years_indicator_values.year_id
+GROUP BY indicator_values.id;

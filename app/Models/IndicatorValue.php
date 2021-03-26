@@ -37,7 +37,8 @@ class IndicatorValue extends Model
         'country_id',
         'converted_value',
         'standard_unit',
-        'conversion_rate'
+        'conversion_rate',
+        'all_years',
     ];
 
 
@@ -80,6 +81,13 @@ class IndicatorValue extends Model
 
 
         return $array;
+    }
+
+    public function getAllYearsAttribute()
+    {
+        return $this->years->map(function ($year) {
+            return $year->year;
+        })->join(', ');
     }
 
     public function getSubCharacteristicIdAttribute()

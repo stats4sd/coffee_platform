@@ -73,12 +73,14 @@ class DatabaseSeeder extends Seeder
         $types = Type::factory()->count(3)->create();
 
         // create 10 sources linked to random partners and types
-        $sources = Source::factory()->count(10)
-        ->for($partners->random())
-        ->for($types->random())
-        ->create();
+        $types->each(function ($type) use ($partners) {
+            Source::factory()->count(5)
+            ->for($partners->random())
+            ->for($type)
+            ->create();
+        });
 
-
+        $sources = Source::all();
         $units = Unit::all();
 
         // Using for loop to ensure each value is assigned a different random relationship

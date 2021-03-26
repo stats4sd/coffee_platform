@@ -79,13 +79,19 @@
                         key: 'geo_boundary.country.name',
                         label: 'Country',
                     },
-                    'year',
+                    {
+                        key: 'all_years',
+                        label: 'year(s)',
+                    },
                     'value',
                     {
                         key: 'unit.unit',
                         label: 'Unit'
                     },
-                    'scope',
+                    {
+                        key: 'purpose_of_collection.name',
+                        label: 'Purpose of collection',
+                    }
                 ]
             }
         },
