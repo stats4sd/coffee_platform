@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\CountryRequest;
+use App\Http\Requests\RegionRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
 /**
- * Class CountryCrudController
+ * Class RegionCrudController
  * @package App\Http\Controllers\Admin
  * @property-read \Backpack\CRUD\app\Library\CrudPanel\CrudPanel $crud
  */
-class CountryCrudController extends CrudController
+class RegionCrudController extends CrudController
 {
     use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
@@ -28,9 +28,9 @@ class CountryCrudController extends CrudController
      */
     public function setup()
     {
-        CRUD::setModel(\App\Models\Country::class);
-        CRUD::setRoute(config('backpack.base.route_prefix') . '/country');
-        CRUD::setEntityNameStrings('country', 'countries');
+        CRUD::setModel(\App\Models\Region::class);
+        CRUD::setRoute(config('backpack.base.route_prefix') . '/region');
+        CRUD::setEntityNameStrings('region', 'regions');
     }
 
     /**
@@ -58,7 +58,7 @@ class CountryCrudController extends CrudController
      */
     protected function setupCreateOperation()
     {
-        CRUD::setValidation(CountryRequest::class);
+        CRUD::setValidation(RegionRequest::class);
 
         CRUD::setFromDb(); // fields
 

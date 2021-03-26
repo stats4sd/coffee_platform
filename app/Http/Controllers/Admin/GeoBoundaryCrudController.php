@@ -3,8 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\GeoBoundaryRequest;
+use App\Models\Country;
+use App\Models\Department;
+use App\Models\Region;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
+use PHPUnit\Framework\Constraint\Count;
 
 /**
  * Class GeoBoundaryCrudController
@@ -47,9 +51,22 @@ class GeoBoundaryCrudController extends CrudController
                 'name' => 'country',
             ],
             [
-                'name' => 'name',
+                'type' => 'relationship',
+                'name' => 'region',
+            ],
+            [
+                'type' => 'relationship',
+                'name' => 'department',
+            ],
+            [
+                'name' => 'description',
                 'type' => 'text',
                 'label' => 'Description'
+            ],
+            [
+                'name' => 'altitude',
+                'type' => 'number',
+                'label' => 'altitude'
             ]
         ]);
     }
@@ -68,14 +85,39 @@ class GeoBoundaryCrudController extends CrudController
             [
                 'type' => 'relationship',
                 'name' => 'country_id',
-                'attribute' => "name", 
-                'entity' => 'country',
-                'model' => "App\Models\Country",
+                'ajax' => true,
+                'inline_create' => [ 'entity' => 'country' ],
+                'minimum_input_length' => 0,
+                'label' => 'Select the country for this geo boundary',
+                'hint' => 'If the country is not in the dropdown select the <b>+Add</b> to add a new one.',
             ],
             [
-                'name' => 'name',
+                'type' => 'relationship',
+                'name' => 'region_id',
+                'ajax' => true,
+                'inline_create' => [ 'entity' => 'region' ],
+                'minimum_input_length' => 0,
+                'label' => 'Select the region for this geo boundary',
+                'hint' => 'If the region is not in the dropdown select the <b>+Add</b> to add a new one.',
+            ],
+            [
+                'type' => 'relationship',
+                'name' => 'department_id',
+                'ajax' => true,
+                'inline_create' => [ 'entity' => 'department' ],
+                'minimum_input_length' => 0,
+                'label' => 'Select the department for this geo boundary',
+                'hint' => 'If the department is not in the dropdown select the <b>+Add</b> to add a new one.',
+            ],
+            [
+                'name' => 'description',
                 'type' => 'text',
                 'label' => 'Description'
+            ],
+            [
+                'name' => 'altitude',
+                'type' => 'number',
+                'label' => 'Altitude'
             ]
         ]);
     }
@@ -89,5 +131,20 @@ class GeoBoundaryCrudController extends CrudController
     protected function setupUpdateOperation()
     {
         $this->setupCreateOperation();
+    }
+
+    public function fetchCountry()
+    {
+        return $this->fetch(Country::class);
+    }
+
+    public function fetchRegion()
+    {
+        return $this->fetch(Region::class);
+    }
+
+    public function fetchDepartment()
+    {
+        return $this->fetch(Department::class);
     }
 }

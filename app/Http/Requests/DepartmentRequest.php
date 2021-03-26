@@ -2,10 +2,12 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Department;
 use App\Http\Requests\Request;
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class IndicatorValueRequest extends FormRequest
+class DepartmentRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,18 +28,7 @@ class IndicatorValueRequest extends FormRequest
     public function rules()
     {
         return [
-            'indicator_id' => ['required', 'exists:indicators,id'],
-            'value' => ['required', 'numeric'],
-            'source_id' => ['required','exists:sources,id'],
-            'source_public' => ['required','boolean'],
-            'geo_boundary_id' => ['required','exists:geo_boundaries,id'],
-            'unit_id' => ['required','exists:units,id'],
-            'gender_id' => ['required','exists:genders,id'],
-            'sample_size' => ['nullable','integer'],
-            'smallholder_definition_id' => ['required','exists:smallholder_definitions,id'],
-            'user_id' => ['required','exists:users,id'],
-            'purpose_of_collection_id' => ['required','exists:purpose_of_collections,id'],
-            'approach_collection_id' => ['required','exists:approach_collections,id'],
+            'name' => ['required','max:255',Rule::unique('departments', 'name')->ignore(Department::find(request()->id))]
         ];
     }
 
