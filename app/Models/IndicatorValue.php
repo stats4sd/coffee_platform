@@ -187,6 +187,6 @@ class IndicatorValue extends Model
 
     public function years()
     {
-        return $this->belongsToMany(Year::class);
+        return $this->belongsToMany(Year::class, '_link_years_indicator_values');
     }
 }

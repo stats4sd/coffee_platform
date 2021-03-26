@@ -19,6 +19,8 @@ use App\Models\ApproachCollection;
 use App\Models\PurposeOfCollection;
 use App\Models\SmallholderDefinition;
 use App\Models\UnitType;
+use App\Models\Year;
+use Illuminate\Database\Eloquent\Factories\Sequence;
 
 class DatabaseSeeder extends Seeder
 {
@@ -33,6 +35,20 @@ class DatabaseSeeder extends Seeder
             User::factory(['name' => 'test', 'email' => 'test@example.com'])->create(); // factory sets default password to 'password'
         }
 
+        $years = Year::factory()->count(11)->state(new Sequence(
+            ['year' => '2010'],
+            ['year' => '2011'],
+            ['year' => '2012'],
+            ['year' => '2013'],
+            ['year' => '2014'],
+            ['year' => '2015'],
+            ['year' => '2016'],
+            ['year' => '2017'],
+            ['year' => '2018'],
+            ['year' => '2019'],
+            ['year' => '2020'],
+            ['year' => '2021'],
+        ))->create();
 
         Characteristic::factory()->count(5)
         ->has(
@@ -67,6 +83,9 @@ class DatabaseSeeder extends Seeder
 
         // Using for loop to ensure each value is assigned a different random relationship
         for ($i=0; $i < 500; $i++) {
+            $numberOfYears = collect([1,2])->random();
+            $selectedYears = $years->random($numberOfYears);
+
             $indicatorValue = IndicatorValue::factory()
             ->for($users->random())
             ->for($units->random())
@@ -78,6 +97,8 @@ class DatabaseSeeder extends Seeder
             ->for(Indicator::all()->random())
             ->for($sources->random())
             ->create();
+
+            $indicatorValue->years()->sync($selectedYears);
         }
     }
 }
