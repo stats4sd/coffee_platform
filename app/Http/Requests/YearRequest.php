@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Year;
 use App\Http\Requests\Request;
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class YearRequest extends FormRequest
@@ -26,7 +28,7 @@ class YearRequest extends FormRequest
     public function rules()
     {
         return [
-            // 'name' => 'required|min:5|max:255'
+            'year' => ['required','date_format:YY', Rule::unique('years', 'year')->ignore(Year::find(request()->id))],
         ];
     }
 
