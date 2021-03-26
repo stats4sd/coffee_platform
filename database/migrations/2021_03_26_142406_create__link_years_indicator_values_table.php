@@ -13,7 +13,7 @@ class CreateLinkYearsIndicatorValuesTable extends Migration
      */
     public function up()
     {
-        Schema::create('link_years_indicator_values', function (Blueprint $table) {
+        Schema::create('_link_years_indicator_values', function (Blueprint $table) {
             $table->id();
             $table->foreignId('year_id')->constrained()->onDelete('cascade');
             $table->foreignId('indicator_value_id')->constrained('indicator_values')->onDelete('cascade');
@@ -28,6 +28,6 @@ class CreateLinkYearsIndicatorValuesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('link_years_indicator_values');
+        Schema::dropIfExists('_link_years_indicator_values');
     }
 }
