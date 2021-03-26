@@ -83,8 +83,16 @@ class DatabaseSeeder extends Seeder
 
         // Using for loop to ensure each value is assigned a different random relationship
         for ($i=0; $i < 500; $i++) {
+            $selectedYear = $years->random();
+
             $numberOfYears = collect([1,2])->random();
-            $selectedYears = $years->random($numberOfYears);
+
+            if ($numberOfYears == 2) {
+                $year2 = $years->where('year', $selectedYear->year + 1)->first() ?? $years->where('year', $selectedYear->year - 1)->first();
+                $selectedYears = collect([$selectedYear->id,$year2->id]);
+            } else {
+                $selectedYears = collect([$selectedYear->id]);
+            }
 
             $indicatorValue = IndicatorValue::factory()
             ->for($users->random())
