@@ -382,7 +382,7 @@
 
                 if (this.selectedTypes.length > 0) {
                     values = values.filter(value =>
-                        this.selectedTypes.includes(value.type_id)
+                        (this.selectedTypes.includes(value.type_id) && value.source_public == 1)
                     );
                 }
                 if (this.selectedPurposes.length > 0) {

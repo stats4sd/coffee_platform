@@ -25,7 +25,11 @@
             :fields="fields"
             sticky-header
             thead-class="bg-light open-top"
-        />
+        >
+            <template #cell(source_public)="row">
+                {{ row.item.source_public == 1 ? 'Yes' : 'No' }}
+            </template>
+        </b-table>
 
         <template #modal-footer>
             <b-button
@@ -87,6 +91,10 @@
                     {
                         key: 'unit.unit',
                         label: 'Unit'
+                    },
+                    {
+                        key: 'source_public',
+                        label: 'Is the source public?',
                     },
                     {
                         key: 'purpose_of_collection.name',
