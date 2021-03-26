@@ -160,7 +160,7 @@ class IndicatorValueCrudController extends CrudController
             [
                 'name' => 'years',
                 'type' => 'relationship',
-                'label' => 'Insert the year.',
+                'label' => 'Which year(s) is this value for?',
                 'attribute' => "year",
             ],
             [
