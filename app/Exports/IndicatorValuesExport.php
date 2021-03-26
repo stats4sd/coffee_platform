@@ -65,6 +65,7 @@ class IndicatorValuesExport implements FromQuery, WithHeadings, WithMapping
             'smallholderDefinition',
             'gender',
             'unit',
+            'years',
         ]);
 
         if ($this->indicators) {
@@ -78,7 +79,9 @@ class IndicatorValuesExport implements FromQuery, WithHeadings, WithMapping
         }
 
         if ($this->years) {
-            $query = $query->whereIn('year', $this->years);
+            $query = $query->whereHas('year', function (Builder $query) {
+                $query->whereIn('years.id', $this->years);
+            });
         }
 
         if ($this->types) {
@@ -111,7 +114,7 @@ class IndicatorValuesExport implements FromQuery, WithHeadings, WithMapping
             $value->geoBoundary->country->name,
             $value->geo_boundary_id,
             $value->geoBoundary->name,
-            $value->year,
+            $value->all_years,
             $value->value,
             $value->unit_id,
             $value->unit->unit,
@@ -122,7 +125,6 @@ class IndicatorValuesExport implements FromQuery, WithHeadings, WithMapping
             $value->purpose_of_collection_id,
             $value->purposeOfCollection->name,
             $value->sample_size,
-            $value->scope,
             $value->smallholder_definition_id,
             $value->smallholderDefinition->definition,
             $value->user_id,
@@ -150,7 +152,7 @@ class IndicatorValuesExport implements FromQuery, WithHeadings, WithMapping
             'country',
             'geo_boundary_id',
             'geo_boundary',
-            'year',
+            'year(s)',
             'value',
             'unit_id',
             'unit',
@@ -161,7 +163,6 @@ class IndicatorValuesExport implements FromQuery, WithHeadings, WithMapping
             'purpose_of_collection_id',
             'purpose_of_collection',
             'sample_size',
-            'scope',
             'smallholder_definition_id',
             'smallholder_definition',
             'user_id',
