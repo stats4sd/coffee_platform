@@ -23,7 +23,7 @@
                         title="Years"
                         :options="years"
                         display-field="year"
-                        value-field="year"
+                        value-field="id"
                     />
                     <sidebar-filter
                         v-model="selectedTypes"
@@ -46,7 +46,12 @@
             />
             <indicator-download-options
                 :visible="downloadOptionsVisible"
-                :indicators="indicators.filter(indicator => selectedIndicators.includes(indicator.id))"
+                :indicators="
+                    indicators.filter((indicator) =>
+                        selectedIndicators.includes(indicator.id)
+                    )
+                "
+                :processing="processing"
                 @hidden="downloadOptionsVisible = false"
                 @remove-indicator="removeIndicator"
                 @download-xlsx="downloadValues(selectedIndicators)"
@@ -134,7 +139,11 @@
                             </li>
                         </ul>
                         <div class="flex-grow-1">
-                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolorem veritatis accusantium eius, aut adipisci, nisi sed commodi voluptatibus error ratione quas in repellendus laudantium, doloremque qui? Cumque, officia? Repellat, neque?
+                            Lorem, ipsum dolor sit amet consectetur adipisicing
+                            elit. Dolorem veritatis accusantium eius, aut
+                            adipisci, nisi sed commodi voluptatibus error
+                            ratione quas in repellendus laudantium, doloremque
+                            qui? Cumque, officia? Repellat, neque?
                         </div>
                     </div>
 
@@ -160,14 +169,31 @@
                                 </b-button>
                                 <b-button
                                     size="sm"
-                                    :variant="selectedIndicators.includes(row.item.id) ? 'info' : 'primary'"
+                                    :variant="
+                                        selectedIndicators.includes(row.item.id)
+                                            ? 'info'
+                                            : 'primary'
+                                    "
                                     class="ml-2 pr-2 font-weight-bold"
                                     @click="toggleIndicatorSelection(row.item)"
                                 >
-                                    <span v-if="!selectedIndicators.includes(row.item.id)">
-                                        <i class="las la-plus" /> Add to selection
+                                    <span
+                                        v-if="
+                                            !selectedIndicators.includes(
+                                                row.item.id
+                                            )
+                                        "
+                                    >
+                                        <i class="las la-plus" /> Add to
+                                        selection
                                     </span>
-                                    <span v-if="selectedIndicators.includes(row.item.id)">
+                                    <span
+                                        v-if="
+                                            selectedIndicators.includes(
+                                                row.item.id
+                                            )
+                                        "
+                                    >
                                         <i class="las la-check mr-4" /> selected
                                     </span>
                                 </b-button>
@@ -205,9 +231,9 @@
     import SelectWithImages from "./elements/SelectWithImages";
     import SidebarFilter from "./elements/SidebarFilter";
     import IndicatorValuesPreviewPane from "./elements/IndicatorValuesPreviewPane";
-    import IndicatorDownloader from './elements/IndicatorDownloader';
-    import IndicatorDownloadOptions from './elements/IndicatorDownloadOptions'
-    import axios from 'axios';
+    import IndicatorDownloader from "./elements/IndicatorDownloader";
+    import IndicatorDownloadOptions from "./elements/IndicatorDownloadOptions";
+    import axios from "axios";
 
     export default {
         components: {
@@ -215,11 +241,12 @@
             SidebarFilter,
             IndicatorValuesPreviewPane,
             IndicatorDownloader,
-            IndicatorDownloadOptions,
+            IndicatorDownloadOptions
         },
 
         data() {
             return {
+                processing: false,
                 loading: false,
                 downloadOptionsVisible: false,
                 downloadPopoverVisible: false,
@@ -260,7 +287,7 @@
                 selectedSubCharacteristics: [],
 
                 viewedIndicator: {},
-                selectedIndicators: [],
+                selectedIndicators: []
             };
         },
         computed: {
@@ -288,7 +315,7 @@
                             definition:
                                 valuesByIndicator[indicator_id][0].indicator
                                     .definition,
-                            values: valuesByIndicator[indicator_id],
+                            values: valuesByIndicator[indicator_id]
                         };
                     }
                 );
@@ -348,18 +375,19 @@
 
                 if (this.selectedYears.length > 0) {
                     values = values.filter(value =>
-                        this.selectedYears.includes(value.year)
+                        // check each year the value is linked to:
+                        this.selectedYears.some(selected => value.years.map(year => year.id).includes(selected))
                     );
                 }
 
                 if (this.selectedTypes.length > 0) {
                     values = values.filter(value =>
-                        this.selectedTypes.includes(value.type_id)
+                        (this.selectedTypes.includes(value.type_id) && value.source_public == 1)
                     );
                 }
                 if (this.selectedPurposes.length > 0) {
                     values = values.filter(value =>
-                        this.selectedPurposes.includes(value.purpose_id)
+                        this.selectedPurposes.includes(value.purpose_of_collection_id)
                     );
                 }
 
@@ -423,58 +451,75 @@
             },
 
             showValues(indicator) {
-
                 this.viewedIndicator = indicator;
                 this.$bvModal.show("valuePreviewModal");
             },
 
             downloadValues(selectedIndicators) {
-
+                this.processing = true;
                 axios
                     .post("indicators/download", {
                         indicators: selectedIndicators,
                         countries: this.selectedCountries,
                         years: this.selectedYears,
                         types: this.selectedTypes,
-                        purposes: this.selectedPurposess
+                        purposes: this.selectedPurposes,
                     })
                     .then(result => {
-                        // could refactor this at some point to overcome potential issues (i.e. bad error handling, popup blocking by the browser...)
-                        window.open(result.data, '_blank');
+                        this.makeAndClickLink(result.data);
+                        this.processing = false;
                     });
             },
 
             downloadReport(selectedIndicators) {
+                this.processing = true;
+                this.$bvToast.toast(
+                    `Your download is being prepared. This may take some time - please leave this window open.`,
+                    {
+                        toaster: "b-toaster-top-center"
+                    }
+                );
+
+                var indicators = this.indicators.filter((indicator) =>
+                    selectedIndicators.includes(indicator.id)
+                )
+
+                var indicatorValues = [];
+                indicators.forEach((indicator) => {
+                    indicator.values.forEach(value => indicatorValues.push(value));
+                })
+
                 axios
                     .post("indicators/report", {
-                        indicators: selectedIndicators,
-                        countries: this.selectedCountries,
-                        years: this.selectedYears,
-                        types: this.selectedTypes,
-                        purposes: this.selectedPurposess
+                        indicator_values: indicatorValues,
                     })
                     .then(result => {
-                        console.log(result)
-
-                        //window.open(result.data, '_blank');
-                        this.$bvToast.toast(`Once linked, this will download the completed report using the indicators and filters selected.`, {
-                            toaster: 'b-toaster-top-center',
-                        })
+                        this.makeAndClickLink(result.data);
+                        this.processing = false;
                     });
             },
 
-
+            makeAndClickLink(link) {
+                const a = document.createElement("a");
+                a.style.display = "none";
+                a.href = link;
+                var filename = link.split("/");
+                filename = filename[filename.length - 1];
+                a.download = filename;
+                document.body.appendChild(a);
+                a.click();
+            },
             toggleIndicatorSelection(indicator) {
-                if(this.selectedIndicators.includes(indicator.id)) {
+                if (this.selectedIndicators.includes(indicator.id)) {
                     this.removeIndicator(indicator);
                 } else {
-                    this.addIndicatortoSelection(indicator)
+                    this.addIndicatortoSelection(indicator);
                 }
             },
 
             addIndicatortoSelection(indicator) {
-                if(this.selectedIndicators.includes(indicator)) {
-                    console.log('already selected');
+                if (this.selectedIndicators.includes(indicator)) {
+                    console.log("already selected");
                 } else {
                     this.selectedIndicators.push(indicator.id);
                     this.downloadPopoverVisible = true;
@@ -482,14 +527,14 @@
             },
 
             removeIndicator(indicator) {
-                var index = this.selectedIndicators.indexOf(indicator.id)
-                this.selectedIndicators.splice(index, 1)
+                var index = this.selectedIndicators.indexOf(indicator.id);
+                this.selectedIndicators.splice(index, 1);
             },
 
             showDownloadOptions() {
-                console.log('showing download options')
+                console.log("showing download options");
                 this.downloadOptionsVisible = true;
-            },
+            }
         }
     };
 </script>

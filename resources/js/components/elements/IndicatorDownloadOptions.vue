@@ -62,9 +62,16 @@
                         </div>
                         <a
                             href="#"
-                            class="btn btn-primary btn-lg"
-                            @click="$emit('download-xlsx')"
-                        >Download XLSX</a>
+                            class="btn btn-lg d-flex align-content-center"
+                            :class="processing ? 'btn-secondary' : 'btn-primary'"
+                            @click="processing ? '' : $emit('download-xlsx')"
+                        >
+                            <div
+                                v-if="processing"
+                                class="spinner-border spinner-border-sm align-self-center mr-2"
+                                role="status"
+                            > <span class="sr-only">Loading...</span> </div>
+                            Download XLSX</a>
                     </div>
                     <div class="w-50 align-self-center d-flex flex-column align-items-center my-4">
                         <b-img
@@ -78,9 +85,16 @@
                         </div>
                         <a
                             href="#"
-                            class="btn btn-primary btn-lg"
-                            @click="$emit('download-pdf')"
-                        >Download PDF</a>
+                            class="btn btn-lg d-flex align-content-center"
+                            :class="processing ? 'btn-secondary' : 'btn-primary'"
+                            @click="processing ? '' : $emit('download-pdf')"
+                        >
+                            <div
+                                v-if="processing"
+                                class="spinner-border spinner-border-sm align-self-center mr-2"
+                                role="status"
+                            > <span class="sr-only">Loading...</span> </div>
+                            Download PDF</a>
                     </div>
                 </div>
             </div>
@@ -96,6 +110,7 @@
                 default: () => [],
             },
             visible: Boolean,
+            processing: Boolean,
         },
 
         methods: {

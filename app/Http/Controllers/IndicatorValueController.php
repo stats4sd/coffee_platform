@@ -3,13 +3,16 @@
 namespace App\Http\Controllers;
 
 use Carbon\Carbon;
+use App\Models\Year;
 use Illuminate\Http\Request;
 use App\Models\IndicatorValue;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\IndicatorValuesExport;
+use Symfony\Component\Process\Process;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\Builder;
+use Symfony\Component\Process\Exception\ProcessFailedException;
 
 class IndicatorValueController extends Controller
 {
@@ -26,37 +29,14 @@ class IndicatorValueController extends Controller
             $query = IndicatorValue::query();
         }
 
-        //Add filters here;
-        if ($request->exists('countries')) {
-            $query = $query->whereIn('country_id', explode(',', $request->input('countries')));
-        }
-
-        $results = $query->get();
-
-        // if ($request->exists('by-indicator')) {
-        //     $results = $results->groupBy('indicator_id');
-
-
-        //     // organise data into indicators, with 'values' containing the IndicatorValues.
-
-        //     $results = $results->map(function ($values) {
-        //         $indicatorValue = $values->first();
-
-        //         return [
-        //             'id' => $indicatorValue->indicator->id,
-        //             'code' => $indicatorValue->indicator->code,
-        //             'definition' => $indicatorValue->indicator->definition,
-        //             'values' => $values,
-        //         ];
-        //     })->values();
-        // }
+        $results = $query->with('purposeOfCollection')->get();
 
         return $results;
     }
 
     public function getYears()
     {
-        return DB::table('indicator_values')->selectRaw('distinct year')->get();
+        return Year::has('indicatorValues')->get();
     }
 
     public function download(Request $request)
@@ -85,7 +65,7 @@ class IndicatorValueController extends Controller
             $export = $export->forPurposes($request->input('purposes'));
         }
 
-        $filename = 'indicator-values-'.now()->toDateTimeString().'.xlsx';
+        $filename = 'indicator-values-exports/indicator-values-'.now()->toDateTimeString().'.xlsx';
         $success = Excel::store($export, $filename, 'public');
 
         if (! $success) {
@@ -97,9 +77,22 @@ class IndicatorValueController extends Controller
 
     public function report(Request $request)
     {
+        $indicatorValueIds = Collect($request->input('indicator_values'))->pluck('id')->toArray();
+        $indicatorValueIds = implode(",", $indicatorValueIds);
 
-        // Call the R script, and pass the indicator list and the set of filters from the $request as parameters (or whatever the R script needs)
+        $process = new Process(['Rscript', 'makeReport.r', $indicatorValueIds]);
+        $process->setWorkingDirectory(base_path('scripts/Rscript'));
 
-        return 'this is a temporary holder.';
+        $process->run();
+
+        if (!$process->isSuccessful()) {
+            throw new ProcessFailedException($process);
+        }
+
+        $filename = 'indicator-values-exports/indicator-values-report-'.now()->toDateTimeString().'.pdf';
+
+        copy(base_path('scripts/Rscript/PDF-Report-Script.pdf'), storage_path('app/public/'.$filename));
+
+        return Storage::disk('public')->url($filename);
     }
 }

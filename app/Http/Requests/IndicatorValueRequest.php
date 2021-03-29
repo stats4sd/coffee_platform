@@ -28,18 +28,16 @@ class IndicatorValueRequest extends FormRequest
         return [
             'indicator_id' => ['required', 'exists:indicators,id'],
             'value' => ['required', 'numeric'],
-            'source_id' => ['nullable','exists:sources,id'],
+            'source_id' => ['required','exists:sources,id'],
             'source_public' => ['required','boolean'],
             'geo_boundary_id' => ['required','exists:geo_boundaries,id'],
             'unit_id' => ['required','exists:units,id'],
             'gender_id' => ['required','exists:genders,id'],
-            'sample_size' => ['required','integer'],
+            'sample_size' => ['nullable','integer'],
             'smallholder_definition_id' => ['required','exists:smallholder_definitions,id'],
             'user_id' => ['required','exists:users,id'],
             'purpose_of_collection_id' => ['required','exists:purpose_of_collections,id'],
             'approach_collection_id' => ['required','exists:approach_collections,id'],
-            'scope' => ['nullable'],
-            'year' => ['required', 'integer', 'min:1900', 'digits:4'],
         ];
     }
 

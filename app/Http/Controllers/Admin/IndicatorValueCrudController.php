@@ -158,9 +158,10 @@ class IndicatorValueCrudController extends CrudController
                 'hint' => 'If the unit is not in the dropdown select the <b>+Add</b> to add a new one.',
             ],
             [
-                'name' => 'year',
-                'type' => 'number',
-                'label' => 'Insert the year.',
+                'name' => 'years',
+                'type' => 'relationship',
+                'label' => 'Which year(s) is this value for?',
+                'attribute' => "year",
             ],
             [
                 'type' => 'relationship',
@@ -180,9 +181,13 @@ class IndicatorValueCrudController extends CrudController
             [
                 'type' => 'relationship',
                 'name' => 'geo_boundary_id',
-                'inline_create' => [ 'entity' => 'geo_boundary' ],
+                'entity' => 'geoBoundary' ,
+                'inline_create' => [ 
+                    'entity' => 'geo_boundary',
+                    'modal_route' => route('geo_boundary-inline-create'),
+                    'create_route' =>  route('geo_boundary-inline-create-save'),
+                ],
                 'ajax' => true,
-                'inline_create' => true,
                 'minimum_input_length' => 0,
                 'label' => 'Select the geo boundary',
                 'hint' => 'If the geo boundary is not in the dropdown select the <b>+Add</b> to add a new one.',
@@ -204,8 +209,13 @@ class IndicatorValueCrudController extends CrudController
             [
                 'type' => 'relationship',
                 'name' => 'smallholder_definition_id',
+                'entity' => 'smallholderDefinition' ,
                 'ajax' => true,
-                'inline_create' => [ 'entity' => 'smallholder_definition' ],
+                'inline_create' => [ 
+                    'entity' => 'smallholder_definition' ,
+                    'modal_route' => route('smallholder_definition-inline-create'),
+                    'create_route' =>  route('smallholder_definition-inline-create-save'),
+                ],
                 'minimum_input_length' => 0,
                 'label' => 'Select the smallholder definition for this indicator value',
                 'hint' => 'If the smallholder definition is not in the dropdown select the <b>+Add</b> to add a new one.',
@@ -225,7 +235,13 @@ class IndicatorValueCrudController extends CrudController
                 'type' => 'relationship',
                 'name' => 'purpose_of_collection_id',
                 'ajax' => true,
-                'inline_create' => [ 'entity' => 'purpose_of_collection' ],
+                'entity' => 'purposeOfCollection' ,
+                'inline_create' => [ 
+                    'entity' => 'purpose_of_collection' ,
+                    'modal_route' => route('purpose_of_collection-inline-create'),
+                    'create_route' =>  route('purpose_of_collection-inline-create-save'),
+                    
+                ],
                 'minimum_input_length' => 0,
                 'label' => 'Select the purpose of collection.',
                 'hint' => 'If the purpose of collection is not in the dropdown select the <b>+Add</b> to add a new one.',
@@ -234,15 +250,15 @@ class IndicatorValueCrudController extends CrudController
                 'type' => 'relationship',
                 'name' => 'approach_collection_id',
                 'ajax' => true,
-                'inline_create' => [ 'entity' => 'approach_collection' ],
+                'entity' => 'approachCollection',
+                'inline_create' => [ 
+                    'entity' => 'approach_collection',
+                    'modal_route' => route('approach_collection-inline-create'),
+                    'create_route' =>  route('approach_collection-inline-create-save'),
+                ],
                 'minimum_input_length' => 0,
                 'label' => 'Select the approach collection.',
                 'hint' => 'If the approach collection is not in the dropdown select the <b>+Add</b> to add a new one.',
-            ],
-            [
-                'name' => 'scope',
-                'type' => 'simplemde',
-                'label' => 'Insert the scope of calculation of this indicator value',
             ],
         ]);
     }

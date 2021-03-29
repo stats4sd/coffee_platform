@@ -48,6 +48,16 @@ class GeoBoundary extends Model
         return $this->belongsTo(Country::class);
     }
 
+    public function region()
+    {
+        return $this->belongsTo(Region::class);
+    }
+
+    public function department()
+    {
+        return $this->belongsTo(Department::class);
+    }
+
     /*
     |--------------------------------------------------------------------------
     | SCOPES

@@ -52,12 +52,12 @@ class IndicatorCrudController extends CrudController
     {
         $this->crud->addColumns([
             [
-                'name' => 'sub_characteristic.characteristic.name',
+                'name' => 'subCharacteristic.characteristic',
                 'label' => 'Characteristic',
             ],
             [
                 'type' => 'relationship',
-                'name' => 'sub_characteristic',
+                'name' => 'subCharacteristic',
             ],
             [
                 'name' => 'code',
@@ -97,7 +97,7 @@ class IndicatorCrudController extends CrudController
                 'type' => 'relationship',
                 'name' => 'sub_characteristic_id',
                 'attribute' => 'name',
-                'entity' => 'sub_characteristic',
+                'entity' => 'subCharacteristic',
                 'model' => "App\Models\SubCharacteristic",
                 'ajax' => true,
                 'minimum_input_length' => 0,

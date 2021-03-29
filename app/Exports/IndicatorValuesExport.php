@@ -65,6 +65,7 @@ class IndicatorValuesExport implements FromQuery, WithHeadings, WithMapping
             'smallholderDefinition',
             'gender',
             'unit',
+            'years',
         ]);
 
         if ($this->indicators) {
@@ -78,7 +79,9 @@ class IndicatorValuesExport implements FromQuery, WithHeadings, WithMapping
         }
 
         if ($this->years) {
-            $query = $query->whereIn('year', $this->years);
+            $query = $query->whereHas('years', function (Builder $query) {
+                $query->whereIn('years.id', $this->years);
+            });
         }
 
         if ($this->types) {
@@ -109,9 +112,13 @@ class IndicatorValuesExport implements FromQuery, WithHeadings, WithMapping
             $value->indicator->definition,
             $value->geoBoundary->country_id,
             $value->geoBoundary->country->name,
+            $value->geoBoundary->region_id,
+            $value->geoBoundary->region->name,
+            $value->geoBoundary->department_id,
+            $value->geoBoundary->department->name,
             $value->geo_boundary_id,
             $value->geoBoundary->name,
-            $value->year,
+            $value->all_years,
             $value->value,
             $value->unit_id,
             $value->unit->unit,
@@ -122,9 +129,16 @@ class IndicatorValuesExport implements FromQuery, WithHeadings, WithMapping
             $value->purpose_of_collection_id,
             $value->purposeOfCollection->name,
             $value->sample_size,
-            $value->scope,
+            $value->small_sample ? 'Small sample!' : '',
             $value->smallholder_definition_id,
             $value->smallholderDefinition->definition,
+            $value->source_public ? 'Yes' : 'No',
+            $value->source_public ? $value->source->name : 'Not available',
+            $value->source_public ? $value->source->description : 'Not available',
+            $value->source_public ? $value->source->type_id : 'Not available',
+            $value->source_public ? $value->source->type->name : 'Not available',
+            $value->source_public ? $value->source->partner_id : 'Not available',
+            $value->source_public ? $value->source->partner->name : 'Not available',
             $value->user_id,
             $value->user->name,
             $value->updated_at,
@@ -148,9 +162,13 @@ class IndicatorValuesExport implements FromQuery, WithHeadings, WithMapping
             'indicator_definition',
             'country_id',
             'country',
+            'region_id',
+            'region',
+            'department_id',
+            'department',
             'geo_boundary_id',
             'geo_boundary',
-            'year',
+            'year(s)',
             'value',
             'unit_id',
             'unit',
@@ -161,9 +179,15 @@ class IndicatorValuesExport implements FromQuery, WithHeadings, WithMapping
             'purpose_of_collection_id',
             'purpose_of_collection',
             'sample_size',
-            'scope',
             'smallholder_definition_id',
             'smallholder_definition',
+            'source_public',
+            'source_name',
+            'source_description',
+            'source_type_id',
+            'source_type',
+            'source_partner_id',
+            'source_partner',
             'user_id',
             'uploader',
             'last_updated'

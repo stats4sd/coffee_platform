@@ -37,7 +37,9 @@ class IndicatorValue extends Model
         'country_id',
         'converted_value',
         'standard_unit',
-        'conversion_rate'
+        'conversion_rate',
+        'all_years',
+        'small_sample',
     ];
 
 
@@ -82,6 +84,19 @@ class IndicatorValue extends Model
         return $array;
     }
 
+    public function getSmallSampleAttribute()
+    {
+        return $this->sample_size < 21;
+    }
+
+
+    public function getAllYearsAttribute()
+    {
+        return $this->years->map(function ($year) {
+            return $year->year;
+        })->join(', ');
+    }
+
     public function getSubCharacteristicIdAttribute()
     {
         return $this->indicator ? $this->indicator->sub_characteristic_id : null;
@@ -104,27 +119,28 @@ class IndicatorValue extends Model
 
     public function getCountryIdAttribute()
     {
-        return $this->geoBoundary->country_id;
+        return $this->geoBoundary ? $this->geoBoundary->country_id : null;
     }
 
     public function getConversionRateAttribute()
     {
-        return $this->unit->conversion_rate;
+        return $this->unit ? $this->unit->conversion_rate : null;
     }
 
 
     public function getStandardUnitAttribute()
     {
-        return $this->unit->unitType->standard_unit;
+        return  $this->unitType ? $this->unitType->standard_unit : null;
     }
 
     public function getConvertedValueAttribute()
     {
-        if ($this->unit->to_standard) {
+        $unit_standard = $this->unit ? $this->unit->to_standard : null;
+        if ($unit_standard) {
             return $this->value * $this->unit->to_standard;
         }
-
-        if ($this->unit->from_standard) {
+        $unit_from_standard = $this->unit ? $this->unit->from_standard : null;
+        if ($unit_from_standard) {
             return $this->value / $this->unit->from_standard;
         }
     }
@@ -182,5 +198,10 @@ class IndicatorValue extends Model
     public function approachCollection()
     {
         return $this->belongsTo(ApproachCollection::class);
+    }
+
+    public function years()
+    {
+        return $this->belongsToMany(Year::class, '_link_years_indicator_values');
     }
 }

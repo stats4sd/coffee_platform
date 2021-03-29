@@ -25,7 +25,20 @@
             :fields="fields"
             sticky-header
             thead-class="bg-light open-top"
-        />
+        >
+            <template #cell(source_public)="row">
+                {{ row.item.source_public == 1 ? 'Yes' : 'No' }}
+            </template>
+            <template #cell(sample_size)="row">
+                <span :class="row.item.sample_size < 21 ? 'text-danger' : ''">{{ row.item.sample_size }}
+                    <small
+                        v-if="row.item.sample_size < 21"
+                        class="mr-2"
+                    > (Note: Small sample!)</s>
+                    </small>
+                </span>
+            </template>
+        </b-table>
 
         <template #modal-footer>
             <b-button
@@ -79,13 +92,27 @@
                         key: 'geo_boundary.country.name',
                         label: 'Country',
                     },
-                    'year',
+                    {
+                        key: 'all_years',
+                        label: 'year(s)',
+                    },
                     'value',
                     {
                         key: 'unit.unit',
                         label: 'Unit'
                     },
-                    'scope',
+                    {
+                        key: 'sample_size',
+                        label: 'Sample size',
+                    },
+                    {
+                        key: 'source_public',
+                        label: 'Is the source public?',
+                    },
+                    {
+                        key: 'purpose_of_collection.name',
+                        label: 'Purpose of collection',
+                    }
                 ]
             }
         },
