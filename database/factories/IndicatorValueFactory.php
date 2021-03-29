@@ -30,6 +30,8 @@ class IndicatorValueFactory extends Factory
      */
     public function definition()
     {
+        $small = $this->faker->boolean;
+
         return [
             'value' => $this->faker->randomFloat(2, -100, 1000),
             'indicator_id' => Indicator::factory(),
@@ -37,7 +39,7 @@ class IndicatorValueFactory extends Factory
             'geo_boundary_id' => GeoBoundary::factory(),
             'unit_id' => Unit::factory(),
             'gender_id' => Gender::factory(),
-            'sample_size' => $this->faker->numberBetween(100, 10000),
+            'sample_size' => $small ? $this->faker->numberBetween(5, 20) : $this->faker->numberBetween(100, 10000),
             'source_public' => $this->faker->boolean,
             'smallholder_definition_id' => SmallholderDefinition::factory(),
             'user_id' => User::factory(),

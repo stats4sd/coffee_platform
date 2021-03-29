@@ -73,18 +73,28 @@ class DatabaseSeeder extends Seeder
         $types = Type::factory()->count(3)->create();
 
         // create 10 sources linked to random partners and types
-        $sources = Source::factory()->count(10)
-        ->for($partners->random())
-        ->for($types->random())
-        ->create();
+        $types->each(function ($type) use ($partners) {
+            Source::factory()->count(5)
+            ->for($partners->random())
+            ->for($type)
+            ->create();
+        });
 
-
+        $sources = Source::all();
         $units = Unit::all();
 
         // Using for loop to ensure each value is assigned a different random relationship
         for ($i=0; $i < 500; $i++) {
+            $selectedYear = $years->random();
+
             $numberOfYears = collect([1,2])->random();
-            $selectedYears = $years->random($numberOfYears);
+
+            if ($numberOfYears == 2) {
+                $year2 = $years->where('year', $selectedYear->year + 1)->first() ?? $years->where('year', $selectedYear->year - 1)->first();
+                $selectedYears = collect([$selectedYear->id,$year2->id]);
+            } else {
+                $selectedYears = collect([$selectedYear->id]);
+            }
 
             $indicatorValue = IndicatorValue::factory()
             ->for($users->random())

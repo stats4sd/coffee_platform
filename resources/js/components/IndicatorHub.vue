@@ -23,7 +23,7 @@
                         title="Years"
                         :options="years"
                         display-field="year"
-                        value-field="year"
+                        value-field="id"
                     />
                     <sidebar-filter
                         v-model="selectedTypes"
@@ -375,18 +375,19 @@
 
                 if (this.selectedYears.length > 0) {
                     values = values.filter(value =>
-                        this.selectedYears.includes(value.year)
+                        // check each year the value is linked to:
+                        this.selectedYears.some(selected => value.years.map(year => year.id).includes(selected))
                     );
                 }
 
                 if (this.selectedTypes.length > 0) {
                     values = values.filter(value =>
-                        this.selectedTypes.includes(value.type_id)
+                        (this.selectedTypes.includes(value.type_id) && value.source_public == 1)
                     );
                 }
                 if (this.selectedPurposes.length > 0) {
                     values = values.filter(value =>
-                        this.selectedPurposes.includes(value.purpose_id)
+                        this.selectedPurposes.includes(value.purpose_of_collection_id)
                     );
                 }
 
@@ -462,7 +463,7 @@
                         countries: this.selectedCountries,
                         years: this.selectedYears,
                         types: this.selectedTypes,
-                        purposes: this.selectedPurposess
+                        purposes: this.selectedPurposes,
                     })
                     .then(result => {
                         this.makeAndClickLink(result.data);

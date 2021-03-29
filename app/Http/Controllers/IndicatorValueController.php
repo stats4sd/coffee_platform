@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Carbon\Carbon;
+use App\Models\Year;
 use Illuminate\Http\Request;
 use App\Models\IndicatorValue;
 use Illuminate\Support\Facades\DB;
@@ -28,37 +29,14 @@ class IndicatorValueController extends Controller
             $query = IndicatorValue::query();
         }
 
-        //Add filters here;
-        if ($request->exists('countries')) {
-            $query = $query->whereIn('country_id', explode(',', $request->input('countries')));
-        }
-
-        $results = $query->get();
-
-        // if ($request->exists('by-indicator')) {
-        //     $results = $results->groupBy('indicator_id');
-
-
-        //     // organise data into indicators, with 'values' containing the IndicatorValues.
-
-        //     $results = $results->map(function ($values) {
-        //         $indicatorValue = $values->first();
-
-        //         return [
-        //             'id' => $indicatorValue->indicator->id,
-        //             'code' => $indicatorValue->indicator->code,
-        //             'definition' => $indicatorValue->indicator->definition,
-        //             'values' => $values,
-        //         ];
-        //     })->values();
-        // }
+        $results = $query->with('purposeOfCollection')->get();
 
         return $results;
     }
 
     public function getYears()
     {
-        return DB::table('indicator_values')->selectRaw('distinct year')->get();
+        return Year::has('indicatorValues')->get();
     }
 
     public function download(Request $request)
