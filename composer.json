@@ -13,9 +13,14 @@
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
+        "intervention/image": "^2.5",
         "laravel/framework": "^8.12",
+        "laravel/telescope": "^4.4",
         "laravel/tinker": "^2.5",
-        "maatwebsite/excel": "^3.1"
+        "laravel/ui": "^3.2",
+        "maatwebsite/excel": "^3.1",
+        "stats4sd/laravel-sql-views": "^1.02",
+        "teamtnt/laravel-scout-tntsearch-driver": "^11.1"
     },
     "require-dev": {
         "backpack/generators": "^3.1",

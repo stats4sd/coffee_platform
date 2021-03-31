@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Unit;
+use App\Models\UnitType;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class UnitFactory extends Factory
@@ -23,6 +24,7 @@ class UnitFactory extends Factory
     {
         return [
             'unit' => $this->faker->unique()->word(),
+            'unit_type_id' => UnitType::factory(),
         ];
     }
 }

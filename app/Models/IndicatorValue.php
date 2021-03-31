@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Backpack\CRUD\app\Models\Traits\CrudTrait;
+use Laravel\Scout\Searchable;
 use Illuminate\Database\Eloquent\Model;
+use Backpack\CRUD\app\Models\Traits\CrudTrait;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class IndicatorValue extends Model
 {
-    use CrudTrait, HasFactory;
+    use CrudTrait, HasFactory, Searchable;
 
     /*
     |--------------------------------------------------------------------------
@@ -17,18 +18,137 @@ class IndicatorValue extends Model
     */
 
     protected $table = 'indicator_values';
-    // protected $primaryKey = 'id';
+    protected $primaryKey = 'id';
     // public $timestamps = false;
     protected $guarded = ['id'];
     // protected $fillable = [];
     // protected $hidden = [];
     // protected $dates = [];
+    protected $with = [
+        'indicator',
+        'unit',
+    ];
+
+    protected $appends = [
+        'sub_characteristic_id',
+        'characteristic_id',
+        'type_id',
+        'partner_id',
+        'country_id',
+        'converted_value',
+        'standard_unit',
+        'conversion_rate',
+        'all_years',
+        'small_sample',
+    ];
+
 
     /*
     |--------------------------------------------------------------------------
     | FUNCTIONS
     |--------------------------------------------------------------------------
     */
+
+    public function toSearchableArray()
+    {
+        // handling attributes and relations seperately to avoid issue where an array cannot be tokenised by Scout.
+        $array = $this->attributesToArray();
+
+        //for full-text search;
+        $array['indicator'] = $this->indicator;
+        $array['subCharacteristic'] = $this->indicator->subCharacteristic;
+        $array['characteristic'] = $this->indicator->subCharacteristic->characteristic;
+        $array['source'] = $this->source;
+        $array['type'] = $this->source->type;
+        $array['partner'] = $this->source->partner;
+
+        $array['user'] = $this->user;
+        $array['approachCollection'] = $this->approachCollection;
+        $array['purposeOfCollection'] = $this->purposeOfCollection;
+        $array['smallholderDefinition'] = $this->smallholderDefinition;
+        $array['gender'] = $this->gender;
+        $array['unit'] = $this->unit;
+
+        $array['geoBoundary'] = $this->geoBoundary;
+        $array['country'] = $this->geoBoundary->country->name;
+
+
+        // for filters
+        $array['sub_characteristic_id'] = $this->indicator->sub_characteristic_id;
+        $array['characteristic_id'] = $this->indicator->subCharacteristic->characteristic_id;
+        $array['type_id'] = $this->source->type_id;
+        $array['partner_id'] = $this->source->partner_id;
+        $array['country_id'] = $this->country_id;
+
+
+        return $array;
+    }
+
+    public function getSmallSampleAttribute()
+    {
+        return $this->sample_size < 21;
+    }
+
+
+    public function getAllYearsAttribute()
+    {
+        return $this->years->map(function ($year) {
+            return $year->year;
+        })->join(', ');
+    }
+
+    public function getSubCharacteristicIdAttribute()
+    {
+        return $this->indicator ? $this->indicator->sub_characteristic_id : null;
+    }
+
+    public function getCharacteristicIdAttribute()
+    {
+        return $this->indicator ? $this->indicator->subCharacteristic->characteristic_id : null;
+    }
+
+    public function getTypeIdAttribute()
+    {
+        return $this->source ? $this->source->type_id : null;
+    }
+
+    public function getPartnerIdAttribute()
+    {
+        return $this->source ? $this->source->partner_id : null;
+    }
+
+    public function getCountryIdAttribute()
+    {
+        return $this->geoBoundary ? $this->geoBoundary->country_id : null;
+    }
+
+    public function getConversionRateAttribute()
+    {
+        return $this->unit ? $this->unit->conversion_rate : null;
+    }
+
+
+    public function getStandardUnitAttribute()
+    {
+        return  $this->unitType ? $this->unitType->standard_unit : null;
+    }
+
+    public function getConvertedValueAttribute()
+    {
+        $unit_standard = $this->unit ? $this->unit->to_standard : null;
+        if ($unit_standard) {
+            return $this->value * $this->unit->to_standard;
+        }
+        $unit_from_standard = $this->unit ? $this->unit->from_standard : null;
+        if ($unit_from_standard) {
+            return $this->value / $this->unit->from_standard;
+        }
+    }
+
+
+
+
+
 
     /*
     |--------------------------------------------------------------------------
@@ -80,21 +200,8 @@ class IndicatorValue extends Model
         return $this->belongsTo(ApproachCollection::class);
     }
 
-    /*
-    |--------------------------------------------------------------------------
-    | SCOPES
-    |--------------------------------------------------------------------------
-    */
-
-    /*
-    |--------------------------------------------------------------------------
-    | ACCESSORS
-    |--------------------------------------------------------------------------
-    */
-
-    /*
-    |--------------------------------------------------------------------------
-    | MUTATORS
-    |--------------------------------------------------------------------------
-    */
+    public function years()
+    {
+        return $this->belongsToMany(Year::class, '_link_years_indicator_values');
+    }
 }

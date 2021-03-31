@@ -21,14 +21,18 @@
         <li class='nav-item'><a class='nav-link' href='{{ backpack_url('characteristic') }}'> Characteristics</a></li>
         <li class='nav-item'><a class='nav-link' href='{{ backpack_url('sub_characteristic') }}'> Sub Characteristics</a></li>
         <li class='nav-item'><a class='nav-link' href='{{ backpack_url('unit') }}'> Units</a></li>
+        <li class='nav-item'><a class='nav-link' href='{{ backpack_url('unittype') }}'> Unit Types</a></li>
         <li class='nav-item'><a class='nav-link' href='{{ backpack_url('gender') }}'> Genders</a></li>
         <li class='nav-item'><a class='nav-link' href='{{ backpack_url('smallholder_definition') }}'> Smallholder Definitions</a></li>
         <li class='nav-item'><a class='nav-link' href='{{ backpack_url('purpose_of_collection') }}'> Purpose Of Collections</a></li>
         <li class='nav-item'><a class='nav-link' href='{{ backpack_url('approach_collection') }}'> Approach Collections</a></li>
         <li class='nav-item'><a class='nav-link' href='{{ backpack_url('country') }}'> Countries</a></li>
+        <li class='nav-item'><a class='nav-link' href='{{ backpack_url('region') }}'> Regions</a></li>
+        <li class='nav-item'><a class='nav-link' href='{{ backpack_url('department') }}'> Departments</a></li>
         <li class='nav-item'><a class='nav-link' href='{{ backpack_url('geo_boundary') }}'> Geo Boundaries</a></li>
         <li class='nav-item'><a class='nav-link' href='{{ backpack_url('source') }}'> Sources</a></li>
         <li class='nav-item'><a class='nav-link' href='{{ backpack_url('type') }}'> Types</a></li>
         <li class='nav-item'><a class='nav-link' href='{{ backpack_url('partner') }}'> Partners</a></li>
+        <li class='nav-item'><a class='nav-link' href='{{ backpack_url('year') }}'> Years</a></li>
     </ul>
 </li>
