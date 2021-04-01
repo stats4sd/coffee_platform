@@ -1,20 +1,12 @@
 @extends('layouts.app')
 
 @section('main')
-<div class="container">
-    <h1>SSCF Initiative Site - Home Page</h1>
+<div class="container mt-5">
     <p>
-        Irure culpa anim aliqua officia culpa et nisi ex ex. Culpa quis dolore reprehenderit tempor occaecat cupidatat ipsum non eu. Culpa in nisi ipsum duis laboris ex est elit duis ut excepteur ad. Elit esse sit ad laboris veniam ipsum do esse non aute aliquip sint non. Laborum commodo pariatur dolor laborum id.
+        Smallholder coffee farmers are essential to the ever-growing coffee industry, and help to protect and provide vital ecosystem services. However, declining coffee prices have left farmers with narrower profit margins, causing significant impacts on farmer households, communities, and cooperatives.  Numerous case studies – conducted by organizations, institutions, and scholars – have sought to document ‘the state of smallholder coffee farmers’ in terms of economic, social, and environmental factors. Yet, very few reports have been able to comprehensively and collaboratively capture trends at the farm, national or regional level. In addition, there is a challenge in making the information and synthesis available to relevant actors in the supply chain. To date, most of the data and analyses available, either stays in academic papers that are not friendly or accessible to most actors, or as reports that are not released to the public.
     </p>
     <p>
-        Consequat exercitation ipsum cupidatat deserunt non occaecat eu tempor laborum irure anim dolor sunt adipisicing. Veniam eiusmod ad sunt deserunt velit consectetur officia occaecat duis incididunt voluptate dolor enim. Labore non nisi ipsum ea eiusmod ut Lorem irure et dolore dolor mollit dolor. Eu non aute ullamco enim non elit incididunt. Eu esse ullamco mollit eu velit id exercitation dolor.
-    </p>
-    <p>
-
-        Id commodo aliqua id minim cillum. Lorem reprehenderit excepteur dolor exercitation est irure ea aliquip. Nostrud adipisicing officia consequat est mollit non nulla fugiat nostrud.
-    </p>
-    <p>
-        Magna non labore sint velit aliquip. Adipisicing ad laboris veniam minim ut sint ad ut voluptate. Aliqua non ut sunt ex aliquip voluptate nisi id sint veniam id Lorem sit id. Labore reprehenderit veniam aliqua enim elit elit cupidatat ut laborum aliqua laborum cillum duis aute. Fugiat excepteur pariatur anim fugiat sunt eiusmod ad. Sunt aliqua eu occaecat id Lorem do tempor incididunt irure esse nostrud dolor eu excepteur. Minim officia qui duis qui ea consectetur dolor est anim qui sunt.
+        The State of the Coffee Smallholder Platform is a multi-stakeholder open-sourced data resource for smallholder coffee farmers and the different actors working with them. Recognizing the lack of accessible information pertaining to smallholder farmers, the project team has initiated an extensive review, analysis and synthesis of the conditions and contributions of smallholder farmers at origin - all of which have ripple effects on the whole coffee sector. This information is expected to be critical in fuelling necessary conversations in the sector and improve data-driven decision making while reducing data collection and processing burdens.
     </p>
 </div>
 @endsection

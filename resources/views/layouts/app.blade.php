@@ -26,7 +26,7 @@
         <!-- Footer -->
         <footer class="py-3 mt-auto bg-dark footer h-1">
             <div class="container d-flex flex-justify-between">
-                <p class="m-0 text-white">Developed By Stats4SD for the SSCF Initiative</p>
+                <p class="m-0 text-white">Developed By Stats4SD</p>
             </div>
             <!-- /.container -->
         </footer>
