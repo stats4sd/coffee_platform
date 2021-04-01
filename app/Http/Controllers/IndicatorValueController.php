@@ -80,7 +80,7 @@ class IndicatorValueController extends Controller
         $indicatorValueIds = Collect($request->input('indicator_values'))->pluck('id')->toArray();
         $indicatorValueIds = implode(",", $indicatorValueIds);
 
-        $process = new Process(['Rscript', 'makeReport.r', $indicatorValueIds]);
+        $process = new Process(['Rscript', 'makeReport.R', $indicatorValueIds]);
         $process->setWorkingDirectory(base_path('scripts/Rscript'));
 
         $process->run();
