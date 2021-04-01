@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Traits\HasUploadFields;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -65,6 +66,10 @@ class Characteristic extends Model
     | ACCESSORS
     |--------------------------------------------------------------------------
     */
+    public function getCoverImageAttribute($value)
+    {
+        return Storage::disk('public')->url($value);
+    }
 
     /*
     |--------------------------------------------------------------------------
