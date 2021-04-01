@@ -117,7 +117,7 @@ class IndicatorValuesExport implements FromQuery, WithHeadings, WithMapping
             $value->geoBoundary->department_id,
             $value->geoBoundary->department->name,
             $value->geo_boundary_id,
-            $value->geoBoundary->name,
+            $value->geoBoundary->description,
             $value->all_years,
             $value->value,
             $value->unit_id,
@@ -140,7 +140,7 @@ class IndicatorValuesExport implements FromQuery, WithHeadings, WithMapping
             $value->source_public ? $value->source->partner_id : 'Not available',
             $value->source_public ? $value->source->partner->name : 'Not available',
             $value->user_id,
-            $value->user->name,
+            $value->user ?  $value->user->name : 'null',
             $value->updated_at,
         ];
     }
