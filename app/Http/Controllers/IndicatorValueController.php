@@ -29,7 +29,7 @@ class IndicatorValueController extends Controller
             $query = IndicatorValue::query();
         }
 
-        $results = $query->with('purposeOfCollection')->get();
+        $results = $query->get()->load('purposeOfCollection');
 
         return $results;
     }
