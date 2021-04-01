@@ -80,13 +80,13 @@ class IndicatorValueCrudController extends CrudController
                 'label' => 'Conversion Ratio used',
             ],
             [
-                'name' => 'year',
-                'type' => 'number',
+                'name' => 'years',
+                'type' => 'relationship',
                 'label' => 'Year'
             ],
             [
                 'type' => 'relationship',
-                'name' => 'geo_boundary',
+                'name' => 'geoBoundary',
             ],
             [
                 'type' => 'relationship',
@@ -99,7 +99,7 @@ class IndicatorValueCrudController extends CrudController
             ],
             [
                 'type' => 'relationship',
-                'name' => 'smallholder_definition',
+                'name' => 'smallholderDefinition',
             ],
             [
                 'type' => 'relationship',
@@ -107,11 +107,11 @@ class IndicatorValueCrudController extends CrudController
             ],
             [
                 'type' => 'relationship',
-                'name' => 'purpose_of_collection',
+                'name' => 'purposeOfCollection',
             ],
             [
                 'type' => 'relationship',
-                'name' => 'approach_collection',
+                'name' => 'approachCollection',
             ],
             [
                 'name' => 'scope',
