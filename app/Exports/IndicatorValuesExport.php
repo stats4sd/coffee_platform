@@ -131,7 +131,7 @@ class IndicatorValuesExport implements FromQuery, WithHeadings, WithMapping
             $value->sample_size,
             $value->small_sample ? 'Small sample!' : '',
             $value->smallholder_definition_id,
-            $value->smallholderDefinition->definition,
+            $value->smallholderDefinition ? $ $value->smallholderDefinition->definition : 'null',
             $value->source_public ? 'Yes' : 'No',
             $value->source_public ? $value->source->name : 'Not available',
             $value->source_public ? $value->source->description : 'Not available',
