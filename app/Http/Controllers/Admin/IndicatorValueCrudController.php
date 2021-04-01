@@ -145,6 +145,7 @@ class IndicatorValueCrudController extends CrudController
                 'name' => 'value',
                 'type' => 'number',
                 'label' => 'Value',
+                'attributes' => ["step" => "any"], // allow decimals
                 'label' => 'Insert the value of indicator.',
             ],
             [
