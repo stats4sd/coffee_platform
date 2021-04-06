@@ -547,7 +547,8 @@
                             definition:
                                 valuesByIndicator[indicator_id][0].indicator
                                     .definition,
-                            values: valuesByIndicator[indicator_id]
+                            values: valuesByIndicator[indicator_id],
+                            subCharacteristic: valuesByIndicator[indicator_id][0].indicator.sub_characteristic.characteristic_label,
                         };
                     }
                 );

@@ -32,17 +32,23 @@
                     Selected Indicators<br>
                 </h3>
                 <small class="text-center">(Scroll for more)</small>
-                <div class="overflow-auto flex-grow-1">
-                    <b-alert
-                        v-for="indicator in indicators"
-                        :key="indicator.id"
-                        show
-                        variant="secondary"
-                        dismissible
-                        @dismissed="$emit('remove-indicator', indicator)"
+                <div class="overflow-auto flex-grow-1 mt-3">
+                    <div
+                        v-for="(subIndicators, subcharacteristic) in subcharacteristics"
+                        :key="subcharacteristic"
                     >
-                        {{ indicator.code }}:  {{ indicator.definition }}
-                    </b-alert>
+                        <h5>{{ subcharacteristic }}</h5>
+                        <b-alert
+                            v-for="indicator in subIndicators"
+                            :key="indicator.id"
+                            show
+                            variant="secondary"
+                            dismissible
+                            @dismissed="$emit('remove-indicator', indicator)"
+                        >
+                            {{ indicator.code }}:  {{ indicator.definition }}
+                        </b-alert>
+                    </div>
                 </div>
             </div>
             <div class="w-50">
@@ -112,12 +118,16 @@
             visible: Boolean,
             processing: Boolean,
         },
+        computed: {
+            subcharacteristics() {
+                return  _.groupBy(this.indicators, 'subCharacteristic');
+            },
+        },
 
         methods: {
             close() {
                 this.$bvModal.hide('download-modal');
             },
-
         }
     }
 </script>

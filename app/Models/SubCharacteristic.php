@@ -23,6 +23,9 @@ class SubCharacteristic extends Model
     // protected $fillable = [];
     // protected $hidden = [];
     // protected $dates = [];
+    protected $appends = [
+        'characteristic_label',
+    ];
 
     public static function boot()
     {
@@ -40,6 +43,12 @@ class SubCharacteristic extends Model
     | FUNCTIONS
     |--------------------------------------------------------------------------
     */
+
+    public function getCharacteristicLabelAttribute()
+    {
+        return $this->characteristic->name . " (" . $this->name . ")";
+    }
+
 
     /*
     |--------------------------------------------------------------------------
