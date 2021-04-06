@@ -30,9 +30,9 @@
                 {{ row.item.source_public == 1 ? 'Yes' : 'No' }}
             </template>
             <template #cell(sample_size)="row">
-                <span :class="row.item.sample_size < 21 ? 'text-danger' : ''">{{ row.item.sample_size }}
+                <span :class="row.item.sample_size && row.item.sample_size < 21 ? 'text-danger' : ''">{{ row.item.sample_size }}
                     <small
-                        v-if="row.item.sample_size < 21"
+                        v-if="row.item.sample_size && row.item.sample_size < 21"
                         class="mr-2"
                     > (Note: Small sample!)</s>
                     </small>
