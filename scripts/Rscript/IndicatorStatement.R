@@ -1,5 +1,5 @@
 library(tidyverse)
-library(RMySQL)
+library(RMariaDB)
 library(dotenv)
 
 args <- commandArgs(TRUE)
@@ -9,7 +9,7 @@ indicator_value_ids <- indicator_value_ids[!is.na(indicator_value_ids)]
 indicator_value_ids <- as.integer(indicator_value_ids[[1]])
 # dotenv::load_dot_env("../../.env")
 
-con <- dbConnect(RMySQL::MySQL(),
+con <- dbConnect(RMariaDB::MariaDB(),
                  dbname = Sys.getenv("DB_DATABASE"),
                  host = Sys.getenv("DB_HOST"),
                  port = as.integer(Sys.getenv("DB_PORT")),

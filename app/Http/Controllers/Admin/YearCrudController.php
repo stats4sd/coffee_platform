@@ -39,7 +39,8 @@ class YearCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        CRUD::setFromDb(); // columns
+        // CRUD::setFromDb(); // columns
+        CRUD::addColumn(['name' => 'year', 'type' => 'year']); 
 
         /**
          * Columns can be defined using the fluent syntax or array syntax:
