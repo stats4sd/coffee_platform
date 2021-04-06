@@ -34,7 +34,7 @@
                     <small
                         v-if="row.item.sample_size && row.item.sample_size < 21"
                         class="mr-2"
-                    > (Note: Small sample!)</s>
+                    > (Note: Small sample!)
                     </small>
                 </span>
             </template>
