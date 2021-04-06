@@ -47,7 +47,7 @@
             <indicator-download-options
                 :visible="downloadOptionsVisible"
                 :indicators="
-                    indicators.filter((indicator) =>
+                    indicatorsForSelection.filter((indicator) =>
                         selectedIndicators.includes(indicator.id)
                     )
                 "
@@ -128,13 +128,13 @@
                             <li class="d-flex justify-content-between">
                                 <div>Indicators Found:</div>
                                 <div class="ml-auto font-weight-bold">
-                                    {{ indicators.length }}
+                                    {{ indicatorsForDisplay.length }}
                                 </div>
                             </li>
                             <li class="d-flex justify-content-between">
                                 <div>Indicator Values Found:</div>
                                 <div class="ml-auto font-weight-bold">
-                                    {{ filteredIndicatorValues.length }}
+                                    {{ filteredIndicatorValuesForDisplay.length }}
                                 </div>
                             </li>
                         </ul>
@@ -148,7 +148,7 @@
                     </div>
 
                     <b-table
-                        :items="indicators"
+                        :items="indicatorsForDisplay"
                         :fields="indicatorFields"
                         :busy="loading"
                         sticky-header
@@ -291,38 +291,19 @@
             };
         },
         computed: {
-            // All the filters happen at the indicatorValue level.
-            // So we should build the list of indicators up from the filteredIndicatorValues
-            indicators() {
-                if (this.filteredIndicatorValues.length < 0) return [];
-
-                var valuesByIndicator = this.filteredIndicatorValues.reduce(
-                    (result, indicatorValue) => {
-                        result[indicatorValue.indicator_id] =
-                            result[indicatorValue.indicator_id] || [];
-
-                        result[indicatorValue.indicator_id].push(indicatorValue);
-                        return result;
-                    },
-                    Object.create(null)
-                );
-
-                var indicators = Object.keys(valuesByIndicator).map(
-                    indicator_id => {
-                        return {
-                            id: indicator_id,
-                            code: valuesByIndicator[indicator_id][0].indicator.code,
-                            definition:
-                                valuesByIndicator[indicator_id][0].indicator
-                                    .definition,
-                            values: valuesByIndicator[indicator_id]
-                        };
-                    }
-                );
-
-                return indicators;
+            //Indicators for display in the table should be filtered by the chosen characteristic + sub characteristic
+            indicatorsForDisplay() {
+                return this.prepareIndicators('filteredIndicatorValuesForDisplay')
             },
-            filteredIndicatorValues() {
+
+            // Indicators used to show the 'selected indicators' should NOT be filtered by characteristic / sub characteristic
+            indicatorsForSelection() {
+                return this.prepareIndicators('filteredIndicatorValuesForSelection')
+            },
+            filteredIndicatorValuesForDisplay() {
+                return this.filterIndicatorsByCharacteristics(this.allIndicatorValues);
+            },
+            filteredIndicatorValuesForSelection() {
                 return this.filterIndicators(this.allIndicatorValues);
             }
         },
@@ -390,6 +371,12 @@
                         this.selectedPurposes.includes(value.purpose_of_collection_id)
                     );
                 }
+
+                return values;
+            },
+
+            filterIndicatorsByCharacteristics(values) {
+                values = this.filterIndicators(values)
 
                 if (this.selectedSubCharacteristics.length > 0) {
                     values = values.filter(value =>
@@ -534,7 +521,39 @@
             showDownloadOptions() {
                 console.log("showing download options");
                 this.downloadOptionsVisible = true;
-            }
+            },
+
+            // All the filters happen at the indicatorValue level.
+            // So we should build the list of indicators up from the filteredIndicatorValues
+            prepareIndicators(filterComputedValue) {
+                if (this[filterComputedValue].length < 0) return [];
+
+                var valuesByIndicator = this[filterComputedValue].reduce(
+                    (result, indicatorValue) => {
+                        result[indicatorValue.indicator_id] =
+                            result[indicatorValue.indicator_id] || [];
+
+                        result[indicatorValue.indicator_id].push(indicatorValue);
+                        return result;
+                    },
+                    Object.create(null)
+                );
+
+                var indicators = Object.keys(valuesByIndicator).map(
+                    indicator_id => {
+                        return {
+                            id: indicator_id,
+                            code: valuesByIndicator[indicator_id][0].indicator.code,
+                            definition:
+                                valuesByIndicator[indicator_id][0].indicator
+                                    .definition,
+                            values: valuesByIndicator[indicator_id]
+                        };
+                    }
+                );
+
+                return indicators;
+            },
         }
     };
 </script>
