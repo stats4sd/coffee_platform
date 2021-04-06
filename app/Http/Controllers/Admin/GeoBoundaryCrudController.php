@@ -88,8 +88,8 @@ class GeoBoundaryCrudController extends CrudController
                 'ajax' => true,
                 'inline_create' => [ 'entity' => 'country' ],
                 'minimum_input_length' => 0,
-                'label' => 'Select the country for this geo boundary',
-                'hint' => 'If the country is not in the dropdown select the <b>+Add</b> to add a new one.',
+                'label' => 'Country',
+                'hint' => 'If the country is not in the dropdown select <b>+Add</b> to add a new one.',
             ],
             [
                 'type' => 'relationship',
@@ -97,8 +97,8 @@ class GeoBoundaryCrudController extends CrudController
                 'ajax' => true,
                 'inline_create' => [ 'entity' => 'region' ],
                 'minimum_input_length' => 0,
-                'label' => 'Select the region for this geo boundary',
-                'hint' => 'If the region is not in the dropdown select the <b>+Add</b> to add a new one.',
+                'label' => 'Region',
+                'hint' => 'If the region is not in the dropdown select <b>+Add</b> to add a new one.',
             ],
             [
                 'type' => 'relationship',
@@ -106,8 +106,8 @@ class GeoBoundaryCrudController extends CrudController
                 'ajax' => true,
                 'inline_create' => [ 'entity' => 'department' ],
                 'minimum_input_length' => 0,
-                'label' => 'Select the department for this geo boundary',
-                'hint' => 'If the department is not in the dropdown select the <b>+Add</b> to add a new one.',
+                'label' => 'Department',
+                'hint' => 'If the department is not in the dropdown select <b>+Add</b> to add a new one.',
             ],
             [
                 'name' => 'description',

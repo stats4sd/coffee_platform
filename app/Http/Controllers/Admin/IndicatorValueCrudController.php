@@ -138,15 +138,15 @@ class IndicatorValueCrudController extends CrudController
                 'ajax' => true,
                 'inline_create' => [ 'entity' => 'indicator' ],
                 'minimum_input_length' => 0,
-                'label' => 'Select indicator definition',
-                'hint' => 'If the indicator definition is not in the dropdown select the <b>+Add</b> to add a new one.',
+                'label' => 'Indicator',
+                'hint' => 'If the indicator is not in the dropdown select <b>+Add</b> to add a new one.',
             ],
             [
                 'name' => 'value',
                 'type' => 'number',
                 'label' => 'Value',
                 'attributes' => ["step" => "any"], // allow decimals
-                'label' => 'Insert the value of indicator.',
+                'label' => 'Value',
             ],
             [
                 'type' => 'relationship',
@@ -155,13 +155,13 @@ class IndicatorValueCrudController extends CrudController
                 'ajax' => true,
                 'inline_create' => [ 'entity' => 'unit' ],
                 'minimum_input_length' => 0,
-                'label' => 'Select the unit for the indicator value',
-                'hint' => 'If the unit is not in the dropdown select the <b>+Add</b> to add a new one.',
+                'label' => 'Unit',
+                'hint' => 'If the unit is not in the dropdown select <b>+Add</b> to add a new one.',
             ],
             [
                 'name' => 'years',
                 'type' => 'relationship',
-                'label' => 'Which year(s) is this value for?',
+                'label' => 'Year(s)',
                 'attribute' => "year",
             ],
             [
@@ -171,8 +171,8 @@ class IndicatorValueCrudController extends CrudController
                 'ajax' => true,
                 'inline_create' => true,
                 'minimum_input_length' => 0,
-                'label' => 'Select the source that you use to calculate the indicator',
-                'hint' => 'If the source is not in the dropdown select the <b>+Add</b> to add a new one.',
+                'label' => 'Source',
+                'hint' => 'If the source is not in the dropdown select <b>+Add</b> to add a new one.',
             ],
             [
                 'name' => 'source_public',
@@ -190,8 +190,8 @@ class IndicatorValueCrudController extends CrudController
                 ],
                 'ajax' => true,
                 'minimum_input_length' => 0,
-                'label' => 'Select the geo boundary',
-                'hint' => 'If the geo boundary is not in the dropdown select the <b>+Add</b> to add a new one.',
+                'label' => 'Geo boundary',
+                'hint' => 'If the geo boundary is not in the dropdown select <b>+Add</b> to add a new one.',
             ],
             [
                 'type' => 'relationship',
@@ -199,8 +199,8 @@ class IndicatorValueCrudController extends CrudController
                 'ajax' => true,
                 'inline_create' => [ 'entity' => 'gender' ],
                 'minimum_input_length' => 0,
-                'label' => 'Select the gender for this indicator value',
-                'hint' => 'If the gender is not in the dropdown select the <b>+Add</b> to add a new one.',
+                'label' => 'Gender',
+                'hint' => 'If the gender is not in the dropdown select <b>+Add</b> to add a new one.',
             ],
             [
                 'name' => 'sample_size',
@@ -218,8 +218,8 @@ class IndicatorValueCrudController extends CrudController
                     'create_route' =>  route('smallholder_definition-inline-create-save'),
                 ],
                 'minimum_input_length' => 0,
-                'label' => 'Select the smallholder definition for this indicator value',
-                'hint' => 'If the smallholder definition is not in the dropdown select the <b>+Add</b> to add a new one.',
+                'label' => 'Smallholder definition',
+                'hint' => 'If the smallholder definition is not in the dropdown select <b>+Add</b> to add a new one.',
             ],
             [
                 'label'     => "User",
@@ -244,8 +244,8 @@ class IndicatorValueCrudController extends CrudController
                     
                 ],
                 'minimum_input_length' => 0,
-                'label' => 'Select the purpose of collection.',
-                'hint' => 'If the purpose of collection is not in the dropdown select the <b>+Add</b> to add a new one.',
+                'label' => 'Purpose of collection',
+                'hint' => 'If the purpose of collection is not in the dropdown select <b>+Add</b> to add a new one.',
             ],
             [
                 'type' => 'relationship',
@@ -258,8 +258,8 @@ class IndicatorValueCrudController extends CrudController
                     'create_route' =>  route('approach_collection-inline-create-save'),
                 ],
                 'minimum_input_length' => 0,
-                'label' => 'Select the approach collection.',
-                'hint' => 'If the approach collection is not in the dropdown select the <b>+Add</b> to add a new one.',
+                'label' => 'Collection approach',
+                'hint' => 'If the collection approach is not in the dropdown select <b>+Add</b> to add a new one.',
             ],
         ]);
     }
