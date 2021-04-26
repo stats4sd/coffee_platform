@@ -94,7 +94,7 @@
                     },
                     {
                         key: 'all_years',
-                        label: 'year(s)',
+                        label: 'Year',
                     },
                     'value',
                     {

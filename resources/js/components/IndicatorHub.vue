@@ -255,11 +255,11 @@
                 indicatorFields: [
                     {
                         key: "code",
-                        label: "indicator"
+                        label: "Code"
                     },
                     {
                         key: "definition",
-                        label: "definition"
+                        label: "Indicator"
                     },
                     {
                         key: "actions",

@@ -37,7 +37,7 @@ class ApproachCollectionCrudController extends CrudController
     {
         CRUD::setModel(\App\Models\ApproachCollection::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/approach_collection');
-        CRUD::setEntityNameStrings('approach collection', 'approach collections');
+        CRUD::setEntityNameStrings('collection approach', 'approach collections');
 
         CRUD::set('export.exporter', ApproachCollectionsExport::class);
         CRUD::set('import.importer', ApproachCollectionsImport::class);
@@ -96,7 +96,7 @@ class ApproachCollectionCrudController extends CrudController
         CRUD::field('import_instructions')->type('custom_html')->value('
             <div class="alert">
             <h3>Instructions</h3>
-            Please upload the Excel file containing new approaches to collection.
+            Please upload the Excel file containing new collection approaches.
             <ul>
                 <li>The file should be in the same format as the file downloadable on the main view page.</li>
             </ul>
