@@ -94,7 +94,7 @@ class IndicatorValue extends Model
     {
         return $this->years->map(function ($year) {
             return $year->year;
-        })->join(', ');
+        })->join(' - ');
     }
 
     public function getSubCharacteristicIdAttribute()
