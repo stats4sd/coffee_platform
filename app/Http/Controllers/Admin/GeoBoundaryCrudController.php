@@ -60,6 +60,10 @@ class GeoBoundaryCrudController extends CrudController
                 'name' => 'department',
             ],
             [
+                'type' => 'relationship',
+                'name' => 'muncipality',
+            ],
+            [
                 'name' => 'description',
                 'type' => 'text',
                 'label' => 'Description'
