@@ -34,7 +34,7 @@ class IndicatorValueRequest extends FormRequest
             'unit_id' => ['required','exists:units,id'],
             'gender_id' => ['required','exists:genders,id'],
             'sample_size' => ['nullable','integer'],
-            'smallholder_definition_id' => ['required','exists:smallholder_definitions,id'],
+            'smallholder_definition_id' => ['nullable','exists:smallholder_definitions,id'],
             'user_id' => ['required','exists:users,id'],
             'purpose_of_collection_id' => ['required','exists:purpose_of_collections,id'],
             'approach_collection_id' => ['required','exists:approach_collections,id'],
