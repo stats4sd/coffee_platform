@@ -114,10 +114,9 @@ class IndicatorValueCrudController extends CrudController
                 'name' => 'approachCollection',
             ],
             [
-                'name' => 'scope',
                 'type' => 'text',
-                'label' => 'Scope'
-            ],
+                'name' => 'definition',
+            ]
         ]);
     }
 
@@ -260,6 +259,10 @@ class IndicatorValueCrudController extends CrudController
                 'minimum_input_length' => 0,
                 'label' => 'Collection approach',
                 'hint' => 'If the collection approach is not in the dropdown select <b>+Add</b> to add a new one.',
+            ],
+            [
+                'type' => 'text',
+                'name' => 'definition',
             ],
         ]);
     }
