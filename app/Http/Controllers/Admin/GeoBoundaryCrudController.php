@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Requests\GeoBoundaryRequest;
 use App\Models\Country;
 use App\Models\Department;
+use App\Models\Muncipality;
 use App\Models\Region;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
@@ -110,6 +111,15 @@ class GeoBoundaryCrudController extends CrudController
                 'hint' => 'If the department is not in the dropdown select <b>+Add</b> to add a new one.',
             ],
             [
+                'type' => 'relationship',
+                'name' => 'muncipality_id',
+                'ajax' => true,
+                'inline_create' => [ 'entity' => 'muncipality' ],
+                'minimum_input_length' => 0,
+                'label' => 'Muncipality',
+                'hint' => 'If the muncipality is not in the dropdown select <b>+Add</b> to add a new one.',
+            ],
+            [
                 'name' => 'description',
                 'type' => 'text',
                 'label' => 'Description'
@@ -146,5 +156,10 @@ class GeoBoundaryCrudController extends CrudController
     public function fetchDepartment()
     {
         return $this->fetch(Department::class);
+    }
+
+    public function fetchMuncipality()
+    {
+        return $this->fetch(Muncipality::class);
     }
 }

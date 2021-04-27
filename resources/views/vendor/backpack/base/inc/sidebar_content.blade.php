@@ -29,6 +29,7 @@
         <li class='nav-item'><a class='nav-link' href='{{ backpack_url('country') }}'> Countries</a></li>
         <li class='nav-item'><a class='nav-link' href='{{ backpack_url('region') }}'> Regions</a></li>
         <li class='nav-item'><a class='nav-link' href='{{ backpack_url('department') }}'> Departments</a></li>
+        <li class='nav-item'><a class='nav-link' href='{{ backpack_url('muncipality') }}'> Muncipalities</a></li>
         <li class='nav-item'><a class='nav-link' href='{{ backpack_url('geo_boundary') }}'> Geo Boundaries</a></li>
         <li class='nav-item'><a class='nav-link' href='{{ backpack_url('source') }}'> Sources</a></li>
         <li class='nav-item'><a class='nav-link' href='{{ backpack_url('type') }}'> Types</a></li>
@@ -36,3 +37,4 @@
         <li class='nav-item'><a class='nav-link' href='{{ backpack_url('year') }}'> Years</a></li>
     </ul>
 </li>
+
