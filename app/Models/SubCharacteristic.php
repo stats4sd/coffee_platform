@@ -46,7 +46,7 @@ class SubCharacteristic extends Model
 
     public function getCharacteristicLabelAttribute()
     {
-        return $this->characteristic->name . " (" . $this->name . ")";
+        return $this->characteristic ? $this->characteristic->name . " (" . $this->name . ")" : null;
     }
 
 

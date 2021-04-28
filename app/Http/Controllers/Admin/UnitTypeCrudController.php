@@ -41,9 +41,11 @@ class UnitTypeCrudController extends CrudController
      */
     protected function setupListOperation()
     {
+        $this->crud->query->withCount('units');
+
         CRUD::column('name');
         CRUD::column('standard_unit');
-        CRUD::column('units_count')->type('relationship_count');
+        CRUD::column('units_count')->type('text');
     }
 
     /**
