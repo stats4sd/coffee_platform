@@ -57,13 +57,13 @@ class IndicatorValuesExport implements FromQuery, WithHeadings, WithMapping
     {
         $query = IndicatorValue::with([
             'indicator.subCharacteristic.characteristic',
-            'source.type',
             'source.partner',
             'user',
             'approachCollection',
             'purposeOfCollection',
             'smallholderDefinition',
             'gender',
+            'scope',
             'unit',
             'years',
         ]);
@@ -85,8 +85,10 @@ class IndicatorValuesExport implements FromQuery, WithHeadings, WithMapping
         }
 
         if ($this->types) {
-            $query = $query->whereHas('source', function (Builder $query) {
-                $query->whereIn('type_id', $this->types);
+            $query = $query->whereHas('partners', function (Builder $query) {
+                $query->whereHas('sources', function (Builder $query){
+                    $query->has('indicatorValues');
+                });
             });
         }
 
@@ -109,13 +111,15 @@ class IndicatorValuesExport implements FromQuery, WithHeadings, WithMapping
             $value->indicator->subCharacteristic->name,
             $value->indicator_id,
             $value->indicator->code,
-            $value->indicator->definition,
+            $value->indicator->name,
             $value->geoBoundary->country_id,
             $value->geoBoundary->country ? $value->geoBoundary->country->name : 'null',
             $value->geoBoundary->region_id,
             $value->geoBoundary->region ? $value->geoBoundary->region->name : 'null',
             $value->geoBoundary->department_id,
             $value->geoBoundary->department ? $value->geoBoundary->department->name : 'null',
+            $value->geoBoundary->muncipality_id,
+            $value->geoBoundary->muncipality ? $value->geoBoundary->muncipality->name : 'null',
             $value->geo_boundary_id,
             $value->geoBoundary->description,
             $value->all_years,
@@ -126,19 +130,21 @@ class IndicatorValuesExport implements FromQuery, WithHeadings, WithMapping
             $value->approachCollection->name,
             $value->gender_id,
             $value->gender->name,
+            $value->scope_id ? $value->scope_id : 'null',
+            $value->scope ? $value->scope->name : 'null', 
             $value->purpose_of_collection_id,
             $value->purposeOfCollection->name,
             $value->sample_size,
             $value->small_sample ? 'Small sample!' : '',
             $value->smallholder_definition_id,
             $value->smallholderDefinition ? $value->smallholderDefinition->definition : 'null',
-            $value->source_public ? 'Yes' : 'No',
-            $value->source_public ? $value->source->name : 'Not available',
-            $value->source_public ? $value->source->description : 'Not available',
-            $value->source_public ? $value->source->type_id : 'Not available',
-            $value->source_public ? $value->source->type->name : 'Not available',
-            $value->source_public ? $value->source->partner_id : 'Not available',
-            $value->source_public ? $value->source->partner->name : 'Not available',
+            $value->is_not_public ? 'No' : 'Yes',
+            $value->is_not_public ? 'Not available' : $value->source->name,
+            $value->is_not_public ? 'Not available' : $value->source->description,
+            $value->is_not_public ? 'Not available' : $value->source->partner->type_id,
+            $value->is_not_public ? 'Not available' : $value->source->partner->type->name,
+            $value->is_not_public ? 'Not available' : $value->source->partner_id,
+            $value->is_not_public ? 'Not available' : $value->source->partner->name,
             $value->user_id,
             $value->user ?  $value->user->name : 'null',
             $value->updated_at,
@@ -159,13 +165,15 @@ class IndicatorValuesExport implements FromQuery, WithHeadings, WithMapping
             'sub_characteristic',
             'indicator_id',
             'indicator_code',
-            'indicator_definition',
+            'indicator_name',
             'country_id',
             'country',
             'region_id',
             'region',
             'department_id',
             'department',
+            'muncipality_id',
+            'muncipality',
             'geo_boundary_id',
             'geo_boundary',
             'year(s)',
@@ -176,9 +184,12 @@ class IndicatorValuesExport implements FromQuery, WithHeadings, WithMapping
             'approach_to_collection',
             'gender_id',
             'gender disaggregation',
+            'scope_id',
+            'scope',
             'purpose_of_collection_id',
             'purpose_of_collection',
             'sample_size',
+            'small_sample',
             'smallholder_definition_id',
             'smallholder_definition',
             'source_public',
