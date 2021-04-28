@@ -310,7 +310,6 @@ class IndicatorValueCrudController extends CrudController
                 'name' => 'calculated_by_us',
                 'type' => 'checkbox',
                 'label' => 'Calculated by us',
-                'default' => 1,
             ],
             [
                 'type' => 'text',
