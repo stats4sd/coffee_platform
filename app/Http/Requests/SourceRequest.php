@@ -28,7 +28,6 @@ class SourceRequest extends FormRequest
         return [
             'name' => ['required', 'max:255'],
             'reference' => ['required', 'max:255'],
-            'type_id' => ['required', 'exists:types,id'],
             'partner_id' => ['required', 'exists:partners,id'],
             'description' => 'required',
         ];

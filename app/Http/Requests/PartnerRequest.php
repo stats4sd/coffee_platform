@@ -29,6 +29,7 @@ class PartnerRequest extends FormRequest
     {
         return [
             'name' => ['required', 'max:255', Rule::unique('partners', 'name')->ignore(Partner::find(request()->id))],
+            'type_id' => ['nullable', 'exists:types,id'],
         ];
     }
 

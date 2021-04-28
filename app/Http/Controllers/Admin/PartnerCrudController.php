@@ -41,8 +41,9 @@ class PartnerCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        CRUD::setFromDb(); // columns
-
+        CRUD::addColumn(['name' => 'name', 'type' => 'text']); 
+        CRUD::addColumn(['name' => 'type', 'type' => 'relationship']); 
+      
         /**
          * Columns can be defined using the fluent syntax or array syntax:
          * - CRUD::column('price')->type('number');
@@ -60,7 +61,20 @@ class PartnerCrudController extends CrudController
     {
         CRUD::setValidation(PartnerRequest::class);
 
-        CRUD::setFromDb(); // fields
+        // CRUD::setFromDb(); // fields
+        $this->crud->addFields([
+            [
+                'type' => 'text',
+                'name' => 'name',
+            ],
+            [
+                'type' => 'relationship',
+                'name' => 'type_id',
+                'ajax' => true,
+                'inline_create' => [ 'entity' => 'type' ],
+                'minimum_input_length' => 0,
+            ],
+        ]);
 
         /**
          * Fields can be defined using the fluent syntax or array syntax:
@@ -79,4 +93,10 @@ class PartnerCrudController extends CrudController
     {
         $this->setupCreateOperation();
     }
+
+    public function fetchType()
+    {
+        return $this->fetch(Type::class);
+    }
+
 }

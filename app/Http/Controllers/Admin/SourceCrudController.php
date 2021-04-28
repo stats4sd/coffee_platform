@@ -54,10 +54,6 @@ class SourceCrudController extends CrudController
             ],
             [
                 'type' => 'relationship',
-                'name' => 'type',
-            ],
-            [
-                'type' => 'relationship',
                 'name' => 'partner',
             ],
             [
@@ -98,13 +94,6 @@ class SourceCrudController extends CrudController
             ],
             [
                 'type' => 'relationship',
-                'name' => 'type_id',
-                'ajax' => true,
-                'inline_create' => [ 'entity' => 'type' ],
-                'minimum_input_length' => 0,
-            ],
-            [
-                'type' => 'relationship',
                 'name' => 'partner_id',
                 'ajax' => true,
                 'inline_create' => [ 'entity' => 'partner' ],
@@ -138,11 +127,6 @@ class SourceCrudController extends CrudController
     protected function setupUpdateOperation()
     {
         $this->setupCreateOperation();
-    }
-
-    public function fetchType()
-    {
-        return $this->fetch(Type::class);
     }
 
     public function fetchPartner()

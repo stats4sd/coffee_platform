@@ -46,9 +46,9 @@ class Type extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-    public function sources()
+    public function partners()
     {
-        return $this->hasMany(Source::class);
+        return $this->hasMany(Partner::class);
     }
 
     /*
