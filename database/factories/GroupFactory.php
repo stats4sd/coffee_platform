@@ -2,18 +2,19 @@
 
 namespace Database\Factories;
 
-use App\Models\Type;
-use App\Models\Partner;
+use App\Models\Group;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class PartnerFactory extends Factory
+class GroupFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Partner::class;
+    protected $model = Group::class;
+
+
 
     /**
      * Define the model's default state.
@@ -24,7 +25,6 @@ class PartnerFactory extends Factory
     {
         return [
             'name' => $this->faker->unique()->word(),
-            'type_id' => Type::factory(),
         ];
     }
 }

@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
-use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Model;
+use Backpack\CRUD\app\Models\Traits\CrudTrait;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Scope extends Model
 {
-    use CrudTrait;
+    use CrudTrait, HasFactory;
+
 
     /*
     |--------------------------------------------------------------------------

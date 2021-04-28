@@ -29,8 +29,10 @@ class Type extends Model
         parent::boot();
 
         static::saved(function ($type) {
-            $type->sources->each(function ($source) {
-                $source->indicatorValues->searchable();
+            $type->partners->each(function ($partner) {
+                $partner->sources->each(function ($source) {
+                    $source->indicatorValues->searchable();
+                });
             });
         });
     }
