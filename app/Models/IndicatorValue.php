@@ -200,6 +200,16 @@ class IndicatorValue extends Model
         return $this->belongsTo(ApproachCollection::class);
     }
 
+    public function scope()
+    {
+        return $this->belongsTo(Scope::class);
+    }
+
+    public function group()
+    {
+        return $this->belongsTo(Group::class);
+    }
+
     public function years()
     {
         return $this->belongsToMany(Year::class, '_link_years_indicator_values');

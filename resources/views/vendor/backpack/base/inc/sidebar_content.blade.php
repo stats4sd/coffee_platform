@@ -35,6 +35,8 @@
         <li class='nav-item'><a class='nav-link' href='{{ backpack_url('type') }}'> Types</a></li>
         <li class='nav-item'><a class='nav-link' href='{{ backpack_url('partner') }}'> Partners</a></li>
         <li class='nav-item'><a class='nav-link' href='{{ backpack_url('year') }}'> Years</a></li>
+        <li class='nav-item'><a class='nav-link' href='{{ backpack_url('scope') }}'> Scopes</a></li>
+        <li class='nav-item'><a class='nav-link' href='{{ backpack_url('group') }}'> Groups</a></li>
     </ul>
 </li>
 

@@ -11,6 +11,7 @@ use App\Models\ApproachCollection;
 use App\Models\PurposeOfCollection;
 use App\Models\SmallholderDefinition;
 use App\Http\Requests\IndicatorValueRequest;
+use App\Models\Scope;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
@@ -112,6 +113,19 @@ class IndicatorValueCrudController extends CrudController
             [
                 'type' => 'relationship',
                 'name' => 'approachCollection',
+            ],
+            [
+                'type' => 'relationship',
+                'name' => 'scope',
+            ],
+            [
+                'type' => 'relationship',
+                'name' => 'group',
+            ],
+            [
+                'name' => 'calculated_by_us',
+                'type' => 'check',
+                'label' => 'Calculated by us',
             ],
             [
                 'type' => 'text',
@@ -256,6 +270,40 @@ class IndicatorValueCrudController extends CrudController
                 'hint' => 'If the collection approach is not in the dropdown select <b>+Add</b> to add a new one.',
             ],
             [
+                'type' => 'relationship',
+                'name' => 'group_id',
+                'ajax' => true,
+                'entity' => 'group',
+                'inline_create' => [ 
+                    'entity' => 'group',
+                    'modal_route' => route('group-inline-create'),
+                    'create_route' =>  route('group-inline-create-save'),
+                ],
+                'minimum_input_length' => 0,
+                'label' => 'Group',
+                'hint' => 'If the group is not in the dropdown select <b>+Add</b> to add a new one.',
+            ],
+            [
+                'type' => 'relationship',
+                'name' => 'scope_id',
+                'ajax' => true,
+                'entity' => 'scope',
+                'inline_create' => [ 
+                    'entity' => 'scope',
+                    'modal_route' => route('scope-inline-create'),
+                    'create_route' =>  route('scope-inline-create-save'),
+                ],
+                'minimum_input_length' => 0,
+                'label' => 'Scope',
+                'hint' => 'If the scope is not in the dropdown select <b>+Add</b> to add a new one.',
+            ],
+            [
+                'name' => 'calculated_by_us',
+                'type' => 'checkbox',
+                'label' => 'Calculated by us',
+                'default' => 1,
+            ],
+            [
                 'type' => 'text',
                 'name' => 'definition',
             ],
@@ -311,5 +359,14 @@ class IndicatorValueCrudController extends CrudController
     public function fetchApproach_collection()
     {
         return $this->fetch(ApproachCollection::class);
+    }
+
+    public function fetchScope()
+    {
+        return $this->fetch(Scope::class);
+    }
+    public function fetchGroup()
+    {
+        return $this->fetch(Group::class);
     }
 }
