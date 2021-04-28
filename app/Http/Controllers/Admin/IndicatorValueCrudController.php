@@ -174,11 +174,6 @@ class IndicatorValueCrudController extends CrudController
                 'hint' => 'If the source is not in the dropdown select <b>+Add</b> to add a new one.',
             ],
             [
-                'name' => 'source_public',
-                'type' => 'checkbox',
-                'label' => 'Is the source public? ',
-            ],
-            [
                 'type' => 'relationship',
                 'name' => 'geo_boundary_id',
                 'entity' => 'geoBoundary' ,

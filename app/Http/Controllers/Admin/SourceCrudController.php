@@ -61,6 +61,11 @@ class SourceCrudController extends CrudController
                 'name' => 'partner',
             ],
             [
+                'name' => 'is_not_public',
+                'type' => 'check',
+                'label' => 'Keep source anonymous',
+            ],
+            [
                 'name' => 'description',
                 'type' => 'text',
             ],
@@ -104,6 +109,11 @@ class SourceCrudController extends CrudController
                 'ajax' => true,
                 'inline_create' => [ 'entity' => 'partner' ],
                 'minimum_input_length' => 0,
+            ],
+            [
+                'name' => 'is_not_public',
+                'type' => 'checkbox',
+                'label' => 'Keep source anonymous',
             ],
             [
                 'name' => 'description',
