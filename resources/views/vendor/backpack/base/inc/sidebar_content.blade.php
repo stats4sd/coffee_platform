@@ -10,8 +10,9 @@
 <li class='nav-item nav-dropdown'>
     <a class='nav-link nav-dropdown-toggle' href="#">Indicators</a>
     <ul class="nav-dropdown-items">
-        <li class='nav-item'><a class='nav-link' href='{{ backpack_url('indicator_value') }}'> Indicator Values</a></li>
         <li class='nav-item'><a class='nav-link' href='{{ backpack_url('indicator') }}'> Indicators</a></li>
+        <li class='nav-item'><a class='nav-link' href='{{ backpack_url('indicator_value') }}'> Indicator Values</a></li>
+        <li class='nav-item'><a class='nav-link' href='{{ backpack_url('geo_boundary') }}'> Geo Boundaries</a></li>
     </ul>
 </li>
 
@@ -30,7 +31,6 @@
         <li class='nav-item'><a class='nav-link' href='{{ backpack_url('region') }}'> Regions</a></li>
         <li class='nav-item'><a class='nav-link' href='{{ backpack_url('department') }}'> Departments</a></li>
         <li class='nav-item'><a class='nav-link' href='{{ backpack_url('muncipality') }}'> Muncipalities</a></li>
-        <li class='nav-item'><a class='nav-link' href='{{ backpack_url('geo_boundary') }}'> Geo Boundaries</a></li>
         <li class='nav-item'><a class='nav-link' href='{{ backpack_url('source') }}'> Sources</a></li>
         <li class='nav-item'><a class='nav-link' href='{{ backpack_url('type') }}'> Types</a></li>
         <li class='nav-item'><a class='nav-link' href='{{ backpack_url('partner') }}'> Partners</a></li>
