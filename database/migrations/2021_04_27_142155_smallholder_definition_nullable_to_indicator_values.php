@@ -26,7 +26,7 @@ class SmallholderDefinitionNullableToIndicatorValues extends Migration
     public function down()
     {
         Schema::table('indicator_values', function (Blueprint $table) {
-            //
+            $table->unsignedBigInteger('smallholder_definition_id')->change();
         });
     }
 }

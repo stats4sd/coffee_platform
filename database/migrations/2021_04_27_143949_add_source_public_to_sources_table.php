@@ -29,7 +29,11 @@ class AddSourcePublicToSourcesTable extends Migration
     public function down()
     {
         Schema::table('sources', function (Blueprint $table) {
-            $table->tinyInteger('is_not_public');
+            $table->dropColumn('is_not_public');
+        });
+
+        Schema::table('indicator_values', function (Blueprint $table) {
+            $table->tinyInteger('source_public');
         });
     }
 }

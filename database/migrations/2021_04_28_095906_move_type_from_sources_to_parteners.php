@@ -15,10 +15,9 @@ class MoveTypeFromSourcesToParteners extends Migration
     {
         Schema::table('partners', function (Blueprint $table) {
             $table->unsignedBigInteger('type_id')->after('name')->nullable();
-          
         });
 
-        Schema::table('partners', function(Blueprint $table) {
+        Schema::table('partners', function (Blueprint $table) {
             $table->foreign('type_id')->references('id')->on('types')->onDelete('cascade');
         });
         Schema::table('sources', function (Blueprint $table) {
@@ -34,7 +33,12 @@ class MoveTypeFromSourcesToParteners extends Migration
     public function down()
     {
         Schema::table('partners', function (Blueprint $table) {
-            //
+            $table->dropForeign('partners_type_id_foreign');
+            $table->dropColumn('type_id');
+        });
+
+        Schema::table('sources', function (Blueprint $table) {
+            $table->foreign('type_id')->references('id')->on('types')->onDelete('cascade');
         });
     }
 }

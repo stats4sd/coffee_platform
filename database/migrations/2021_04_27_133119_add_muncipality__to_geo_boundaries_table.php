@@ -16,7 +16,7 @@ class AddMuncipalityToGeoBoundariesTable extends Migration
         Schema::table('geo_boundaries', function (Blueprint $table) {
             $table->unsignedBigInteger('muncipality_id')->nullable()->after('department_id');
         });
-        Schema::table('geo_boundaries', function(Blueprint $table) {
+        Schema::table('geo_boundaries', function (Blueprint $table) {
             $table->foreign('muncipality_id')->references('id')->on('muncipalities')->onDelete('restrict');
         });
     }
@@ -29,7 +29,8 @@ class AddMuncipalityToGeoBoundariesTable extends Migration
     public function down()
     {
         Schema::table('geo_boundaries', function (Blueprint $table) {
-            //
+            $table->dropForeign('geo_boundaries_muncipality_id_foreign');
+            $table->dropColumn('muncipality_id');
         });
     }
 }

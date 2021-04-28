@@ -26,7 +26,7 @@ class AddDefinitionToIndicatorValues extends Migration
     public function down()
     {
         Schema::table('indicator_values', function (Blueprint $table) {
-            $table->string('definition');
+            $table->dropColumn('definition');
         });
     }
 }

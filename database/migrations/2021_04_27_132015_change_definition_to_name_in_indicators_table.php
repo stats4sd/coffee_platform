@@ -26,7 +26,7 @@ class ChangeDefinitionToNameInIndicatorsTable extends Migration
     public function down()
     {
         Schema::table('indicators', function (Blueprint $table) {
-            $table->string('name');
+            $table->renameColumn('name', 'definition');
         });
     }
 }

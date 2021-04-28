@@ -26,7 +26,7 @@ class ChangeRequiredToGeoBoundaries extends Migration
     public function down()
     {
         Schema::table('geo_boundaries', function (Blueprint $table) {
-            //
+            $table->string('description')->change();
         });
     }
 }
