@@ -29,7 +29,7 @@ class IndicatorValueController extends Controller
             $query = IndicatorValue::query();
         }
 
-        $results = $query->get()->load('purposeOfCollection', 'indicator.subCharacteristic.characteristic');
+        $results = $query->get()->load('purposeOfCollection', 'indicator.subCharacteristic.characteristic', 'gender', 'scope');
 
         return $results;
     }
