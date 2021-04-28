@@ -1,14 +1,16 @@
 <?php
 
-use App\Http\Controllers\CharacteristicController;
-use App\Http\Controllers\CountryController;
-use App\Http\Controllers\IndicatorValueController;
-use App\Http\Controllers\PurposeOfCollectionController;
-use App\Http\Controllers\SubCharacteristicController;
-use App\Http\Controllers\TypeController;
 use App\Models\Characteristic;
 use App\Models\PurposeOfCollection;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TypeController;
+use App\Http\Controllers\ScopeController;
+use App\Http\Controllers\GenderController;
+use App\Http\Controllers\CountryController;
+use App\Http\Controllers\CharacteristicController;
+use App\Http\Controllers\IndicatorValueController;
+use App\Http\Controllers\SubCharacteristicController;
+use App\Http\Controllers\PurposeOfCollectionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,3 +39,5 @@ Route::get('type', [TypeController::class, 'index'])->name('type.index');
 Route::get('purposeofcollection', [PurposeOfCollectionController::class, 'index'])->name('purposeOfCollection.search');
 Route::get('characteristic', [CharacteristicController::class, 'index'])->name('characteristic.index');
 Route::get('subcharacteristic', [SubCharacteristicController::class, 'index'])->name('subcharacteristic.index');
+Route::get('gender', [GenderController::class, 'index'])->name('gender.index');
+Route::get('scope', [ScopeController::class, 'index'])->name('scope.index');

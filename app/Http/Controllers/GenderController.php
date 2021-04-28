@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Type;
+use App\Models\Gender;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Builder;
 
-class TypeController extends Controller
+
+class GenderController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +16,6 @@ class TypeController extends Controller
      */
     public function index()
     {
-        return Type::whereHas('partners', function (Builder $query) {
-            $query->has('indicatorValues');
-        })->get();
+        return Gender::has('indicatorValues')->get();
     }
 }

@@ -35,6 +35,16 @@
                         title="Purpose"
                         :options="purposes"
                     />
+                    <sidebar-filter
+                        v-model="selectedGenders"
+                        title="Gender"
+                        :options="genders"
+                    />
+                    <sidebar-filter
+                        v-model="selectedScopes"
+                        title="Scope"
+                        :options="scopes"
+                    />
                 </ul>
             </div>
         </div>
@@ -258,7 +268,7 @@
                         label: "Code"
                     },
                     {
-                        key: "definition",
+                        key: "name",
                         label: "Indicator"
                     },
                     {
@@ -270,14 +280,18 @@
 
                 // Filters
                 countries: [],
+                genders: [],
                 years: [],
                 types: [],
                 purposes: [],
+                scopes: [],
 
                 selectedCountries: [],
+                selectedGenders: [],
                 selectedYears: [],
                 selectedTypes: [],
                 selectedPurposes: [],
+                selectedScopes: [],
 
                 characteristics: [],
                 subCharacteristics: [],
@@ -311,6 +325,8 @@
         mounted() {
             this.getIndicatorValues();
             this.getCountries();
+            this.getGenders();
+            this.getScopes();
             this.getYears();
             this.getTypes();
             this.getPurposes();
@@ -350,6 +366,22 @@
                     console.log("prefilter", values);
                     values = values.filter(value =>
                         this.selectedCountries.includes(value.country_id)
+                    );
+                    console.log("postfilter", values);
+                }
+
+                if (this.selectedGenders.length > 0) {
+                    console.log("prefilter", values);
+                    values = values.filter(value =>
+                        this.selectedGenders.includes(value.gender_id)
+                    );
+                    console.log("postfilter", values);
+                }
+
+                if (this.selectedScopes.length > 0) {
+                    console.log("prefilter", values);
+                    values = values.filter(value =>
+                        this.selectedScopes.includes(value.scope_id)
                     );
                     console.log("postfilter", values);
                 }
@@ -399,6 +431,18 @@
                 axios
                     .get("/country")
                     .then(result => (this.countries = result.data));
+            },
+
+            getGenders() {
+                axios
+                    .get("/gender")
+                    .then(result => (this.genders = result.data));
+            },
+
+            getScopes() {
+                axios
+                    .get("/scope")
+                    .then(result => (this.scopes = result.data));
             },
 
             getYears() {
@@ -544,9 +588,9 @@
                         return {
                             id: indicator_id,
                             code: valuesByIndicator[indicator_id][0].indicator.code,
-                            definition:
+                            name:
                                 valuesByIndicator[indicator_id][0].indicator
-                                    .definition,
+                                    .name,
                             values: valuesByIndicator[indicator_id],
                             subCharacteristic: valuesByIndicator[indicator_id][0].indicator.sub_characteristic.characteristic_label,
                         };
