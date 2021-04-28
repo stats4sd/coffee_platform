@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Unit;
+use App\Models\Group;
+use App\Models\Scope;
 use App\Models\Gender;
 use App\Models\Source;
 use App\Models\Indicator;
@@ -11,7 +13,6 @@ use App\Models\ApproachCollection;
 use App\Models\PurposeOfCollection;
 use App\Models\SmallholderDefinition;
 use App\Http\Requests\IndicatorValueRequest;
-use App\Models\Scope;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
@@ -50,6 +51,18 @@ class IndicatorValueCrudController extends CrudController
      */
     protected function setupListOperation()
     {
+        // select2_multiple filter
+        $this->crud->addFilter([
+            'name'  => 'groups',
+            'type'  => 'select2_multiple',
+            'label' => 'Groups'
+        ], function() {
+            $groups = Group::all()->pluck('name','id')->toArray();
+         
+            return $groups;
+        }, function($values) { // if the filter is active
+            $this->crud->addClause('whereIn', 'group_id', json_decode($values));
+        });
         $this->crud->addColumns([
             [
                 'type' => 'relationship',
@@ -64,6 +77,10 @@ class IndicatorValueCrudController extends CrudController
                 'type' => 'relationship',
                 'name' => 'unit',
                 'attribute' => 'unit',
+            ],
+            [
+                'type' => 'relationship',
+                'name' => 'group',
             ],
             [
                 'name' => 'converted_value',
@@ -117,10 +134,6 @@ class IndicatorValueCrudController extends CrudController
             [
                 'type' => 'relationship',
                 'name' => 'scope',
-            ],
-            [
-                'type' => 'relationship',
-                'name' => 'group',
             ],
             [
                 'name' => 'calculated_by_us',
