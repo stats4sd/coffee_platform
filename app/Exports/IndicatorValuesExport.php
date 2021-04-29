@@ -62,6 +62,7 @@ class IndicatorValuesExport implements FromQuery, WithHeadings, WithMapping
             'gender',
             'scope',
             'unit',
+            'unit.unitType',
             'years',
         ]);
 
@@ -105,7 +106,7 @@ class IndicatorValuesExport implements FromQuery, WithHeadings, WithMapping
             $value->indicator->name,
             $value->geoBoundary->country ? $value->geoBoundary->country->name : 'null',
             $value->all_years,
-            $value->conversion_rate,
+            $value->converted_value,
             $value->standard_unit,
             $value->value,
             $value->unit->unit,
