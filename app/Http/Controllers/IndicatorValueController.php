@@ -29,7 +29,7 @@ class IndicatorValueController extends Controller
             $query = IndicatorValue::query();
         }
 
-        $results = $query->get()->load('purposeOfCollection', 'indicator.subCharacteristic.characteristic');
+        $results = $query->get()->load('purposeOfCollection', 'indicator.subCharacteristic.characteristic', 'gender', 'scope');
 
         return $results;
     }
@@ -66,6 +66,7 @@ class IndicatorValueController extends Controller
         }
 
         $filename = 'indicator-values-exports/indicator-values-'.now()->toDateTimeString().'.xlsx';
+   
         $success = Excel::store($export, $filename, 'public');
 
         if (! $success) {

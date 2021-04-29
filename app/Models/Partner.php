@@ -52,6 +52,11 @@ class Partner extends Model
         return $this->hasMany(Source::class);
     }
 
+    public function type()
+    {
+        return $this->belongsTo(Type::class);
+    }
+
     /*
     |--------------------------------------------------------------------------
     | SCOPES

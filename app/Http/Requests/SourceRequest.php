@@ -27,10 +27,9 @@ class SourceRequest extends FormRequest
     {
         return [
             'name' => ['required', 'max:255'],
-            'reference' => ['required', 'max:255'],
-            'type_id' => ['required', 'exists:types,id'],
+            'reference' => ['nullable', 'max:255'],
             'partner_id' => ['required', 'exists:partners,id'],
-            'description' => 'required',
+            'description' => 'nullable',
         ];
     }
 

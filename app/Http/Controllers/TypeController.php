@@ -15,8 +15,10 @@ class TypeController extends Controller
      */
     public function index()
     {
-        return Type::whereHas('sources', function (Builder $query) {
-            $query->has('indicatorValues');
+        return Type::whereHas('partners', function (Builder $query) {
+            $query->whereHas('sources', function (Builder $query){
+                $query->has('indicatorValues');
+            });
         })->get();
     }
 }

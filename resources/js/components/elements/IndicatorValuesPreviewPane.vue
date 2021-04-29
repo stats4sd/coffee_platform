@@ -17,7 +17,7 @@
             v-if="indicator"
             class="py-4"
         >
-            {{ indicator.code + ' - ' + indicator.definition }}
+            {{ indicator.code + ' - ' + indicator.name }}
         </h3>
         <b-table
             class="mt-4 mb-2"
@@ -106,8 +106,8 @@
                         label: 'Sample size',
                     },
                     {
-                        key: 'source_public',
-                        label: 'Is the source public?',
+                        key: 'gender.name',
+                        label: 'Gender',
                     },
                     {
                         key: 'purpose_of_collection.name',

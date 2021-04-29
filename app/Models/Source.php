@@ -42,11 +42,6 @@ class Source extends Model
         return $this->hasMany(IndicatorValue::class);
     }
 
-    public function type()
-    {
-        return $this->belongsTo(Type::class);
-    }
-
     public function partner()
     {
         return $this->belongsTo(Partner::class);

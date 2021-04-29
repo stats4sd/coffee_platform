@@ -2,14 +2,14 @@
 
 namespace App\Models;
 
-use App\Models\Traits\UpdatesMainSearchIndex;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Model;
+use Backpack\CRUD\app\Models\Traits\CrudTrait;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Indicator extends Model
+class Scope extends Model
 {
-    use CrudTrait, HasFactory, UpdatesMainSearchIndex;
+    use CrudTrait, HasFactory;
+
 
     /*
     |--------------------------------------------------------------------------
@@ -17,14 +17,13 @@ class Indicator extends Model
     |--------------------------------------------------------------------------
     */
 
-    protected $table = 'indicators';
-    protected $primaryKey = 'id';
+    protected $table = 'scopes';
+    // protected $primaryKey = 'id';
     // public $timestamps = false;
     protected $guarded = ['id'];
     // protected $fillable = [];
     // protected $hidden = [];
     // protected $dates = [];
-
 
     /*
     |--------------------------------------------------------------------------
@@ -32,28 +31,11 @@ class Indicator extends Model
     |--------------------------------------------------------------------------
     */
 
-
-    public function getCharacteristicIdAttribute()
-    {
-        return $this->subCharacteristic->characteristic_id;
-    }
-
-    public function getCharacteristicNameAttribute()
-    {
-        return $this->subCharacteristic->characteristic->name;
-    }
-
-
     /*
     |--------------------------------------------------------------------------
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-    public function subCharacteristic()
-    {
-        return $this->belongsTo(SubCharacteristic::class);
-    }
-
     public function indicatorValues()
     {
         return $this->hasMany(IndicatorValue::class);

@@ -109,7 +109,7 @@ class IndicatorValue extends Model
 
     public function getTypeIdAttribute()
     {
-        return $this->source ? $this->source->type_id : null;
+        return $this->source ? $this->source->partner->type_id : null;
     }
 
     public function getPartnerIdAttribute()
@@ -198,6 +198,16 @@ class IndicatorValue extends Model
     public function approachCollection()
     {
         return $this->belongsTo(ApproachCollection::class);
+    }
+
+    public function scope()
+    {
+        return $this->belongsTo(Scope::class);
+    }
+
+    public function group()
+    {
+        return $this->belongsTo(Group::class);
     }
 
     public function years()
