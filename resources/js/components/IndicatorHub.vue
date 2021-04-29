@@ -27,7 +27,7 @@
                     />
                     <sidebar-filter
                         v-model="selectedTypes"
-                        title="Partner Type"
+                        title="Source Type"
                         :options="types"
                     />
                     <sidebar-filter
