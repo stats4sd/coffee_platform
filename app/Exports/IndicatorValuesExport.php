@@ -85,9 +85,9 @@ class IndicatorValuesExport implements FromQuery, WithHeadings, WithMapping
         }
 
         if ($this->types) {
-            $query = $query->whereHas('partners', function (Builder $query) {
-                $query->whereHas('sources', function (Builder $query){
-                    $query->has('indicatorValues');
+            $query = $query->whereHas('source', function (Builder $query) {
+                $query->whereHas('partner', function (Builder $query) {
+                    $query->whereIn('partner.type_id', $this->types);
                 });
             });
         }
@@ -131,7 +131,7 @@ class IndicatorValuesExport implements FromQuery, WithHeadings, WithMapping
             $value->gender_id,
             $value->gender->name,
             $value->scope_id ? $value->scope_id : 'null',
-            $value->scope ? $value->scope->name : 'null', 
+            $value->scope ? $value->scope->name : 'null',
             $value->purpose_of_collection_id,
             $value->purposeOfCollection->name,
             $value->sample_size,
