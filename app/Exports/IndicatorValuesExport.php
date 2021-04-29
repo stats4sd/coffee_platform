@@ -82,9 +82,9 @@ class IndicatorValuesExport implements FromQuery, WithHeadings, WithMapping
         }
 
         if ($this->types) {
-            $query = $query->whereHas('partners', function (Builder $query) {
-                $query->whereHas('sources', function (Builder $query){
-                    $query->has('indicatorValues');
+            $query = $query->whereHas('source', function (Builder $query) {
+                $query->whereHas('partner', function (Builder $query) {
+                    $query->whereIn('partner.type_id', $this->types);
                 });
             });
         }
