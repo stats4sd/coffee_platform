@@ -109,7 +109,7 @@ class IndicatorValue extends Model
 
     public function getTypeIdAttribute()
     {
-        return $this->source ? $this->source->type_id : null;
+        return $this->source ? $this->source->partner->type_id : null;
     }
 
     public function getPartnerIdAttribute()
