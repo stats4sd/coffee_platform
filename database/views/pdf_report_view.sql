@@ -8,15 +8,15 @@ indicator_values.value AS 'Value',
 genders.name AS 'Gender',
 IF (indicator_values.gender_id IS NOT NULL, 'TRUE', 'FALSE') AS 'GenderSplit',
 purpose_of_collections.name AS 'Purpose',
-IF(indicator_values.source_public = 1, partners.name, 'Not available') AS 'Partner',
-IF(indicator_values.source_public = 1, sources.name, 'Not available') AS 'Source',
-IF(indicator_values.source_public = 1, sources.reference, 'Not available') AS 'URL',
+IF(sources.is_not_public = 0, partners.name, 'Not available') AS 'Partner',
+IF(sources.is_not_public = 0, sources.name, 'Not available') AS 'Source',
+IF(sources.is_not_public = 0, sources.reference, 'Not available') AS 'URL',
 approach_collections.name AS 'Approach',
 indicator_values.sample_size AS 'Sample Size',
 IF(indicator_values.sample_size < 21, 'TRUE', 'FALSE') AS 'SmallSize',
-IF(indicator_values.source_public = 1, types.name, 'Not available') AS 'Source Type',
+IF(sources.is_not_public = 0, types.name, 'Not available') AS 'Source Type',
 geo_boundaries.description AS 'Geo-boundaries',
-indicators.definition AS 'Indicator definition',
+indicators.name AS 'Indicator definition',
 units.unit AS 'Unit',
 sub_characteristics.name AS 'Indicator Group',
 smallholder_definitions.definition AS 'Smallholder Definition'
@@ -29,7 +29,7 @@ LEFT JOIN purpose_of_collections ON purpose_of_collections.id = indicator_values
 LEFT JOIN sources ON sources.id = indicator_values.source_id
 LEFT JOIN partners ON partners.id = sources.partner_id
 LEFT JOIN approach_collections ON approach_collections.id = indicator_values.approach_collection_id
-LEFT JOIN types ON types.id = sources.type_id
+LEFT JOIN types ON types.id = partners.type_id
 LEFT JOIN units ON units.id = indicator_values.unit_id
 LEFT JOIN sub_characteristics ON sub_characteristics.id = indicators.sub_characteristic_id
 LEFT JOIN smallholder_definitions ON smallholder_definitions.id = indicator_values.smallholder_definition_id
