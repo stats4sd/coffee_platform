@@ -2,10 +2,11 @@
 
 namespace App\Models;
 
-use App\Models\Traits\UpdatesMainSearchIndex;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Backpack\CRUD\app\Models\Traits\CrudTrait;
+use App\Models\UnitType;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Traits\UpdatesMainSearchIndex;
+use Backpack\CRUD\app\Models\Traits\CrudTrait;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Unit extends Model
 {
