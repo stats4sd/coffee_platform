@@ -65,7 +65,7 @@ class UnitCrudController extends CrudController
         if (CRUD::getOperation() == 'update' && $id = CRUD::getCurrentEntryId()) {
             $entry = Unit::find($id);
             $unit = $entry->unit ?? 'of this unit';
-            $standardUnit = $entry ? $entry->unitType->standard_unit : 'of the standard unit';
+            $standardUnit = $entry->unitType ? $entry->unitType->standard_unit : 'of the standard unit';
         }
 
         CRUD::field('unit')->label('What is the unit called?');

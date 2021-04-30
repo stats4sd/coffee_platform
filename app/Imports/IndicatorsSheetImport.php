@@ -39,7 +39,7 @@ class IndicatorsSheetImport implements ToCollection, WithHeadingRow, WithValidat
             $indicator = Indicator::firstOrCreate([
                 'code' => $row['code']
             ], [
-                'definition' => $row['definition'],
+                'name' => $row['name'],
                 'sub_characteristic_id' => $subCharacteristic->id,
             ]);
         }
@@ -50,7 +50,7 @@ class IndicatorsSheetImport implements ToCollection, WithHeadingRow, WithValidat
         return [
 
             '*.code' => ['required', 'string', 'max:255'],
-            '*.definition' => ['required', 'string'],
+            '*.name' => ['required', 'string'],
             '*.sub_characteristic' => ['required', 'string', 'max:255'], // expecting name of sub-characteristic
             '*.characteristic' => ['required', 'string', 'max:255'], // expecting name of characteristic
         ];
