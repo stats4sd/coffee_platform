@@ -1,7 +1,6 @@
 /node_modules
 /public/hot
-/public/storage/characteristics
-/public/storage/indicator-values-exports
+/public/storage
 /public/css/app.css
 /public/js/app.js
 /storage/*.key
