@@ -503,6 +503,8 @@
             },
 
             downloadReport(selectedIndicators) {
+
+                selectedIndicators = selectedIndicators.map(id => Number(id));
                 this.processing = true;
                 this.$bvToast.toast(
                     `Your download is being prepared. This may take some time - please leave this window open.`,
@@ -511,14 +513,9 @@
                     }
                 );
 
-                var indicators = this.indicators.filter((indicator) =>
-                    selectedIndicators.includes(indicator.id)
-                )
-
-                var indicatorValues = [];
-                indicators.forEach((indicator) => {
-                    indicator.values.forEach(value => indicatorValues.push(value));
-                })
+                var indicatorValues = this.filteredIndicatorValuesForSelection.filter((value) => {
+                    return selectedIndicators.includes(value.indicator_id);
+                });
 
                 axios
                     .post("indicators/report", {
