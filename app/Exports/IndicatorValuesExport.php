@@ -120,7 +120,7 @@ class IndicatorValuesExport implements FromQuery, WithHeadings, WithMapping
             $value->geoBoundary->altitude ? $value->geoBoundary->altitude : 'null',
             $value->geoBoundary->description,
             $value->is_not_public ? 'Not available' : $value->source->partner->name,
-            $value->is_not_public ? 'Not available' : $value->source->partner->type->name,
+            $value->is_not_public ? 'Not available' : ($value->source->partner->type ? $value->source->partner->type->name : "null"),
             $value->is_not_public ? 'Not available' : $value->source->name,
             $value->is_not_public ? 'Not available' : $value->source->reference,
             $value->is_not_public ? 'Not available' : $value->source->description,
