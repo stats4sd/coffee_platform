@@ -129,7 +129,7 @@ class IndicatorValue extends Model
 
     public function getStandardUnitAttribute()
     {
-        if($this->unit->unitType) {
+        if(!empty($this->unit->unitType)) {
             return $this->unit->unitType->standard_unit;
         } else {
             return null;
