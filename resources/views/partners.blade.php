@@ -10,10 +10,10 @@
     <template>
         <div>
             <b-row>
-                <b-col><b-img  height="100" src="storage/partners/UVM.jpg"  alt="UVM"></b-img></b-col>
-                <b-col class="mt-5"><b-img  height="45" src="storage/partners/Stats4SD_Logo_Red_Small.jpg" alt="Stats4SD"></b-img></b-col>
-                <b-col><b-img  height="100" src="storage/partners/LWR.png" alt="LWR"></b-img></b-col>
-                <b-col><b-img  height="100" src="storage/partners/Heifer.jpg" alt="Heifer"></b-img></b-col>
+                <b-col><b-img  height="100" src="images/partners/UVM.jpg"  alt="UVM"></b-img></b-col>
+                <b-col class="mt-5"><b-img  height="45" src="images/partners/Stats4SD_Logo_Red_Small.jpg" alt="Stats4SD"></b-img></b-col>
+                <b-col><b-img  height="100" src="images/partners/LWR.png" alt="LWR"></b-img></b-col>
+                <b-col><b-img  height="100" src="images/partners/Heifer.jpg" alt="Heifer"></b-img></b-col>
             </b-row>
         </div>
         </template>
