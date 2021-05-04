@@ -85,7 +85,7 @@ class IndicatorValuesExport implements FromQuery, WithHeadings, WithMapping
         if ($this->types) {
             $query = $query->whereHas('source', function (Builder $query) {
                 $query->whereHas('partner', function (Builder $query) {
-                    $query->whereIn('partner.type_id', $this->types);
+                    $query->whereIn('partners.type_id', $this->types);
                 });
             });
         }
@@ -125,7 +125,7 @@ class IndicatorValuesExport implements FromQuery, WithHeadings, WithMapping
             $value->is_not_public ? 'Not available' : $value->source->reference,
             $value->is_not_public ? 'Not available' : $value->source->description,
             $value->approachCollection->name,
-            $value->scope ? $value->scope->name : 'null', 
+            $value->scope ? $value->scope->name : 'null',
             $value->smallholderDefinition ? $value->smallholderDefinition->definition : 'null',
         ];
     }
