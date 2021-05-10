@@ -30,14 +30,15 @@ for(i in 1:length(Indicators)){
 
  data_x <- data%>%
     filter(`Indicator code` == Indicators[i])
-
+ 
 cat("  \n#",  data_x$Indicator[1], "\n")
 
 cat("  \n##",  data_x$Indicator[1], ":Detail Table", "\n")
 
 print(kable(details_table(data_x, Indicators[i]), booktabs = TRUE) %>%
   kable_styling(full_width = TRUE)%>%
-  collapse_rows())
+  collapse_rows()%>%
+  footnote(symbol = "WARNING: This indicator value uses a sample size of less than 21"))
 
 cat('\n\n<!-- -->\n\n')
 

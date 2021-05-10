@@ -34,8 +34,10 @@ indicator_table <- function(data, x){
     filter(`Indicator code` == x)
   
   Indicator_table <- data%>%
-    select(Country, Source, Year, Value)%>%
-    arrange(Year, Country)
+    select(Country, Source, Year, Value, 'Sample Size')%>%
+    arrange(Year, Country)%>%
+    mutate(Value = ifelse('Sample size' < 21, paste(Value, "*", sep = ""), Value))%>%
+    select(-'Sample Size')
   
   Indicator_table <- Indicator_table%>%
     pivot_wider(id_cols = Country:Source, names_from = Year,
