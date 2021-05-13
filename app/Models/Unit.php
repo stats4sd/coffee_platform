@@ -87,7 +87,7 @@ class Unit extends Model
 
     public function years()
     {
-        return $this->belongsToMany(Year::class)->withPivot('to_standard');
+        return $this->belongsToMany(Year::class, '_link_unit_year')->withPivot('to_standard');
     }
 
 

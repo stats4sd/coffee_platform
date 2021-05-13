@@ -140,7 +140,7 @@ class IndicatorValue extends Model
     {
         // If the unit has a different conversion rate per year...
         if ($this->unit && $this->unit->unitType && $this->unit->unitType->split_by_year) {
-            $to_standard = $this->unit->getConverstionRateForYear($this->years->last());
+            $to_standard = $this->unit->getConverstionRateForYear($this->years->sortBy('year')->last());
             return $this->value * $to_standard;
         }
 

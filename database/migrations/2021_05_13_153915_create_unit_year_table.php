@@ -13,7 +13,7 @@ class CreateUnitYearTable extends Migration
      */
     public function up()
     {
-        Schema::create('unit_year', function (Blueprint $table) {
+        Schema::create('_link_unit_year', function (Blueprint $table) {
             $table->id();
             $table->foreignId('unit_id');
             $table->foreignId('year_id');
@@ -29,6 +29,6 @@ class CreateUnitYearTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('unit_year');
+        Schema::dropIfExists('_link_unit_year');
     }
 }
