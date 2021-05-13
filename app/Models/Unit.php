@@ -35,14 +35,38 @@ class Unit extends Model
     |--------------------------------------------------------------------------
     */
 
+    // Getter for Crud Column
     public function getConversionRateAttribute()
     {
+        if ($this->unitType && $this->unitType->split_by_year) {
+            return 'varies-by-year';
+        }
         if ($this->from_standard) {
             return $this->from_standard . ':1';
         }
         if ($this->to_standard) {
             return '1:'.$this->to_standard;
         }
+    }
+
+    // Getter for Crud Field
+    public function getConversionYearsAttribute()
+    {
+        if ($this->unitType && !$this->unitType->split_by_year) {
+            return null;
+        }
+
+        return $this->years->map(function ($year) {
+            return [
+                'year' => $year->year,
+                'to_standard' => $year->pivot->to_standard,
+            ];
+        });
+    }
+
+    public function getConverstionRateForYear(Year $year)
+    {
+        return $this->years->firstWhere('id', $year->id)->pivot->to_standard;
     }
 
 
@@ -60,6 +84,12 @@ class Unit extends Model
     {
         return $this->belongsTo(UnitType::class);
     }
+
+    public function years()
+    {
+        return $this->belongsToMany(Year::class)->withPivot('to_standard');
+    }
+
 
 
     /*

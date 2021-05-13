@@ -129,7 +129,7 @@ class IndicatorValue extends Model
 
     public function getStandardUnitAttribute()
     {
-        if(!empty($this->unit->unitType)) {
+        if (!empty($this->unit->unitType)) {
             return $this->unit->unitType->standard_unit;
         } else {
             return null;
@@ -138,6 +138,13 @@ class IndicatorValue extends Model
 
     public function getConvertedValueAttribute()
     {
+        // If the unit has a different conversion rate per year...
+        if ($this->unit && $this->unit->unitType && $this->unit->unitType->split_by_year) {
+            $to_standard = $this->unit->getConverstionRateForYear($this->years->last());
+            return $this->value * $to_standard;
+        }
+
+        // ...else calculate value from the static conversion rate
         $unit_standard = $this->unit ? $this->unit->to_standard : null;
         if ($unit_standard) {
             return $this->value * $this->unit->to_standard;

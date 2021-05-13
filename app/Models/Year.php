@@ -40,6 +40,12 @@ class Year extends Model
         return $this->belongsToMany(IndicatorValue::class, '_link_years_indicator_values');
     }
 
+    public function units()
+    {
+        return $this->belongsToMany(Unit::class)->withPivot('to_standard');
+    }
+
+
     /*
     |--------------------------------------------------------------------------
     | SCOPES
