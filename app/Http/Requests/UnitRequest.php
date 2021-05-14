@@ -4,8 +4,10 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 use App\Models\Unit;
+use App\Models\UnitType;
 use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
+use Validator;
 
 class UnitRequest extends FormRequest
 {
@@ -27,11 +29,50 @@ class UnitRequest extends FormRequest
      */
     public function rules()
     {
+        $unitType = UnitType::find(request()->unit_type_id);
+
+        $splitByYear = $unitType ? $unitType->split_by_year : false;
+
         return [
             'unit' => ['required', 'max:255'],
             'unit_type_id' => ['required', 'exists:unit_types,id'],
-            'to_standard' => ['required_without:from_standard', 'prohibited_unless:from_standard,null'],
-            'from_standard' => ['required_without:to_standard','prohibited_unless:to_standard,null'],
+            'to_standard' => [
+                Rule::requiredIf(function () use ($splitByYear) {
+                    return (!$splitByYear && request()->from_standard == null);
+                }),
+                'prohibited_unless:from_standard,null',
+            ],
+            'from_standard' => [
+                Rule::requiredIf(function () use ($splitByYear) {
+                    return (!$splitByYear && request()->to_standard == null);
+                }),
+                'prohibited_unless:to_standard,null'
+            ],
+            'conversion_years' => [
+                Rule::requiredIf(function () use ($splitByYear) {
+                    return $splitByYear;
+                }),
+                function ($attribute, $value, $fail) {
+                    $years = json_decode($value, true);
+                    if (!$years) {
+                        return;
+                    }
+                    foreach ($years as $year) {
+                        $validator = Validator::make((array) $year, [
+                            'to_standard' => ['numeric','required'],
+                            'year' => ['required', 'exists:years,year'],
+                        ]);
+
+                        if ($validator->fails()) {
+                            $titleMessage = 'Some entries in the Year-by-year conversions are invalid. Please review the entries and the following errors:';
+                            $messages = $validator->errors()->all();
+                            array_unshift($messages, $titleMessage);
+
+                            return $fail($messages);
+                        }
+                    }
+                }
+            ]
         ];
     }
 

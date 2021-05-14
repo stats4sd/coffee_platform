@@ -65,7 +65,7 @@ class IndicatorValueController extends Controller
             $export = $export->forPurposes($request->input('purposes'));
         }
 
-        $filename = 'indicator-values-exports/indicator-values-'.now()->toDateTimeString().'.xlsx';
+        $filename = 'indicator-values-exports/indicator-values-'.now()->format('Y-M-D_his').'.xlsx';
    
         $success = Excel::store($export, $filename, 'public');
 

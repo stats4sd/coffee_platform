@@ -28,7 +28,7 @@ class YearRequest extends FormRequest
     public function rules()
     {
         return [
-            'year' => ['required','date_format:YY', Rule::unique('years', 'year')->ignore(Year::find(request()->id))],
+            'year' => ['required','date_format:Y', Rule::unique('years', 'year')->ignore(Year::find(request()->id))],
         ];
     }
 

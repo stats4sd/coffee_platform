@@ -35,15 +35,54 @@ class Unit extends Model
     |--------------------------------------------------------------------------
     */
 
+    // Getter for Crud Column
     public function getConversionRateAttribute()
     {
+        if ($this->unitType && $this->unitType->split_by_year) {
+            return 'varies-by-year';
+        }
         if ($this->from_standard) {
-            return $this->from_standard . ':1';
+            return $this->clean_num($this->from_standard) . ':1';
         }
         if ($this->to_standard) {
-            return '1:'.$this->to_standard;
+            return '1:'. $this->clean_num($this->to_standard);
         }
     }
+
+    // Getter for Crud Field
+    public function getConversionYearsAttribute()
+    {
+        if ($this->unitType && !$this->unitType->split_by_year) {
+            return null;
+        }
+
+        return $this->years->map(function ($year) {
+            return [
+                'year' => $year->year,
+                'to_standard' => $this->clean_num($year->pivot->to_standard),
+            ];
+        });
+    }
+
+    public function getConverstionRateForYear(Year $year)
+    {
+        if ($year = $this->years->firstWhere('id', $year->id)) {
+            return $year->pivot->to_standard;
+        }
+
+        return null;
+    }
+
+    public function clean_num($value)
+    {
+        $pos = strpos($value, '.');
+        if ($pos === false) { // it is integer number
+            return $value;
+        } else { // it is decimal number
+            return rtrim(rtrim($value, '0'), '.');
+        }
+    }
+
 
 
     /*
@@ -60,6 +99,12 @@ class Unit extends Model
     {
         return $this->belongsTo(UnitType::class);
     }
+
+    public function years()
+    {
+        return $this->belongsToMany(Year::class, '_link_unit_year')->withPivot('to_standard');
+    }
+
 
 
     /*

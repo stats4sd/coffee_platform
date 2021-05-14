@@ -5,11 +5,10 @@ namespace App\Exports;
 use App\Models\IndicatorValue;
 use Illuminate\Database\Eloquent\Builder;
 use Maatwebsite\Excel\Concerns\FromCollection;
-use Maatwebsite\Excel\Concerns\FromQuery;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithMapping;
 
-class IndicatorValuesExport implements FromQuery, WithHeadings, WithMapping
+class IndicatorValuesExport implements FromCollection, WithHeadings, WithMapping
 {
     public $indicators = null;
     public $countries = null;
@@ -50,7 +49,7 @@ class IndicatorValuesExport implements FromQuery, WithHeadings, WithMapping
         return $this;
     }
 
-    public function query()
+    public function collection()
     {
         $query = IndicatorValue::with([
             'indicator.subCharacteristic.characteristic',
@@ -96,7 +95,7 @@ class IndicatorValuesExport implements FromQuery, WithHeadings, WithMapping
             });
         }
 
-        return $query;
+        return $query->get();
     }
 
     public function map($value) : array
