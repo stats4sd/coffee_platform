@@ -132,7 +132,9 @@ class UnitCrudController extends CrudController
     {
         $response = $this->traitStore();
 
-        $this->handleYears(request());
+        if (request()->conversion_years) {
+            $this->handleYears(request());
+        }
 
         return $response;
     }
@@ -141,7 +143,10 @@ class UnitCrudController extends CrudController
     public function update()
     {
         $response = $this->traitUpdate();
-        $this->handleYears(request());
+
+        if (request()->conversion_years) {
+            $this->handleYears(request());
+        }
 
         return $response;
     }
@@ -150,7 +155,11 @@ class UnitCrudController extends CrudController
     {
         //remove existing entries
         $unit = Unit::find(request()->id);
-        $unit->years()->detach($unit->years->pluck('id')->toArray());
+
+        if ($unit->years) {
+            $unit->years()->detach($unit->years->pluck('id')->toArray());
+        }
+
 
         $years = json_decode($request->conversion_years);
 
