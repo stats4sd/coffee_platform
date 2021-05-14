@@ -66,7 +66,11 @@ class Unit extends Model
 
     public function getConverstionRateForYear(Year $year)
     {
-        return $this->years->firstWhere('id', $year->id)->pivot->to_standard;
+        if ($year = $this->years->firstWhere('id', $year->id)) {
+            return $year->pivot->to_standard;
+        }
+
+        return null;
     }
 
     public function clean_num($value)
