@@ -42,10 +42,10 @@ class Unit extends Model
             return 'varies-by-year';
         }
         if ($this->from_standard) {
-            return $this->from_standard . ':1';
+            return $this->clean_num($this->from_standard) . ':1';
         }
         if ($this->to_standard) {
-            return '1:'.$this->to_standard;
+            return '1:'. $this->clean_num($this->to_standard);
         }
     }
 
@@ -59,7 +59,7 @@ class Unit extends Model
         return $this->years->map(function ($year) {
             return [
                 'year' => $year->year,
-                'to_standard' => $year->pivot->to_standard,
+                'to_standard' => $this->clean_num($year->pivot->to_standard),
             ];
         });
     }
@@ -68,6 +68,17 @@ class Unit extends Model
     {
         return $this->years->firstWhere('id', $year->id)->pivot->to_standard;
     }
+
+    public function clean_num($value)
+    {
+        $pos = strpos($value, '.');
+        if ($pos === false) { // it is integer number
+            return $value;
+        } else { // it is decimal number
+            return rtrim(rtrim($value, '0'), '.');
+        }
+    }
+
 
 
     /*

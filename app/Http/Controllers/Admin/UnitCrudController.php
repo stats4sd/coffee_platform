@@ -93,11 +93,13 @@ class UnitCrudController extends CrudController
 
         CRUD::field('to_standard')->label("How many of this unit equals 1 of the standard unit (selected above)?")
         ->type('number')
+        ->attributes(['step' => 'any'])
         ->prefix("1 of this unit equals... ")
         ->suffix("of the standard unit")->tab('Normal Unit Types');
         ;
         CRUD::field("from_standard")->label("How many of the standard units equals 1 of this unit?")
         ->type("number")
+        ->attributes(['step' => 'any'])
         ->prefix("1 of the standard unit equals... ")
         ->suffix("of this unit")->tab('Normal Unit Types');
         ;
