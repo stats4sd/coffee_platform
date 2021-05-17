@@ -20,7 +20,7 @@
                     />
                     <sidebar-filter
                         v-model="selectedYears"
-                        title="Years"
+                        title="Year"
                         :options="years"
                         display-field="year"
                         value-field="id"
