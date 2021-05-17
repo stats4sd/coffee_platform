@@ -1,6 +1,6 @@
 <template>
     <div class="d-flex flex-wrap justify-content-center">
-        <image-option
+        <div
             v-for="option in allOptions"
             :key="option.value"
         >
@@ -18,7 +18,7 @@
                     {{ option.text }}
                 </div>
             </b-card>
-        </image-option>
+        </div>
     </div>
 </template>
 <script>

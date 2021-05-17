@@ -19,9 +19,6 @@
                 <li class="nav-item">
                     <a class="nav-link @if(Route::currentRouteName() === 'indicators') active @endif" href="{{ route('indicators') }}">Indicator Hub</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('backpack') }}">Admin Panel</a>
-                </li>
             </ul>
         </div>
 </nav>

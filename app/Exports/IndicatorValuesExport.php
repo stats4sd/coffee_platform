@@ -5,11 +5,10 @@ namespace App\Exports;
 use App\Models\IndicatorValue;
 use Illuminate\Database\Eloquent\Builder;
 use Maatwebsite\Excel\Concerns\FromCollection;
-use Maatwebsite\Excel\Concerns\FromQuery;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithMapping;
 
-class IndicatorValuesExport implements FromQuery, WithHeadings, WithMapping
+class IndicatorValuesExport implements FromCollection, WithHeadings, WithMapping
 {
     public $indicators = null;
     public $countries = null;
@@ -50,7 +49,7 @@ class IndicatorValuesExport implements FromQuery, WithHeadings, WithMapping
         return $this;
     }
 
-    public function query()
+    public function collection()
     {
         $query = IndicatorValue::with([
             'indicator.subCharacteristic.characteristic',
@@ -85,7 +84,7 @@ class IndicatorValuesExport implements FromQuery, WithHeadings, WithMapping
         if ($this->types) {
             $query = $query->whereHas('source', function (Builder $query) {
                 $query->whereHas('partner', function (Builder $query) {
-                    $query->whereIn('partner.type_id', $this->types);
+                    $query->whereIn('partners.type_id', $this->types);
                 });
             });
         }
@@ -96,7 +95,7 @@ class IndicatorValuesExport implements FromQuery, WithHeadings, WithMapping
             });
         }
 
-        return $query;
+        return $query->get();
     }
 
     public function map($value) : array
@@ -104,15 +103,17 @@ class IndicatorValuesExport implements FromQuery, WithHeadings, WithMapping
         return [
             $value->indicator->code,
             $value->indicator->name,
+            $value->indicator_name_orginal,
             $value->geoBoundary->country ? $value->geoBoundary->country->name : 'null',
             $value->all_years,
-            $value->converted_value,
-            $value->standard_unit,
+            $value->gender->name,
             $value->value,
             $value->unit->unit,
-            $value->gender->name,
-            $value->sample_size,
+            $value->converted_value,
+            $value->standard_unit,
+            $value->unit->to_standard,
             $value->purposeOfCollection->name,
+            $value->sample_size,
             $value->definition,
             $value->geoBoundary->region ? $value->geoBoundary->region->name : 'null',
             $value->geoBoundary->department ? $value->geoBoundary->department->name : 'null',
@@ -125,7 +126,7 @@ class IndicatorValuesExport implements FromQuery, WithHeadings, WithMapping
             $value->is_not_public ? 'Not available' : $value->source->reference,
             $value->is_not_public ? 'Not available' : $value->source->description,
             $value->approachCollection->name,
-            $value->scope ? $value->scope->name : 'null', 
+            $value->scope ? $value->scope->name : 'null',
             $value->smallholderDefinition ? $value->smallholderDefinition->definition : 'null',
         ];
     }
@@ -133,18 +134,20 @@ class IndicatorValuesExport implements FromQuery, WithHeadings, WithMapping
     public function headings() : array
     {
         return [
-            'indicator_code',
-            'indicator_name',
+            'code',
+            'name',
+            'name_original',
             'country',
             'year',
-            'indicator_value',
-            'unit',
-            'indicator_value_original',
-            'unit_original',
             'gender',
+            'value_original',
+            'unit_original',
+            'value_standard',
+            'unit_standard',
+            'conversion_rate',
+            'purpose',
             'sample_size',
-            'purpose_of_collection',
-            'indicator_definition_by_source',
+            'definition_original',
             'region',
             'department',
             'muncipality',
@@ -155,7 +158,7 @@ class IndicatorValuesExport implements FromQuery, WithHeadings, WithMapping
             'source_name',
             'source_reference',
             'source_description',
-            'approach_to_collection',
+            'approach',
             'scope',
             'smallholder_definition',
         ];

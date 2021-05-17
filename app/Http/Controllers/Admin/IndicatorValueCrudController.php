@@ -56,11 +56,11 @@ class IndicatorValueCrudController extends CrudController
             'name'  => 'groups',
             'type'  => 'select2_multiple',
             'label' => 'Groups'
-        ], function() {
-            $groups = Group::all()->pluck('name','id')->toArray();
-         
+        ], function () {
+            $groups = Group::all()->pluck('name', 'id')->toArray();
+
             return $groups;
-        }, function($values) { // if the filter is active
+        }, function ($values) { // if the filter is active
             $this->crud->addClause('whereIn', 'group_id', json_decode($values));
         });
 
@@ -71,7 +71,6 @@ class IndicatorValueCrudController extends CrudController
             ],
             [
                 'name' => 'value',
-                'type' => 'number',
                 'label' => 'Value'
             ],
             [
@@ -85,8 +84,6 @@ class IndicatorValueCrudController extends CrudController
             ],
             [
                 'name' => 'converted_value',
-                'type' => 'number',
-                'decimals' => '5',
                 'label' => 'Value in Standard Units',
             ],
             [
@@ -102,7 +99,7 @@ class IndicatorValueCrudController extends CrudController
                 'name' => 'years',
                 'type' => 'relationship',
                 'label' => 'Year',
-                'attribute' => 'year', 
+                'attribute' => 'year',
             ],
             [
                 'type' => 'relationship',
@@ -145,7 +142,13 @@ class IndicatorValueCrudController extends CrudController
             [
                 'type' => 'text',
                 'name' => 'definition',
-            ]
+                'label' => 'Indicator definition from source'
+            ],
+            [
+                'type' => 'text',
+                'name' => 'indicator_name_orginal',
+                'label' => 'Indicator name from source'
+            ],
         ]);
     }
 
@@ -207,7 +210,7 @@ class IndicatorValueCrudController extends CrudController
                 'name' => 'geo_boundary_id',
                 'entity' => 'geoBoundary' ,
                 'data_source' => route('indicator_value.fetchGeoBoundary'),
-                'inline_create' => [ 
+                'inline_create' => [
                     'entity' => 'geo_boundary',
                     'modal_route' => route('geo_boundary-inline-create'),
                     'create_route' =>  route('geo_boundary-inline-create-save'),
@@ -237,7 +240,7 @@ class IndicatorValueCrudController extends CrudController
                 'entity' => 'smallholderDefinition' ,
                 'ajax' => true,
                 'data_source' => route('indicator_value.fetchSmallholderDefinition'),
-                'inline_create' => [ 
+                'inline_create' => [
                     'entity' => 'smallholder_definition' ,
                     'modal_route' => route('smallholder_definition-inline-create'),
                     'create_route' =>  route('smallholder_definition-inline-create-save'),
@@ -263,11 +266,11 @@ class IndicatorValueCrudController extends CrudController
                 'ajax' => true,
                 'data_source' => route('indicator_value.fetchPurposeOfCollection'),
                 'entity' => 'purposeOfCollection' ,
-                'inline_create' => [ 
+                'inline_create' => [
                     'entity' => 'purpose_of_collection' ,
                     'modal_route' => route('purpose_of_collection-inline-create'),
                     'create_route' =>  route('purpose_of_collection-inline-create-save'),
-                    
+
                 ],
                 'minimum_input_length' => 0,
                 'label' => 'Purpose of collection',
@@ -279,7 +282,7 @@ class IndicatorValueCrudController extends CrudController
                 'ajax' => true,
                 'data_source' => route('indicator_value.fetchApproachCollection'),
                 'entity' => 'approachCollection',
-                'inline_create' => [ 
+                'inline_create' => [
                     'entity' => 'approach_collection',
                     'modal_route' => route('approach_collection-inline-create'),
                     'create_route' =>  route('approach_collection-inline-create-save'),
@@ -314,6 +317,12 @@ class IndicatorValueCrudController extends CrudController
             [
                 'type' => 'text',
                 'name' => 'definition',
+                'label' => 'Indicator definition from source'
+            ],
+            [
+                'type' => 'text',
+                'name' => 'indicator_name_orginal',
+                'label' => 'Indicator name from source'
             ],
         ]);
     }
