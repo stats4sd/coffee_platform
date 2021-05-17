@@ -71,7 +71,7 @@ class IndicatorValueCrudController extends CrudController
             ],
             [
                 'name' => 'value',
-                'label' => 'Value'
+                'label' => 'Value',
             ],
             [
                 'type' => 'relationship',

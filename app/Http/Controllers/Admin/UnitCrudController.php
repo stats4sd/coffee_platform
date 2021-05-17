@@ -156,8 +156,7 @@ class UnitCrudController extends CrudController
     public function handleYears($request)
     {
         //remove existing entries
-        $unit = Unit::find(request()->id);
-
+        $unit = $this->crud->getCurrentEntry();
         if ($unit->years) {
             $unit->years()->detach($unit->years->pluck('id')->toArray());
         }
