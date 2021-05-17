@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>State of the Coffee Smallholder Platform</title>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -26,9 +26,13 @@
         <!-- Footer -->
         <footer class="py-3 mt-auto bg-dark footer h-1">
             <div class="container d-flex flex-justify-between">
-                <p class="m-0 text-white">Developed By Stats4SD</p>
+            <div class="col-sm-3">
+                <p class="m-0 text-white" >Developed By <a class="m-0 text-white" href="https://stats4sd.org/">Stats4SD</a><br></p>
             </div>
-            <!-- /.container -->
+            <div class="container d-flex justify-content-end">
+            <p><a class="m-0 text-white" href="{{ route('backpack') }}">Admin Login</a></p>
+            </div>
+            </div>
         </footer>
     </div>
 
