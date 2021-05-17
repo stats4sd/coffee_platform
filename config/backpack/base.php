@@ -108,10 +108,10 @@ return [
     'developer_name' => 'Stats4SD',
 
     // Developer website. Link in footer. Type false if you want to hide it.
-    'developer_link' => false,
+    'developer_link' => 'https://stats4sd.org',
 
     // Show powered by Laravel Backpack in the footer? true/false
-    'show_powered_by' => true,
+    'show_powered_by' => false,
 
     // -------
     // SCRIPTS
