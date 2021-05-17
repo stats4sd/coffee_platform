@@ -142,7 +142,13 @@ class IndicatorValueCrudController extends CrudController
             [
                 'type' => 'text',
                 'name' => 'definition',
-            ]
+                'label' => 'Indicator definition from source'
+            ],
+            [
+                'type' => 'text',
+                'name' => 'indicator_name_orginal',
+                'label' => 'Indicator name from source'
+            ],
         ]);
     }
 
@@ -311,6 +317,12 @@ class IndicatorValueCrudController extends CrudController
             [
                 'type' => 'text',
                 'name' => 'definition',
+                'label' => 'Indicator definition from source'
+            ],
+            [
+                'type' => 'text',
+                'name' => 'indicator_name_orginal',
+                'label' => 'Indicator name from source'
             ],
         ]);
     }
