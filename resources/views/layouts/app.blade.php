@@ -27,12 +27,12 @@
         <footer class="py-3 mt-auto bg-dark footer">
             <div class="container d-flex flex-justify-between">
             <div class="col-sm-3">
-                <p class="m-0 text-white" >Developed By <a class="m-0 text-white" href="https://stats4sd.org/">Stats4SD</a><br></p>
+                <p class="m-0 text-white" >Developed by <a class="m-0 text-white" href="https://stats4sd.org/">Stats4SD</a><br></p>
             </div>
             <div class="container d-flex justify-content-end flex-column align-items-end">
                 <a class="m-0 text-white" href="{{ route('backpack') }}">Admin Login</a>
                 <div class="text-right">
-                    <a class="m-0 text-white" href="https://backpackforlaravel.com/">The admin panel is powered by <u>Backpack for Laravel</u>.</a>
+                    <p class="m-0 text-white" > Admin panel powered by <a class="m-0 text-white" href="https://backpackforlaravel.com/">Backpack for Laravel</a></p>
                 </div>
             </div>
             </div>
