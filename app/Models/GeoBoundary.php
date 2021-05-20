@@ -80,4 +80,12 @@ class GeoBoundary extends Model
     | MUTATORS
     |--------------------------------------------------------------------------
     */
+    public function getDescriptionAttribute($value)
+    {
+        $CountryName=Country::find($this->country_id)->name;
+        $RegionName = $this->region_id ? Region::find($this->region_id)->name : 'null';
+        $DepartmentName = $this->department_id ? Department::find($this->department_id)->name : 'null';
+        $MuncipalityName = $this->munciplaity_id ? Muncipality::find($this->muncipality_id)->name : 'null';
+        return "{$CountryName} - {$RegionName} - {$DepartmentName} - {$MuncipalityName} - {$this->altitude} - {$value}";
+    }
 }

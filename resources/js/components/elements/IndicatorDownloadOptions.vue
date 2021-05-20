@@ -46,7 +46,7 @@
                             dismissible
                             @dismissed="$emit('remove-indicator', indicator)"
                         >
-                            {{ indicator.code }}:  {{ indicator.definition }}
+                            {{ indicator.code }}:  {{ indicator.name }}
                         </b-alert>
                     </div>
                 </div>

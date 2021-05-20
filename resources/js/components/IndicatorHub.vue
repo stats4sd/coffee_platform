@@ -83,11 +83,8 @@
                         @input="searchIndicators"
                     />
                 </b-input-group>
-                <p class="pb-4 pt-2">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos
-                    sed vitae fugit quas facilis, dolore cupiditate, quia
-                    voluptatum dolorum amet excepturi, consectetur omnis? Neque
-                    labore inventore tempore voluptas, nostrum non!
+                <p class="text-center pb-4 pt-2">
+                    Indicators displayed below can be refined using the search bar, filters or categories.
                 </p>
                 <!-- <characteristics> -->
                 <div class="d-flex flex-wrap pb-4">
@@ -101,7 +98,7 @@
                 <!-- <sub-characteristics> -->
                 <div v-if="selectedCharacteristic">
                     <h2 class="pt-3">
-                        Subcharacteristics
+                        
                     </h2>
                     <div class="d-flex flex-wrap">
                         <b-form-checkbox-group
@@ -149,11 +146,7 @@
                             </li>
                         </ul>
                         <div class="flex-grow-1">
-                            Lorem, ipsum dolor sit amet consectetur adipisicing
-                            elit. Dolorem veritatis accusantium eius, aut
-                            adipisci, nisi sed commodi voluptatibus error
-                            ratione quas in repellendus laudantium, doloremque
-                            qui? Cumque, officia? Repellat, neque?
+                            Indicator values can be previewed or downloaded individually. Inidcators added to selection can be reviewed on the download icon in the top right corner.
                         </div>
                     </div>
 
