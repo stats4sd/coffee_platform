@@ -124,7 +124,7 @@ class IndicatorValue extends Model
 
     public function getConversionRateAttribute()
     {
-        return $this->unit ? $this->unit->conversion_rate : null;
+        return $this->unit ? $this->unit->getConversionRate($this->years->last()) : null;
     }
 
     public function getStandardUnitAttribute()

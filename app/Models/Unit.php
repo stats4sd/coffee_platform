@@ -35,19 +35,29 @@ class Unit extends Model
     |--------------------------------------------------------------------------
     */
 
-    // Getter for Crud Column
-    public function getConversionRateAttribute()
+    public function getConversionRate(Year $year = null)
     {
         if ($this->unitType && $this->unitType->split_by_year) {
-            return 'varies-by-year';
+            if ($year == null) {
+                return 'varies-by-year';
+            }
+            return '1:'. $this->clean_num($this->getConverstionRateForYear($year));
         }
+
         if ($this->from_standard) {
             return $this->clean_num($this->from_standard) . ':1';
         }
+
         if ($this->to_standard) {
             return '1:'. $this->clean_num($this->to_standard);
         }
     }
+
+    public function getConversionRateAttribute()
+    {
+        return $this->getConversionRate(null);
+    }
+
 
     // Getter for Crud Field
     public function getConversionYearsAttribute()
