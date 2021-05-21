@@ -112,7 +112,7 @@ class IndicatorValuesExport implements FromCollection, WithHeadings, WithMapping
             $value->unit->unit,
             $value->converted_value,
             $value->standard_unit,
-            $value->unit->to_standard,
+            $value->conversion_rate,
             $value->purposeOfCollection->name,
             $value->sample_size,
             $value->definition,
