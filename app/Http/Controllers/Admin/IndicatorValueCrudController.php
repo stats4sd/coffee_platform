@@ -170,7 +170,7 @@ class IndicatorValueCrudController extends CrudController
                 'inline_create' => [ 'entity' => 'indicator' ],
                 'minimum_input_length' => 0,
                 'label' => 'Indicator',
-                'hint' => 'If the indicator is not in the dropdown select <br>+Add</br> to add a new one.',
+                'hint' => 'If the indicator is not in the dropdown select <b>+Add</b> to add a new one.',
             ],
             [
                 'name' => 'value',
