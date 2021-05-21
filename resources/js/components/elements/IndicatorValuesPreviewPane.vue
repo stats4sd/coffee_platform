@@ -58,16 +58,18 @@
         </b-table>
 
         <template #modal-footer>
-            <div>When downloading data to Excel, both original and standardised values will be included.</div>
-            <b-button
-                size="sm"
-                variant="info"
-                class="ml-2 pr-2 font-weight-bold"
-                @click="toggleUnits"
-            >
-                <span v-if="!showStandardUnit">Show values in standardised units</span>
-                <span v-if="showStandardUnit">Show values in original unit</span>
-            </b-button>
+            <template v-if="conversionNeeded">
+                <div>When downloading data to Excel, both original and standardised values will be included.</div>
+                <b-button
+                    size="sm"
+                    variant="info"
+                    class="ml-2 pr-2 font-weight-bold"
+                    @click="toggleUnits"
+                >
+                    <span v-if="!showStandardUnit">Show values in standardised units</span>
+                    <span v-if="showStandardUnit">Show values in original unit</span>
+                </b-button>
+            </template>
             <b-button
                 size="sm"
                 :variant="selected ? 'info' : 'primary'"
@@ -116,6 +118,7 @@
         data() {
             return {
                 showStandardUnit: false,
+                conversionNeeded: false,
                 fields: [
                     {
                         key: "geo_boundary.country.name",
@@ -144,6 +147,20 @@
                     }
                 ]
             };
+        },
+
+        watch: {
+            indicator() {
+                this.conversionNeeded = this.values.some((value) => {
+                    console.log(value)
+                    return (
+                        value.conversion_rate != 1 &&
+                        value.conversion_rate != "1:1" &&
+                        value.conversion_rate != null
+                    )
+                })
+            }
+
         },
 
         methods: {
