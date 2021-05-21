@@ -93,7 +93,7 @@ class IndicatorValueCrudController extends CrudController
             [
                 'name' => 'conversion_rate',
                 'type' => 'text',
-                'label' => 'Conversion Ratio used',
+                'label' => 'Conversion Ratio <br/>(original to standard)',
             ],
             [
                 'name' => 'years',
