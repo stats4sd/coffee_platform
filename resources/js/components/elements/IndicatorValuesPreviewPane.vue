@@ -7,8 +7,10 @@
         header-bg-variant="primary"
         header-text-variant="light"
     >
-        <template #modal-title>
-            <h2 class="font-weight-bold">
+        <template
+            #modal-title
+        >
+            <h2 class="font-weight-bold w-75">
                 Indicator Values Preview
             </h2>
         </template>
@@ -45,9 +47,27 @@
                     </small>
                 </span>
             </template>
+            <template #cell(value)="row">
+                <span v-if="!showStandardUnit">{{ row.item.value }}</span>
+                <span v-if="showStandardUnit">{{ row.item.conversion_rate ? Math.round(row.item.converted_value * 100) / 100 : '-' }}</span>
+            </template>
+            <template #cell(unit)="row">
+                <span v-if="!showStandardUnit">{{ row.item.unit.name }}</span>
+                <span v-if="showStandardUnit">{{ row.item.standard_unit }}</span>
+            </template>
         </b-table>
 
         <template #modal-footer>
+            <div>When downloading data to Excel, both original and standardised values will be included.</div>
+            <b-button
+                size="sm"
+                variant="info"
+                class="ml-2 pr-2 font-weight-bold"
+                @click="toggleUnits"
+            >
+                <span v-if="!showStandardUnit">Show values in standardised units</span>
+                <span v-if="showStandardUnit">Show values in original unit</span>
+            </b-button>
             <b-button
                 size="sm"
                 :variant="selected ? 'info' : 'primary'"
@@ -67,6 +87,7 @@
                 @click="downloadValues"
             >
                 <i class="las la-download" />
+            </b-button>
             </b-button>
         </template>
     </b-modal>
@@ -90,10 +111,11 @@
             selected: {
                 type: Boolean,
                 default: null
-            }
+            },
         },
         data() {
             return {
+                showStandardUnit: false,
                 fields: [
                     {
                         key: "geo_boundary.country.name",
@@ -105,7 +127,7 @@
                     },
                     "value",
                     {
-                        key: "unit.name",
+                        key: "unit",
                         label: "Unit"
                     },
                     {
@@ -130,7 +152,11 @@
             },
             toggleIndicatorSelection() {
                 this.$emit("toggle-indicator", this.indicator);
+            },
+            toggleUnits() {
+                this.showStandardUnit = !this.showStandardUnit;
             }
+
         }
     };
 </script>
