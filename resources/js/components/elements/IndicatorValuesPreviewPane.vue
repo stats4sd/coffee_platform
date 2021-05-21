@@ -17,7 +17,7 @@
             v-if="indicator"
             class="py-4"
         >
-            {{ indicator.code + ' - ' + indicator.name }}
+            {{ indicator.code + " - " + indicator.name }}
         </h3>
         <b-table
             class="mt-4 mb-2"
@@ -27,14 +27,21 @@
             thead-class="bg-light open-top"
         >
             <template #cell(source_public)="row">
-                {{ row.item.source_public == 1 ? 'Yes' : 'No' }}
+                {{ row.item.source_public == 1 ? "Yes" : "No" }}
             </template>
             <template #cell(sample_size)="row">
-                <span :class="row.item.sample_size && row.item.sample_size < 21 ? 'text-danger' : ''">{{ row.item.sample_size }}
+                <span
+                    :class="
+                        row.item.sample_size && row.item.sample_size < 21
+                            ? 'text-danger'
+                            : ''
+                    "
+                >{{ row.item.sample_size }}
                     <small
                         v-if="row.item.sample_size && row.item.sample_size < 21"
                         class="mr-2"
-                    > (Note: Small sample!)
+                    >
+                        (Note: Small sample!)
                     </small>
                 </span>
             </template>
@@ -70,61 +77,60 @@
         props: {
             values: {
                 type: Array,
-                default: () => [],
+                default: () => []
             },
             id: {
                 type: String,
-                default: 'valuepreview',
+                default: "valuepreview"
             },
             indicator: {
                 type: Object,
-                default: null,
+                default: null
             },
             selected: {
                 type: Boolean,
-                default: null,
+                default: null
             }
         },
         data() {
             return {
                 fields: [
                     {
-                        key: 'geo_boundary.country.name',
-                        label: 'Country',
+                        key: "geo_boundary.country.name",
+                        label: "Country"
                     },
                     {
-                        key: 'all_years',
-                        label: 'Year',
+                        key: "all_years",
+                        label: "Year"
                     },
-                    'value',
+                    "value",
                     {
-                        key: 'unit.unit',
-                        label: 'Unit'
-                    },
-                    {
-                        key: 'sample_size',
-                        label: 'Sample size',
+                        key: "unit.name",
+                        label: "Unit"
                     },
                     {
-                        key: 'gender.name',
-                        label: 'Gender',
+                        key: "sample_size",
+                        label: "Sample size"
                     },
                     {
-                        key: 'purpose_of_collection.name',
-                        label: 'Purpose of collection',
+                        key: "gender.name",
+                        label: "Gender"
+                    },
+                    {
+                        key: "purpose_of_collection.name",
+                        label: "Purpose of collection"
                     }
                 ]
-            }
+            };
         },
 
         methods: {
             downloadValues() {
-                this.$emit('download', [this.indicator]);
+                this.$emit("download", [this.indicator]);
             },
             toggleIndicatorSelection() {
-                this.$emit('toggle-indicator', this.indicator);
+                this.$emit("toggle-indicator", this.indicator);
             }
         }
-
-    }
+    };
 </script>
