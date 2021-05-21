@@ -41,15 +41,15 @@ class Unit extends Model
             if ($year == null) {
                 return 'varies-by-year';
             }
-            return '1:'. $this->clean_num($this->getConverstionRateForYear($year));
+            return $this->clean_num($this->getConverstionRateForYear($year));
         }
 
         if ($this->from_standard) {
-            return $this->clean_num($this->from_standard) . ':1';
+            return $this->clean_num(1 / $this->from_standard);
         }
 
         if ($this->to_standard) {
-            return '1:'. $this->clean_num($this->to_standard);
+            return $this->clean_num($this->to_standard);
         }
     }
 
