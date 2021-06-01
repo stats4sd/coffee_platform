@@ -104,7 +104,7 @@ class IndicatorValuesExport implements FromCollection, WithHeadings, WithMapping
         return [
             $value->indicator->code,
             $value->indicator->name,
-            $value->indicator_name_orginal,
+            $value->indicator_name_original,
             $value->geoBoundary->country ? $value->geoBoundary->country->name : 'null',
             $value->all_years,
             $value->gender->name,
@@ -112,7 +112,7 @@ class IndicatorValuesExport implements FromCollection, WithHeadings, WithMapping
             $value->unit->name,
             $value->converted_value,
             $value->standard_unit,
-            $value->unit->to_standard,
+            $value->conversion_rate,
             $value->purposeOfCollection->name,
             $value->sample_size,
             $value->definition,
@@ -137,7 +137,7 @@ class IndicatorValuesExport implements FromCollection, WithHeadings, WithMapping
         return [
             'code',
             'name',
-            'name_original',
+            'indicator_name_original',
             'country',
             'year',
             'gender',
