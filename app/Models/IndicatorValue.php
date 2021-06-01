@@ -141,6 +141,12 @@ class IndicatorValue extends Model
         return $this->value * $this->conversion_rate;
     }
 
+    // TODO: understand the mathematical difference between "20" and "20.0" and if this difference is important in this platform...
+    public function getValueAttribute($value)
+    {
+        return $value + 0; // trick to force removal of excess zeros from the decimal stored in the db.
+    }
+
 
 
 

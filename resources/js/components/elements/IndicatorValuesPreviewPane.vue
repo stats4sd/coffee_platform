@@ -49,7 +49,7 @@
             </template>
             <template #cell(value)="row">
                 <span v-if="!showStandardUnit">{{ row.item.value }}</span>
-                <span v-if="showStandardUnit">{{ row.item.conversion_rate ? (Math.round(row.item.converted_value * 100) / 100).toFixed(2) : '-' }}</span>
+                <span v-if="showStandardUnit">{{ row.item.conversion_rate ? row.item.converted_value : '-' }}</span>
             </template>
             <template #cell(unit)="row">
                 <span v-if="!showStandardUnit">{{ row.item.unit.name }}</span>
