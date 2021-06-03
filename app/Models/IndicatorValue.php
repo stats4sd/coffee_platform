@@ -6,6 +6,7 @@ use Laravel\Scout\Searchable;
 use Illuminate\Database\Eloquent\Model;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Str;
 
 class IndicatorValue extends Model
 {
@@ -138,7 +139,9 @@ class IndicatorValue extends Model
 
     public function getConvertedValueAttribute()
     {
-        return $this->value * $this->conversion_rate;
+        $precision = $this->precision < 2 ? 2 : $this->precision;
+
+        return round($this->value * $this->conversion_rate, $precision);
     }
 
     // TODO: understand the mathematical difference between "20" and "20.0" and if this difference is important in this platform...
@@ -146,6 +149,18 @@ class IndicatorValue extends Model
     {
         return $value + 0; // trick to force removal of excess zeros from the decimal stored in the db.
     }
+
+    public function getPrecisionAttribute()
+    {
+        $value = $this->value + 0;
+
+        if (Str::contains($value, '.')) {
+            return Str::length(Str::afterLast($value, '.'));
+        }
+
+        return 0;
+    }
+
 
 
 
