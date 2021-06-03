@@ -139,27 +139,25 @@ class IndicatorValue extends Model
 
     public function getConvertedValueAttribute()
     {
-        $precision = $this->precision < 2 ? 2 : $this->precision;
-
-        return round($this->value * $this->conversion_rate, $precision);
+        return round($this->value * $this->conversion_rate, 2) + 0;
     }
 
-    // TODO: understand the mathematical difference between "20" and "20.0" and if this difference is important in this platform...
     public function getValueAttribute($value)
     {
         return $value + 0; // trick to force removal of excess zeros from the decimal stored in the db.
     }
 
-    public function getPrecisionAttribute()
-    {
-        $value = $this->value + 0;
+    // TODO: understand the mathematical difference between "20" and "20.0" and if this difference is important in this platform...
+    // public function getPrecisionAttribute()
+    // {
+    //     $value = $this->value + 0;
 
-        if (Str::contains($value, '.')) {
-            return Str::length(Str::afterLast($value, '.'));
-        }
+    //     if (Str::contains($value, '.')) {
+    //         return Str::length(Str::afterLast($value, '.'));
+    //     }
 
-        return 0;
-    }
+    //     return 0;
+    // }
 
 
 
