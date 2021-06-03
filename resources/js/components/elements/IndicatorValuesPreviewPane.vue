@@ -171,6 +171,14 @@
 
         },
 
+        mounted() {
+            this.$root.$on('bv::modal::hidden', (bvEvent, modelId) => {
+                if(modelId === "valuePreviewModal") {
+                    this.showStandardUnit = false;
+                }
+            });
+        },
+
         methods: {
             downloadValues() {
                 this.$emit("download", [this.indicator]);
