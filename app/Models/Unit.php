@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\UnitType;
+use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Traits\UpdatesMainSearchIndex;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
@@ -27,6 +28,7 @@ class Unit extends Model
     // protected $dates = [];
     protected $appends = [
         'conversion_rate',
+        'name',
     ];
 
     /*
@@ -34,6 +36,12 @@ class Unit extends Model
     | FUNCTIONS
     |--------------------------------------------------------------------------
     */
+
+    // Unit name without appended "-customtype" for front-end
+    public function getNameAttribute()
+    {
+        return Str::before($this->unit, '-');
+    }
 
     public function getConversionRate(Year $year = null)
     {

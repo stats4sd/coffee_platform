@@ -109,7 +109,7 @@ class IndicatorValuesExport implements FromCollection, WithHeadings, WithMapping
             $value->all_years,
             $value->gender->name,
             $value->value,
-            $value->unit->unit,
+            $value->unit->name,
             $value->converted_value,
             $value->standard_unit,
             $value->conversion_rate,
