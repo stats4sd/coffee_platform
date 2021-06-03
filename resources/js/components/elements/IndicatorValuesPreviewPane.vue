@@ -47,10 +47,6 @@
                     </small>
                 </span>
             </template>
-            <template #head(value)="row">
-                <span v-if="!showStandardUnit">Value</span>
-                <span v-if="showStandardUnit">Converted Value</span>
-            </template>
             <template #cell(value)="row">
                 <span v-if="!showStandardUnit">{{ row.item.value }}</span>
                 <span v-if="showStandardUnit">{{ row.item.conversion_rate ? row.item.converted_value : '-' }}</span>
