@@ -65,8 +65,17 @@ class IndicatorValueController extends Controller
             $export = $export->forPurposes($request->input('purposes'));
         }
 
+        if ($request->has('genders') && count($request->input('genders')) > 0) {
+            $export = $export->forGenders($request->input('genders'));
+        }
+
+        if ($request->has('scopes') && count($request->input('scopes')) > 0) {
+            $export = $export->forScopes($request->input('scopes'));
+        }
+
+
         $filename = 'indicator-values-exports/indicator-values-'.now()->format('Y-M-D_his').'.xlsx';
-   
+
         $success = Excel::store($export, $filename, 'public');
 
         if (! $success) {
