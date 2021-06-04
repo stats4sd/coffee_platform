@@ -15,6 +15,8 @@ class IndicatorValuesExport implements FromCollection, WithHeadings, WithMapping
     public $years = null;
     public $types = null;
     public $purposes = null;
+    public $genders = null;
+    public $scopes = null;
 
 
     // Setters
@@ -46,6 +48,18 @@ class IndicatorValuesExport implements FromCollection, WithHeadings, WithMapping
     public function forPurposes(array $purposes)
     {
         $this->purposes = count($purposes) > 0 ? $purposes : null;
+        return $this;
+    }
+
+    public function forGenders(array $genders)
+    {
+        $this->genders = count($genders) > 0 ? $genders : null;
+        return $this;
+    }
+
+    public function forScopes(array $scopes)
+    {
+        $this->scopes = count($scopes) > 0 ? $scopes : null;
         return $this;
     }
 
@@ -93,6 +107,18 @@ class IndicatorValuesExport implements FromCollection, WithHeadings, WithMapping
         if ($this->purposes) {
             $query = $query->whereHas('purposeOfCollection', function (Builder $query) {
                 $query->whereIn('purpose_of_collections.id', $this->purposes);
+            });
+        }
+
+        if ($this->genders) {
+            $query = $query->whereHas('gender', function (Builder $query) {
+                $query->whereIn('genders.id', $this->genders);
+            });
+        }
+
+        if ($this->scopes) {
+            $query = $query->whereHas('scope', function (Builder $query) {
+                $query->whereIn('scopes.id', $this->scopes);
             });
         }
 

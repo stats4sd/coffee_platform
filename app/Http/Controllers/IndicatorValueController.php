@@ -65,8 +65,17 @@ class IndicatorValueController extends Controller
             $export = $export->forPurposes($request->input('purposes'));
         }
 
+        if ($request->has('genders') && count($request->input('genders')) > 0) {
+            $export = $export->forGenders($request->input('genders'));
+        }
+
+        if ($request->has('scopes') && count($request->input('scopes')) > 0) {
+            $export = $export->forScopes($request->input('scopes'));
+        }
+
+
         $filename = 'indicator-values-exports/indicator-values-'.now()->format('Y-M-D_his').'.xlsx';
-   
+
         $success = Excel::store($export, $filename, 'public');
 
         if (! $success) {
@@ -78,10 +87,12 @@ class IndicatorValueController extends Controller
 
     public function report(Request $request)
     {
+        $excelPath = $this->download($request);
+
         $indicatorValueIds = Collect($request->input('indicator_values'))->pluck('id')->toArray();
         $indicatorValueIds = implode(",", $indicatorValueIds);
 
-        $process = new Process(['Rscript', 'makeReport.R', $indicatorValueIds]);
+        $process = new Process(['Rscript', 'makeReport.R', $excelPath, $indicatorValueIds]);
         $process->setWorkingDirectory(base_path('scripts/Rscript'));
 
         $process->run();
