@@ -1,10 +1,14 @@
 library(tidyverse)
 library(RMariaDB)
 library(dotenv)
+library(readxl)
 
 args <- commandArgs(TRUE)
 
-indicator_value_ids <- strsplit(args[1], ',')
+excelFile <- args[1]
+excelData <- read_excel(excelFile)
+
+indicator_value_ids <- strsplit(args[2], ',')
 indicator_value_ids <- indicator_value_ids[!is.na(indicator_value_ids)]
 indicator_value_ids <- as.integer(indicator_value_ids[[1]])
 # dotenv::load_dot_env("../../.env")
