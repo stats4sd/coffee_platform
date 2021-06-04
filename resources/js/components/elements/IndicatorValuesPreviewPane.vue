@@ -117,7 +117,7 @@
             selected: {
                 type: Boolean,
                 default: null
-            },
+            }
         },
         data() {
             return {
@@ -155,21 +155,20 @@
 
         watch: {
             indicator() {
-                this.conversionNeeded = this.values.some((value) => {
-                    console.log(value)
+                this.conversionNeeded = this.values.some(value => {
+                    console.log(value);
                     return (
                         value.conversion_rate != 1 &&
                         value.conversion_rate != "1:1" &&
                         value.conversion_rate != null
-                    )
-                })
+                    );
+                });
             }
-
         },
 
         mounted() {
-            this.$root.$on('bv::modal::hidden', (bvEvent, modelId) => {
-                if(modelId === "valuePreviewModal") {
+            this.$root.$on("bv::modal::hidden", (bvEvent, modelId) => {
+                if (modelId === "valuePreviewModal") {
                     this.showStandardUnit = false;
                 }
             });
@@ -177,7 +176,7 @@
 
         methods: {
             downloadValues() {
-                this.$emit("download", [this.indicator]);
+                this.$emit("download", [this.indicator.id]);
             },
             toggleIndicatorSelection() {
                 this.$emit("toggle-indicator", this.indicator);
@@ -185,7 +184,6 @@
             toggleUnits() {
                 this.showStandardUnit = !this.showStandardUnit;
             }
-
         }
     };
 </script>

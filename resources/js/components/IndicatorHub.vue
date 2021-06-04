@@ -513,6 +513,13 @@
                 axios
                     .post("indicators/report", {
                         indicator_values: indicatorValues,
+                        indicators: selectedIndicators,
+                        countries: this.selectedCountries,
+                        years: this.selectedYears,
+                        types: this.selectedTypes,
+                        purposes: this.selectedPurposes,
+                        genders: this.selectedGenders,
+                        scopes: this.selectedScopes
                     })
                     .then(result => {
                         this.makeAndClickLink(result.data);
