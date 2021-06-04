@@ -26,7 +26,6 @@ class SourceFactory extends Factory
         return [
             'name' => $this->faker->unique()->word(),
             'reference' => $this->faker->sentence(2),
-            'type_id' => 1,
             'partner_id' => Partner::factory(),
             'description' => $this->faker->paragraph(5),
             'is_not_public' => $this->faker->boolean,
