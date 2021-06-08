@@ -103,7 +103,7 @@ class IndicatorValueController extends Controller
 
         $filename = 'indicator-values-exports/indicator-values-report-'.now()->toDateTimeString().'.pdf';
 
-        copy(base_path('scripts/Rscript/PDF Report Script.Rmd'), storage_path('app/public/'.$filename));
+        copy(base_path('scripts/Rscript/PDF_Report_Script.Rmd'), storage_path('app/public/'.$filename));
 
         return Storage::disk('public')->url($filename);
     }
