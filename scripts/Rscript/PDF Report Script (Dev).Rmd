@@ -21,10 +21,9 @@ set_flextable_defaults(fonts_ignore=TRUE)
 ```
 
 ```{r}
-source("IndicatorStatement.R")
+#source("IndicatorStatement.R")
 source("functions.R")
-
-data <- excelData
+data <- read.xlsx("example data/Example data 3.xlsx")
 
 countries <- unique(data$country)
 
