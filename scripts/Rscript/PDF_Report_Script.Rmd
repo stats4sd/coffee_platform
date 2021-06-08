@@ -57,6 +57,8 @@ for(i in 1:length(indicator_codes)){
   
 data_x <- data%>%filter(code == indicator_codes[i])  
 
+countries_x <- unique(data_x$country)
+
 cat("  \n#", data_x$code[1], data_x$name[1], "\n")
 
 cat("  \n##", "Indicator details", "\n")
@@ -69,9 +71,9 @@ cat('\n\n<!-- -->\n\n')
 
 cat("  \n##", "Indicator Values", "\n")
 
-for(m in 1:length(countries)){
+for(m in 1:length(countries_x)){
   
-  x <- value_table(data, indicator_codes[i], countries[m])
+  x <- value_table(data, indicator_codes[i], countries_x[m])
   
   cat(knit_print(x))
   
