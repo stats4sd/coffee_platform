@@ -105,6 +105,6 @@ class IndicatorValueController extends Controller
 
         copy(base_path('scripts/Rscript/PDF_Report_Script.Rmd'), storage_path('app/public/'.$filename));
 
-        return Storage::disk('public')->url($excelPath);
+        return Storage::disk('public')->url($filename);
     }
 }
