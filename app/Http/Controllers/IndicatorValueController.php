@@ -93,11 +93,11 @@ class IndicatorValueController extends Controller
         $indicatorValueIds = implode(",", $indicatorValueIds);
 
         $process = new Process(['Rscript', 'makeReport.R', $excelPath, $indicatorValueIds]);
-        ddd($process);
         $process->setWorkingDirectory(base_path('scripts/Rscript'));
-
+        
         $process->run();
-
+        
+        dd($process);
         if (!$process->isSuccessful()) {
             throw new ProcessFailedException($process);
         }
