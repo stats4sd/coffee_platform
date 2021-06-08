@@ -97,12 +97,12 @@ class IndicatorValueController extends Controller
         
         $process->run();
         
-        dd($process);
         if (!$process->isSuccessful()) {
             throw new ProcessFailedException($process);
         }
 
         $filename = 'indicator-values-exports/indicator-values-report-'.now()->toDateTimeString().'.pdf';
+        $filename = "indicator-values-exports/indicator-values-2021-Jun-Tue_042917.xlsx";
 
         copy(base_path('scripts/Rscript/PDF_Report_Script.Rmd'), storage_path('app/public/'.$filename));
 
