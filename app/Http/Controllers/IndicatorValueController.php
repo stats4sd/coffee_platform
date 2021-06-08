@@ -102,7 +102,6 @@ class IndicatorValueController extends Controller
         }
 
         $filename = 'indicator-values-exports/indicator-values-report-'.now()->toDateTimeString().'.pdf';
-        $filename = "indicator-values-exports/indicator-values-2021-Jun-Tue_042917.xlsx";
 
         copy(base_path('scripts/Rscript/PDF_Report_Script.Rmd'), storage_path('app/public/'.$filename));
 
