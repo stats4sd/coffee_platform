@@ -5,20 +5,20 @@ library(knitr)
 library(scales)
 library(flextable)
 
-data1 <- read.xlsx("example data/Example data 3.xlsx")
+data <- read.xlsx("example data/Example data 3.xlsx")
 
-countries <- unique(data1$country)
+countries <- unique(data$country)
 
-indicator_codes <- unique(data1$code)
+indicator_codes <- unique(data$code)
 
-data1 <- data1%>%
+data <- data%>%
   group_by(country, year, source_name, purpose, gender, scope)%>%
   mutate(n = n())%>%
   mutate(group = ifelse(n > 1, row_number(), NA))%>%
   mutate(indicator_definition = "-")%>%
   ungroup()
 
-data1%>%
+data%>%
   filter(country == countries[1])%>%
   select(country,purpose, gender, scope, source_name, value_standard, year, group)%>%
   arrange(year)%>%
@@ -44,7 +44,7 @@ data1%>%
   theme_box()%>%
   width(j = 1, width = 3)
 
-data1%>%
+data%>%
   filter(country == countries[2])%>%
   select(country,purpose, gender, scope, source_name, value_standard, year, group)%>%
   arrange(year)%>%
@@ -70,7 +70,7 @@ data1%>%
   theme_box()%>%
   width(j = 1, width = 3)
 
-data1%>%
+data%>%
   filter(country == countries[3])%>%
   select(country,purpose, gender, scope, source_name, value_standard, year, group)%>%
   arrange(year)%>%
@@ -128,7 +128,7 @@ value_table <- function(data, x, y){
   
 }
 
-value_table(data1, indicator_codes[1], countries[1])
+value_table(data, indicator_codes[1], countries[1])
 
 
 bar_graph <- function(data, x){
@@ -156,11 +156,11 @@ bar_graph <- function(data, x){
   
 }
 
-bar_graph(data1, indicator_codes[1])
+bar_graph(data, indicator_codes[1])
 
 
 #definition table
-t <-data1%>%
+t <-data%>%
   select(source_name, source_partner, indicator_name_original, indicator_definition)%>%
   group_by(source_name)%>%
   slice(1)
@@ -196,24 +196,24 @@ definition_table <- function(data, x){
   
 }
 
-definition_table(data1, indicator_codes[1])
+definition_table(data, indicator_codes[1])
 
 report_characteristics <- function(data){
   report_characteristics <- data.frame(
     Detail = c(
-      rep("Country", length(unique(data1$country))),
-      rep("Years", length(unique(data1$year))),
-      rep("Source Type", length(unique(data1$source_partner_type))),
-      rep("Purpose", length(unique(data1$purpose))),
-      rep("Gender", length(unique(data1$gender))),
-      rep("Scope", length(unique(data1$scope)))),
+      rep("Country", length(unique(data$country))),
+      rep("Years", length(unique(data$year))),
+      rep("Source Type", length(unique(data$source_partner_type))),
+      rep("Purpose", length(unique(data$purpose))),
+      rep("Gender", length(unique(data$gender))),
+      rep("Scope", length(unique(data$scope)))),
     Value = c(
-      unique(data1$country),
-      unique(data1$year),
-      unique(data1$source_partner_type),
-      unique(data1$purpose),
-      unique(data1$gender),
-      unique(data1$scope)
+      unique(data$country),
+      unique(data$year),
+      unique(data$source_partner_type),
+      unique(data$purpose),
+      unique(data$gender),
+      unique(data$scope)
     )
   )
   
@@ -229,4 +229,20 @@ report_characteristics <- function(data){
   return(report_characteristics)
 }
 
-report_characteristics(data1)
+report_characteristics(data)
+
+table <- data.frame(
+  col1 = c("Country", "Years", "Source Type", "Purpose", "Gender", "Scope"),
+  col2 = c(
+    gsub('"', '',paste(shQuote(unique(data$country)), collapse=", ")),
+    gsub('"', '',paste(shQuote(unique(data$year)), collapse=", ")),
+    gsub('"', '',paste(shQuote(unique(data$source_partner_type)), collapse=", ")),
+    gsub('"', '',paste(shQuote(unique(data$purpose)), collapse=", ")),
+    gsub('"', '',paste(shQuote(unique(data$gender)), collapse=", ")),
+    gsub('"', '',paste(shQuote(unique(data$scope)), collapse=", "))
+  )
+)
+
+
+
+
