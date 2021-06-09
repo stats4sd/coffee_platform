@@ -6,7 +6,7 @@ library(readxl)
 args <- commandArgs(TRUE)
 
 excelFile <- args[1]
-excelData <- read_excel('https://staging.coffeesmallholder.org/storage/app/public/indicator-values-exports/indicator-values-2021-Jun-Tue_034300.xlsx')
+excelData <- read_excel('https://staging.coffeesmallholder.org/storage/indicator-values-exports/indicator-values-2021-Jun-Tue_034300.xlsx')
 
 #indicator_value_ids <- strsplit(args[2], ',')
 #indicator_value_ids <- indicator_value_ids[!is.na(indicator_value_ids)]
