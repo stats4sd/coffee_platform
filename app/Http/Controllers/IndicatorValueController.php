@@ -92,7 +92,7 @@ class IndicatorValueController extends Controller
         $indicatorValueIds = Collect($request->input('indicator_values'))->pluck('id')->toArray();
         $indicatorValueIds = implode(",", $indicatorValueIds);
 
-        $process = new Process(['Rscript', 'makeReport.R', $excelPath, $indicatorValueIds]);
+        $process = new Process(['Rscript', 'makeReport.R', 'https://staging.coffeesmallholder.org/storage/indicator-values-exports/indicator-values-2021-Jun-Wed_085048.xlsx', $indicatorValueIds]);
         $process->setWorkingDirectory(base_path('scripts/Rscript'));
         
         $process->run();
