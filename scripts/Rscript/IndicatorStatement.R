@@ -2,7 +2,7 @@ library(tidyverse)
 library(RMariaDB)
 library(dotenv)
 library(readxl)
-print('excelFile')
+
 args <- commandArgs(TRUE)
 
 excelFile <- args[1]

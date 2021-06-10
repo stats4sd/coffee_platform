@@ -21,6 +21,7 @@ set_flextable_defaults(fonts_ignore=TRUE)
 ```
 
 ```{r}
+print('excelFile')
 source("IndicatorStatement.R")
 source("functions.R")
 
