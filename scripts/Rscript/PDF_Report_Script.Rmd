@@ -23,6 +23,7 @@ set_flextable_defaults(fonts_ignore=TRUE)
 ```{r}
 source("IndicatorStatement.R")
 source("functions.R")
+
 print('excelData')
 
 data <- excelData
