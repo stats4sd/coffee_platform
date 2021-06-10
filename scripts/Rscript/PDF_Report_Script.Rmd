@@ -17,19 +17,12 @@ library(tidyverse)
 library(openxlsx)
 library(kableExtra)
 library(flextable)
-library(readxl)
 set_flextable_defaults(fonts_ignore=TRUE)
 ```
 
 ```{r}
-
-args <- commandArgs(TRUE)
-excelFile <- args[1]
-excelData <- read_excel(excelFile)
+source("IndicatorStatement.R")
 source("functions.R")
-
-
-print('excelData')
 
 data <- excelData
 
