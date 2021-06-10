@@ -6,8 +6,6 @@ library(readxl)
 args <- commandArgs(TRUE)
 
 excelFile <- args[1]
-print('excelFile')
-print(excelFile)
 excelData <- read_excel(excelFile)
 
 #indicator_value_ids <- strsplit(args[2], ',')
