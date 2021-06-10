@@ -21,10 +21,9 @@ set_flextable_defaults(fonts_ignore=TRUE)
 ```
 
 ```{r}
-print('excelFile')
-print(excelData)
 source("IndicatorStatement.R")
 source("functions.R")
+print('excelData')
 
 data <- excelData
 
