@@ -21,8 +21,12 @@ set_flextable_defaults(fonts_ignore=TRUE)
 ```
 
 ```{r}
-source("IndicatorStatement.R")
+
+args <- commandArgs(TRUE)
+excelFile <- args[1]
+excelData <- read_excel(excelFile)
 source("functions.R")
+
 
 print('excelData')
 
