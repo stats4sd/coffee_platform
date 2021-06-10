@@ -6,9 +6,9 @@ library(readxl)
 args <- commandArgs(TRUE)
 
 excelFile <- args[1]
-excelData <- read_excel(excelFile)
+print('excelFile')
 print(excelFile)
-print(excelData)
+excelData <- read_excel(excelFile)
 
 #indicator_value_ids <- strsplit(args[2], ',')
 #indicator_value_ids <- indicator_value_ids[!is.na(indicator_value_ids)]
