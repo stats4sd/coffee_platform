@@ -27,6 +27,22 @@
     width: 100%;
     font-family:  sans-serif;
     }
+    #report_button{
+        position: absolute;
+        top: 400px;
+    }
+
+    .report-text{
+        position: absolute;
+        opacity: 1;
+        font-weight: 500;
+        text-align: left;
+        /* font-size: 55px; */
+        padding:100px;
+        line-height: 1.2;
+        font-family:  sans-serif;
+
+    }
     
     .arrow {
     /* margin-bottom: 0.4em; */
@@ -58,10 +74,12 @@
     width:100%;
     object-fit:cover;
     height:500px;
+    position: absolute;
     }
 
     #image_report{
     width:100%;
+    position: absolute;
     object-fit:cover;
     height:500px;
     }
