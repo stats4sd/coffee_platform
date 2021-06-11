@@ -74,6 +74,7 @@
     width:100%;
     object-fit:cover;
     height:500px;
+    position: absolute;
     }
 
     #image_report{
