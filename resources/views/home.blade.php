@@ -20,8 +20,7 @@
     </div>
 
 
-    <div class="container px-4">
-        <div class="row">
+    <div class="container mt-5 px-4">
             <h2 id="text-green">What is it?</h2>
             <p>The State of the Coffee Smallholder Platform is an open access data resource, designed to drive more informed decision making
                  amongst smallholder coffee farmers as well as various value chain actors.
@@ -33,9 +32,9 @@
             <div class="d-flex justify-content-center mt-5 mb-5">
             <a href="partners"><button class="button-green">Find Out More <i class='las la-arrow-right'></i></button></a>
             </div>             
-        </div>
+
         <div class="row">
-            <div class="col-6">
+            <div class="mt-5 col-6">
                 <h2 id="text-green">Report</h2>
                 <p>Alongside the platform, a report has been produced, describing the data collection process and
                     the key findings in detail.

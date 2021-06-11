@@ -195,6 +195,7 @@ button.btn {
     color: white;
     padding-right: 5%;
 }
+
 .box-green{
     position: relative;
     opacity: 0.6;
@@ -205,4 +206,12 @@ button.btn {
 .partners-logos{
     padding-right:5%;
     padding-left:5%;
+
+#caption_small{
+    background-color: $darkgreen;
+    height: 25px;
+    width: 75%;
+    text-align: right;
+    color: white;
+    padding-right: 5%;
 }
