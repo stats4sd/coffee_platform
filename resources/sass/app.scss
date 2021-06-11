@@ -107,6 +107,7 @@ button.btn {
     height: 75px;
 }
 
+
 // .popover.bg-primary {
 //     .popover-header {
 //         background-color: $primary;
@@ -165,4 +166,52 @@ button.btn {
   border-radius: 4px;
   background-color: rgba(0, 0, 0, .5);
   box-shadow: 0 0 1px rgba(255, 255, 255, .5);
+}
+
+// style for green buttons
+.button-green {
+  background-color: $lightgreen;
+  border: none;
+//   color: white;
+//   padding: 0.3em;
+  text-align: center;
+  text-decoration: none;
+//   display: inline-block;
+  font-size: 19px;
+  border-radius: 50px;
+  height: 45px;
+  width: 250px;
+}
+
+#text-green {
+    color: $medgreen;
+}
+
+#caption{
+    background-color: $darkgreen;
+    height: 25px;
+    width: 100%;
+    text-align: right;
+    color: white;
+    padding-right: 5%;
+}
+
+.box-green{
+    position: relative;
+    opacity: 0.6;
+    height: 500px;
+    width: 30%;
+    background-color: $lightgreen;
+}
+.partners-logos{
+    padding-right:5%;
+    padding-left:5%;
+
+#caption_small{
+    background-color: $darkgreen;
+    height: 25px;
+    width: 75%;
+    text-align: right;
+    color: white;
+    padding-right: 5%;
 }
