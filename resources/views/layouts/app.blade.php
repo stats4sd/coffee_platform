@@ -15,7 +15,7 @@
     <style>
     .text-block {
     position: absolute;
-    top: 400px;
+    top: 275px;
     color: white;
     padding-bottom: 50px;
     font-weight: 700;
