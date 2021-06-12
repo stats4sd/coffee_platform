@@ -30,7 +30,7 @@
                 These are available to browse and download from the <a href="indicators" style="color: #66AC47">Indicator Hub.</a>
             </p>
             <div class="d-flex justify-content-center mt-5 mb-5">
-            <a href="partners"><button class="button-green">Find Out More <i class='las la-arrow-right'></i></button></a>
+            <a href="about"><button class="button-green">Find Out More <i class='las la-arrow-right'></i></button></a>
             </div>             
 
         <div class="row">

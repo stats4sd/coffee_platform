@@ -18,7 +18,7 @@
         </div>   
     </div>
     <div class="d-flex justify-content-center">
-        <a href="partners"><button class="button-green" id="report_button">Download 2021 Report <i class='las la-arrow-down'></i></button></a>
+        <a href="reports"><button class="button-green" id="report_button">Download 2021 Report <i class='las la-arrow-down'></i></button></a>
     </div>
     <div id="caption">
         Photo Credit: Phillip Davis 2020
