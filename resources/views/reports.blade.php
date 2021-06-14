@@ -24,12 +24,6 @@
         Photo Credit: Phillip Davis 2020
     </div>
 </div>
-            
-
-<div class="container px-4 mt-4">
-    <h2 id="text-green">Previous Reports</h2>
-    <p>Here we could add donwload links to older reports...</p>
-</div>
 
 
 @endsection
