@@ -24,12 +24,12 @@ class IndicatorValueController extends Controller
     public function index(Request $request)
     {
         if ($request->has('search')) {
-            $query = IndicatorValue::search($request->search);
+            $query = IndicatorValue::search($request->search)->paginate(0);
         } else {
-            $query = IndicatorValue::query();
+            $query = IndicatorValue::query()->get();
         }
 
-        $results = $query->get()->load('purposeOfCollection', 'indicator.subCharacteristic.characteristic', 'gender', 'scope');
+        $results = $query->load('purposeOfCollection', 'indicator.subCharacteristic.characteristic', 'gender', 'scope');
 
         return $results;
     }
