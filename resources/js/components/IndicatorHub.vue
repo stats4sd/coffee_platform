@@ -102,10 +102,12 @@
 
 
                 <div v-if="selectedCharacteristic">
+
                     <h2 class="py-3">
                         Subcategories
                     </h2>
                     <div class="d-flex flex-wrap ">
+
                         <b-form-checkbox-group
                             v-model="selectedSubCharacteristics"
                             :options="
@@ -506,6 +508,8 @@
                         years: this.selectedYears,
                         types: this.selectedTypes,
                         purposes: this.selectedPurposes,
+                        genders: this.selectedGenders,
+                        scopes: this.selectedScopes,
                     })
                     .then(result => {
                         this.makeAndClickLink(result.data);
@@ -531,6 +535,13 @@
                 axios
                     .post("indicators/report", {
                         indicator_values: indicatorValues,
+                        indicators: selectedIndicators,
+                        countries: this.selectedCountries,
+                        years: this.selectedYears,
+                        types: this.selectedTypes,
+                        purposes: this.selectedPurposes,
+                        genders: this.selectedGenders,
+                        scopes: this.selectedScopes
                     })
                     .then(result => {
                         this.makeAndClickLink(result.data);

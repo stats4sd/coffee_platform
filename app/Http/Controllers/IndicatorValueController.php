@@ -39,7 +39,7 @@ class IndicatorValueController extends Controller
         return Year::has('indicatorValues')->get();
     }
 
-    public function download(Request $request)
+    public function makeExcel(Request $request)
     {
         $export = new IndicatorValuesExport;
 
@@ -65,23 +65,50 @@ class IndicatorValueController extends Controller
             $export = $export->forPurposes($request->input('purposes'));
         }
 
+        if ($request->has('genders') && count($request->input('genders')) > 0) {
+            $export = $export->forGenders($request->input('genders'));
+        }
+
+        if ($request->has('scopes') && count($request->input('scopes')) > 0) {
+            $export = $export->forScopes($request->input('scopes'));
+        }
+
+
         $filename = 'indicator-values-exports/indicator-values-'.now()->format('Y-M-D_his').'.xlsx';
-   
+
         $success = Excel::store($export, $filename, 'public');
 
         if (! $success) {
             return response('Could not export data - please check logs', 500);
         }
 
+        return $filename;
+    }
+
+    public function download(Request $request)
+    {
+        $filename = $this->makeExcel($request);
+
         return Storage::disk('public')->url($filename);
     }
 
+    public function getExcel(Request $request)
+    {
+        $filename = $this->makeExcel($request);
+
+        return Storage::disk('public')->path($filename);
+    }
+
+
+
     public function report(Request $request)
     {
+        $excelPath = $this->getExcel($request);
+
         $indicatorValueIds = Collect($request->input('indicator_values'))->pluck('id')->toArray();
         $indicatorValueIds = implode(",", $indicatorValueIds);
 
-        $process = new Process(['Rscript', 'makeReport.R', $indicatorValueIds]);
+        $process = new Process(['Rscript', 'makeReport.R', $excelPath, $indicatorValueIds]);
         $process->setWorkingDirectory(base_path('scripts/Rscript'));
 
         $process->run();
@@ -92,7 +119,7 @@ class IndicatorValueController extends Controller
 
         $filename = 'indicator-values-exports/indicator-values-report-'.now()->toDateTimeString().'.pdf';
 
-        copy(base_path('scripts/Rscript/PDF-Report-Script.pdf'), storage_path('app/public/'.$filename));
+        copy(base_path('scripts/Rscript/PDF_Report_Script.pdf'), storage_path('app/public/'.$filename));
 
         return Storage::disk('public')->url($filename);
     }
