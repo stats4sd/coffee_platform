@@ -11,6 +11,83 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    <style>
+    .text-block {
+    position: absolute;
+    top: 275px;
+    color: white;
+    padding-bottom: 50px;
+    font-weight: 700;
+    text-align: left;
+    /* font-size: 55px; */
+    padding-left: 5%;
+    padding-right: 5%;
+    line-height: 1.2;
+    width: 100%;
+    font-family:  sans-serif;
+    }
+    #report_button{
+        position: absolute;
+        top: 400px;
+    }
+
+    .report-text{
+        position: absolute;
+        opacity: 1;
+        font-weight: 500;
+        text-align: left;
+        /* font-size: 55px; */
+        padding:100px;
+        line-height: 1.2;
+        font-family:  sans-serif;
+
+    }
+    
+    .arrow {
+    /* margin-bottom: 0.4em; */
+    font-size:24px;
+    /* width: 2.5rem;
+    height: 2.5rem; */
+    /* padding-top: 0.35em; */
+    /* position:relative; */
+    /* padding: 10px; */
+    padding-top: 30px;
+    /* padding-right: 30px; */
+    padding-bottom: 30px;
+    /* padding-left: 5px; */
+    }
+
+    #image_home_header{
+    width:100%;  
+    object-fit:cover; 
+    height:500px;
+    }
+
+    #image_home_report{
+    width:75%;  
+    object-fit:cover; 
+    height:500px;
+    }
+
+    #image_about{
+    width:100%;
+    object-fit:cover;
+    height:500px;
+    position: absolute;
+    }
+
+    #image_report{
+    width:100%;
+    position: absolute;
+    object-fit:cover;
+    height:500px;
+    }
+
+
+    </style>
+    @yield('styles')
+
 </head>
 <body>
      <div class="full-height d-flex flex-column bg-white">

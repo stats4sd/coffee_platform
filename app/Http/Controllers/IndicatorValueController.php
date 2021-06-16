@@ -39,7 +39,7 @@ class IndicatorValueController extends Controller
         return Year::has('indicatorValues')->get();
     }
 
-    public function download(Request $request)
+    public function makeExcel(Request $request)
     {
         $export = new IndicatorValuesExport;
 
@@ -82,12 +82,28 @@ class IndicatorValueController extends Controller
             return response('Could not export data - please check logs', 500);
         }
 
+        return $filename;
+    }
+
+    public function download(Request $request)
+    {
+        $filename = $this->makeExcel($request);
+
         return Storage::disk('public')->url($filename);
     }
 
+    public function getExcel(Request $request)
+    {
+        $filename = $this->makeExcel($request);
+
+        return Storage::disk('public')->path($filename);
+    }
+
+
+
     public function report(Request $request)
     {
-        $excelPath = $this->download($request);
+        $excelPath = $this->getExcel($request);
 
         $indicatorValueIds = Collect($request->input('indicator_values'))->pluck('id')->toArray();
         $indicatorValueIds = implode(",", $indicatorValueIds);
@@ -103,7 +119,7 @@ class IndicatorValueController extends Controller
 
         $filename = 'indicator-values-exports/indicator-values-report-'.now()->toDateTimeString().'.pdf';
 
-        copy(base_path('scripts/Rscript/PDF-Report-Script.pdf'), storage_path('app/public/'.$filename));
+        copy(base_path('scripts/Rscript/PDF_Report_Script.pdf'), storage_path('app/public/'.$filename));
 
         return Storage::disk('public')->url($filename);
     }
