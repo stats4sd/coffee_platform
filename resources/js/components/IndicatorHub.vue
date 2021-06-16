@@ -152,6 +152,8 @@
                         :items="indicatorsForDisplay"
                         :fields="indicatorFields"
                         :busy="loading"
+                        :sort-by.sync="sortBy"
+                        :sort-desc.sync="sortDesc"
                         sticky-header
                         class="pb-4"
                         thead-class="bg-light open-top"
@@ -247,6 +249,8 @@
 
         data() {
             return {
+                sortBy: 'code',
+                sortDesc: false,
                 processing: false,
                 loading: false,
                 downloadOptionsVisible: false,
@@ -256,11 +260,13 @@
                 indicatorFields: [
                     {
                         key: "code",
-                        label: "Code"
+                        label: "Code",
+                        sortable: true,
                     },
                     {
                         key: "name",
-                        label: "Indicator"
+                        label: "Indicator",
+                        sortable: true,
                     },
                     {
                         key: "actions",
