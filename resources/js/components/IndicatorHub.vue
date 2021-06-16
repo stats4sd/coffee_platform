@@ -11,7 +11,7 @@
                     /></span>
                 </h2>
             </div>
-            <div class="d-flex flex-column">
+            <div class="d-flex flex-column sticky-top ">
                 <ul class="list-group">
                     <sidebar-filter
                         v-model="selectedCountries"
@@ -94,11 +94,20 @@
                         @input="resetSubCharacteristics"
                     />
                 </div>
+                
                 <!-- </characteristics> -->
                 <!-- <sub-characteristics> -->
+
+
+
+
                 <div v-if="selectedCharacteristic">
-                    <h2 class="pt-3" />
-                    <div class="d-flex flex-wrap">
+
+                    <h2 class="py-3">
+                        Subcategories
+                    </h2>
+                    <div class="d-flex flex-wrap ">
+
                         <b-form-checkbox-group
                             v-model="selectedSubCharacteristics"
                             :options="
@@ -112,7 +121,7 @@
                             button-variant="primary"
                             value-field="id"
                             buttons
-                            class="ungrouped-buttons"
+                            class="ungrouped-buttons subcategories"
                             @change="forceSingle"
                         />
                     </div>
@@ -120,7 +129,7 @@
             </div>
 
             <div class="bg-light pt-4 flex-grow-1">
-                <div class="container py-4">
+                <div class="container py-4 px-5">
                     <!-- </sub-characteristics> -->
 
                     <!-- </indicator-main> -->
@@ -128,25 +137,38 @@
 
                     <div class="d-flex py-4">
                         <ul
-                            class="text-small list-style-none w-50 border border-top-0 border-left-0 border-bottom-0 border-secondary pr-4 mr-4"
+                            class="text-small list-style-none border border-top-0 border-left-0 border-bottom-0 border-secondary pr-4 mr-4"
+                            style="width: 35%; max-width: 24rem !important; min-width: 12rem; padding-left: 0.8rem;"
                         >
-                            <li class="d-flex justify-content-between">
+                            <li class="d-flex justify-content-between mb-1">
                                 <div>Indicators Found:</div>
-                                <div class="ml-auto font-weight-bold">
+                                <div class="ml-1 font-weight-bold">
                                     {{ indicatorsForDisplay.length }}
                                 </div>
                             </li>
                             <li class="d-flex justify-content-between">
                                 <div>Indicator Values Found:</div>
-                                <div class="ml-auto font-weight-bold">
+                                <div class="ml-1 font-weight-bold">
                                     {{ filteredIndicatorValuesForDisplay.length }}
                                 </div>
                             </li>
                         </ul>
-                        <div class="flex-grow-1">
+                        <div class="flex-grow-1 ml-auto mr-5">
                             Indicator values can be previewed or downloaded individually. Inidcators added to selection can be reviewed on the download icon in the top right corner.
                         </div>
                     </div>
+
+
+
+
+
+
+
+
+
+
+
+
 
                     <b-table
                         :items="indicatorsForDisplay"
@@ -175,7 +197,7 @@
                                             ? 'info'
                                             : 'primary'
                                     "
-                                    class="ml-2 pr-2 font-weight-bold"
+                                    class="ml-2 pr-2 font-weight-bold btn-select"
                                     @click="toggleIndicatorSelection(row.item)"
                                 >
                                     <span
@@ -195,7 +217,7 @@
                                             )
                                         "
                                     >
-                                        <i class="las la-check mr-4" /> selected
+                                        <i class="las la-check mr-5" /> selected
                                     </span>
                                 </b-button>
                                 <b-button
