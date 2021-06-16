@@ -3,13 +3,17 @@ title: 'State of the Coffee Smallholder Platform: Indicator Report'
 output:
   pdf_document:
     toc_depth: 1
+  html_document:
+    toc_depth: '1'
+    df_print: paged
+date: "`r format(Sys.time(), '%d %B %Y')`"
 header-includes:
 - \usepackage{fancyhdr}
 - \pagestyle{fancy}
 - \fancyfoot{}
-- \fancyfoot[LO,LE]{Note; If values have been converted to standard units, original values and conversion rates will be available in the indicator excel download.} 
+- \fancyfoot[LO,LE]{Note; If values have been converted to standard units, original
+  values and conversion rates will be available in the indicator excel download.}
 - \fancyhead[L]{\thepage}
-date: "`r format(Sys.time(), '%d %B %Y')`"
 ---
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
@@ -33,7 +37,7 @@ data <- data%>%
   group_by(country, year, source_name, purpose, gender, scope)%>%
   mutate(n = n())%>%
   mutate(group = ifelse(n > 1, row_number(), NA))%>%
-  mutate(indicator_definition = "-")%>%
+  mutate(definition_original = ifelse(is.na(definition_original), "-", definition_original))%>%
   ungroup()
 ```
 
@@ -66,6 +70,14 @@ cat("  \n##", "Indicator details", "\n")
 
 cat('\n\n<!-- -->\n\n')
 
+cat("  \n##", "Indicator Graph", "\n")
+
+  knit_print(bar_graph(data, indicator_codes[i]))
+
+cat('\n\n<!-- -->\n\n')
+
+cat("\n\n\\pagebreak\n")
+
 cat("  \n##", "Indicator Values", "\n")
 
 for(m in 1:length(countries)){
@@ -79,14 +91,6 @@ for(m in 1:length(countries)){
 }
 
 cat('\n\n<!-- -->\n\n')
-
-cat("  \n##", "Indicator Graphs", "\n")
-
-  knit_print(bar_graph(data, indicator_codes[i]))
-
-cat('\n\n<!-- -->\n\n')
-
-cat("\n\n\\pagebreak\n")
 
 cat("  \n##",  "Indicator Definitions", "\n")
 
