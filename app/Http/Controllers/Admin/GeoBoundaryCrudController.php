@@ -70,7 +70,7 @@ class GeoBoundaryCrudController extends CrudController
             ],
             [
                 'name' => 'altitude',
-                'type' => 'number',
+                'type' => 'text',
                 'label' => 'altitude'
             ]
         ]);
@@ -130,7 +130,7 @@ class GeoBoundaryCrudController extends CrudController
             ],
             [
                 'name' => 'altitude',
-                'type' => 'number',
+                'type' => 'text',
                 'label' => 'Altitude'
             ]
         ]);

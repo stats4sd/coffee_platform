@@ -209,7 +209,7 @@ class IndicatorValueCrudController extends CrudController
                 'type' => 'relationship',
                 'name' => 'geo_boundary_id',
                 'entity' => 'geoBoundary' ,
-                'attribute' => "description",
+                'attribute' => "geo_description",
                 'data_source' => route('indicator_value.fetchGeoBoundary'),
                 'inline_create' => [
                     'entity' => 'geo_boundary',

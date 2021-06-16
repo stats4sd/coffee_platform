@@ -27,6 +27,8 @@ class GeoBoundary extends Model
 
     protected $with = ['country'];
 
+    protected $appends = ['geo_description'];
+
     /*
     |--------------------------------------------------------------------------
     | FUNCTIONS
@@ -80,12 +82,12 @@ class GeoBoundary extends Model
     | MUTATORS
     |--------------------------------------------------------------------------
     */
-    public function getDescriptionAttribute($value)
+    public function getGeoDescriptionAttribute()
     {
-        $CountryName=Country::find($this->country_id)->name;
+        $CountryName= $this->country_id ? Country::find($this->country_id)->name : 'null';
         $RegionName = $this->region_id ? Region::find($this->region_id)->name : 'null';
         $DepartmentName = $this->department_id ? Department::find($this->department_id)->name : 'null';
         $MuncipalityName = $this->munciplaity_id ? Muncipality::find($this->muncipality_id)->name : 'null';
-        return "{$CountryName} - {$RegionName} - {$DepartmentName} - {$MuncipalityName} - {$this->altitude} - {$value}";
+        return "{$CountryName} - {$RegionName} - {$DepartmentName} - {$MuncipalityName} - {$this->altitude} - {$this->description}";
     }
 }
