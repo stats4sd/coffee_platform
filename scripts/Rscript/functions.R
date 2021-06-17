@@ -97,14 +97,15 @@ value_table <- function(data, x, y){
       theme_box()%>%
       add_footer_lines(values = "* - Sample size for reported value is 21 or less")%>%
       fix_border_issues()%>%
-      width(j = 1, width = 2)
+      align(j = 2:(year_n+1), align = "center")%>%
+      align(i = 2, j = 2:(year_n+1), align = "center", part = "header")
     
-    value_table <- FitFlextableToPage(value_table)
-    
-    if(year_n>3){
+    if(year_n>5){
     value_table <- rotate(value_table, i=2, j=-1, rotation = "tbrl", part = "header")
     }
-
+    
+    value_table <- width(value_table,j=1:(year_n+1), width = c(3, rep(3.5/year_n, year_n)))
+    
     return(value_table)
     
     
@@ -127,13 +128,14 @@ value_table <- function(data, x, y){
     bg(i = ~!is.na(Purpose), bg = "#E2EFD9")%>%
     theme_box()%>%
     fix_border_issues()%>%
-    width(j = 1, width = 2)
+    align(j = 2:(year_n+1), align = "center")%>%
+    align(i = 2, j = 2:(year_n+1), align = "center", part = "header")
   
-  value_table <- FitFlextableToPage(value_table)
-  if(year_n>3){
+  if(year_n>5){
     value_table <- rotate(value_table, i=2, j=-1, rotation = "tbrl", part = "header")
   }
-  
+
+  value_table <- width(value_table,j=1:(year_n+1), width = c(3, rep(3.5/year_n, year_n)))
   return(value_table)
   
 }
