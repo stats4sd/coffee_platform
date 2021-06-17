@@ -11,7 +11,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link @if(Route::currentRouteName() === 'partners') active @endif" href="{{ route('partners') }}">About</a>
+                    <a class="nav-link @if(Route::currentRouteName() === 'about') active @endif" href="{{ route('about') }}">About</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link @if(Route::currentRouteName() === 'reports') active @endif" href="{{ route('reports') }}">Reports</a>

@@ -24,7 +24,7 @@ use App\Http\Controllers\PurposeOfCollectionController;
 */
 
 Route::view('/', 'home')->name('home');
-Route::view('partners', 'partners')->name('partners');
+Route::view('about', 'about')->name('about');
 Route::view('reports', 'reports')->name('reports');
 Route::view('indicators', 'indicators')->name('indicators');
 

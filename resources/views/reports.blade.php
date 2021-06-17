@@ -19,14 +19,14 @@
                         their organisations.
                     </p>
                     <div class="text-center d-block d-md-none">
-                    <a href="partners"><button class="d-block mx-auto button-green mt-5" style="color: #fff; background-color:#007155">Download 2021 Report <i
+                    <a href="about"><button class="d-block mx-auto button-green mt-5" style="color: #fff; background-color:#007155">Download 2021 Report <i
                             class='las la-arrow-down'></i></button></a>
 </div>
                 </div>
             </div>
             <div class="col-md-4 col-lg-5 text-center d-none d-md-block">
             <div class="my-auto">
-                <a href="partners"><button class="button-green" id="report_button">Download 2021 Report <i
+                <a href="reports"><button class="button-green" id="report_button">Download 2021 Report <i
                             class='las la-arrow-down'></i></button></a>
             </div>
 </div>
