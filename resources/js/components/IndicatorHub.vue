@@ -1,4 +1,5 @@
 <template>
+
     <div class="d-md-flex d-block">
         <div class="full-height sidebar shadow">
             <div class="sidebar-header bg-primary p-4 mb-0 text-white">
@@ -67,11 +68,13 @@
                 @download-xlsx="downloadValues(selectedIndicators)"
                 @download-pdf="downloadReport(selectedIndicators)"
             />
+            <div style="position:relative;bottom:70px;">
             <div class="pt-4 px-lots pb-4">
                 <h1 class="text-center pb-4">
                     Search or Browse Indicators
                 </h1>
-                <b-input-group class="mb-3">
+             
+                <b-input-group class="mb-3 mx-4">
                     <template #append>
                         <b-input-group-text>
                             <i class="las la-search" />
@@ -83,9 +86,9 @@
                         @input="searchIndicators"
                     />
                 </b-input-group>
-                <p class="text-center pb-4 pt-2">
-                    Indicators displayed below can be refined using the search bar, filters or categories.
-                </p>
+                <h2 class="py-3">
+                        Categories
+                    </h2>
                 <!-- <characteristics> -->
                 <div class="d-flex flex-wrap pb-4">
                     <select-with-images
@@ -93,6 +96,10 @@
                         :options="characteristics"
                         @input="resetSubCharacteristics"
                     />
+
+                    <div class="card select-card m-2"><!----><!----><img src="https://staging.coffeesmallholder.org/storage/characteristics//f6f01e55fdc0e185e4f23678bca475f5.jpg" class="card-img"> <div class="card-caption text-white font-weight-bold">
+                Economic
+            </div><!----><!----></div>
                 </div>
                 
                 <!-- </characteristics> -->
@@ -154,7 +161,7 @@
                             </li>
                         </ul>
                         <div class="flex-grow-1 ml-auto mr-5">
-                            Indicator values can be previewed or downloaded individually. Inidcators added to selection can be reviewed on the download icon in the top right corner.
+                            Indicator values can be previewed or downloaded individually. Indicators added to selection can be reviewed on the download icon in the top right corner.
                         </div>
                     </div>
 
@@ -237,6 +244,7 @@
                     <!-- </results-section> -->
                 </div>
             </div>
+        </div>
         </div>
 
         <indicator-values-preview-pane

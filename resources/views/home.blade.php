@@ -5,9 +5,9 @@
     <div class="header mb-5">
         <img src="images/home.jpg" id="image_home_header" class="image_header"/>
         <div class ="text-block">
-            <h1 class="mb-5">Get to know the smallholder farmer</h1>
+            <h1 class="mb-5">Open access data for decision-making</h1>
             
-            <h2 class="mb-3 ">Open access data for decision-making.</h2>
+            <h2 class="mb-3 ">Get to know the smallholder farmer.</h2>
             <p class="d-none d-md-block">Explore and download indicator data about smallholder coffee farmers in Guatemala, Honduras and
                 Nicaragua.
             </p>

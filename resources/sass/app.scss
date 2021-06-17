@@ -14,6 +14,10 @@
 // Components
 @import "./components/SelectWithImages";
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     font-family: roboto;
     font-size: 1rem;
@@ -68,8 +72,8 @@ button.btn {
 }
 
 .px-lots {
-    padding-left: 20%;
-    padding-right: 20%;
+    padding-left: 12%;
+    padding-right: 12%;
 }
 
 .full-height {
@@ -265,6 +269,9 @@ button.btn {
     // width: 40%;
     background-color: #b2d23ec7;
 }
+.box-green a{
+    color: $darkgreen;
+}
 .partners-logos{
     padding-right:5%;
     padding-left:5%;
@@ -347,6 +354,40 @@ button.btn {
     height:500px;
     }
 
-   
+ #image_hub {
+     height: 400px;
 
-
+ }
+.helpbar {
+    border: none !important;
+    border-radius: 0px;
+    height: 100px;
+    background-color: #b2d23ec7;
+    color: #102125;
+    width: 110vw;
+    position: relative;
+    bottom: 100px;
+    padding-left: 11.5vw;
+    text-align: left;
+    font-family: "Noto Sans JP", sans-serif;
+    font-size: 1.7rem;
+    font-weight: 700;
+    line-height: 100px;
+}
+.helpbar:focus {
+    box-shadow: none;
+}
+ .helpbox {
+    background-color: #b2d23e;
+    color: $dark;
+    padding-left: 11.5vw;
+    padding-right: 11.5vw;
+ 
+}
+.helpbox p {
+    margin-bottom: 0.3rem;
+}
+.helpbox h2 {
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
+}
