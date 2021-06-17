@@ -97,9 +97,7 @@
                         @input="resetSubCharacteristics"
                     />
 
-                    <div class="card select-card m-2"><!----><!----><img src="https://staging.coffeesmallholder.org/storage/characteristics//f6f01e55fdc0e185e4f23678bca475f5.jpg" class="card-img"> <div class="card-caption text-white font-weight-bold">
-                Economic
-            </div><!----><!----></div>
+                    
                 </div>
                 
                 <!-- </characteristics> -->
