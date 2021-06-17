@@ -36,6 +36,8 @@ report_characteristics <- function(data, x){
     fix_border_issues()%>%
     width(j = 2, width = 5)
   
+  report_characteristics <- FitFlextableToPage(report_characteristics)
+  
   return(report_characteristics)
 }
 
@@ -60,6 +62,8 @@ indicator_details <- function(data, x){
 value_table <- function(data, x, y){
   
   sample_minimum <- min(data$sample_size[data$code==x & data$country == y], na.rm = TRUE)
+  
+  year_n <- length(unique(data$year[data$code==x & data$country == y]))
   
   value_table <- data%>%
     filter(code == x & country == y)%>%
@@ -93,7 +97,14 @@ value_table <- function(data, x, y){
       theme_box()%>%
       add_footer_lines(values = "* - Sample size for reported value is 21 or less")%>%
       fix_border_issues()%>%
-      width(j = 1, width = 3)
+      align(j = 2:(year_n+1), align = "center")%>%
+      align(i = 2, j = 2:(year_n+1), align = "center", part = "header")
+    
+    if(year_n>5){
+    value_table <- rotate(value_table, i=2, j=-1, rotation = "tbrl", part = "header")
+    }
+    
+    value_table <- width(value_table,j=1:(year_n+1), width = c(3, rep(3.5/year_n, year_n)))
     
     return(value_table)
     
@@ -117,8 +128,14 @@ value_table <- function(data, x, y){
     bg(i = ~!is.na(Purpose), bg = "#E2EFD9")%>%
     theme_box()%>%
     fix_border_issues()%>%
-    width(j = 1, width = 3)
+    align(j = 2:(year_n+1), align = "center")%>%
+    align(i = 2, j = 2:(year_n+1), align = "center", part = "header")
   
+  if(year_n>5){
+    value_table <- rotate(value_table, i=2, j=-1, rotation = "tbrl", part = "header")
+  }
+
+  value_table <- width(value_table,j=1:(year_n+1), width = c(3, rep(3.5/year_n, year_n)))
   return(value_table)
   
 }
@@ -127,7 +144,26 @@ value_table <- function(data, x, y){
 bar_graph <- function(data, x){
   
   data <- data%>%
-    filter(code == x)  
+    filter(code == x)%>%
+    arrange(year)%>%
+    mutate(year = as.character(year))
+  
+  if(data$unit_standard[1] == "%"){
+    p1 <- data%>%
+      ggplot(aes(fill = country, y=value_standard/100, x = year))+
+      geom_col(position = position_dodge2(preserve = "single"))+
+      labs(fill = "Country",
+           x = "Year",
+           y = paste0(data$name, " (", data$unit_standard[1], ")"),
+           title = paste(data$code, " ", data$name))+
+      scale_fill_brewer(palette = "Dark2")+
+      theme_light()+
+      scale_y_continuous(limits = c(0,1),
+                         labels = percent)
+    
+    return(p1)
+    
+  }
   
   p1 <- data%>%
     ggplot(aes(fill = country, y=value_standard, x = year))+
@@ -139,12 +175,6 @@ bar_graph <- function(data, x){
     scale_fill_brewer(palette = "Dark2")+
     theme_light()
   
-  if(data$value_standard[1] == "%"){
-    
-    p1 <- scale_y_continuous(labels = percent)
-    
-  }else{}
-  
   return(p1)
   
 }
@@ -152,7 +182,7 @@ bar_graph <- function(data, x){
 definition_table <- function(data, x){
   t <-data%>%
     filter(code == x)%>%
-    select(source_name, source_partner, indicator_name_original, indicator_definition)%>%
+    select(source_name, source_partner, indicator_name_original, definition_original)%>%
     group_by(source_name)%>%
     slice(1)
   
@@ -160,7 +190,7 @@ definition_table <- function(data, x){
     set_header_labels(source_name = "Source",
                       source_partner = "Source Partner",
                       indicator_name_original = "Original Indicator Name",
-                      indicator_definition = "Indicator Definition")%>%
+                      definition_original = "Indicator Definition")%>%
     bg(i = 1, bg = "#A8D08D", part = "header")%>%
     theme_box()%>%
     fix_border_issues()%>%

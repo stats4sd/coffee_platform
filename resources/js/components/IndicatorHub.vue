@@ -1,4 +1,5 @@
 <template>
+
     <div class="d-md-flex d-block">
         <div class="full-height sidebar shadow">
             <div class="sidebar-header bg-primary p-4 mb-0 text-white">
@@ -11,7 +12,7 @@
                     /></span>
                 </h2>
             </div>
-            <div class="d-flex flex-column">
+            <div class="d-flex flex-column sticky-top ">
                 <ul class="list-group">
                     <sidebar-filter
                         v-model="selectedCountries"
@@ -67,11 +68,13 @@
                 @download-xlsx="downloadValues(selectedIndicators)"
                 @download-pdf="downloadReport(selectedIndicators)"
             />
+            <div style="position:relative;bottom:70px;">
             <div class="pt-4 px-lots pb-4">
                 <h1 class="text-center pb-4">
                     Search or Browse Indicators
                 </h1>
-                <b-input-group class="mb-3">
+             
+                <b-input-group class="mb-3 mx-4">
                     <template #append>
                         <b-input-group-text>
                             <i class="las la-search" />
@@ -83,9 +86,9 @@
                         @input="searchIndicators"
                     />
                 </b-input-group>
-                <p class="text-center pb-4 pt-2">
-                    Indicators displayed below can be refined using the search bar, filters or categories.
-                </p>
+                <h2 class="py-3">
+                        Categories
+                    </h2>
                 <!-- <characteristics> -->
                 <div class="d-flex flex-wrap pb-4">
                     <select-with-images
@@ -93,12 +96,23 @@
                         :options="characteristics"
                         @input="resetSubCharacteristics"
                     />
+
+                    
                 </div>
+                
                 <!-- </characteristics> -->
                 <!-- <sub-characteristics> -->
+
+
+
+
                 <div v-if="selectedCharacteristic">
-                    <h2 class="pt-3" />
-                    <div class="d-flex flex-wrap">
+
+                    <h2 class="py-3">
+                        Subcategories
+                    </h2>
+                    <div class="d-flex flex-wrap ">
+
                         <b-form-checkbox-group
                             v-model="selectedSubCharacteristics"
                             :options="
@@ -112,7 +126,7 @@
                             button-variant="primary"
                             value-field="id"
                             buttons
-                            class="ungrouped-buttons"
+                            class="ungrouped-buttons subcategories"
                             @change="forceSingle"
                         />
                     </div>
@@ -120,7 +134,7 @@
             </div>
 
             <div class="bg-light pt-4 flex-grow-1">
-                <div class="container py-4">
+                <div class="container py-4 px-5">
                     <!-- </sub-characteristics> -->
 
                     <!-- </indicator-main> -->
@@ -128,30 +142,45 @@
 
                     <div class="d-flex py-4">
                         <ul
-                            class="text-small list-style-none w-50 border border-top-0 border-left-0 border-bottom-0 border-secondary pr-4 mr-4"
+                            class="text-small list-style-none border border-top-0 border-left-0 border-bottom-0 border-secondary pr-4 mr-4"
+                            style="width: 35%; max-width: 24rem !important; min-width: 12rem; padding-left: 0.8rem;"
                         >
-                            <li class="d-flex justify-content-between">
+                            <li class="d-flex justify-content-between mb-1">
                                 <div>Indicators Found:</div>
-                                <div class="ml-auto font-weight-bold">
+                                <div class="ml-1 font-weight-bold">
                                     {{ indicatorsForDisplay.length }}
                                 </div>
                             </li>
                             <li class="d-flex justify-content-between">
                                 <div>Indicator Values Found:</div>
-                                <div class="ml-auto font-weight-bold">
+                                <div class="ml-1 font-weight-bold">
                                     {{ filteredIndicatorValuesForDisplay.length }}
                                 </div>
                             </li>
                         </ul>
-                        <div class="flex-grow-1">
-                            Indicator values can be previewed or downloaded individually. Inidcators added to selection can be reviewed on the download icon in the top right corner.
+                        <div class="flex-grow-1 ml-auto mr-5">
+                            Indicator values can be previewed or downloaded individually. Indicators added to selection can be reviewed on the download icon in the top right corner.
                         </div>
                     </div>
+
+
+
+
+
+
+
+
+
+
+
+
 
                     <b-table
                         :items="indicatorsForDisplay"
                         :fields="indicatorFields"
                         :busy="loading"
+                        :sort-by.sync="sortBy"
+                        :sort-desc.sync="sortDesc"
                         sticky-header
                         class="pb-4"
                         thead-class="bg-light open-top"
@@ -175,7 +204,7 @@
                                             ? 'info'
                                             : 'primary'
                                     "
-                                    class="ml-2 pr-2 font-weight-bold"
+                                    class="ml-2 pr-2 font-weight-bold btn-select"
                                     @click="toggleIndicatorSelection(row.item)"
                                 >
                                     <span
@@ -195,7 +224,7 @@
                                             )
                                         "
                                     >
-                                        <i class="las la-check mr-4" /> selected
+                                        <i class="las la-check mr-5" /> selected
                                     </span>
                                 </b-button>
                                 <b-button
@@ -215,6 +244,7 @@
                     <!-- </results-section> -->
                 </div>
             </div>
+        </div>
         </div>
 
         <indicator-values-preview-pane
@@ -247,6 +277,8 @@
 
         data() {
             return {
+                sortBy: 'code',
+                sortDesc: false,
                 processing: false,
                 loading: false,
                 downloadOptionsVisible: false,
@@ -256,11 +288,13 @@
                 indicatorFields: [
                     {
                         key: "code",
-                        label: "Code"
+                        label: "Code",
+                        sortable: true,
                     },
                     {
                         key: "name",
-                        label: "Indicator"
+                        label: "Indicator",
+                        sortable: true,
                     },
                     {
                         key: "actions",

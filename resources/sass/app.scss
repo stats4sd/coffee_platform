@@ -1,6 +1,6 @@
 // Fonts
-@import url("https://fonts.googleapis.com/css?family=Roboto");
-@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&display=swap');
 
 
 // Variables
@@ -14,13 +14,45 @@
 // Components
 @import "./components/SelectWithImages";
 
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: roboto;
+    font-size: 1rem;
+    font-weight: 300;
+    background-color: #fff;
+    height: 100%;
+    position: relative;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+.big-title {
+    font-size: 1.5rem;
+}
+
+.main-container {
+    min-height: 100vh; /* will cover the 100% of viewport */
+    overflow: hidden;
+    display: block;
+    position: relative;
+    padding-bottom: 100px; /* height of your footer */
+}
+
 h1 {
     font-family: "Noto Sans JP", sans-serif;
-    font-weight: 300;
+    font-weight: 300 !important;
 }
 
 h2 {
-    font-weight: 700;
+    font-weight: 500;
+    font-size: 1.5rem;
 }
 
 h3 {
@@ -40,8 +72,8 @@ button.btn {
 }
 
 .px-lots {
-    padding-left: 20%;
-    padding-right: 20%;
+    padding-left: 12%;
+    padding-right: 12%;
 }
 
 .full-height {
@@ -60,12 +92,21 @@ button.btn {
     width: 33%;
 }
 
+.b-table {
+    font-weight: 400;
+}
+
 .b-table-sticky-header {
     max-height: 500px !important;
 }
 
 .sidebar {
     min-width: 250px;
+    z-index: 1;
+    button {
+        box-shadow: none !important;
+        border-radius: 0%;
+    }
 }
 
 .dark-gradient {
@@ -98,13 +139,34 @@ button.btn {
         display: block;
         flex: unset;
         margin-right: 1em;
-        border-radius: 0.5em !important;
+        border-radius: 0.35em !important;
     }
 }
 
+.btn-select {
+    width: 9rem;
+    span {
+        margin: auto;
+    }
+}
+
+.subcategories {
+    flex-wrap: wrap;
+}
+
+.subcategories label {
+	white-space: nowrap;
+}
+.subcategories .btn {
+	margin-bottom: 0.7em;
+	line-height: 1.8;
+	margin-right: 0.7em;
+}
+
 .downloader {
-    width: 75px;
-    height: 75px;
+    width: 3.5rem;
+    height: 3.5rem;
+    box-shadow: 0.1rem 0.2rem 0.4rem rgba(0, 0, 0, 0.24) !important;
 }
 
 
@@ -182,6 +244,9 @@ button.btn {
   height: 45px;
   width: 250px;
 }
+.button-green:hover {
+    background-color: $medgreen;
+}
 
 #text-green {
     color: $medgreen;
@@ -189,19 +254,23 @@ button.btn {
 
 #caption{
     background-color: $darkgreen;
-    height: 25px;
+    height: 40px;
     width: 100%;
     text-align: right;
     color: white;
     padding-right: 5%;
+    font-size: 0.9rem;
+    line-height: 2.5;
 }
 
 .box-green{
     position: relative;
-    opacity: 0.6;
-    height: 500px;
-    width: 30%;
-    background-color: $lightgreen;
+    height: 520px;
+    // width: 40%;
+    background-color: #b2d23ec7;
+}
+.box-green a{
+    color: $darkgreen;
 }
 .partners-logos{
     padding-right:5%;
@@ -215,4 +284,110 @@ button.btn {
     text-align: right;
     color: white;
     padding-right: 5%;
+}
+
+    .text-block {
+    color: white;
+    padding-bottom: 50px;
+    text-align: left;
+    padding-left: 10vw;
+    padding-right: 10vw;
+    line-height: 1.2;
+    width: 100%;
+        font-size: 1.5rem;
+        position: absolute;
+        bottom: -20px;
+    }
+    #report_button{
+        position: absolute;
+        top: 400px;
+    }
+
+    .report-text{
+        position: absolute;
+        opacity: 1;
+        text-align: left;
+        /* font-size: 55px; */
+        padding:50px;
+        line-height: 1.2;
+        font-family:  sans-serif;
+
+    }
+    
+    .arrow {
+    /* margin-bottom: 0.4em; */
+    font-size:24px;
+    /* width: 2.5rem;
+    height: 2.5rem; */
+    /* padding-top: 0.35em; */
+    /* position:relative; */
+    /* padding: 10px; */
+    padding-top: 30px;
+    /* padding-right: 30px; */
+    padding-bottom: 30px;
+    /* padding-left: 5px; */
+    }
+    .header {
+        height: 520px;
+        position: relative;
+    }
+
+    .header h1 {
+        font-weight: 700 !important;
+        font-size: 3rem;
+    }
+  
+
+    .image_header {
+    width: 100%;  
+    object-fit: cover; 
+    height: 520px;
+    }
+
+    #image_report,#image_about {
+        position: absolute;
+    }
+
+    #image_home_report{
+    width:75%;  
+    object-fit:cover; 
+    height:500px;
+    }
+
+ #image_hub {
+     height: 400px;
+
+ }
+.helpbar {
+    border: none !important;
+    border-radius: 0px;
+    height: 100px;
+    background-color: #b2d23ec7;
+    color: #102125;
+    width: 110vw;
+    position: relative;
+    bottom: 100px;
+    padding-left: 11.5vw;
+    text-align: left;
+    font-family: "Noto Sans JP", sans-serif;
+    font-size: 1.7rem;
+    font-weight: 700;
+    line-height: 100px;
+}
+.helpbar:focus {
+    box-shadow: none;
+}
+ .helpbox {
+    background-color: #b2d23e;
+    color: $dark;
+    padding-left: 11.5vw;
+    padding-right: 11.5vw;
+ 
+}
+.helpbox p {
+    margin-bottom: 0.3rem;
+}
+.helpbox h2 {
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
 }
