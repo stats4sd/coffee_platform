@@ -11,15 +11,17 @@
     // }
 }
 .select-card.selected .card-img{
-    -webkit-filter: brightness(60%) ;
+    -webkit-filter: grayscale(0%) brightness(100%);
+    ;
 }
 .select-card .card-img {
     height: 100%;
     transition: all 0.25s ease;
+    -webkit-filter:grayscale(30%) brightness(80%);
 }
 
 .select-card:hover .card-img {
-    -webkit-filter: brightness(80%) ;
+    -webkit-filter: grayscale(30%) brightness(60%);
 }
 .select-card:after {
     content:'';
