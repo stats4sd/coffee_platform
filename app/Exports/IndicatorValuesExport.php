@@ -9,7 +9,7 @@ use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithMapping;
 use Maatwebsite\Excel\Concerns\WithStrictNullComparison;
 
-class IndicatorValuesExport implements FromCollection, WithHeadings, WithMapping
+class IndicatorValuesExport implements FromCollection, WithHeadings, WithMapping, WithStrictNullComparison
 {
     public $indicators = null;
     public $countries = null;
