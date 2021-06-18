@@ -8,9 +8,8 @@
             <div class="col-md-5 col-lg-4 box-green">
                 <div class=" report-text ml-md-4 mr-5 mt-xl-4">
 
-                    <h2 style="color:black">Reports</h2>
-                    <p>Alongside the platform, the project has produced a report, describing the data collection
-                        process and key findings in detail.
+                    <h2 style="color:black">Report</h2>
+                    <p>Alongside the platform, a report has been produced, describing the key findings and data collection process in detail.
                     </p>
                     <p>In this report, you can also read more about our efforts to identify data gaps and envision how
                         we could improve
