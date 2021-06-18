@@ -26,9 +26,9 @@
             <p>The State of the Coffee Smallholder Platform is an open access data resource, designed to drive more informed decision making
                  amongst smallholder coffee farmers as well as various value chain actors.
             </p>
-            <p>This platform collects together indicator data from numerous soures, which can be used to draw a
-                more holistic picutre about coffee smallholders, their livlihoods, and the challenges they are facing.
-                These are available to browse and download from the <a href="indicators" style="color: #66AC47">Indicator Hub.</a>
+            <p>This interactive site brings together indicator data from a variety of soures, which can be used to draw a
+                more holistic picture about coffee smallholders, their livelihoods, and the challenges they are facing.
+                These are available to explore and download from the <a href="indicators" style="color: #66AC47">Indicator Hub.</a>
             </p>
             <div class="d-flex justify-content-center mt-5 mb-5 pb-5">
             <a href="about"><button class="button-green">Find Out More <i class='las la-arrow-right'></i></button></a>
@@ -37,8 +37,7 @@
         <div class="row">
             <div class="mt-lg-5 pt-lg-5 col-lg-6">
                 <h2 id="text-green">Report</h2>
-                <p>Alongside the platform, a report has been produced, describing the data collection process and
-                    the key findings in detail.
+                <p>Alongside the platform, a report has been produced, describing the key findings and data collection process in detail.
                 </p>
                 <p>In this report, read about the effort to identify data gaps and how data collection could be improved and
                     shared among a variety of actors along the coffee value chain, including the farmers and their organizations.
