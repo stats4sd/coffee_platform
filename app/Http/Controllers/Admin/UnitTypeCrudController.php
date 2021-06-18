@@ -41,9 +41,11 @@ class UnitTypeCrudController extends CrudController
      */
     protected function setupListOperation()
     {
+        $this->crud->query->withCount('units');
+
         CRUD::column('name');
         CRUD::column('standard_unit');
-        CRUD::column('units_count')->type('relationship_count');
+        CRUD::column('units_count')->type('text');
     }
 
     /**
@@ -58,6 +60,9 @@ class UnitTypeCrudController extends CrudController
 
         CRUD::field('name')->label('What is the unit type? (e.g. length, area, volume, time...)');
         CRUD::field('standard_unit')->label('What is the standard unit for this type?');
+        CRUD::field('split_by_year')->type('checkbox')
+        ->label('If this unit type has a different conversion rate each year, tick this box.')
+        ->hint('This is likely only currency');
     }
 
     /**

@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Type;
 use App\Models\Partner;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -23,6 +24,7 @@ class PartnerFactory extends Factory
     {
         return [
             'name' => $this->faker->unique()->word(),
+            'type_id' => Type::factory(),
         ];
     }
 }

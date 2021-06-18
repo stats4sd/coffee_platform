@@ -29,8 +29,10 @@ class Type extends Model
         parent::boot();
 
         static::saved(function ($type) {
-            $type->sources->each(function ($source) {
-                $source->indicatorValues->searchable();
+            $type->partners->each(function ($partner) {
+                $partner->sources->each(function ($source) {
+                    $source->indicatorValues->searchable();
+                });
             });
         });
     }
@@ -46,9 +48,9 @@ class Type extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-    public function sources()
+    public function partners()
     {
-        return $this->hasMany(Source::class);
+        return $this->hasMany(Partner::class);
     }
 
     /*

@@ -5,17 +5,19 @@ namespace App\Exports;
 use App\Models\IndicatorValue;
 use Illuminate\Database\Eloquent\Builder;
 use Maatwebsite\Excel\Concerns\FromCollection;
-use Maatwebsite\Excel\Concerns\FromQuery;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithMapping;
+use Maatwebsite\Excel\Concerns\WithStrictNullComparison;
 
-class IndicatorValuesExport implements FromQuery, WithHeadings, WithMapping
+class IndicatorValuesExport implements FromCollection, WithHeadings, WithMapping, WithStrictNullComparison
 {
     public $indicators = null;
     public $countries = null;
     public $years = null;
     public $types = null;
     public $purposes = null;
+    public $genders = null;
+    public $scopes = null;
 
 
     // Setters
@@ -50,21 +52,32 @@ class IndicatorValuesExport implements FromQuery, WithHeadings, WithMapping
         return $this;
     }
 
+    public function forGenders(array $genders)
+    {
+        $this->genders = count($genders) > 0 ? $genders : null;
+        return $this;
+    }
 
+    public function forScopes(array $scopes)
+    {
+        $this->scopes = count($scopes) > 0 ? $scopes : null;
+        return $this;
+    }
 
-
-    public function query()
+    public function collection()
     {
         $query = IndicatorValue::with([
             'indicator.subCharacteristic.characteristic',
-            'source.type',
             'source.partner',
+            'source',
             'user',
             'approachCollection',
             'purposeOfCollection',
             'smallholderDefinition',
             'gender',
+            'scope',
             'unit',
+            'unit.unitType',
             'years',
         ]);
 
@@ -86,7 +99,9 @@ class IndicatorValuesExport implements FromQuery, WithHeadings, WithMapping
 
         if ($this->types) {
             $query = $query->whereHas('source', function (Builder $query) {
-                $query->whereIn('type_id', $this->types);
+                $query->whereHas('partner', function (Builder $query) {
+                    $query->whereIn('partners.type_id', $this->types);
+                });
             });
         }
 
@@ -96,101 +111,84 @@ class IndicatorValuesExport implements FromQuery, WithHeadings, WithMapping
             });
         }
 
-        return $query;
+        if ($this->genders) {
+            $query = $query->whereHas('gender', function (Builder $query) {
+                $query->whereIn('genders.id', $this->genders);
+            });
+        }
+
+        if ($this->scopes) {
+            $query = $query->whereHas('scope', function (Builder $query) {
+                $query->whereIn('scopes.id', $this->scopes);
+            });
+        }
+
+        return $query->get();
     }
 
     public function map($value) : array
     {
         return [
-            $value->id,
-            $value->indicator->subCharacteristic->characteristic_id,
-            $value->indicator->subCharacteristic->characteristic->name,
-            $value->indicator->sub_characteristic_id,
-            $value->indicator->subCharacteristic->name,
-            $value->indicator_id,
             $value->indicator->code,
-            $value->indicator->definition,
-            $value->geoBoundary->country_id,
-            $value->geoBoundary->country->name,
-            $value->geoBoundary->region_id,
-            $value->geoBoundary->region->name,
-            $value->geoBoundary->department_id,
-            $value->geoBoundary->department->name,
-            $value->geo_boundary_id,
-            $value->geoBoundary->name,
+            $value->indicator->name,
+            $value->indicator_name_original,
+            $value->geoBoundary->country ? $value->geoBoundary->country->name : 'null',
             $value->all_years,
-            $value->value,
-            $value->unit_id,
-            $value->unit->unit,
-            $value->approach_collection_id,
-            $value->approachCollection->name,
-            $value->gender_id,
             $value->gender->name,
-            $value->purpose_of_collection_id,
+            $value->value,
+            $value->unit->name,
+            $value->converted_value,
+            $value->standard_unit,
+            $value->conversion_rate,
             $value->purposeOfCollection->name,
             $value->sample_size,
-            $value->small_sample ? 'Small sample!' : '',
-            $value->smallholder_definition_id,
-            $value->smallholderDefinition->definition,
-            $value->source_public ? 'Yes' : 'No',
-            $value->source_public ? $value->source->name : 'Not available',
-            $value->source_public ? $value->source->description : 'Not available',
-            $value->source_public ? $value->source->type_id : 'Not available',
-            $value->source_public ? $value->source->type->name : 'Not available',
-            $value->source_public ? $value->source->partner_id : 'Not available',
-            $value->source_public ? $value->source->partner->name : 'Not available',
-            $value->user_id,
-            $value->user->name,
-            $value->updated_at,
+            $value->definition,
+            $value->geoBoundary->region ? $value->geoBoundary->region->name : 'null',
+            $value->geoBoundary->department ? $value->geoBoundary->department->name : 'null',
+            $value->geoBoundary->muncipality ? $value->geoBoundary->muncipality->name : 'null',
+            $value->geoBoundary->altitude ? $value->geoBoundary->altitude : 'null',
+            $value->geoBoundary->description,
+            $value->source->is_not_public ? 'Not available' : $value->source->partner->name,
+            $value->source->is_not_public ? 'Not available' : ($value->source->partner->type ? $value->source->partner->type->name : "null"),
+            $value->source->is_not_public ? 'Not available' : $value->source->name,
+            $value->source->is_not_public ? 'Not available' : $value->source->reference,
+            $value->source->is_not_public ? 'Not available' : $value->source->description,
+            $value->approachCollection->name,
+            $value->scope ? $value->scope->name : 'null',
+            $value->smallholderDefinition ? $value->smallholderDefinition->definition : 'null',
         ];
     }
-
-
-
-
 
     public function headings() : array
     {
         return [
-            'id',
-            'characteristic_id',
-            'characteristic',
-            'sub_characteristic_id',
-            'sub_characteristic',
-            'indicator_id',
-            'indicator_code',
-            'indicator_definition',
-            'country_id',
+            'code',
+            'name',
+            'indicator_name_original',
             'country',
-            'region_id',
-            'region',
-            'department_id',
-            'department',
-            'geo_boundary_id',
-            'geo_boundary',
-            'year(s)',
-            'value',
-            'unit_id',
-            'unit',
-            'approach_collection_id',
-            'approach_to_collection',
-            'gender_id',
-            'gender disaggregation',
-            'purpose_of_collection_id',
-            'purpose_of_collection',
+            'year',
+            'gender',
+            'value_original',
+            'unit_original',
+            'value_standard',
+            'unit_standard',
+            'conversion_rate',
+            'purpose',
             'sample_size',
-            'smallholder_definition_id',
-            'smallholder_definition',
-            'source_public',
-            'source_name',
-            'source_description',
-            'source_type_id',
-            'source_type',
-            'source_partner_id',
+            'definition_original',
+            'region',
+            'department',
+            'muncipality',
+            'altitude',
+            'other_location_info',
             'source_partner',
-            'user_id',
-            'uploader',
-            'last_updated'
+            'source_partner_type',
+            'source_name',
+            'source_reference',
+            'source_description',
+            'approach',
+            'scope',
+            'smallholder_definition',
         ];
     }
 }

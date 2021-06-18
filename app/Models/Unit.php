@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
-use App\Models\Traits\UpdatesMainSearchIndex;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Backpack\CRUD\app\Models\Traits\CrudTrait;
+use App\Models\UnitType;
+use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Traits\UpdatesMainSearchIndex;
+use Backpack\CRUD\app\Models\Traits\CrudTrait;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Unit extends Model
 {
@@ -26,6 +28,7 @@ class Unit extends Model
     // protected $dates = [];
     protected $appends = [
         'conversion_rate',
+        'name',
     ];
 
     /*
@@ -34,15 +37,70 @@ class Unit extends Model
     |--------------------------------------------------------------------------
     */
 
-    public function getConversionRateAttribute()
+    // Unit name without appended "-customtype" for front-end
+    public function getNameAttribute()
     {
-        if ($this->from_standard) {
-            return $this->from_standard . ':1';
+        return Str::before($this->unit, '-');
+    }
+
+    public function getConversionRate(Year $year = null)
+    {
+        if ($this->unitType && $this->unitType->split_by_year) {
+            if ($year == null) {
+                return 'varies-by-year';
+            }
+            return $this->clean_num($this->getConverstionRateForYear($year));
         }
+
+        if ($this->from_standard) {
+            return $this->clean_num(1 / $this->from_standard);
+        }
+
         if ($this->to_standard) {
-            return '1:'.$this->to_standard;
+            return $this->clean_num($this->to_standard);
         }
     }
+
+    public function getConversionRateAttribute()
+    {
+        return $this->getConversionRate(null);
+    }
+
+
+    // Getter for Crud Field
+    public function getConversionYearsAttribute()
+    {
+        if ($this->unitType && !$this->unitType->split_by_year) {
+            return null;
+        }
+
+        return $this->years->map(function ($year) {
+            return [
+                'year' => $year->year,
+                'to_standard' => $this->clean_num($year->pivot->to_standard),
+            ];
+        });
+    }
+
+    public function getConverstionRateForYear(Year $year)
+    {
+        if ($year = $this->years->firstWhere('id', $year->id)) {
+            return $year->pivot->to_standard;
+        }
+
+        return null;
+    }
+
+    public function clean_num($value)
+    {
+        $pos = strpos($value, '.');
+        if ($pos === false) { // it is integer number
+            return $value;
+        } else { // it is decimal number
+            return rtrim(rtrim($value, '0'), '.');
+        }
+    }
+
 
 
     /*
@@ -59,6 +117,12 @@ class Unit extends Model
     {
         return $this->belongsTo(UnitType::class);
     }
+
+    public function years()
+    {
+        return $this->belongsToMany(Year::class, '_link_unit_year')->withPivot('to_standard');
+    }
+
 
 
     /*

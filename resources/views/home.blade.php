@@ -1,20 +1,59 @@
 @extends('layouts.app')
 
 @section('main')
-<div class="container">
-    <h1>SSCF Initiative Site - Home Page</h1>
-    <p>
-        Irure culpa anim aliqua officia culpa et nisi ex ex. Culpa quis dolore reprehenderit tempor occaecat cupidatat ipsum non eu. Culpa in nisi ipsum duis laboris ex est elit duis ut excepteur ad. Elit esse sit ad laboris veniam ipsum do esse non aute aliquip sint non. Laborum commodo pariatur dolor laborum id.
-    </p>
-    <p>
-        Consequat exercitation ipsum cupidatat deserunt non occaecat eu tempor laborum irure anim dolor sunt adipisicing. Veniam eiusmod ad sunt deserunt velit consectetur officia occaecat duis incididunt voluptate dolor enim. Labore non nisi ipsum ea eiusmod ut Lorem irure et dolore dolor mollit dolor. Eu non aute ullamco enim non elit incididunt. Eu esse ullamco mollit eu velit id exercitation dolor.
-    </p>
-    <p>
+        <div class="main-container">
+    <div class="header mb-5">
+        <img src="images/home.jpg" id="image_home_header" class="image_header"/>
+        <div class ="text-block">
+            <h1 class="mb-5">Open access data for decision-making</h1>
+            
+            <h2 class="mb-3 ">Get to know the smallholder farmer.</h2>
+            <p class="d-none d-md-block">Explore and download indicator data about smallholder coffee farmers in Guatemala, Honduras and
+                Nicaragua.
+            </p>
+            <div class="d-flex justify-content-center mt-5 mb-5">
+                <a href="indicators"><button class="button-green">Browse Indicators <i class='las la-arrow-right'></i></button></a>
+            </div>
+        </div>
+        <div id="caption">
+            Photo Credit:<strong> Phillip Davis 2020</strong>
+        </div>
+    </div>
 
-        Id commodo aliqua id minim cillum. Lorem reprehenderit excepteur dolor exercitation est irure ea aliquip. Nostrud adipisicing officia consequat est mollit non nulla fugiat nostrud.
-    </p>
-    <p>
-        Magna non labore sint velit aliquip. Adipisicing ad laboris veniam minim ut sint ad ut voluptate. Aliqua non ut sunt ex aliquip voluptate nisi id sint veniam id Lorem sit id. Labore reprehenderit veniam aliqua enim elit elit cupidatat ut laborum aliqua laborum cillum duis aute. Fugiat excepteur pariatur anim fugiat sunt eiusmod ad. Sunt aliqua eu occaecat id Lorem do tempor incididunt irure esse nostrud dolor eu excepteur. Minim officia qui duis qui ea consectetur dolor est anim qui sunt.
-    </p>
+
+    <div class="container my-5 px-5 py-5">
+            <h2 id="text-green">What is it?</h2>
+            <p>The State of the Coffee Smallholder Platform is an open access data resource, designed to drive more informed decision making
+                 amongst smallholder coffee farmers as well as various value chain actors.
+            </p>
+            <p>This interactive site brings together indicator data from a variety of soures, which can be used to draw a
+                more holistic picture about coffee smallholders, their livelihoods, and the challenges they are facing.
+                These are available to explore and download from the <a href="indicators" style="color: #66AC47">Indicator Hub.</a>
+            </p>
+            <div class="d-flex justify-content-center mt-5 mb-5 pb-5">
+            <a href="about"><button class="button-green">Find Out More <i class='las la-arrow-right'></i></button></a>
+            </div>             
+
+        <div class="row">
+            <div class="mt-lg-5 pt-lg-5 col-lg-6">
+                <h2 id="text-green">Report</h2>
+                <p>Alongside the platform, a report has been produced, describing the key findings and data collection process in detail.
+                </p>
+                <p>In this report, read about the effort to identify data gaps and how data collection could be improved and
+                    shared among a variety of actors along the coffee value chain, including the farmers and their organizations.
+                </p>
+                <div class="d-flex justify-content-center mt-5 mb-5">
+                    <a href="reports"><button class="button-green">View the Report <i class='las la-arrow-right'></i></button></a>
+                </div>
+            </div>
+            <div class="col-lg-6 mb-5">
+                <img src="images/home_report.jpg" id="image_home_report"/>
+                <div id="caption_small">
+                    Photo Credit: <strong>Phillip Davis 2020</strong>
+                </div>
+            </div>            
+        </div>
+    </div>
+
 </div>
 @endsection

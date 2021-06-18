@@ -25,7 +25,7 @@ class IndicatorFactory extends Factory
         return [
             'sub_characteristic_id' => SubCharacteristic::factory(),
             'code' => $this->faker->randomLetter . $this->faker->unique()->numberBetween(0, 10000),
-            'definition' => $this->faker->paragraph(1),
+            'name' => $this->faker->sentence(5),
         ];
     }
 }

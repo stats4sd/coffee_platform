@@ -38,6 +38,11 @@ class Indicator extends Model
         return $this->subCharacteristic->characteristic_id;
     }
 
+    public function getCharacteristicNameAttribute()
+    {
+        return $this->subCharacteristic->characteristic->name;
+    }
+
 
     /*
     |--------------------------------------------------------------------------

@@ -1,20 +1,39 @@
 @extends('layouts.app')
 
 @section('main')
-<div class="container">
-    <h1>Reports</h1>
-    <p>
-        Irure culpa anim aliqua officia culpa et nisi ex ex. Culpa quis dolore reprehenderit tempor occaecat cupidatat ipsum non eu. Culpa in nisi ipsum duis laboris ex est elit duis ut excepteur ad. Elit esse sit ad laboris veniam ipsum do esse non aute aliquip sint non. Laborum commodo pariatur dolor laborum id.
-    </p>
-    <p>
-        Consequat exercitation ipsum cupidatat deserunt non occaecat eu tempor laborum irure anim dolor sunt adipisicing. Veniam eiusmod ad sunt deserunt velit consectetur officia occaecat duis incididunt voluptate dolor enim. Labore non nisi ipsum ea eiusmod ut Lorem irure et dolore dolor mollit dolor. Eu non aute ullamco enim non elit incididunt. Eu esse ullamco mollit eu velit id exercitation dolor.
-    </p>
-    <p>
+<div class="main-container">
+    <div class="header">
+        <img src="images/report.jpg" id="image_report" class="image_header" />
+        <div class="row justify-contents-left">
+            <div class="col-md-5 col-lg-4 box-green">
+                <div class=" report-text ml-md-4 mr-5 mt-xl-4">
 
-        Id commodo aliqua id minim cillum. Lorem reprehenderit excepteur dolor exercitation est irure ea aliquip. Nostrud adipisicing officia consequat est mollit non nulla fugiat nostrud.
-    </p>
-    <p>
-        Magna non labore sint velit aliquip. Adipisicing ad laboris veniam minim ut sint ad ut voluptate. Aliqua non ut sunt ex aliquip voluptate nisi id sint veniam id Lorem sit id. Labore reprehenderit veniam aliqua enim elit elit cupidatat ut laborum aliqua laborum cillum duis aute. Fugiat excepteur pariatur anim fugiat sunt eiusmod ad. Sunt aliqua eu occaecat id Lorem do tempor incididunt irure esse nostrud dolor eu excepteur. Minim officia qui duis qui ea consectetur dolor est anim qui sunt.
-    </p>
+                    <h2 style="color:black">Report</h2>
+                    <p>Alongside the platform, a report has been produced, describing the key findings and data collection process in detail.
+                    </p>
+                    <p>In this report, you can also read more about our efforts to identify data gaps and envision how
+                        we could improve
+                        data collection and sharing among a variety of actors along the coffee value chain, including
+                        the farmers and
+                        their organisations.
+                    </p>
+                    <div class="text-center d-block d-md-none">
+                    <a href="about"><button class="d-block mx-auto button-green mt-5" style="color: #fff; background-color:#007155">Download 2021 Report <i
+                            class='las la-arrow-down'></i></button></a>
 </div>
-@endsection
+                </div>
+            </div>
+            <div class="col-md-4 col-lg-5 text-center d-none d-md-block">
+            <div class="my-auto">
+                <a href="reports"><button class="button-green" id="report_button">Download 2021 Report <i
+                            class='las la-arrow-down'></i></button></a>
+            </div>
+</div>
+            <div id="caption">
+                Photo Credit: <strong>Phillip Davis 2020</strong>
+            </div>
+        </div>
+    </div>
+
+
+    @endsection

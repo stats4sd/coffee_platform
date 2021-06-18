@@ -4,6 +4,8 @@ namespace Database\Factories;
 
 use App\Models\Unit;
 use App\Models\User;
+use App\Models\Group;
+use App\Models\Scope;
 use App\Models\Gender;
 use App\Models\Source;
 use App\Models\Indicator;
@@ -40,11 +42,14 @@ class IndicatorValueFactory extends Factory
             'unit_id' => Unit::factory(),
             'gender_id' => Gender::factory(),
             'sample_size' => $small ? $this->faker->numberBetween(5, 20) : $this->faker->numberBetween(100, 10000),
-            'source_public' => $this->faker->boolean,
             'smallholder_definition_id' => SmallholderDefinition::factory(),
             'user_id' => User::factory(),
             'purpose_of_collection_id' => PurposeOfCollection::factory(),
             'approach_collection_id' => ApproachCollection::factory(),
+            'definition' => $this->faker->sentence(1),
+            'scope_id' => Scope::factory(),
+            'group_id' => Group::factory(),
+            'calculated_by_us' => $this->faker->boolean,
         ];
     }
 }

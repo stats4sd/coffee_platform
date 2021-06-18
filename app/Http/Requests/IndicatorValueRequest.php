@@ -29,15 +29,17 @@ class IndicatorValueRequest extends FormRequest
             'indicator_id' => ['required', 'exists:indicators,id'],
             'value' => ['required', 'numeric'],
             'source_id' => ['required','exists:sources,id'],
-            'source_public' => ['required','boolean'],
             'geo_boundary_id' => ['required','exists:geo_boundaries,id'],
             'unit_id' => ['required','exists:units,id'],
             'gender_id' => ['required','exists:genders,id'],
             'sample_size' => ['nullable','integer'],
-            'smallholder_definition_id' => ['required','exists:smallholder_definitions,id'],
+            'smallholder_definition_id' => ['nullable','exists:smallholder_definitions,id'],
             'user_id' => ['required','exists:users,id'],
             'purpose_of_collection_id' => ['required','exists:purpose_of_collections,id'],
             'approach_collection_id' => ['required','exists:approach_collections,id'],
+            'definition' => ['nullable', 'max:255'],
+            'scope_id' => ['nullable','exists:scopes,id'],
+            'group_id' => ['nullable','exists:groups,id'],
         ];
     }
 

@@ -6,6 +6,7 @@ use Laravel\Scout\Searchable;
 use Illuminate\Database\Eloquent\Model;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Str;
 
 class IndicatorValue extends Model
 {
@@ -94,7 +95,7 @@ class IndicatorValue extends Model
     {
         return $this->years->map(function ($year) {
             return $year->year;
-        })->join(', ');
+        })->join(' - ');
     }
 
     public function getSubCharacteristicIdAttribute()
@@ -109,7 +110,7 @@ class IndicatorValue extends Model
 
     public function getTypeIdAttribute()
     {
-        return $this->source ? $this->source->type_id : null;
+        return $this->source ? $this->source->partner->type_id : null;
     }
 
     public function getPartnerIdAttribute()
@@ -124,26 +125,40 @@ class IndicatorValue extends Model
 
     public function getConversionRateAttribute()
     {
-        return $this->unit ? $this->unit->conversion_rate : null;
+        return $this->unit ? $this->unit->getConversionRate($this->years->last()) : null;
     }
-
 
     public function getStandardUnitAttribute()
     {
-        return  $this->unitType ? $this->unitType->standard_unit : null;
+        if (!empty($this->unit->unitType)) {
+            return $this->unit->unitType->standard_unit;
+        } else {
+            return null;
+        }
     }
 
     public function getConvertedValueAttribute()
     {
-        $unit_standard = $this->unit ? $this->unit->to_standard : null;
-        if ($unit_standard) {
-            return $this->value * $this->unit->to_standard;
-        }
-        $unit_from_standard = $this->unit ? $this->unit->from_standard : null;
-        if ($unit_from_standard) {
-            return $this->value / $this->unit->from_standard;
-        }
+        return round($this->value * $this->conversion_rate, 2) + 0;
     }
+
+    public function getValueAttribute($value)
+    {
+        return $value + 0; // trick to force removal of excess zeros from the decimal stored in the db.
+    }
+
+    // TODO: understand the mathematical difference between "20" and "20.0" and if this difference is important in this platform...
+    // public function getPrecisionAttribute()
+    // {
+    //     $value = $this->value + 0;
+
+    //     if (Str::contains($value, '.')) {
+    //         return Str::length(Str::afterLast($value, '.'));
+    //     }
+
+    //     return 0;
+    // }
+
 
 
 
@@ -198,6 +213,16 @@ class IndicatorValue extends Model
     public function approachCollection()
     {
         return $this->belongsTo(ApproachCollection::class);
+    }
+
+    public function scope()
+    {
+        return $this->belongsTo(Scope::class);
+    }
+
+    public function group()
+    {
+        return $this->belongsTo(Group::class);
     }
 
     public function years()

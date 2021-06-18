@@ -1,0 +1,107 @@
+---
+title: 'State of the Coffee Smallholder Platform: Indicator Report'
+output:
+  pdf_document:
+    toc_depth: 1
+  html_document:
+    toc_depth: '1'
+    df_print: paged
+date: "`r format(Sys.time(), '%d %B %Y')`"
+header-includes:
+- \usepackage{fancyhdr}
+- \pagestyle{fancy}
+- \fancyfoot{}
+- \fancyfoot[LO,LE]{Note; If values have been converted to standard units, original
+  values and conversion rates will be available in the indicator excel download.}
+- \fancyhead[L]{\thepage}
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+library(tidyverse)
+library(openxlsx)
+library(kableExtra)
+library(flextable)
+set_flextable_defaults(fonts_ignore=TRUE)
+```
+
+```{r}
+#source("IndicatorStatement.R")
+source("functions.R")
+data <- read.xlsx("example data/Example data 3.xlsx")
+
+countries <- unique(data$country)
+
+indicator_codes <- unique(data$code)
+
+data <- data%>%
+  group_by(country, year, source_name, purpose, gender, scope)%>%
+  mutate(n = n())%>%
+  mutate(group = ifelse(n > 1, row_number(), NA))%>%
+  mutate(definition_original = ifelse(is.na(definition_original), "-", definition_original))%>%
+  ungroup()
+```
+
+```{r, ft.align = 'left'}
+report_characteristics(data)
+```
+
+```{=latex}
+% Trigger ToC creation in LaTeX
+\setcounter{tocdepth}{1}
+\tableofcontents
+```
+
+```{r, results='asis', ft.align='left'}
+cat('\n\n<!-- -->\n\n')
+
+cat("\n\n\\pagebreak\n")
+
+for(i in 1:length(indicator_codes)){
+  
+data_x <- data%>%filter(code == indicator_codes[i])  
+
+cat("  \n#", data_x$code[1], data_x$name[1], "\n")
+
+cat("  \n##", "Indicator details", "\n")
+
+  z <- indicator_details(data, indicator_codes[i])
+  
+  cat(knit_print(z))
+
+cat('\n\n<!-- -->\n\n')
+
+cat("  \n##", "Indicator Graph", "\n")
+
+  knit_print(bar_graph(data, indicator_codes[i]))
+
+cat('\n\n<!-- -->\n\n')
+
+cat("\n\n\\pagebreak\n")
+
+cat("  \n##", "Indicator Values", "\n")
+
+for(m in 1:length(countries)){
+  
+  x <- value_table(data, indicator_codes[i], countries[m])
+  
+  cat(knit_print(x))
+  
+  cat('\n\n<!-- -->\n\n')
+  
+}
+
+cat('\n\n<!-- -->\n\n')
+
+cat("  \n##",  "Indicator Definitions", "\n")
+
+  y <- definition_table(data, indicator_codes[i])
+  
+  cat(knit_print(y))
+
+cat('\n\n<!-- -->\n\n')
+
+cat("\n\n\\pagebreak\n")
+
+}
+```
+

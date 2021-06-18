@@ -1,4 +1,5 @@
 <template>
+
     <div class="d-md-flex d-block">
         <div class="full-height sidebar shadow">
             <div class="sidebar-header bg-primary p-4 mb-0 text-white">
@@ -11,7 +12,7 @@
                     /></span>
                 </h2>
             </div>
-            <div class="d-flex flex-column">
+            <div class="d-flex flex-column sticky-top ">
                 <ul class="list-group">
                     <sidebar-filter
                         v-model="selectedCountries"
@@ -20,7 +21,7 @@
                     />
                     <sidebar-filter
                         v-model="selectedYears"
-                        title="Years"
+                        title="Year"
                         :options="years"
                         display-field="year"
                         value-field="id"
@@ -35,6 +36,16 @@
                         title="Purpose"
                         :options="purposes"
                     />
+                    <sidebar-filter
+                        v-model="selectedGenders"
+                        title="Gender"
+                        :options="genders"
+                    />
+                    <sidebar-filter
+                        v-model="selectedScopes"
+                        title="Scope"
+                        :options="scopes"
+                    />
                 </ul>
             </div>
         </div>
@@ -47,7 +58,7 @@
             <indicator-download-options
                 :visible="downloadOptionsVisible"
                 :indicators="
-                    indicators.filter((indicator) =>
+                    indicatorsForSelection.filter((indicator) =>
                         selectedIndicators.includes(indicator.id)
                     )
                 "
@@ -57,11 +68,13 @@
                 @download-xlsx="downloadValues(selectedIndicators)"
                 @download-pdf="downloadReport(selectedIndicators)"
             />
+            <div style="position:relative;bottom:70px;">
             <div class="pt-4 px-lots pb-4">
                 <h1 class="text-center pb-4">
                     Search or Browse Indicators
                 </h1>
-                <b-input-group class="mb-3">
+             
+                <b-input-group class="mb-3 mx-4">
                     <template #append>
                         <b-input-group-text>
                             <i class="las la-search" />
@@ -73,12 +86,9 @@
                         @input="searchIndicators"
                     />
                 </b-input-group>
-                <p class="pb-4 pt-2">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos
-                    sed vitae fugit quas facilis, dolore cupiditate, quia
-                    voluptatum dolorum amet excepturi, consectetur omnis? Neque
-                    labore inventore tempore voluptas, nostrum non!
-                </p>
+                <h2 class="py-3">
+                        Categories
+                    </h2>
                 <!-- <characteristics> -->
                 <div class="d-flex flex-wrap pb-4">
                     <select-with-images
@@ -86,14 +96,23 @@
                         :options="characteristics"
                         @input="resetSubCharacteristics"
                     />
+
+                    
                 </div>
+                
                 <!-- </characteristics> -->
                 <!-- <sub-characteristics> -->
+
+
+
+
                 <div v-if="selectedCharacteristic">
-                    <h2 class="pt-3">
-                        Subcharacteristics
+
+                    <h2 class="py-3">
+                        Subcategories
                     </h2>
-                    <div class="d-flex flex-wrap">
+                    <div class="d-flex flex-wrap ">
+
                         <b-form-checkbox-group
                             v-model="selectedSubCharacteristics"
                             :options="
@@ -107,7 +126,7 @@
                             button-variant="primary"
                             value-field="id"
                             buttons
-                            class="ungrouped-buttons"
+                            class="ungrouped-buttons subcategories"
                             @change="forceSingle"
                         />
                     </div>
@@ -115,7 +134,7 @@
             </div>
 
             <div class="bg-light pt-4 flex-grow-1">
-                <div class="container py-4">
+                <div class="container py-4 px-5">
                     <!-- </sub-characteristics> -->
 
                     <!-- </indicator-main> -->
@@ -123,34 +142,45 @@
 
                     <div class="d-flex py-4">
                         <ul
-                            class="text-small list-style-none w-50 border border-top-0 border-left-0 border-bottom-0 border-secondary pr-4 mr-4"
+                            class="text-small list-style-none border border-top-0 border-left-0 border-bottom-0 border-secondary pr-4 mr-4"
+                            style="width: 35%; max-width: 24rem !important; min-width: 12rem; padding-left: 0.8rem;"
                         >
-                            <li class="d-flex justify-content-between">
+                            <li class="d-flex justify-content-between mb-1">
                                 <div>Indicators Found:</div>
-                                <div class="ml-auto font-weight-bold">
-                                    {{ indicators.length }}
+                                <div class="ml-1 font-weight-bold">
+                                    {{ indicatorsForDisplay.length }}
                                 </div>
                             </li>
                             <li class="d-flex justify-content-between">
                                 <div>Indicator Values Found:</div>
-                                <div class="ml-auto font-weight-bold">
-                                    {{ filteredIndicatorValues.length }}
+                                <div class="ml-1 font-weight-bold">
+                                    {{ filteredIndicatorValuesForDisplay.length }}
                                 </div>
                             </li>
                         </ul>
-                        <div class="flex-grow-1">
-                            Lorem, ipsum dolor sit amet consectetur adipisicing
-                            elit. Dolorem veritatis accusantium eius, aut
-                            adipisci, nisi sed commodi voluptatibus error
-                            ratione quas in repellendus laudantium, doloremque
-                            qui? Cumque, officia? Repellat, neque?
+                        <div class="flex-grow-1 ml-auto mr-5">
+                            Indicator values can be previewed or downloaded individually. Indicators added to selection can be reviewed on the download icon in the top right corner.
                         </div>
                     </div>
 
+
+
+
+
+
+
+
+
+
+
+
+
                     <b-table
-                        :items="indicators"
+                        :items="indicatorsForDisplay"
                         :fields="indicatorFields"
                         :busy="loading"
+                        :sort-by.sync="sortBy"
+                        :sort-desc.sync="sortDesc"
                         sticky-header
                         class="pb-4"
                         thead-class="bg-light open-top"
@@ -174,7 +204,7 @@
                                             ? 'info'
                                             : 'primary'
                                     "
-                                    class="ml-2 pr-2 font-weight-bold"
+                                    class="ml-2 pr-2 font-weight-bold btn-select"
                                     @click="toggleIndicatorSelection(row.item)"
                                 >
                                     <span
@@ -194,7 +224,7 @@
                                             )
                                         "
                                     >
-                                        <i class="las la-check mr-4" /> selected
+                                        <i class="las la-check mr-5" /> selected
                                     </span>
                                 </b-button>
                                 <b-button
@@ -214,6 +244,7 @@
                     <!-- </results-section> -->
                 </div>
             </div>
+        </div>
         </div>
 
         <indicator-values-preview-pane
@@ -246,6 +277,8 @@
 
         data() {
             return {
+                sortBy: 'code',
+                sortDesc: false,
                 processing: false,
                 loading: false,
                 downloadOptionsVisible: false,
@@ -255,11 +288,13 @@
                 indicatorFields: [
                     {
                         key: "code",
-                        label: "indicator"
+                        label: "Code",
+                        sortable: true,
                     },
                     {
-                        key: "definition",
-                        label: "definition"
+                        key: "name",
+                        label: "Indicator",
+                        sortable: true,
                     },
                     {
                         key: "actions",
@@ -270,14 +305,18 @@
 
                 // Filters
                 countries: [],
+                genders: [],
                 years: [],
                 types: [],
                 purposes: [],
+                scopes: [],
 
                 selectedCountries: [],
+                selectedGenders: [],
                 selectedYears: [],
                 selectedTypes: [],
                 selectedPurposes: [],
+                selectedScopes: [],
 
                 characteristics: [],
                 subCharacteristics: [],
@@ -291,38 +330,19 @@
             };
         },
         computed: {
-            // All the filters happen at the indicatorValue level.
-            // So we should build the list of indicators up from the filteredIndicatorValues
-            indicators() {
-                if (this.filteredIndicatorValues.length < 0) return [];
-
-                var valuesByIndicator = this.filteredIndicatorValues.reduce(
-                    (result, indicatorValue) => {
-                        result[indicatorValue.indicator_id] =
-                            result[indicatorValue.indicator_id] || [];
-
-                        result[indicatorValue.indicator_id].push(indicatorValue);
-                        return result;
-                    },
-                    Object.create(null)
-                );
-
-                var indicators = Object.keys(valuesByIndicator).map(
-                    indicator_id => {
-                        return {
-                            id: indicator_id,
-                            code: valuesByIndicator[indicator_id][0].indicator.code,
-                            definition:
-                                valuesByIndicator[indicator_id][0].indicator
-                                    .definition,
-                            values: valuesByIndicator[indicator_id]
-                        };
-                    }
-                );
-
-                return indicators;
+            //Indicators for display in the table should be filtered by the chosen characteristic + sub characteristic
+            indicatorsForDisplay() {
+                return this.prepareIndicators('filteredIndicatorValuesForDisplay')
             },
-            filteredIndicatorValues() {
+
+            // Indicators used to show the 'selected indicators' should NOT be filtered by characteristic / sub characteristic
+            indicatorsForSelection() {
+                return this.prepareIndicators('filteredIndicatorValuesForSelection')
+            },
+            filteredIndicatorValuesForDisplay() {
+                return this.filterIndicatorsByCharacteristics(this.allIndicatorValues);
+            },
+            filteredIndicatorValuesForSelection() {
                 return this.filterIndicators(this.allIndicatorValues);
             }
         },
@@ -330,6 +350,8 @@
         mounted() {
             this.getIndicatorValues();
             this.getCountries();
+            this.getGenders();
+            this.getScopes();
             this.getYears();
             this.getTypes();
             this.getPurposes();
@@ -373,6 +395,22 @@
                     console.log("postfilter", values);
                 }
 
+                if (this.selectedGenders.length > 0) {
+                    console.log("prefilter", values);
+                    values = values.filter(value =>
+                        this.selectedGenders.includes(value.gender_id)
+                    );
+                    console.log("postfilter", values);
+                }
+
+                if (this.selectedScopes.length > 0) {
+                    console.log("prefilter", values);
+                    values = values.filter(value =>
+                        this.selectedScopes.includes(value.scope_id)
+                    );
+                    console.log("postfilter", values);
+                }
+
                 if (this.selectedYears.length > 0) {
                     values = values.filter(value =>
                         // check each year the value is linked to:
@@ -382,7 +420,7 @@
 
                 if (this.selectedTypes.length > 0) {
                     values = values.filter(value =>
-                        (this.selectedTypes.includes(value.type_id) && value.source_public == 1)
+                        (this.selectedTypes.includes(value.type_id))
                     );
                 }
                 if (this.selectedPurposes.length > 0) {
@@ -390,6 +428,12 @@
                         this.selectedPurposes.includes(value.purpose_of_collection_id)
                     );
                 }
+
+                return values;
+            },
+
+            filterIndicatorsByCharacteristics(values) {
+                values = this.filterIndicators(values)
 
                 if (this.selectedSubCharacteristics.length > 0) {
                     values = values.filter(value =>
@@ -412,6 +456,18 @@
                 axios
                     .get("/country")
                     .then(result => (this.countries = result.data));
+            },
+
+            getGenders() {
+                axios
+                    .get("/gender")
+                    .then(result => (this.genders = result.data));
+            },
+
+            getScopes() {
+                axios
+                    .get("/scope")
+                    .then(result => (this.scopes = result.data));
             },
 
             getYears() {
@@ -464,6 +520,8 @@
                         years: this.selectedYears,
                         types: this.selectedTypes,
                         purposes: this.selectedPurposes,
+                        genders: this.selectedGenders,
+                        scopes: this.selectedScopes,
                     })
                     .then(result => {
                         this.makeAndClickLink(result.data);
@@ -472,6 +530,8 @@
             },
 
             downloadReport(selectedIndicators) {
+
+                selectedIndicators = selectedIndicators.map(id => Number(id));
                 this.processing = true;
                 this.$bvToast.toast(
                     `Your download is being prepared. This may take some time - please leave this window open.`,
@@ -480,18 +540,20 @@
                     }
                 );
 
-                var indicators = this.indicators.filter((indicator) =>
-                    selectedIndicators.includes(indicator.id)
-                )
-
-                var indicatorValues = [];
-                indicators.forEach((indicator) => {
-                    indicator.values.forEach(value => indicatorValues.push(value));
-                })
+                var indicatorValues = this.filteredIndicatorValuesForSelection.filter((value) => {
+                    return selectedIndicators.includes(value.indicator_id);
+                });
 
                 axios
                     .post("indicators/report", {
                         indicator_values: indicatorValues,
+                        indicators: selectedIndicators,
+                        countries: this.selectedCountries,
+                        years: this.selectedYears,
+                        types: this.selectedTypes,
+                        purposes: this.selectedPurposes,
+                        genders: this.selectedGenders,
+                        scopes: this.selectedScopes
                     })
                     .then(result => {
                         this.makeAndClickLink(result.data);
@@ -534,7 +596,40 @@
             showDownloadOptions() {
                 console.log("showing download options");
                 this.downloadOptionsVisible = true;
-            }
+            },
+
+            // All the filters happen at the indicatorValue level.
+            // So we should build the list of indicators up from the filteredIndicatorValues
+            prepareIndicators(filterComputedValue) {
+                if (this[filterComputedValue].length < 0) return [];
+
+                var valuesByIndicator = this[filterComputedValue].reduce(
+                    (result, indicatorValue) => {
+                        result[indicatorValue.indicator_id] =
+                            result[indicatorValue.indicator_id] || [];
+
+                        result[indicatorValue.indicator_id].push(indicatorValue);
+                        return result;
+                    },
+                    Object.create(null)
+                );
+
+                var indicators = Object.keys(valuesByIndicator).map(
+                    indicator_id => {
+                        return {
+                            id: indicator_id,
+                            code: valuesByIndicator[indicator_id][0].indicator.code,
+                            name:
+                                valuesByIndicator[indicator_id][0].indicator
+                                    .name,
+                            values: valuesByIndicator[indicator_id],
+                            subCharacteristic: valuesByIndicator[indicator_id][0].indicator.sub_characteristic.characteristic_label,
+                        };
+                    }
+                );
+
+                return indicators;
+            },
         }
     };
 </script>

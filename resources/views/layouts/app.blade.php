@@ -7,10 +7,13 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>State of the Coffee Smallholder Platform</title>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+        @yield('styles')
+
 </head>
 <body>
      <div class="full-height d-flex flex-column bg-white">
@@ -24,11 +27,18 @@
         </div>
 
         <!-- Footer -->
-        <footer class="py-3 mt-auto bg-dark footer h-1">
+        <footer class="py-3 mt-auto bg-dark footer">
             <div class="container d-flex flex-justify-between">
-                <p class="m-0 text-white">Developed By Stats4SD for the SSCF Initiative</p>
+            <div class="col-sm-3">
+                <p class="m-0 text-white" >Developed by <a class="m-0 text-white" href="https://stats4sd.org/">Stats4SD</a><br></p>
             </div>
-            <!-- /.container -->
+            <div class="container d-flex justify-content-end flex-column align-items-end">
+                <a class="m-0 text-white" href="{{ route('backpack') }}">Admin Login</a>
+                <div class="text-right">
+                    <p class="m-0 text-white" > Admin panel powered by <a class="m-0 text-white" href="https://backpackforlaravel.com/">Backpack for Laravel</a></p>
+                </div>
+            </div>
+            </div>
         </footer>
     </div>
 

@@ -1,13 +1,14 @@
 <template>
     <div class="d-flex flex-wrap justify-content-center">
-        <image-option
+
+
+        <div
             v-for="option in allOptions"
             :key="option.value"
         >
             <b-card
                 no-body
-                class="select-card dark-gradient m-2"
-                border-variant="primary"
+                class="select-card m-2"
                 :class="option.value === value ? 'selected' : ''"
                 @click="clicked(option.value)"
             >
@@ -18,8 +19,9 @@
                     {{ option.text }}
                 </div>
             </b-card>
-        </image-option>
+        </div>
     </div>
+
 </template>
 <script>
     export default {

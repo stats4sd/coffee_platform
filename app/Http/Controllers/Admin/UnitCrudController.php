@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Unit;
+use App\Models\Year;
 use App\Models\UnitType;
 use App\Http\Requests\UnitRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
@@ -16,9 +17,9 @@ use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 class UnitCrudController extends CrudController
 {
     use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
+    use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation {store as traitStore;}
     use \Backpack\CRUD\app\Http\Controllers\Operations\InlineCreateOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
+    use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation {update as traitUpdate;}
     use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\FetchOperation;
 
@@ -62,11 +63,7 @@ class UnitCrudController extends CrudController
         $unit = 'of this unit';
         $standardUnit = 'of the standard unit';
 
-        if (CRUD::getOperation() == 'update' && $id = CRUD::getCurrentEntryId()) {
-            $entry = Unit::find($id);
-            $unit = $entry->unit ?? 'of this unit';
-            $standardUnit = $entry ? $entry->unitType->standard_unit : 'of the standard unit';
-        }
+
 
         CRUD::field('unit')->label('What is the unit called?');
         CRUD::field('unit_type_id')
@@ -86,19 +83,39 @@ class UnitCrudController extends CrudController
             'create_route' => route('unittype-inline-create-save'), //manually specifying these as by default it will try 'unit-type' instead of 'unittype' (which doesn't exist). Seems like a bug in how inline create routes are created.
         ]);
 
-        CRUD::field('conversion-text')->type('custom_html')
-        ->value("<h5>Conversion Rate</h5>
-        <p>To correctly convert {$unit} into {$standardUnit} defined for this type of measurement, please enter ONE of the following:</p>
-        ");
+        CRUD::field('tab-text')->type('custom_html')->value('<b>Complete ONE of the tabs below, depending on the unit type.</b>');
 
-        CRUD::field('to_standard')->label("How many {$unit} equals 1 {$standardUnit} (selected above)?")
+
+        CRUD::field('conversion-text')->type('custom_html')
+        ->value("<h5>Conversion Rate - Normal Unit Types</h5>
+        <p>To correctly convert this unit into the standard unit defined for this type of measurement, please enter ONE of the following:</p>
+        ")->tab('Normal Unit Types');
+
+        CRUD::field('to_standard')->label("How many of this unit equals 1 of the standard unit (selected above)?")
         ->type('number')
-        ->prefix("1 {$unit} equals... ")
-        ->suffix("{$standardUnit}");
-        CRUD::field("from_standard")->label("How many {$standardUnit}s equals 1 {$unit}?")
+        ->attributes(['step' => 'any'])
+        ->prefix("1 of this unit equals... ")
+        ->suffix("of the standard unit")->tab('Normal Unit Types');
+        ;
+        CRUD::field("from_standard")->label("How many of the standard units equals 1 of this unit?")
         ->type("number")
-        ->prefix("1 {$standardUnit} equals... ")
-        ->suffix("{$unit}");
+        ->attributes(['step' => 'any'])
+        ->prefix("1 of the standard unit equals... ")
+        ->suffix("of this unit")->tab('Normal Unit Types');
+        ;
+
+        CRUD::field('conversion-year-text')->type('custom_html')
+        ->value('<h5>For Currency Only - Year-by-year conversion rates</h5>
+        <p>For a currency unit, please enter the conversion rate for each year needed in the platform.</p>
+        ')->tab('Types Split By Year');
+        ;
+
+        CRUD::field('conversion_years')->type('table')
+        ->columns([
+            'to_standard' => '1 of this unit equals X of the standard unit',
+            'year' => 'Year (YYYY)',
+        ])->tab('Types Split By Year');
+        ;
     }
 
     /**
@@ -110,7 +127,51 @@ class UnitCrudController extends CrudController
     protected function setupUpdateOperation()
     {
         $this->setupCreateOperation();
+        CRUD::field('script-only')->type('tab-chooser');
     }
+
+    public function store()
+    {
+        $response = $this->traitStore();
+
+        if (request()->conversion_years) {
+            $this->handleYears(request());
+        }
+
+        return $response;
+    }
+
+
+    public function update()
+    {
+        $response = $this->traitUpdate();
+
+        if (request()->conversion_years) {
+            $this->handleYears(request());
+        }
+
+        return $response;
+    }
+
+    public function handleYears($request)
+    {
+        //remove existing entries
+        $unit = $this->crud->getCurrentEntry();
+        if ($unit->years) {
+            $unit->years()->detach($unit->years->pluck('id')->toArray());
+        }
+
+
+        $years = json_decode($request->conversion_years);
+
+        //add new entries
+        foreach ($years as $year) {
+            $yearDb = Year::where('year', $year->year)->first();
+            $yearDb->units()->attach(request()->id, ['to_standard' => $year->to_standard]);
+        }
+    }
+
+
 
     public function fetchUnitType()
     {

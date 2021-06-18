@@ -1,6 +1,6 @@
 {
   "R": {
-    "Version": "4.0.2",
+    "Version": "4.0.3",
     "Repositories": [
       {
         "Name": "CRAN",
@@ -51,12 +51,12 @@
       "Repository": "CRAN",
       "Hash": "e031418365a7f7a766181ab5a41a5716"
     },
-    "RMySQL": {
-      "Package": "RMySQL",
-      "Version": "0.10.21",
+    "RMariaDB": {
+      "Package": "RMariaDB",
+      "Version": "1.1.1",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "1bb790236580c9321f676bf80163bbd4"
+      "Hash": "48b603f0df34588e545346e853c27176"
     },
     "Rcpp": {
       "Package": "Rcpp",
@@ -92,6 +92,20 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "543776ae6848fde2f48ff3816d0628bc"
+    },
+    "bit": {
+      "Package": "bit",
+      "Version": "4.0.4",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "f36715f14d94678eea9933af927bc15d"
+    },
+    "bit64": {
+      "Package": "bit64",
+      "Version": "4.0.5",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "9fe98599ca456d6552421db0d6772d8f"
     },
     "blob": {
       "Package": "blob",
@@ -163,6 +177,13 @@
       "Repository": "CRAN",
       "Hash": "2b7d10581cc730804e9ed178c8374bd6"
     },
+    "data.table": {
+      "Package": "data.table",
+      "Version": "1.14.0",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "d1b8b1a821ee564a3515fa6c6d5c52dc"
+    },
     "dbplyr": {
       "Package": "dbplyr",
       "Version": "2.1.0",
@@ -219,6 +240,13 @@
       "Repository": "CRAN",
       "Hash": "c98eb5133d9cb9e1622b8691487f11bb"
     },
+    "flextable": {
+      "Package": "flextable",
+      "Version": "0.6.6",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "a0782b2f09ddde646855880f1622f0ed"
+    },
     "forcats": {
       "Package": "forcats",
       "Version": "0.5.1",
@@ -232,6 +260,13 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "44594a07a42e5f91fac9f93fda6d0109"
+    },
+    "gdtools": {
+      "Package": "gdtools",
+      "Version": "0.2.3",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "12a524de5a491ff39debb9311fc0763f"
     },
     "generics": {
       "Package": "generics",
@@ -401,6 +436,13 @@
       "Repository": "CRAN",
       "Hash": "7c24ab3a1e3afe50388eb2d893aab255"
     },
+    "officer": {
+      "Package": "officer",
+      "Version": "0.3.18",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "da173b709a249ee1a0d122000c98cf92"
+    },
     "openssl": {
       "Package": "openssl",
       "Version": "1.4.3",
@@ -428,6 +470,13 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "01f28d4278f15c76cddbea05899c5d6f"
+    },
+    "plogr": {
+      "Package": "plogr",
+      "Version": "0.2.0",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "09eb987710984fc2905c7129c7d85e65"
     },
     "prettyunits": {
       "Package": "prettyunits",
@@ -617,6 +666,13 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "c3ad47dc6da0751f18ed53c4613e3ac7"
+    },
+    "uuid": {
+      "Package": "uuid",
+      "Version": "0.1-4",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "e4169eb989a5d03ccb6b628cad1b1b50"
     },
     "vctrs": {
       "Package": "vctrs",
