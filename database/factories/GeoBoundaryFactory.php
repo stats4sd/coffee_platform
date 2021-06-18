@@ -2,8 +2,11 @@
 
 namespace Database\Factories;
 
+use App\Models\Region;
 use App\Models\Country;
+use App\Models\Department;
 use App\Models\GeoBoundary;
+use App\Models\Muncipality;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class GeoBoundaryFactory extends Factory
@@ -24,7 +27,11 @@ class GeoBoundaryFactory extends Factory
     {
         return [
             'country_id' => Country::factory(),
-            'name' => $this->faker->unique()->word(),
+            'region_id' => Region::factory(),
+            'muncipality_id' => Muncipality::factory(),
+            'department_id' => Department::factory(),
+            'description' => $this->faker->unique()->word(),
+            'altitude' => $this->faker->numberBetween(0, 5000),
         ];
     }
 }

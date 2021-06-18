@@ -1,0 +1,47 @@
+.card {
+   border: none !important; 
+}
+.select-card {
+    width: 220px;
+    height: 130px;
+    overflow: hidden;
+    border-radius: 0.34rem !important;
+    // &.selected {
+    //     outline: 5px solid $info;
+    // }
+}
+.select-card.selected .card-img{
+    -webkit-filter: grayscale(0%) brightness(100%);
+    ;
+}
+.select-card .card-img {
+    height: 100%;
+    transition: all 0.25s ease;
+    -webkit-filter:grayscale(30%) brightness(80%);
+}
+
+.select-card:hover .card-img {
+    -webkit-filter: grayscale(30%) brightness(60%);
+}
+.select-card:after {
+    content:'';
+    position:absolute;
+    left:0; top:0;
+    width:100%; height:100%;
+    display:inline-block;
+    background: -moz-linear-gradient(top, rgba(0, 0, 0, 0.27) 0%, rgba(0, 0, 0, 0.46) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0, 0, 0, 0.46)), color-stop(100%,rgba(0, 0, 0, 0.27))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.27) 0%,rgba(0, 0, 0, 0.46) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, rgba(0, 0, 0, 0.27) 0%,rgba(0, 0, 0, 0.46) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, rgba(0, 0, 0, 0.27) 0%,rgba(0, 0, 0, 0.46) 100%); /* IE10+ */
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.27) 0%,rgba(0, 0, 0, 0.46) 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#00000000',GradientType=0 ); /* IE6-9 */
+  }
+
+.card-caption {
+    z-index: 1;
+    text-align: center;
+    width: 100%;
+    margin: 33% 0;
+    position: absolute;
+}

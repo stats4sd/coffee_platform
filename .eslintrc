@@ -1,0 +1,60 @@
+{
+    "env": {
+        "browser": true,
+        "es6": true,
+        "commonjs": true,
+        "jquery": true,
+        "node": true
+    },
+    "globals": {
+        "axios": "readonly",
+        "_": "readonly",
+    },
+    "extends": [
+        "eslint:recommended",
+        "plugin:vue/recommended"
+    ],
+    "rules": {
+        "indent": [
+            1,
+            4
+        ],
+        "vue/script-indent": [
+            1,
+            4,
+            {
+                "baseIndent": 1
+            }
+        ],
+        "vue/html-indent": [
+            1,
+            4,
+            {
+                "baseIndent": 1
+            }
+        ],
+        "no-console": 0,
+        "allowImportExportEverywhere": 0,
+        "vue/require-v-for-key": 0,
+        "vue/no-invalid-v-for": 0
+    },
+    "settings": {
+        "html/indent": "+4"
+    },
+    "parserOptions": {
+        "sourceType": "module",
+        "ecmaVersion": 2018
+    },
+    "overrides": [
+        {
+            "files": [
+                "*.vue"
+            ],
+            "rules": {
+                "indent": "off",
+                "vue/no-invalid-v-for": "off",
+                "vue/require-v-for-key": "off"
+            }
+        }
+    ]
+}

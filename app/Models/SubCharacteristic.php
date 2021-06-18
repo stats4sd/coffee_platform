@@ -17,18 +17,38 @@ class SubCharacteristic extends Model
     */
 
     protected $table = 'sub_characteristics';
-    // protected $primaryKey = 'id';
+    protected $primaryKey = 'id';
     // public $timestamps = false;
     protected $guarded = ['id'];
     // protected $fillable = [];
     // protected $hidden = [];
     // protected $dates = [];
+    protected $appends = [
+        'characteristic_label',
+    ];
+
+    public static function boot()
+    {
+        parent::boot();
+
+        static::saved(function ($subCharacteristic) {
+            $subCharacteristic->indicators->each(function ($indicator) {
+                $indicator->indicatorValues->searchable();
+            });
+        });
+    }
 
     /*
     |--------------------------------------------------------------------------
     | FUNCTIONS
     |--------------------------------------------------------------------------
     */
+
+    public function getCharacteristicLabelAttribute()
+    {
+        return $this->characteristic ? $this->characteristic->name . " (" . $this->name . ")" : null;
+    }
+
 
     /*
     |--------------------------------------------------------------------------

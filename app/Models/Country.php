@@ -2,13 +2,15 @@
 
 namespace App\Models;
 
+use App\Models\Traits\UpdatesMainSearchIndex;
+use Backpack\CRUD\app\Library\CrudPanel\Traits\Update;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Model;
 
 class Country extends Model
 {
-    use CrudTrait, HasFactory;
+    use CrudTrait, HasFactory, UpdatesMainSearchIndex;
 
     /*
     |--------------------------------------------------------------------------
@@ -17,7 +19,7 @@ class Country extends Model
     */
 
     protected $table = 'countries';
-    // protected $primaryKey = 'id';
+    protected $primaryKey = 'id';
     // public $timestamps = false;
     protected $guarded = ['id'];
     // protected $fillable = [];

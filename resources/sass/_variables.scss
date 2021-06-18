@@ -1,0 +1,64 @@
+// Customised
+
+$darkgreen: #007155;
+$medgreen: #66AC47;
+$lightgreen: #B2D23E;
+
+$primary: #3e6261;
+$info: #70aeb0;
+$dark: #102125;
+$mid: #b7b6b6;
+
+$white: #fff;
+
+
+$mq-breakpoints: (
+    mobile:  320px,
+    tablet:  740px,
+    desktop: 980px,
+    wide:    1300px
+);
+
+$popover-font-size:                 0.9em;
+$popover-bg:                        $white;
+$popover-max-width:                 276px;
+$popover-border-color:              $primary;
+
+$popover-header-bg:                 $primary;
+$popover-header-color:              $white;
+$popover-header-padding-y:          1rem;
+$popover-header-padding-x:          1rem;
+
+// $popover-arrow-width:               0rem;
+// $popover-arrow-height:              0rem;
+$popover-arrow-color:               $primary;
+
+////// DEFAULTS //
+// Body
+$body-bg: #f8fafc;
+
+// Typography
+$font-family-sans-serif: 'Roboto', sans-serif;
+$font-size-base: 0.9rem;
+$line-height-base: 1.6;
+
+
+// theme
+$secondary: #868e96;
+$success: #28a745;
+$danger: #dc3545;
+$warning: #ffc107;
+$light: #f8f9fa;
+
+
+// Colors
+$blue: #3490dc;
+$indigo: #6574cd;
+$purple: #9561e2;
+$pink: #f66d9b;
+$red: #e3342f;
+$orange: #f6993f;
+$yellow: #ffed4a;
+$green: #38c172;
+$teal: #4dc0b5;
+$cyan: #6cb2eb;

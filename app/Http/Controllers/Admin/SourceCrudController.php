@@ -54,11 +54,12 @@ class SourceCrudController extends CrudController
             ],
             [
                 'type' => 'relationship',
-                'name' => 'type',
+                'name' => 'partner',
             ],
             [
-                'type' => 'relationship',
-                'name' => 'partner',
+                'name' => 'is_not_public',
+                'type' => 'check',
+                'label' => 'Keep source anonymous',
             ],
             [
                 'name' => 'description',
@@ -93,17 +94,15 @@ class SourceCrudController extends CrudController
             ],
             [
                 'type' => 'relationship',
-                'name' => 'type_id',
-                'ajax' => true,
-                'inline_create' => [ 'entity' => 'type' ],
-                'minimum_input_length' => 0,
-            ],
-            [
-                'type' => 'relationship',
                 'name' => 'partner_id',
                 'ajax' => true,
                 'inline_create' => [ 'entity' => 'partner' ],
                 'minimum_input_length' => 0,
+            ],
+            [
+                'name' => 'is_not_public',
+                'type' => 'checkbox',
+                'label' => 'Keep source anonymous',
             ],
             [
                 'name' => 'description',
@@ -128,11 +127,6 @@ class SourceCrudController extends CrudController
     protected function setupUpdateOperation()
     {
         $this->setupCreateOperation();
-    }
-
-    public function fetchType()
-    {
-        return $this->fetch(Type::class);
     }
 
     public function fetchPartner()

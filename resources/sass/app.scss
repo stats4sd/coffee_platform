@@ -1,0 +1,393 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&display=swap');
+
+
+// Variables
+@import "variables";
+
+// Bootstrap
+@import "~bootstrap/scss/bootstrap";
+@import "~bootstrap-vue/src/index.scss";
+@import "../../public/packages/line-awesome/scss/line-awesome";
+
+// Components
+@import "./components/SelectWithImages";
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: roboto;
+    font-size: 1rem;
+    font-weight: 300;
+    background-color: #fff;
+    height: 100%;
+    position: relative;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+.big-title {
+    font-size: 1.5rem;
+}
+
+.main-container {
+    min-height: 100vh; /* will cover the 100% of viewport */
+    overflow: hidden;
+    display: block;
+    position: relative;
+    padding-bottom: 100px; /* height of your footer */
+}
+
+h1 {
+    font-family: "Noto Sans JP", sans-serif;
+    font-weight: 300 !important;
+}
+
+h2 {
+    font-weight: 500;
+    font-size: 1.5rem;
+}
+
+h3 {
+    font-weight: 500;
+}
+
+h4 {
+    font-weight: 400;
+}
+
+button.btn {
+    border-radius: 0.5em;
+}
+
+.pt-lots {
+    padding-top: 100px;
+}
+
+.px-lots {
+    padding-left: 12%;
+    padding-right: 12%;
+}
+
+.full-height {
+    min-height: calc(100vh - 135px);
+}
+
+.h-1 {
+    height: 45px;
+}
+
+.h-2 {
+    height: 90px;
+}
+
+.w-33 {
+    width: 33%;
+}
+
+.b-table {
+    font-weight: 400;
+}
+
+.b-table-sticky-header {
+    max-height: 500px !important;
+}
+
+.sidebar {
+    min-width: 250px;
+    z-index: 1;
+    button {
+        box-shadow: none !important;
+        border-radius: 0%;
+    }
+}
+
+.dark-gradient {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0), #011627e3);
+}
+
+.btn-flush {
+    border-radius: 0;
+}
+
+.padded-checkbox-group .custom-checkbox {
+    margin: 0.5em 0 0.5em 2em;
+
+    label {
+        padding: 0em 3em 0em 0;
+    }
+}
+
+.open-top th {
+    border-top: 0 !important;
+    background-color: $light !important;
+}
+
+.btn-group.ungrouped-buttons {
+    display: flex;
+    justify-content: start;
+    width: 100%;
+
+    .btn {
+        display: block;
+        flex: unset;
+        margin-right: 1em;
+        border-radius: 0.35em !important;
+    }
+}
+
+.btn-select {
+    width: 9rem;
+    span {
+        margin: auto;
+    }
+}
+
+.subcategories {
+    flex-wrap: wrap;
+}
+
+.subcategories label {
+	white-space: nowrap;
+}
+.subcategories .btn {
+	margin-bottom: 0.7em;
+	line-height: 1.8;
+	margin-right: 0.7em;
+}
+
+.downloader {
+    width: 3.5rem;
+    height: 3.5rem;
+    box-shadow: 0.1rem 0.2rem 0.4rem rgba(0, 0, 0, 0.24) !important;
+}
+
+
+// .popover.bg-primary {
+//     .popover-header {
+//         background-color: $primary;
+//         color: white !important;
+//     }
+
+//     .arrow ::after {
+//         border-bottom-color: $primary !important;
+//     }
+
+// }
+
+.custom-overlay {
+    height: 0; //height of downloader icon + margin
+    overflow-x: visible;
+}
+
+.arrow-up {
+  width: 0;
+  height: 0;
+  border-left: 1em solid transparent;
+  border-right: 1em solid transparent;
+
+  border-bottom: 2em solid $primary;
+  margin-bottom: -2em;
+
+  &.download-centered {
+      position: relative;
+      left: calc(-37.5px + 1em);
+  }
+
+
+}
+
+.mt-arrow {
+    margin-top: 2em;
+}
+
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
+
+
+/* always show scrollbars */
+
+::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 7px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-color: rgba(0, 0, 0, .5);
+  box-shadow: 0 0 1px rgba(255, 255, 255, .5);
+}
+
+// style for green buttons
+.button-green {
+  background-color: $lightgreen;
+  border: none;
+//   color: white;
+//   padding: 0.3em;
+  text-align: center;
+  text-decoration: none;
+//   display: inline-block;
+  font-size: 19px;
+  border-radius: 50px;
+  height: 45px;
+  width: 250px;
+}
+.button-green:hover {
+    background-color: $medgreen;
+}
+
+#text-green {
+    color: $medgreen;
+}
+
+#caption{
+    background-color: $darkgreen;
+    height: 40px;
+    width: 100%;
+    text-align: right;
+    color: white;
+    padding-right: 5%;
+    font-size: 0.9rem;
+    line-height: 2.5;
+}
+
+.box-green{
+    position: relative;
+    height: 520px;
+    // width: 40%;
+    background-color: #b2d23ec7;
+}
+.box-green a{
+    color: $darkgreen;
+}
+.partners-logos{
+    padding-right:5%;
+    padding-left:5%;
+}
+
+#caption_small{
+    background-color: $darkgreen;
+    height: 25px;
+    width: 75%;
+    text-align: right;
+    color: white;
+    padding-right: 5%;
+}
+
+    .text-block {
+    color: white;
+    padding-bottom: 50px;
+    text-align: left;
+    padding-left: 10vw;
+    padding-right: 10vw;
+    line-height: 1.2;
+    width: 100%;
+        font-size: 1.5rem;
+        position: absolute;
+        bottom: -20px;
+    }
+    #report_button{
+        position: absolute;
+        top: 400px;
+    }
+
+    .report-text{
+        position: absolute;
+        opacity: 1;
+        text-align: left;
+        /* font-size: 55px; */
+        padding:50px;
+        line-height: 1.2;
+        font-family:  sans-serif;
+
+    }
+    
+    .arrow {
+    /* margin-bottom: 0.4em; */
+    font-size:24px;
+    /* width: 2.5rem;
+    height: 2.5rem; */
+    /* padding-top: 0.35em; */
+    /* position:relative; */
+    /* padding: 10px; */
+    padding-top: 30px;
+    /* padding-right: 30px; */
+    padding-bottom: 30px;
+    /* padding-left: 5px; */
+    }
+    .header {
+        height: 520px;
+        position: relative;
+    }
+
+    .header h1 {
+        font-weight: 700 !important;
+        font-size: 3rem;
+    }
+  
+
+    .image_header {
+    width: 100%;  
+    object-fit: cover; 
+    height: 520px;
+    }
+
+    #image_report,#image_about {
+        position: absolute;
+    }
+
+    #image_home_report{
+    width:75%;  
+    object-fit:cover; 
+    height:500px;
+    }
+
+ #image_hub {
+     height: 400px;
+
+ }
+.helpbar {
+    border: none !important;
+    border-radius: 0px;
+    height: 100px;
+    background-color: #b2d23ec7;
+    color: #102125;
+    width: 110vw;
+    position: relative;
+    bottom: 100px;
+    padding-left: 11.5vw;
+    text-align: left;
+    font-family: "Noto Sans JP", sans-serif;
+    font-size: 1.7rem;
+    font-weight: 700;
+    line-height: 100px;
+}
+.helpbar:focus {
+    box-shadow: none;
+}
+ .helpbox {
+    background-color: #b2d23e;
+    color: $dark;
+    padding-left: 11.5vw;
+    padding-right: 11.5vw;
+ 
+}
+.helpbox p {
+    margin-bottom: 0.3rem;
+}
+.helpbox h2 {
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
+}

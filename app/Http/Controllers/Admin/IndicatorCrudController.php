@@ -52,12 +52,13 @@ class IndicatorCrudController extends CrudController
     {
         $this->crud->addColumns([
             [
-                'name' => 'sub_characteristic.characteristic.name',
+                'name' => 'characteristic_name',
                 'label' => 'Characteristic',
+                'type' => 'text',
             ],
             [
                 'type' => 'relationship',
-                'name' => 'sub_characteristic',
+                'name' => 'subCharacteristic',
             ],
             [
                 'name' => 'code',
@@ -65,9 +66,9 @@ class IndicatorCrudController extends CrudController
                 'label' => 'Code'
             ],
             [
-                'name' => 'definition',
+                'name' => 'name',
                 'type' => 'text',
-                'label' => 'Definition'
+                'label' => 'Name'
             ]
         ]);
     }
@@ -97,7 +98,7 @@ class IndicatorCrudController extends CrudController
                 'type' => 'relationship',
                 'name' => 'sub_characteristic_id',
                 'attribute' => 'name',
-                'entity' => 'sub_characteristic',
+                'entity' => 'subCharacteristic',
                 'model' => "App\Models\SubCharacteristic",
                 'ajax' => true,
                 'minimum_input_length' => 0,
@@ -109,9 +110,9 @@ class IndicatorCrudController extends CrudController
                 'label' => 'Code'
             ],
             [
-                'name' => 'definition',
+                'name' => 'name',
                 'type' => 'text',
-                'label' => 'Definition'
+                'label' => 'Name'
             ]
         ]);
     }
