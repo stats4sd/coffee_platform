@@ -9,7 +9,7 @@
             <b-card
                 no-body
                 class="select-card m-2"
-                :class="option.value === value ? 'selected' : ''"
+                :class="option.value === value ? 'selected' : (somethingSelected ? 'not-selected' : '')"
                 @click="clicked(option.value)"
             >
                 <b-card-img
@@ -20,19 +20,25 @@
                 </div>
             </b-card>
         </div>
+
+<div>
+        <div class="m-2" style="width: 286px; height: 169px;">
+        </div>
+        </div>
     </div>
 
 </template>
 <script>
     export default {
         props: {
+            somethingSelected: null,
             multiple: {
                 type: Boolean,
                 default: false,
             },
             options: {
                 type: Array,
-                default: () => [],
+                default: null,
             },
             value: {
                 type: Number,
