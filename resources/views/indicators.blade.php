@@ -8,6 +8,7 @@
         <div class="row justify-content-end">
             <div class="text-block " style="padding-bottom: 20px; bottom: 80px">
                 <h1 class="mb-5 pb-5">Indicator Hub</h1>
+                <div id="caption" class="ml-3 ml-lg-5" style="background-color: #00000000;"> Photo credit: <strong>Phillip Davis 2020</strong> </div>
 
 
             </div>
