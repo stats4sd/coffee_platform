@@ -20,11 +20,33 @@
                 </div>
             </b-card>
         </div>
+        
+        
+        <!-- Slightly hacky solution for proper alignment of tiles -->
+        <div>
+            <div class="m-2" style="width: 286px; height: 1px;">
+            </div>
+        </div>
+        <div>
+            <div class="m-2" style="width: 286px; height: 1px;">
+            </div>
+        </div>
+        <div>
+            <div class="m-2" style="width: 286px; height: 1px;">
+            </div>
+        </div>
+        <div>
+            <div class="m-2" style="width: 286px; height: 1px;">
+            </div>
+        </div>
+        <div>
+            <div class="m-2" style="width: 286px; height: 1px;">
+            </div>
+        </div>
+        <!-- End Slightly hacky solution for proper alignment of tiles -->
 
-<div>
-        <div class="m-2" style="width: 286px; height: 169px;">
-        </div>
-        </div>
+
+
     </div>
 
 </template>
