@@ -1,7 +1,8 @@
 <template>
 
     <div class="d-md-flex d-block">
-        <div class="full-height sidebar shadow">
+    <div class="d-block">
+        <div class="full-height sidebar shadow sticky-top">
             <div class="sidebar-header bg-primary p-4 mb-0 text-white">
                 <h2 class="p-0 m-0">
                     Filters
@@ -12,8 +13,8 @@
                     /></span>
                 </h2>
             </div>
-            <div class="d-flex flex-column sticky-top ">
-                <ul class="list-group">
+            <div class="d-flex flex-column ">
+                <ul class="list-group" style=" border-radius: 0% !important">
                     <sidebar-filter
                         v-model="selectedCountries"
                         title="Country"
@@ -48,6 +49,7 @@
                     />
                 </ul>
             </div>
+        </div>
         </div>
         <div class="flex-grow-1">
             <indicator-downloader
@@ -91,9 +93,20 @@
                     </h2>
                 <!-- <characteristics> -->
                 <div class="d-flex flex-wrap pb-4">
+
+
+
+
+
+
+
+
+
+
                     <select-with-images
                         v-model="selectedCharacteristic"
                         :options="characteristics"
+                        :something-selected="selectedCharacteristic ? true : false"
                         @input="resetSubCharacteristics"
                     />
 
@@ -109,7 +122,7 @@
                 <div v-if="selectedCharacteristic">
 
                     <h2 class="py-3">
-                        Subcategories
+                      Subcategories
                     </h2>
                     <div class="d-flex flex-wrap ">
 
