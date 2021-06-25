@@ -34,9 +34,6 @@
             </div>
             <div class="container d-flex justify-content-end flex-column align-items-end">
                 <a class="m-0 text-white" href="{{ route('backpack') }}">Admin Login</a>
-                <div class="text-right">
-                    <p class="m-0 text-white" > Admin panel powered by <a class="m-0 text-white" href="https://backpackforlaravel.com/">Backpack for Laravel</a></p>
-                </div>
             </div>
             </div>
         </footer>
