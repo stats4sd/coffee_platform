@@ -4,11 +4,11 @@
 <div class="main-container" style="overflow: visible">
     <div class="header" style="height:400px; overflow: hidden">
 
-        <img src="images/hub1.jpg" id="image_hub" class="image_header" />
+        <img src="images/indicator_hub.JPG" id="image_hub" class="image_header" />
         <div class="row justify-content-end">
             <div class="text-block " style="padding-bottom: 20px; bottom: 80px">
                 <h1 class="mb-5 pb-5">Indicator Hub</h1>
-                <div id="caption" class="ml-3 ml-lg-5" style="background-color: #00000000;"> Photo credit: <strong>Phillip Davis 2020</strong> </div>
+                <div id="caption" class="ml-3 ml-lg-5" style="background-color: #00000000;"> Photo credit: <strong>Janica Anderzén 2019</strong> </div>
 
 
             </div>
