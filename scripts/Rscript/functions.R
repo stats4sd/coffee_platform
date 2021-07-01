@@ -75,10 +75,10 @@ value_table <- function(data, x, y){
     mutate(source_name = ifelse(!is.na(group), paste0(source_name, " Group:", group), source_name))%>%
     select(-purpose, -scope, -gender, -group)
     
-  if(sample_minimum<=21){
+  if(sample_minimum<=20){
     
     value_table <- value_table%>%
-      mutate(value_standard = ifelse(sample_size <=21, paste0(value_standard, "*"), value_standard))%>%
+      mutate(value_standard = ifelse(sample_size <=20, paste0(value_standard, "*"), value_standard))%>%
       select(-sample_size)%>%
       pivot_wider(names_from = year, values_from = value_standard)%>%
       mutate_all(as.character)%>%
@@ -95,7 +95,7 @@ value_table <- function(data, x, y){
       bg(i = 2, bg = "#EDEDED", part = "header")%>%
       bg(i = ~!is.na(Purpose), bg = "#E2EFD9")%>%
       theme_box()%>%
-      add_footer_lines(values = "* - Sample size for reported value is 21 or less")%>%
+      add_footer_lines(values = "* - Sample size for reported value is 20 or less")%>%
       fix_border_issues()%>%
       align(j = 2:(year_n+1), align = "center")%>%
       align(i = 2, j = 2:(year_n+1), align = "center", part = "header")
