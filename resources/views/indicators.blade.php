@@ -4,7 +4,7 @@
 <div class="main-container" style="overflow: visible">
     <div class="header" style="height:400px; overflow: hidden">
 
-        <img src="images/indicator_hub.JPG" id="image_hub" class="image_header" />
+        <img src="images/indicator_hub.jpeg" id="image_hub" class="image_header" />
         <div class="row justify-content-end">
             <div class="text-block " style="padding-bottom: 20px; bottom: 80px">
                 <h1 class="mb-5 pb-5">Indicator Hub</h1>
