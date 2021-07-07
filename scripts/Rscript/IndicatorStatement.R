@@ -7,7 +7,7 @@ library(openxlsx)
 args <- commandArgs(TRUE)
 
 excelFile <- args[1]
-excelData <- openxlsx::read.xlsx(excelFile)
+excelData <- openxlsx::read.xlsx(excelFile, sheet=2)
 
 #indicator_value_ids <- strsplit(args[2], ',')
 #indicator_value_ids <- indicator_value_ids[!is.na(indicator_value_ids)]
