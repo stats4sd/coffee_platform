@@ -39,9 +39,8 @@
         <p>
             A component of this pilot includes collaborative ways of identifying information gaps and
             envisioning more impactful, yet less burdensome ways, of data collection. Stemming from a
-            partnership between Heifer International, Lutheran World Relief, Statistics for Sustainable
-            Development and the Agroecology and Livelihoods Collaborative at the University of
-            Vermont, the goal is expansion into a larger, more permanent effort with broader industry
+            partnership between Heifer International, Lutheran World Relief, the Agroecology and Livelihoods Collaborative at the University of
+            Vermont and Statistics for Sustainable Development (Stats4SD), the goal is expansion into a larger, more permanent effort with broader industry
             support. Several other organizations have already contributed ideas and/or data.
         </p>
         <div id="app">
@@ -49,18 +48,22 @@
                 <div class='partners-logos text-center mt-5'>
                     <b-row class="justify-content-center">
                         <b-col>
-                            <b-img height="100" src="images/partners/Heifer.jpg" alt="Heifer"></b-img>
+                            <a href="https://www.heifer.org/" target="_blank">
+                            <b-img height="100" src="images/partners/Heifer.jpg" alt="Heifer"></b-img></a>
                         </b-col>
                         <b-col>
-                            <b-img height="100" src="images/partners/LWR.png" alt="LWR"></b-img>
+                            <a href="https://lwr.org/" target="_blank">
+                            <b-img height="100" src="images/partners/LWR.png" alt="LWR"></b-img></a>
                         </b-col>
                     </b-row>
                     <b-row class="justify-content-center">
-                        <b-col class="mt-5">
-                            <b-img height="35" src="images/partners/Stats4SD_Logo_Red_Small.jpg" alt="Stats4SD"></b-img>
+                        <b-col class="mt-3">
+                            <a href="https://www.uvm.edu/agroecology/" target="_blank">
+                            <b-img height="100" src="images/partners/UVM.jpg" alt="UVM"></b-img></a>
                         </b-col>
-                        <b-col>
-                            <b-img height="100" src="images/partners/UVM.jpg" alt="UVM"></b-img>
+                        <b-col class="mt-5">
+                            <a href="https://stats4sd.org/" target="_blank">
+                            <b-img height="35" src="images/partners/Stats4SD_Logo_Red_Small.jpg" alt="Stats4SD"></b-img></a>
                         </b-col>
                     </b-row>
                 </div>
