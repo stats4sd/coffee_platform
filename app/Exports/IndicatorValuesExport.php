@@ -3,65 +3,30 @@
 namespace App\Exports;
 
 use App\Models\IndicatorValue;
+use App\Exports\IndicatorValuesWorkbookExport;
 use Illuminate\Database\Eloquent\Builder;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithMapping;
 use Maatwebsite\Excel\Concerns\WithStrictNullComparison;
+use Maatwebsite\Excel\Concerns\WithTitle;
+use Maatwebsite\Excel\Concerns\WithColumnWidths;
+use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
+use PhpOffice\PhpSpreadsheet\Style\Fill;
+use Maatwebsite\Excel\Concerns\WithStyles;
+use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 
-class IndicatorValuesExport implements FromCollection, WithHeadings, WithMapping, WithStrictNullComparison
+class IndicatorValuesExport implements FromCollection, WithHeadings, WithMapping, WithStrictNullComparison, WithTitle, WithStyles, ShouldAutoSize, WithColumnWidths
 {
-    public $indicators = null;
-    public $countries = null;
-    public $years = null;
-    public $types = null;
-    public $purposes = null;
-    public $genders = null;
-    public $scopes = null;
-
-
-    // Setters
-    public function forIndicators(array $indicators)
+    public function __construct($indicators, $countries, $years, $types, $purposes, $genders, $scopes)
     {
-        $this->indicators = count($indicators) > 0 ? $indicators : null;
-
-        return $this;
-    }
-
-    public function forCountries(array $countries)
-    {
-        $this->countries = count($countries) > 0 ? $countries : null;
-        return $this;
-    }
-
-    public function forYears(array $years)
-    {
-        $this->years = count($years) > 0 ? $years : null;
-        return $this;
-    }
-
-    public function forTypes(array $types)
-    {
-        $this->types = count($types) > 0 ? $types : null;
-        return $this;
-    }
-
-    public function forPurposes(array $purposes)
-    {
-        $this->purposes = count($purposes) > 0 ? $purposes : null;
-        return $this;
-    }
-
-    public function forGenders(array $genders)
-    {
-        $this->genders = count($genders) > 0 ? $genders : null;
-        return $this;
-    }
-
-    public function forScopes(array $scopes)
-    {
-        $this->scopes = count($scopes) > 0 ? $scopes : null;
-        return $this;
+        $this->indicators = $indicators;
+        $this->countries = $countries;
+        $this->years = $years;
+        $this->types = $types;
+        $this->purposes = $purposes;
+        $this->genders = $genders;
+        $this->scopes = $scopes;
     }
 
     public function collection()
@@ -189,6 +154,40 @@ class IndicatorValuesExport implements FromCollection, WithHeadings, WithMapping
             'approach',
             'scope',
             'smallholder_definition',
+        ];
+    }
+
+    /**
+     * @return string
+     */
+    public function title(): string
+    {
+        return 'indicator_values';
+    }
+
+    public function styles(Worksheet $sheet)
+    {
+        $h1 = [
+            'font' => ['bold' => true],
+            'fill' => [
+                'fillType' => Fill::FILL_SOLID,
+                'startColor' => ['argb' => '48A18E'],
+            ],
+        ];
+
+        return [
+            1 => $h1
+        ];
+    }
+
+    public function columnWidths(): array
+    {
+        return [
+            'B' => 50,
+            'C' => 50,
+            'G' => 14,
+            'I' => 14,
+            'N' => 35
         ];
     }
 }
