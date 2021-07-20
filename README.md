@@ -15,7 +15,7 @@ To setup / test this for development:
    ```
 
    Extra note:
-   If you got "cannot find module "webpack-cli/package.json" error when running command "npm i", 
+   If you got "Cannot find module 'webpack-cli/package.json' error" when running command "npm i", 
    it can be resolved by executing below commands:
 
    1. Install webpack-cli globally
