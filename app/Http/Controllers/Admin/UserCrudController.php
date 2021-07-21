@@ -15,8 +15,8 @@ use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 class UserCrudController extends CrudController
 {
     use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
+    use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation {store as traitStore;}
+    use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation {update as traitUpdate;}
     use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
 
@@ -64,7 +64,7 @@ class UserCrudController extends CrudController
         CRUD::field('email');
 
         CRUD::field('password');
-        CRUD::field('password_confirmation');
+        CRUD::field('password_confirmation')->type('password');
 
         /**
          * Fields can be defined using the fluent syntax or array syntax:
