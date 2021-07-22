@@ -122,15 +122,45 @@ return [
     // no records in search result after changing it from "false" to "true"
     'tntsearch' => [
         'storage' => storage_path('search'),
+
+        //'fuzziness' => true,
         'fuzziness' => env('TNTSEARCH_FUZZINESS', false),
+        
         'fuzzy' => [
+
+            // how many first letters need to be an exact match
+            //'prefix_length' => 3,
+            //'prefix_length' => 6,
+            //'prefix_length' => 7,
+            //'prefix_length' => 20,
             'prefix_length' => 2,
+
+            //'max_expansions' => 100,
+            //'max_expansions' => 5000,
             'max_expansions' => 500,
+
+            // maximum number of typo allowed
+            //'distance' => 1,
+            //'distance' => 2,
+            //'distance' => 30,
             'distance' => 3,
+
+            //'no_limit' => false,
             'no_limit' => true,
+
         ],
+        
+        //'asYouType' => true,
         'asYouType' => false,
+        
+        //'searchBoolean' => env('TNTSEARCH_BOOLEAN', true),
         'searchBoolean' => env('TNTSEARCH_BOOLEAN', false),
+
+        // maximum number of records in search result
+        //'maxDocs' => env('TNTSEARCH_MAX_DOCS', 2),
+        //'maxDocs' => env('TNTSEARCH_MAX_DOCS', 5),
+        //'maxDocs' => env('TNTSEARCH_MAX_DOCS', 50),
+        //'maxDocs' => env('TNTSEARCH_MAX_DOCS', 5000),
         'maxDocs' => env('TNTSEARCH_MAX_DOCS', 500),
     ],
 
