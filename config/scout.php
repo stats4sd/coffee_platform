@@ -116,6 +116,10 @@ return [
         'secret' => env('ALGOLIA_SECRET', ''),
     ],
 
+
+    // DT, 2021/07/22, tried every boolean or numeric (x10 times) configuration one by one
+    // all changes without effect except configuration "searchBoolean"
+    // no records in search result after changing it from "false" to "true"
     'tntsearch' => [
         'storage' => storage_path('search'),
         'fuzziness' => env('TNTSEARCH_FUZZINESS', false),
