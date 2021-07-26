@@ -117,7 +117,7 @@ return [
     ],
 
 
-    // DT, 2021/07/26, add description for some configuration items
+    // add description for some configuration items
     'tntsearch' => [
         'storage' => storage_path('search'),
 
