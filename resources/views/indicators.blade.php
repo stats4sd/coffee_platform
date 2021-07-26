@@ -21,6 +21,13 @@
     </div>
     <div class="collapse" id="collapseExample">
         <div class="card card-body helpbox pb-5">
+            <div class="row justify-content-center">
+                <div class="col-xl-8 mb-4" style="max-width: 560px;">
+                    <div class="videowrapper">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/R5HSmCG1DSA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>    
             <h2>Step 1: What are you looking for?</h2>
             <p class="mb-3">
                 There are some different ways to explore the available data:</p>
