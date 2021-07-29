@@ -116,17 +116,32 @@ return [
         'secret' => env('ALGOLIA_SECRET', ''),
     ],
 
+
+    // add description for some configuration items
     'tntsearch' => [
         'storage' => storage_path('search'),
+
         'fuzziness' => env('TNTSEARCH_FUZZINESS', false),
+        
         'fuzzy' => [
+
+            // how many first letters need to be an exact match
             'prefix_length' => 2,
+            
             'max_expansions' => 500,
+
+            // maximum number of typo allowed
             'distance' => 3,
+
             'no_limit' => true,
+
         ],
+
         'asYouType' => false,
+        
         'searchBoolean' => env('TNTSEARCH_BOOLEAN', false),
+
+        // maximum number of records in search result
         'maxDocs' => env('TNTSEARCH_MAX_DOCS', 500),
     ],
 
