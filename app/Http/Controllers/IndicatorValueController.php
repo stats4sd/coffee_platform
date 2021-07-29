@@ -24,7 +24,8 @@ class IndicatorValueController extends Controller
     public function index(Request $request)
     {
         if ($request->has('search')) {
-            $query = IndicatorValue::search($request->search)->paginate(0);
+            // return full set search result instead of using pagination
+            $query = IndicatorValue::search($request->search)->get();
         } else {
             $query = IndicatorValue::query()->get();
         }
