@@ -1,6 +1,6 @@
 <!-- Navigation / Header Bar -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark h-100 pl-4">
-        <a class="navbar-brand" href="{{ route('home') }}" class="px-4"><h1 class="big-title">State of the Coffee Smallholder Platform</h1></a>
+        <a class="navbar-brand" href="{{ route('home') }}" class="px-4"><h1 class="big-title">State of the Smallholder Coffee Farmer Platform</h1></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>

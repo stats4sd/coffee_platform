@@ -23,7 +23,7 @@
 
     <div class="container my-5 px-5 py-5">
             <h2 id="text-green">What is it?</h2>
-            <p>The State of the Coffee Smallholder Platform is an open access data resource, designed to drive more informed decision making
+            <p>The State of the Smallholder Coffee Farmer Platform is an open access data resource, designed to drive more informed decision making
                  amongst smallholder coffee farmers as well as various value chain actors.
             </p>
             <p>This interactive site brings together indicator data from a variety of soures, which can be used to draw a
