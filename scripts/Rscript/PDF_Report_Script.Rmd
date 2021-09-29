@@ -1,5 +1,5 @@
 ---
-title: 'State of the Coffee Smallholder Platform: Indicator Report'
+title: 'State of the Smallholder Coffee Farmer Platform: Indicator Report'
 output:
   pdf_document:
     toc_depth: 1
