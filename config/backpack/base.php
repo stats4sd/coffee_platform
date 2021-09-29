@@ -24,7 +24,7 @@ return [
     // ----
 
     // Project name. Shown in the window title.
-    'project_name' => 'State of the Coffee Smallholder Platform',
+    'project_name' => 'State of the Smallholder Coffee Farmer Platform',
 
     // When clicking on the admin panel's top-left logo/name,
     // where should the user be redirected?
