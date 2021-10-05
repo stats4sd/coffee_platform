@@ -16,7 +16,30 @@
         </div>
         <a class="btn  helpbar" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false"
             aria-controls="collapseExample">
-            <span>How to use the Indicator Hub</span>
+            <table border="0">
+                <tr>
+                    <td>
+                        <i class="las la-question"></i>
+                    </td>
+                    <td>
+                        <span>&nbsp;How to use the Indicator Hub</span>
+                    </td>
+                    <td>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;
+                    </td>
+                    <td>
+                        <i class="las la-angle-double-down"></i>
+                    </td>
+                </tr>
+            </table>
         </a>
     </div>
     <div class="collapse" id="collapseExample">

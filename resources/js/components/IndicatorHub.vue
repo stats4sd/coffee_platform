@@ -65,6 +65,8 @@
                     )
                 "
                 :processing="processing"
+                :processingXls="processingXls"
+                :processingPdf="processingPdf"
                 @hidden="downloadOptionsVisible = false"
                 @remove-indicator="removeIndicator"
                 @download-xlsx="downloadValues(selectedIndicators)"
@@ -81,13 +83,19 @@
                         <b-input-group-text>
                             <i class="las la-search" />
                         </b-input-group-text>
+
+                        <!-- Add clear button with inline Javascript -->
+                        <b-input-group-text onClick="document.getElementById('__BVID__33').value = ''; document.getElementById('__BVID__33').focus(); ">
+                            <i class="las la-times"></i>
+                        </b-input-group-text>
                     </template>
                     <b-form-input
                         class="bg-light"
                         placeholder="Search for indicators"
-                        @input="searchIndicators"
+                        @input="searchIndicators"                        
                     />
                 </b-input-group>
+
                 <h2 class="py-3">
                         Categories
                     </h2>
@@ -181,7 +189,8 @@
 
 
 
-
+                <!-- Add clear button with inline Javascript -->
+                <input type="button" name="btnClearKeyword" id="btnClearKeyword" value="Clear Keyword" tabindex="-1" class="btn ml-2 pr-2 font-weight-bold btn-select btn-primary btn-sm" onClick="document.getElementById('__BVID__33').value = ''; document.getElementById('__BVID__33').focus(); ">
 
 
 
@@ -293,6 +302,8 @@
                 sortBy: 'code',
                 sortDesc: false,
                 processing: false,
+                processingXls: false,
+                processingPdf: false,
                 loading: false,
                 downloadOptionsVisible: false,
                 downloadPopoverVisible: false,
@@ -526,6 +537,7 @@
 
             downloadValues(selectedIndicators) {
                 this.processing = true;
+                this.processingXls = true;
                 axios
                     .post("indicators/download", {
                         indicators: selectedIndicators,
@@ -539,6 +551,7 @@
                     .then(result => {
                         this.makeAndClickLink(result.data);
                         this.processing = false;
+                        this.processingXls = false;
                     });
             },
 
@@ -546,6 +559,7 @@
 
                 selectedIndicators = selectedIndicators.map(id => Number(id));
                 this.processing = true;
+                this.processingPdf = true;
                 this.$bvToast.toast(
                     `Your download is being prepared. This may take some time - please leave this window open.`,
                     {
@@ -570,7 +584,8 @@
                     })
                     .then(result => {
                         this.makeAndClickLink(result.data);
-                        this.processing = false;
+                        this.processing = false;                        
+                        this.processingPdf = false;
                     });
             },
 
