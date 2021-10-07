@@ -19,7 +19,7 @@
             <table border="0">
                 <tr>
                     <td>
-                        <i class="las la-question-circle"></i>
+                        <i class="las la-question-circle la-lg"></i>
                     </td>
                     <td>
                         <span>&nbsp;How to use the Indicator Hub</span>
