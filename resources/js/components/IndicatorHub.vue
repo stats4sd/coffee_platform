@@ -188,10 +188,10 @@
 
 
 
-
-                <!-- Add clear button with inline Javascript -->
-                <input type="button" name="btnClearKeyword" id="btnClearKeyword" value="Clear Keyword" tabindex="-1" class="btn ml-2 pr-2 font-weight-bold btn-select btn-primary btn-sm" onClick="document.getElementById('__BVID__33').value = ''; document.getElementById('__BVID__33').focus(); ">
-
+                    <!-- Add clear button with inline Javascript -->
+                    <div class="d-flex py-4">
+                        <input type="button" name="btnClearKeyword" id="btnClearKeyword" value="Clear search" tabindex="-1" class="font-weight-bold btn-primary btn-sm" onClick="document.getElementById('btnClearKeyword').style.display = 'none'; document.getElementById('__BVID__33').value = ''; document.getElementById('__BVID__33').focus(); ">
+                    </div>
 
 
 
@@ -384,6 +384,17 @@
         },
         methods: {
             getIndicatorValues() {
+
+                // show "Clear search" button only when there is keyword in search bar
+                var btnClearKeyword = document.getElementById("btnClearKeyword");
+
+                if (this.searchTerm == undefined || this.searchTerm == "") {
+                    btnClearKeyword.style.display = "none";
+                } else {
+                    btnClearKeyword.value = "Clear search '" + this.searchTerm + "'";
+                    btnClearKeyword.style.display = "inline-block";
+                }
+
                 var url = "/indicators/search?by-indicator";
 
                 if (this.searchTerm) {
