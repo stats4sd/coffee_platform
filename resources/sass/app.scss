@@ -32,11 +32,41 @@ body {
     bottom: 0;
     width: 100%;
 }
+.navbar-toggler {
+    padding: 0px;
+    border: none;
+}
+.mx-auto.d-sm-flex.d-block.flex-sm-nowrap {
+    text-align: center;
+}
+.navbar-collapse {
+    z-index: 10; 
+    width: 120vw; 
+    margin-top: -0.5rem; 
+    margin-left: -2rem; 
+    margin-right: -1rem; 
+    padding: 2rem;
+}
 
+@media only screen and (max-width: 991px) {
+    .navbar-collapse {
+        background-color: #102125; 
+    }
+
+}
+  
 .big-title {
     font-size: 1.5rem;
 }
 
+
+    @media only screen and (max-width: 600px) {
+        .big-title {
+            font-size: 0.9rem;
+        }
+
+    }
+      
 .main-container {
     min-height: 100vh; /* will cover the 100% of viewport */
     overflow: hidden;
@@ -379,8 +409,17 @@ button.btn {
     font-weight: 700;
     line-height: 100px;
 }
+@media only screen and (max-width: 460px) {
+    .helpbar {
+        font-size: 1.2rem !important;
+    }
+    }
+  
 .helpbar:focus {
     box-shadow: none;
+}
+.helpbar:hover {
+    background-color: #b2d23eea !important;
 }
  .helpbox {
     background-color: #b2d23e;
@@ -396,3 +435,15 @@ button.btn {
     margin-top: 1rem;
     margin-bottom: 1.5rem;
 }
+
+.videowrapper iframe {
+    width: 560px;
+    height: 315px
+}
+@media only screen and (max-width: 600px) {
+    .videowrapper iframe {
+        width: 260px;
+        height: auto;
+    }
+    }
+  

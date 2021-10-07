@@ -1,60 +1,41 @@
 .card {
    border: none !important; 
 }
+
+
 .select-card {
-    width: 286px;
-    height: 169px;
-    overflow: hidden;
-    border-radius: 0.34rem !important;
+
     transition: all 0.25s ease;
     cursor: pointer;
+    text-align: center;
+    width: 169px;
+    p {
+        line-height: 1.3;
+        margin-top: 1rem;
+        color: $darkgreen;
 
+    }
 }
 
 .select-card .card-img {
-    height: 100%;
     transition: all 0.25s ease;
-    // -webkit-filter: grayscale(0%) brightness(100%);
+    display: block;
+    margin: 0 auto;
+    display: block;
+    width: 100%;
+
     
 }
 
-.select-card:hover .card-img {
+.select-card:hover .card-img,.select-card:hover p {
     -webkit-filter: grayscale(20%) brightness(70%);
-    filter: grayscale(20%) brightness(70%);
+    filter: brightness(70%);
 }
 
 
-.select-card.not-selected .card-img{
+.select-card.not-selected .card-img,.select-card.not-selected p{
     -webkit-filter: grayscale(100%) brightness(80%) opacity(80%) contrast(120%);
     filter: grayscale(100%) brightness(80%) opacity(80%) contrast(120%);
 }
 
 
-.select-card:after {
-    content:'';
-    position:absolute;
-    left:0; top:0;
-    width:100%; height:100%;
-    display:inline-block;
-    transition: all 0.25s ease;
-    background: -moz-linear-gradient(top, rgba(0, 0, 0, 0.03) 0%, rgba(0, 0, 0, 0.27) 80%); /* FF3.6+ */
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(20%,rgba(0, 0, 0, 0.27)), color-stop(100%,rgba(0, 0, 0, 0.03))); /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.03) 0%,rgba(0, 0, 0, 0.27) 80%); /* Chrome10+,Safari5.1+ */
-    background: -o-linear-gradient(top, rgba(0, 0, 0, 0.03) 0%,rgba(0, 0, 0, 0.27) 80%); /* Opera 11.10+ */
-    background: -ms-linear-gradient(top, rgba(0, 0, 0, 0.03) 0%,rgba(0, 0, 0, 0.27) 80%); /* IE10+ */
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.03) 0%,rgba(0, 0, 0, 0.27) 80%); /* W3C */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000aa', endColorstr='#00000000',GradientType=0 ); /* IE6-9 */
-  }
-  
-  .select-card.not-selected:after {
-    background: #3e626169;
-  }
-
-
-.card-caption {
-    z-index: 1;
-    text-align: center;
-    width: 100%;
-    margin: 40% 0;
-    position: absolute;
-}
