@@ -314,9 +314,10 @@ button.btn {
 
 #caption_small{
     background-color: $darkgreen;
-    height: 25px;
-    width: 75%;
+    height: 50px;
+    width: 80%;
     text-align: right;
+    font-size: 0.9rem;
     color: white;
     padding-right: 5%;
 }
@@ -384,7 +385,7 @@ button.btn {
     }
 
     #image_home_report{
-    width:75%;  
+    width:80%;  
     object-fit:cover; 
     height:500px;
     }

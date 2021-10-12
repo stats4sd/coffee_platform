@@ -16,7 +16,7 @@
             </div>
         </div>
         <div id="caption">
-            Photo Credit:<strong> Phillip Davis 2020</strong>
+            Farmer holding freshly picked coffee berries in Guatemala. Credit: Heifer International/Phillip Davis
         </div>
     </div>
 
@@ -49,7 +49,7 @@
             <div class="col-lg-6 mb-5">
                 <img src="images/home_report.jpg" id="image_home_report"/>
                 <div id="caption_small">
-                    Photo Credit: <strong>Phillip Davis 2020</strong>
+                    Guatemalan farmer holding freshly picked coffee berries. Credit: Heifer International/Phillip Davis
                 </div>
             </div>            
         </div>

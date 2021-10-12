@@ -30,7 +30,7 @@
             </div>
 </div>
             <div id="caption">
-                Photo Credit: <strong>Phillip Davis 2020</strong>
+                Guatemalan farmer with his coffee plants. Credit: Heifer International/Phillip Davis
             </div>
         </div>
     </div>

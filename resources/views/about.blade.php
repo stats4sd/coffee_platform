@@ -22,7 +22,7 @@
     </div>
 
     <div id="caption">
-        Photo Credit: <strong>Phillip Davis 2019 </strong>
+        Nicaraguan farmer with her coffee plants. Credit: Heifer International/Phillip Davis
     </div>
 
     <div class="container px-4 my-5 px-5 py-5">
