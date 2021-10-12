@@ -283,19 +283,18 @@ button.btn {
     background-color: $medgreen;
 }
 
-#text-green {
+.text-green {
     color: $medgreen;
 }
 
 #caption{
     background-color: $darkgreen;
-    height: 40px;
     width: 100%;
     text-align: right;
     color: white;
-    padding-right: 5%;
+    padding: 1rem 5% 1rem 5%;
     font-size: 0.9rem;
-    line-height: 2.5;
+    line-height: 1.5;
 }
 
 .box-green{
@@ -372,7 +371,11 @@ button.btn {
         font-weight: 700 !important;
         font-size: 3rem;
     }
-  
+    @media only screen and (max-width: 365px) {
+        .header h1 {
+            font-size: 2rem;
+        }
+    }
 
     .image_header {
     width: 100%;  

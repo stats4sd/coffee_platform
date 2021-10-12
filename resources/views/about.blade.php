@@ -35,7 +35,7 @@
             to draw a more holistic and inclusive picture of coffee smallholders and their livelihoods. 
         </p>
 
-        <h2 class="mt-5" id="text-green">Partners</h2>
+        <h2 class="mt-5 text-green">Partners</h2>
         <p>
             A component of this pilot includes collaborative ways of identifying information gaps and
             envisioning more impactful, yet less burdensome ways, of data collection. Stemming from a
