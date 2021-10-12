@@ -56,31 +56,14 @@ class IndicatorValue extends Model
         $array = $this->attributesToArray();
 
         //for full-text search;
-        $array['indicator'] = $this->indicator;
-        $array['subCharacteristic'] = $this->indicator->subCharacteristic;
-        $array['characteristic'] = $this->indicator->subCharacteristic->characteristic;
-        $array['source'] = $this->source;
-        $array['type'] = $this->source->type;
-        $array['partner'] = $this->source->partner;
-
-        $array['user'] = $this->user;
-        $array['approachCollection'] = $this->approachCollection;
-        $array['purposeOfCollection'] = $this->purposeOfCollection;
-        $array['smallholderDefinition'] = $this->smallholderDefinition;
-        $array['gender'] = $this->gender;
-        $array['unit'] = $this->unit;
-
-        $array['geoBoundary'] = $this->geoBoundary;
-        $array['country'] = $this->geoBoundary->country->name;
-
-
-        // for filters
-        $array['sub_characteristic_id'] = $this->indicator->sub_characteristic_id;
-        $array['characteristic_id'] = $this->indicator->subCharacteristic->characteristic_id;
-        $array['type_id'] = $this->source->type_id;
-        $array['partner_id'] = $this->source->partner_id;
-        $array['country_id'] = $this->country_id;
-
+        $array['code'] = $this->indicator->code;
+        $array['name'] = $this->indicator->name;
+        $array['indicator_name_original'] = $this->indicator_name_original;
+        $array['unit_original'] = $this->getOriginalUnitAttribute();
+        $array['unit_standard'] = $this->getStandardUnitAttribute();
+        $array['definition_original'] = $this->definition;
+        $array['region'] = $this->getRegionAttribute();
+        $array['department'] = $this->getDepartmentAttribute();
 
         return $array;
     }
@@ -123,9 +106,42 @@ class IndicatorValue extends Model
         return $this->geoBoundary ? $this->geoBoundary->country_id : null;
     }
 
+    public function getRegionAttribute()
+    {
+        if ($this->geoBoundary != null && $this->geoBoundary->region != null)
+        {
+            return $this->geoBoundary->region->name;
+        }
+        else 
+        {
+            return null;
+        }
+    }
+
+    public function getDepartmentAttribute()
+    {
+        if ($this->geoBoundary != null && $this->geoBoundary->department != null)
+        {
+            return $this->geoBoundary->department->name;
+        }
+        else 
+        {
+            return null;
+        }
+    }
+
     public function getConversionRateAttribute()
     {
         return $this->unit ? $this->unit->getConversionRate($this->years->last()) : null;
+    }
+
+    public function getOriginalUnitAttribute()
+    {
+        if (!empty($this->unit->unitType)) {
+            return $this->unit->unitType->name;
+        } else {
+            return null;
+        }
     }
 
     public function getStandardUnitAttribute()

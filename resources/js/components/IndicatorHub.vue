@@ -65,6 +65,8 @@
                     )
                 "
                 :processing="processing"
+                :processingXls="processingXls"
+                :processingPdf="processingPdf"
                 @hidden="downloadOptionsVisible = false"
                 @remove-indicator="removeIndicator"
                 @download-xlsx="downloadValues(selectedIndicators)"
@@ -81,13 +83,19 @@
                         <b-input-group-text>
                             <i class="las la-search" />
                         </b-input-group-text>
+
+                        <!-- Add clear button with inline Javascript -->
+                        <b-input-group-text onClick="document.getElementById('__BVID__33').value = ''; document.getElementById('__BVID__33').focus(); ">
+                            <i class="las la-times"></i>
+                        </b-input-group-text>
                     </template>
                     <b-form-input
                         class="bg-light"
                         placeholder="Search for indicators"
-                        @input="searchIndicators"
+                        @input="searchIndicators"                        
                     />
                 </b-input-group>
+
                 <h2 class="py-3">
                         Categories
                     </h2>
@@ -180,9 +188,10 @@
 
 
 
-
-
-
+                    <!-- Add clear button with inline Javascript -->
+                    <div class="d-flex py-4">
+                        <input type="button" name="btnClearKeyword" id="btnClearKeyword" value="Clear search" tabindex="-1" class="font-weight-bold btn-primary btn-sm" onClick="document.getElementById('btnClearKeyword').style.display = 'none'; document.getElementById('__BVID__33').value = ''; document.getElementById('__BVID__33').focus(); ">
+                    </div>
 
 
 
@@ -293,6 +302,8 @@
                 sortBy: 'code',
                 sortDesc: false,
                 processing: false,
+                processingXls: false,
+                processingPdf: false,
                 loading: false,
                 downloadOptionsVisible: false,
                 downloadPopoverVisible: false,
@@ -373,6 +384,17 @@
         },
         methods: {
             getIndicatorValues() {
+
+                // show "Clear search" button only when there is keyword in search bar
+                var btnClearKeyword = document.getElementById("btnClearKeyword");
+
+                if (this.searchTerm == undefined || this.searchTerm == "") {
+                    btnClearKeyword.style.display = "none";
+                } else {
+                    btnClearKeyword.value = "Clear search '" + this.searchTerm + "'";
+                    btnClearKeyword.style.display = "inline-block";
+                }
+
                 var url = "/indicators/search?by-indicator";
 
                 if (this.searchTerm) {
@@ -526,6 +548,7 @@
 
             downloadValues(selectedIndicators) {
                 this.processing = true;
+                this.processingXls = true;
                 axios
                     .post("indicators/download", {
                         indicators: selectedIndicators,
@@ -539,6 +562,7 @@
                     .then(result => {
                         this.makeAndClickLink(result.data);
                         this.processing = false;
+                        this.processingXls = false;
                     });
             },
 
@@ -546,6 +570,7 @@
 
                 selectedIndicators = selectedIndicators.map(id => Number(id));
                 this.processing = true;
+                this.processingPdf = true;
                 this.$bvToast.toast(
                     `Your download is being prepared. This may take some time - please leave this window open.`,
                     {
@@ -570,7 +595,8 @@
                     })
                     .then(result => {
                         this.makeAndClickLink(result.data);
-                        this.processing = false;
+                        this.processing = false;                        
+                        this.processingPdf = false;
                     });
             },
 

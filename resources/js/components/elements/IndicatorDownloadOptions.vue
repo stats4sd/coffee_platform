@@ -73,7 +73,7 @@
                             @click="processing ? '' : $emit('download-xlsx')"
                         >
                             <div
-                                v-if="processing"
+                                v-if="processingXls"
                                 class="spinner-border spinner-border-sm align-self-center mr-2"
                                 role="status"
                             > <span class="sr-only">Loading...</span> </div>
@@ -96,7 +96,7 @@
                             @click="processing ? '' : $emit('download-pdf')"
                         >
                             <div
-                                v-if="processing"
+                                v-if="processingPdf"
                                 class="spinner-border spinner-border-sm align-self-center mr-2"
                                 role="status"
                             > <span class="sr-only">Loading...</span> </div>
@@ -117,6 +117,8 @@
             },
             visible: Boolean,
             processing: Boolean,
+            processingXls: Boolean,
+            processingPdf: Boolean,
         },
         computed: {
             subcharacteristics() {
