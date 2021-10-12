@@ -8,7 +8,7 @@
         <div class="row justify-content-end">
             <div class="text-block " style="padding-bottom: 20px; bottom: 80px">
                 <h1 class="mb-5 pb-5">Indicator Hub</h1>
-                <div id="caption" class="ml-3 ml-lg-5" style="background-color: #00000000;"> Coffee flowers. Credit: <strong>Janica Anderzén</strong> </div>
+                <div id="caption" class="ml-3 ml-lg-5" style="background-color: #00000000;"> Coffee flowers. Credit: Janica Anderzén</div>
 
 
             </div>
