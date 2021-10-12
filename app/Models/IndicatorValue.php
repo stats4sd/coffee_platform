@@ -138,7 +138,8 @@ class IndicatorValue extends Model
     public function getOriginalUnitAttribute()
     {
         if (!empty($this->unit->unitType)) {
-            return $this->unit->unitType->name;
+            //return $this->unit->unitType->name;
+            return $this->unit->unitType->standard_unit;
         } else {
             return null;
         }
@@ -146,8 +147,9 @@ class IndicatorValue extends Model
 
     public function getStandardUnitAttribute()
     {
-        if (!empty($this->unit->unitType)) {
-            return $this->unit->unitType->standard_unit;
+        if (!empty($this->unit)) {
+            //return $this->unit->unitType->standard_unit;
+            return $this->unit->unit;
         } else {
             return null;
         }
