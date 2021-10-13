@@ -9,12 +9,14 @@
             <div class="col-md-5 col-lg-4 box-green">
                 <div class=" report-text ml-xl-4 mr-2 mr-xl-5 mt-xl-4">
                     <h2 style="color:black">About</h2>
-                    <p>The State of the Smallholder Coffee Farmer Platform is an open access data resource, bringing together indicator
-                    data from a variety of sources into one hub.
+                    <p>The State of the Smallholder Coffee Farmer is an open access resource, connecting indicator data about
+                        smallholder coffee farmers – particularly the economic, social and environmental characteristics of farmer
+                        households and their livelihoods.
                     </p>
-                    <p>The platform is designed to drive more informed decision-making amongst smallholder coffee farmers as
-                        well as various value chain actors, giving a more holistic picture about the state of coffee smallholders,
-                         their livelihoods and the challenges they are facing.
+                    <p>With an explicit emphasis on producers, this initial pilot seeks to draw a more holistic picture of many
+                        realities of coffee smallholders, their livelihoods, and challenges. Ultimately, the
+                        initiative attempts to remove barriers to equitable information sharing, including those structures preventing
+                        producers from accessing data about themselves and their farms.
                     </p>
                 </div>
             </div>
@@ -22,26 +24,23 @@
     </div>
 
     <div id="caption">
-        Photo Credit: <strong>Phillip Davis 2019 </strong>
+        Nicaraguan farmer with her coffee plants. Credit: Heifer International/Phillip Davis
     </div>
 
     <div class="container px-4 my-5 px-5 py-5">
-        <p> Currently a pilot focused on Guatemala, Honduras and Nicaragua, this initiative seeks to remove barriers
-            to equitable information sharing— including those structures preventing producers from accessing their
-            own data. This interactive site and accompanying <a href="reports" style="color: #66AC47">report</a> are based on
-            initial results stemming from extensive review, analysis and synthesis of existing data about
-            smallholders in these three countries. The work complements other initiatives. However, instead of
-            emphasizing upstream sustainability efforts and goals, this research centers on realities downstream
-            to draw a more holistic and inclusive picture of coffee smallholders and their livelihoods. 
+        <p> This interactive site and accompanying <a href="reports" style="color: #66AC47">report</a>
+            are based on initial results stemming from extensive review, analysis and synthesis of existing
+            data about coffee smallholders in Guatemala, Honduras and Nicaragua, with the goal of expanding
+            into a larger, more permanent effort with broader industry support.
         </p>
 
-        <h2 class="mt-5" id="text-green">Partners</h2>
+        <h2 class="mt-5 text-green">Partners</h2>
         <p>
-            A component of this pilot includes collaborative ways of identifying information gaps and
-            envisioning more impactful, yet less burdensome ways, of data collection. Stemming from a
-            partnership between Heifer International, Lutheran World Relief, the Agroecology and Livelihoods Collaborative at the University of
-            Vermont and Statistics for Sustainable Development (Stats4SD), the goal is expansion into a larger, more permanent effort with broader industry
-            support. Several other organizations have already contributed ideas and/or data.
+            This pilot stems from a partnership between Heifer International, Lutheran World Relief, the Agroecology and
+            Livelihoods Collaborative at the University of Vermont and Statistics for Sustainable Development (Stats4SD).
+            As a component of this pilot includes collaborative ways of identifying information gaps and envisioning
+            more impactful (yet less burdensome) ways of data collection, several other organizations have already
+            contributed ideas and/or data.
         </p>
         <div id="app">
             <template>

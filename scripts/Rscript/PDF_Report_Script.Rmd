@@ -1,5 +1,5 @@
 ---
-title: 'State of the Smallholder Coffee Farmer Platform: Indicator Report'
+title: 'State of the Smallholder Coffee Farmer: Indicator Report'
 output:
   pdf_document:
     toc_depth: 1
@@ -79,11 +79,16 @@ cat("  \n##", "Indicator Values", "\n")
 
 for(m in 1:length(countries)){
   
+data_y <- data%>%filter(code == indicator_codes[i], country == countries[m])
+
+if(nrow(data_y)>0){
+  
   x <- value_table(data, indicator_codes[i], countries[m])
   
   cat(knit_print(x))
   
   cat('\n\n<!-- -->\n\n')
+}
   
 }
 

@@ -60,7 +60,7 @@ class CharacteristicCrudController extends CrudController
         CRUD::setValidation(CharacteristicRequest::class);
 
         CRUD::field('name');
-        CRUD::field('cover_image')->type('image')->crop(true)->aspect_ratio('2')->label('Upload a cover image to represent this characteristic on the main search page'); // fields
+        CRUD::field('cover_image')->type('image')->crop(true)->label('Upload a cover image to represent this characteristic on the main search page'); // fields
 
         /**
          * Fields can be defined using the fluent syntax or array syntax:

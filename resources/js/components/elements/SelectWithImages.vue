@@ -15,32 +15,34 @@
                 <b-card-img
                     :src="option.image"
                 />
-                <div class="card-caption text-white font-weight-bold">
+                <p class="font-weight-bold">
                     {{ option.text }}
-                </div>
+                </p>
             </b-card>
         </div>
         
-        
+       
+
+
         <!-- Slightly hacky solution for proper alignment of tiles -->
         <div>
-            <div class="m-2" style="width: 286px; height: 1px;">
+            <div class="m-2" style="width: 169px; height: 1px;">
             </div>
         </div>
         <div>
-            <div class="m-2" style="width: 286px; height: 1px;">
+            <div class="m-2" style="width: 169px; height: 1px;">
             </div>
         </div>
         <div>
-            <div class="m-2" style="width: 286px; height: 1px;">
+            <div class="m-2" style="width: 169px; height: 1px;">
             </div>
         </div>
         <div>
-            <div class="m-2" style="width: 286px; height: 1px;">
+            <div class="m-2" style="width: 169px; height: 1px;">
             </div>
         </div>
         <div>
-            <div class="m-2" style="width: 286px; height: 1px;">
+            <div class="m-2" style="width: 169px; height: 1px;">
             </div>
         </div>
         <!-- End Slightly hacky solution for proper alignment of tiles -->
