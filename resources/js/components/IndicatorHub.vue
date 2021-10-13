@@ -85,9 +85,13 @@
                         </b-input-group-text>
 
                         <!-- Add clear button with inline Javascript -->
-                        <b-input-group-text onClick="document.getElementById('__BVID__33').value = ''; document.getElementById('__BVID__33').focus(); ">
+                        <!-- Comment Clear button temporary -->
+                        <!--
+                        <b-input-group-text onClick="document.getElementById('__BVID__33').value = ''; document.getElementById('__BVID__33').focus();">
                             <i class="las la-times"></i>
                         </b-input-group-text>
+                        -->
+                        
                     </template>
                     <b-form-input
                         class="bg-light"
@@ -187,12 +191,14 @@
 
 
 
-
+                    <!-- Comment Clear button temporary -->
                     <!-- Add clear button with inline Javascript -->
+                    <!--
                     <div class="d-flex py-4">
                         <input type="button" name="btnClearKeyword" id="btnClearKeyword" value="Clear search" tabindex="-1" class="font-weight-bold btn-primary btn-sm" onClick="document.getElementById('btnClearKeyword').style.display = 'none'; document.getElementById('__BVID__33').value = ''; document.getElementById('__BVID__33').focus(); ">
                     </div>
-
+                    -->
+                    
 
 
 
@@ -385,7 +391,9 @@
         methods: {
             getIndicatorValues() {
 
+                // Comment Clear button temporary
                 // show "Clear search" button only when there is keyword in search bar
+                /*
                 var btnClearKeyword = document.getElementById("btnClearKeyword");
 
                 if (this.searchTerm == undefined || this.searchTerm == "") {
@@ -394,6 +402,7 @@
                     btnClearKeyword.value = "Clear search '" + this.searchTerm + "'";
                     btnClearKeyword.style.display = "inline-block";
                 }
+                */
 
                 var url = "/indicators/search?by-indicator";
 
