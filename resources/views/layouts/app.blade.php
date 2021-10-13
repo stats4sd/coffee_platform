@@ -20,7 +20,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>State of the Smallholder Coffee Farmer Platform</title>
+    <title>State of the Smallholder Coffee Farmer</title>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
