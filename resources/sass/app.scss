@@ -32,11 +32,41 @@ body {
     bottom: 0;
     width: 100%;
 }
+.navbar-toggler {
+    padding: 0px;
+    border: none;
+}
+.mx-auto.d-sm-flex.d-block.flex-sm-nowrap {
+    text-align: center;
+}
+.navbar-collapse {
+    z-index: 10; 
+    width: 120vw; 
+    margin-top: -0.5rem; 
+    margin-left: -2rem; 
+    margin-right: -1rem; 
+    padding: 2rem;
+}
 
+@media only screen and (max-width: 991px) {
+    .navbar-collapse {
+        background-color: #102125; 
+    }
+
+}
+  
 .big-title {
     font-size: 1.5rem;
 }
 
+
+    @media only screen and (max-width: 600px) {
+        .big-title {
+            font-size: 0.9rem;
+        }
+
+    }
+      
 .main-container {
     min-height: 100vh; /* will cover the 100% of viewport */
     overflow: hidden;
@@ -253,19 +283,18 @@ button.btn {
     background-color: $medgreen;
 }
 
-#text-green {
+.text-green {
     color: $medgreen;
 }
 
 #caption{
     background-color: $darkgreen;
-    height: 40px;
     width: 100%;
     text-align: right;
     color: white;
-    padding-right: 5%;
+    padding: 1rem 5% 1rem 5%;
     font-size: 0.9rem;
-    line-height: 2.5;
+    line-height: 1.5;
 }
 
 .box-green{
@@ -284,11 +313,12 @@ button.btn {
 
 #caption_small{
     background-color: $darkgreen;
-    height: 25px;
-    width: 75%;
+    padding: 1rem;
+    width: 80%;
     text-align: right;
+    font-size: 0.9rem;
     color: white;
-    padding-right: 5%;
+
 }
 
     .text-block {
@@ -341,7 +371,11 @@ button.btn {
         font-weight: 700 !important;
         font-size: 3rem;
     }
-  
+    @media only screen and (max-width: 365px) {
+        .header h1 {
+            font-size: 2rem;
+        }
+    }
 
     .image_header {
     width: 100%;  
@@ -354,7 +388,7 @@ button.btn {
     }
 
     #image_home_report{
-    width:75%;  
+    width:80%;  
     object-fit:cover; 
     height:500px;
     }
@@ -379,8 +413,17 @@ button.btn {
     font-weight: 700;
     line-height: 100px;
 }
+@media only screen and (max-width: 460px) {
+    .helpbar {
+        font-size: 1.2rem !important;
+    }
+    }
+  
 .helpbar:focus {
     box-shadow: none;
+}
+.helpbar:hover {
+    background-color: #b2d23eea !important;
 }
  .helpbox {
     background-color: #b2d23e;
@@ -396,3 +439,15 @@ button.btn {
     margin-top: 1rem;
     margin-bottom: 1.5rem;
 }
+
+.videowrapper iframe {
+    width: 560px;
+    height: 315px
+}
+@media only screen and (max-width: 600px) {
+    .videowrapper iframe {
+        width: 260px;
+        height: auto;
+    }
+    }
+  
