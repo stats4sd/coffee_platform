@@ -24,3 +24,4 @@ yarn-error.log
 /scripts/Rscript/PDF-Report-Script.pdf
 **/~$*.docx
 *.DS_Store
+/public/docs
