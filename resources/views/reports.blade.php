@@ -21,7 +21,7 @@
             </div>
             <div class="col-md-4 col-lg-5 text-center d-none d-md-block">
             <div class="my-auto">
-                <a href="State of the Smallholder Coffee Farmer.pdf" target="_blank"><button class="button-green" id="report_button">View Report <i
+                <a href="docs/State of the Smallholder Coffee Farmer.pdf" target="_blank"><button class="button-green" id="report_button">View Report <i
                             class='las la-arrow-right'></i></button></a>
             </div>
 </div>
