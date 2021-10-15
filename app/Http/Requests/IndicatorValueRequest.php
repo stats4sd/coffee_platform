@@ -37,7 +37,7 @@ class IndicatorValueRequest extends FormRequest
             'user_id' => ['required','exists:users,id'],
             'purpose_of_collection_id' => ['required','exists:purpose_of_collections,id'],
             'approach_collection_id' => ['required','exists:approach_collections,id'],
-            'definition' => ['nullable', 'max:255'],
+            'definition' => ['nullable', 'max:65000'],
             'scope_id' => ['nullable','exists:scopes,id'],
             'group_id' => ['nullable','exists:groups,id'],
         ];

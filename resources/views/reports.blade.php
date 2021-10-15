@@ -15,7 +15,7 @@
                         we could improve
                         data collection and sharing among a variety of actors along the coffee value chain, including
                         the farmers and
-                        their organisations.
+                        their organizations.
                     </p>
                 </div>
             </div>
