@@ -22,7 +22,7 @@
                         <i class="las la-question-circle la-lg"></i>
                     </td>
                     <td>
-                        <span>&nbsp;How to use the Indicator Hub</span>
+                        <span>&nbsp;User Guide</span>
                     </td>
                     <td>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -33,10 +33,11 @@
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        &nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     </td>
                     <td>
-                        <i class="las la-angle-double-down"></i>
+                        <i class="las la-angle-down"></i>
                     </td>
                 </tr>
             </table>
@@ -53,7 +54,7 @@
             </div>    
             <h2>Step 1: What are you looking for?</h2>
             <p class="mb-3">
-                There are some different ways to explore the available data:</p>
+                There are different ways to explore the available data:</p>
             <p><strong>Search:</strong> Use the search box below to find indicators by keyword.</p>
             <p><strong>Browse:</strong> Select a category and subcategory to explore by subject.</p>
             <p><strong>Filter:</strong> Narrow down your search using the filter bar on the left to find exactly what
