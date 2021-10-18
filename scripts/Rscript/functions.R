@@ -31,7 +31,7 @@ report_characteristics <- function(data, x){
                       col2 = "Report Characteristics")%>%
     merge_v(j = 1)%>%
     merge_h(part = "header")%>%
-    bg(i = 1, bg = "#A8D08D", part = "header")%>%
+    bg(i = 1, bg = "#BED95B", part = "header")%>%
     theme_box()%>%
     fix_border_issues()%>%
     width(j = 2, width = 5)
@@ -45,7 +45,7 @@ indicator_details <- function(data, x){
   data <- data%>%filter(code == x)
   
   value_table <- data.frame(
-    "col1" = c("Indicator", "Indicator Code", "Indicator unit"),
+    "col1" = c("Indicator", "Indicator code", "Indicator unit"),
     "col2" = c(data$name[1], x, data$unit_standard[1])
   )
   
@@ -91,9 +91,9 @@ value_table <- function(data, x, y){
       as_flextable()%>%
       add_header_lines(values = y)%>%
       bold(i = ~!is.na(Purpose))%>%
-      bg(i = 1, bg = "#A8D08D", part = "header")%>%
-      bg(i = 2, bg = "#EDEDED", part = "header")%>%
-      bg(i = ~!is.na(Purpose), bg = "#E2EFD9")%>%
+      bg(i = 1, bg = "#CAE5F5", part = "header")%>%
+      bg(i = 2, bg = "#BED95B", part = "header")%>%
+      bg(i = ~!is.na(Purpose), bg = "#E0EDB2")%>%
       theme_box()%>%
       add_footer_lines(values = "* - Sample size for reported value is 20 or less")%>%
       fix_border_issues()%>%
@@ -123,9 +123,9 @@ value_table <- function(data, x, y){
     as_flextable()%>%
     add_header_lines(values = y)%>%
     bold(i = ~!is.na(Purpose))%>%
-    bg(i = 1, bg = "#A8D08D", part = "header")%>%
-    bg(i = 2, bg = "#EDEDED", part = "header")%>%
-    bg(i = ~!is.na(Purpose), bg = "#E2EFD9")%>%
+    bg(i = 1, bg = "#CAE5F5", part = "header")%>%
+    bg(i = 2, bg = "#BED95B", part = "header")%>%
+    bg(i = ~!is.na(Purpose), bg = "#E0EDB2")%>%
     theme_box()%>%
     fix_border_issues()%>%
     align(j = 2:(year_n+1), align = "center")%>%
@@ -156,10 +156,12 @@ bar_graph <- function(data, x){
            x = "Year",
            y = paste0(data$name, " (", data$unit_standard[1], ")"),
            title = paste(data$code, " ", data$name))+
-      scale_fill_brewer(palette = "Dark2")+
-      theme_light()+
+      scale_fill_manual(breaks = c("Guatemala", "Honduras", "Nicaragua"), 
+                        values=c("#007155", "#B2D23E", "#FFD416"))+
+      theme_classic()+
       scale_y_continuous(limits = c(0,1),
-                         labels = percent)
+                         labels = percent,
+                         expand = expansion(mult = c(0, .1)))
     
     return(p1)
     
@@ -172,8 +174,10 @@ bar_graph <- function(data, x){
          x = "Year",
          y = paste0(data$name, " (", data$unit_standard[1], ")"),
          title = paste(data$code, " ", data$name))+
-    scale_fill_brewer(palette = "Dark2")+
-    theme_light()
+    scale_fill_manual(breaks = c("Guatemala", "Honduras", "Nicaragua"), 
+                      values=c("#007155", "#B2D23E", "#FFD416"))+
+    theme_classic()+
+    scale_y_continuous(expand = expansion(mult = c(0, .1)))
   
   return(p1)
   
@@ -191,7 +195,7 @@ definition_table <- function(data, x){
                       source_partner = "Source Partner",
                       indicator_name_original = "Original Indicator Name",
                       definition_original = "Indicator Definition")%>%
-    bg(i = 1, bg = "#A8D08D", part = "header")%>%
+    bg(i = 1, bg = "#BED95B", part = "header")%>%
     theme_box()%>%
     fix_border_issues()%>%
     width(j = 1:4, width = c(2,1,1,2))
