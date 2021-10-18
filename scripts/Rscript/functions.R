@@ -160,7 +160,8 @@ bar_graph <- function(data, x){
                         values=c("#007155", "#B2D23E", "#FFD416"))+
       theme_classic()+
       scale_y_continuous(limits = c(0,1),
-                         labels = percent)
+                         labels = percent,
+                         expand = expansion(mult = c(0, .1)))
     
     return(p1)
     
