@@ -7,7 +7,7 @@
         <img src="images/about.jpg" id="image_about" class="image_header" />
         <div class="row justify-content-end">
             <div class="col-md-5 col-lg-4 box-green">
-                <div class=" report-text ml-xl-4 mr-2 mr-xl-5 mt-xl-4">
+                <div class=" report-text ml-xl-4 mr-2 mr-xl-5 mt-xl-2">
                     <h2 style="color:black">About</h2>
                     <p>The State of the Smallholder Coffee Farmer is an open access resource, connecting indicator data about
                         smallholder coffee farmers – particularly the economic, social and environmental characteristics of farmer
@@ -68,6 +68,11 @@
                 </div>
             </template>
         </div>
+        <br>
+        <h2 class="mt-5 text-green">Contact Us</h2>
+        <p>
+            If you would like to get in contact with us please email <a href="mailto:coffee@stats4sd.org" style="color: #66AC47">coffee@stats4sd.org</a>
+        </p>
     </div>
 </div>
 @endsection
