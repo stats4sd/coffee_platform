@@ -19,17 +19,20 @@
                     </p>
                 </div>
             </div>
-            <div class="col-md-4 col-lg-5 text-center d-none d-md-block">
-            <div class="my-auto">
-                <a href="docs/State of the Smallholder Coffee Farmer.pdf" target="_blank"><button class="button-green" id="report_button">View Report <i
-                            class='las la-arrow-right'></i></button></a>
-            </div>
-</div>
             <div id="caption">
                 Guatemalan farmer with his coffee plants. Credit: Heifer International/Phillip Davis
             </div>
         </div>
     </div>
+    <div class="container px-4 my-5 px-5 py-5">
+        <h2 class="mt-5 text-green">Download the report</h2>
+        <p> The report is currently available to download in English and will be released in Spanish soon.</p>
+            <div class="d-flex justify-content-left mt-5 mb-5">
+                <a href="docs/State of the Smallholder Coffee Farmer.pdf" target="_blank"><button class="button-green">Download in English <i
+                    class='las la-arrow-down'></i></button></a>
+            </div>
+    </div>
+</div>
 
 
     @endsection
