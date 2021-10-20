@@ -42,12 +42,13 @@
         <!-- Footer -->
         <footer class="py-3 mt-auto bg-dark footer">
             <div class="container d-flex flex-justify-between">
-            <div class="col-sm-3">
-                <p class="m-0 text-white" >Developed by <a class="m-0 text-white" href="https://stats4sd.org/">Stats4SD</a><br></p>
-            </div>
-            <div class="container d-flex justify-content-end flex-column align-items-end">
-                <a class="m-0 text-white" href="{{ route('backpack') }}">Admin Login</a>
-            </div>
+                <div class="col-sm-3">
+                    <p class="m-0 text-white" ><b>Contact:</b> <a class="m-0 text-white" href="mailto:coffee@stats4sd.org">coffee@stats4sd.org</a></p>
+                </div>
+                <div class="container d-flex justify-content-end flex-column align-items-end">
+                    <p class="m-0 text-white" >Developed by <a class="m-0 text-white" href="https://stats4sd.org/">Stats4SD</a></p>
+                    <a class="m-0 text-white" href="{{ route('backpack') }}">Admin Login</a>
+                </div>
             </div>
         </footer>
     </div>
