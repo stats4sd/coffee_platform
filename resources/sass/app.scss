@@ -379,8 +379,13 @@ button.btn {
     height: 520px;
     }
 
-    #image_report,#image_about {
+    #image_report,#image_about,#image_webinar_header {
         position: absolute;
+    }
+
+    #image_webinar{
+        max-width: 100%;
+        height: auto;
     }
 
     #image_home_report{
