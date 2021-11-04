@@ -20,7 +20,8 @@
         "laravel/ui": "^3.2",
         "maatwebsite/excel": "^3.1",
         "stats4sd/laravel-sql-views": "^1.02",
-        "teamtnt/laravel-scout-tntsearch-driver": "^11.1"
+        "teamtnt/laravel-scout-tntsearch-driver": "^11.1",
+        "tio/laravel": "^1.16"
     },
     "require-dev": {
         "backpack/generators": "^3.1",
