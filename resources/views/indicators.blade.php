@@ -4,7 +4,7 @@
 <div class="main-container" style="overflow: visible">
     <div class="header" style="height:400px; overflow: hidden">
 
-        <img src="images/indicator_hub.jpeg" id="image_hub" class="image_header" />
+        <img src="{{ url('images/indicator_hub.jpeg') }}" id="image_hub" class="image_header" />
         <div class="row justify-content-end">
             <div class="text-block " style="padding-bottom: 20px; bottom: 80px">
                 <h1 class="mb-5 pb-5">Indicator Hub</h1>
@@ -39,7 +39,7 @@
                         <iframe width="560" height="315" src="https://www.youtube.com/embed/KdITJd257QY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     </div>
                 </div>
-            </div>    
+            </div>
             <h2>Step 1: What are you looking for?</h2>
             <p class="mb-3">
                 There are different ways to explore the available data:</p>

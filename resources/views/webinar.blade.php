@@ -4,7 +4,7 @@
 <div class="main-container">
 
     <div class="header">
-        <img src="images/webinar.jpeg" id="image_webinar_header" class="image_header" />
+        <img src="{{ url('images/webinar.jpeg') }}" id="image_webinar_header" class="image_header" />
         <div class="row justify-content-left">
             <div class="col-md-5 col-lg-4 box-green">
                 <div class="report-text ml-md-4 mr-5 mt-xl-5">
@@ -33,8 +33,8 @@
                     class='las la-arrow-down'></i></button></a>
         </div>
         <div class="row pt-4">
-            <img src="images/webinar_graphic.jpg" id="image_webinar"/>
-        </div>                
+            <img src="{{ url('images/webinar_graphic.jpg') }}" id="image_webinar"/>
+        </div>
         <div class="justify-content-center mt-5 mb-5">
         <h2 class="mt-5 text-green">Panelists</h2>
             <ul><strong>Rick Peyser,</strong> Senior Manager for Coffee and Cocoa, Lutheran World Relief</ul>

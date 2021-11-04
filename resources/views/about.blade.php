@@ -4,7 +4,7 @@
 <div class="main-container">
     <div class="header">
 
-        <img src="images/about.jpg" id="image_about" class="image_header" />
+        <img src="{{ url('images/about.jpg') }}" id="image_about" class="image_header" />
         <div class="row justify-content-end">
             <div class="col-md-5 col-lg-4 box-green">
                 <div class=" report-text ml-xl-4 mr-2 mr-xl-5 mt-xl-2">
@@ -48,21 +48,21 @@
                     <b-row class="justify-content-center">
                         <b-col>
                             <a href="https://www.heifer.org/" target="_blank">
-                            <b-img height="100" src="images/partners/Heifer.jpg" alt="Heifer"></b-img></a>
+                            <b-img height="100" src="{{ url('images/partners/Heifer.jpg') }}" alt="Heifer"></b-img></a>
                         </b-col>
                         <b-col>
                             <a href="https://lwr.org/" target="_blank">
-                            <b-img height="100" src="images/partners/LWR.png" alt="LWR"></b-img></a>
+                            <b-img height="100" src="{{ url('images/partners/LWR.png') }}" alt="LWR"></b-img></a>
                         </b-col>
                     </b-row>
                     <b-row class="justify-content-center">
                         <b-col class="mt-3">
                             <a href="https://www.uvm.edu/agroecology/" target="_blank">
-                            <b-img height="100" src="images/partners/UVM.jpg" alt="UVM"></b-img></a>
+                            <b-img height="100" src="{{ url('images/partners/UVM.jpg') }}" alt="UVM"></b-img></a>
                         </b-col>
                         <b-col class="mt-5">
                             <a href="https://stats4sd.org/" target="_blank">
-                            <b-img height="35" src="images/partners/Stats4SD_Logo_Red_Small.jpg" alt="Stats4SD"></b-img></a>
+                            <b-img height="35" src="{{ url('images/partners/Stats4SD_Logo_Red_Small.jpg')}}" alt="Stats4SD"></b-img></a>
                         </b-col>
                     </b-row>
                 </div>

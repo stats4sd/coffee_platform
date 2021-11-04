@@ -3,7 +3,7 @@
 @section('main')
 <div class="main-container">
     <div class="header mb-5">
-        <img src="images/report.jpg" id="image_report" class="image_header" />
+        <img src="{{ url('images/report.jpg') }}" id="image_report" class="image_header" />
         <div class="row justify-contents-left">
             <div class="col-md-5 col-lg-4 box-green">
                 <div class=" report-text ml-md-4 mr-5 mt-xl-4">

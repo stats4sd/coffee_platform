@@ -3,7 +3,7 @@
 @section('main')
         <div class="main-container">
     <div class="header mb-5">
-        <img src="images/home.jpg" id="image_home_header" class="image_header"/>
+        <img src="{{ url('images/home.jpg') }}" id="image_home_header" class="image_header"/>
         <div class ="text-block">
             <h1 class="mb-5">Connecting the data dots</h1>
             <p class="d-none d-md-block">Explore indicators and data visualizations about the economic,
@@ -31,7 +31,7 @@
             </p>
             <div class="d-flex justify-content-center mt-5 mb-5 pb-5">
             <a href="about"><button class="button-green">Find Out More <i class='las la-arrow-right'></i></button></a>
-            </div>             
+            </div>
 
         <div class="row">
             <div class="mt-lg-5 pt-lg-5 col-lg-6">
@@ -43,11 +43,11 @@
                 </div>
             </div>
             <div class="col-lg-6 mb-5">
-                <img src="images/home_report.jpg" id="image_home_report"/>
+                <img src="{{ url('images/home_report.jpg') }}" id="image_home_report"/>
                 <div id="caption_small">
                     Guatemalan farmer holding freshly picked coffee berries. Credit: Heifer International/Phillip Davis
                 </div>
-            </div>            
+            </div>
         </div>
     </div>
 
