@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 
-class CheckLocaleMiddleware
+class AddLocaleToUrlMiddleware
 {
     /**
      * Handle an incoming request.
@@ -27,6 +27,7 @@ class CheckLocaleMiddleware
 
             // pick the most appropriate locale:
             $priorityLocales = [
+                session('locale'),
                 $request->getPreferredLanguage($availableLocales),
                 config('app.fallback_locale'),
                 $sourceLocale

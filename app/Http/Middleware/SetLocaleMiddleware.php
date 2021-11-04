@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use Illuminate\Support\Facades\Log;
 use Tio\Laravel\Facade as Translation;
 
 use Closure;
@@ -22,6 +23,7 @@ class SetLocaleMiddleware
     */
     public function handle($request, Closure $next)
     {
+        debug('hello there!');
         $targetLocales = config('translation.target_locales');
         $sourceLocale = config('translation.source_locale');
 
@@ -29,6 +31,7 @@ class SetLocaleMiddleware
 
         # Ordered by preference
         $priorityLocales = [
+            $request->query('locale'),
             $request->segment(1), # /en/
             session('locale'),
             $request->getPreferredLanguage($availableLocales),
@@ -40,6 +43,8 @@ class SetLocaleMiddleware
         $eligibleLocales = array_filter($priorityLocales, function($locale) use ($availableLocales) {
             return in_array($locale, $availableLocales);
         });
+
+        Log::info($priorityLocales);
 
         # Take first locale
         $locale = reset($eligibleLocales);

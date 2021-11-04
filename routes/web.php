@@ -26,7 +26,7 @@ use App\Http\Controllers\PurposeOfCollectionController;
 
 // surrounding all main front-end routes with local middleware:
 // - check.locale checks if the url is prefixed with a valid locale: if not, it prepends the default locale based on user's browser or session
-Route::prefix('{locale?}')->middleware(['check.locale', 'set.locale'])->group(function () {
+Route::prefix('{locale?}')->middleware(['add.locale', 'set.locale'])->group(function () {
 
     Route::view('/', 'home')->name('home');
     Route::view('about', 'about')->name('about');
