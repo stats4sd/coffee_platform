@@ -33,9 +33,8 @@ class AddLocaleToUrlMiddleware
                 $sourceLocale
             ];
 
-
             // Redirect to same url with default locale prepended.
-            $uri = $request->getUriForPath('/' . reset($priorityLocales) . $request->getPathInfo());
+            $uri = $request->getUriForPath('/' . collect(array_filter($priorityLocales))->first() . $request->getPathInfo());
 
             return redirect($uri, 302);
         }

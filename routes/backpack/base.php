@@ -10,7 +10,6 @@ Route::group(
         'middleware' => array_merge(
             (array)config('backpack.base.web_middleware', 'web'),
             ['set.locale'],
-            (array)config('backpack.base.middleware_key', 'admin'),
         ),
         'namespace' => 'Backpack\CRUD\app\Http\Controllers',
     ],

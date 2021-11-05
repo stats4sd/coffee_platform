@@ -47,7 +47,7 @@ class SetLocaleMiddleware
         Log::info($priorityLocales);
 
         # Take first locale
-        $locale = reset($eligibleLocales);
+        $locale = collect(array_filter($eligibleLocales))->first();
 
         # Store in session for next time
         session(['locale' => $locale]);
