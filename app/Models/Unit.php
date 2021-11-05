@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\UnitType;
+use Backpack\CRUD\app\Models\Traits\SpatieTranslatable\HasTranslations;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Traits\UpdatesMainSearchIndex;
@@ -11,7 +12,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Unit extends Model
 {
-    use CrudTrait, HasFactory, UpdatesMainSearchIndex;
+    use CrudTrait, HasFactory, UpdatesMainSearchIndex, HasTranslations;
 
     /*
     |--------------------------------------------------------------------------
@@ -20,16 +21,13 @@ class Unit extends Model
     */
 
     protected $table = 'units';
-    protected $primaryKey = 'id';
-    // public $timestamps = false;
     protected $guarded = ['id'];
-    // protected $fillable = [];
-    // protected $hidden = [];
-    // protected $dates = [];
     protected $appends = [
         'conversion_rate',
         'name',
     ];
+
+    protected $translations = ['unit'];
 
     /*
     |--------------------------------------------------------------------------

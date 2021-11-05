@@ -3,12 +3,13 @@
 namespace App\Models;
 
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
+use Backpack\CRUD\app\Models\Traits\SpatieTranslatable\HasTranslations;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class UnitType extends Model
 {
-    use CrudTrait, HasFactory;
+    use CrudTrait, HasFactory, HasTranslations;
 
     /*
     |--------------------------------------------------------------------------
@@ -17,15 +18,12 @@ class UnitType extends Model
     */
 
     protected $table = 'unit_types';
-    // protected $primaryKey = 'id';
-    // public $timestamps = false;
     protected $guarded = ['id'];
-    // protected $fillable = [];
-    // protected $hidden = [];
-    // protected $dates = [];
     protected $appends = [
         'name_with_unit',
     ];
+
+    protected $translations = ['name', 'standard_unit'];
     /*
     |--------------------------------------------------------------------------
     | FUNCTIONS

@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
+use Backpack\CRUD\app\Models\Traits\SpatieTranslatable\HasTranslations;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Model;
 
 class Type extends Model
 {
-    use CrudTrait, HasFactory;
+    use CrudTrait, HasFactory, HasTranslations;
 
     /*
     |--------------------------------------------------------------------------
@@ -17,12 +18,9 @@ class Type extends Model
     */
 
     protected $table = 'types';
-    protected $primaryKey = 'id';
-    // public $timestamps = false;
     protected $guarded = [];
-    // protected $fillable = [];
-    // protected $hidden = [];
-    // protected $dates = [];
+
+    protected $translations = ['name'];
 
     public static function boot()
     {

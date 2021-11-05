@@ -34,7 +34,7 @@
         Route::crud('region', 'RegionCrudController');
         Route::crud('department', 'DepartmentCrudController');
         Route::crud('year', 'YearCrudController');
-        Route::crud('muncipality', 'MuncipalityCrudController');
+        Route::crud('municipality', 'MunicipalityCrudController');
         Route::crud('scope', 'ScopeCrudController');
         Route::crud('group', 'GroupCrudController');
     });

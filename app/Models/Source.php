@@ -3,13 +3,14 @@
 namespace App\Models;
 
 use App\Models\Traits\UpdatesMainSearchIndex;
+use Backpack\CRUD\app\Models\Traits\SpatieTranslatable\HasTranslations;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Model;
 
 class Source extends Model
 {
-    use CrudTrait, HasFactory, UpdatesMainSearchIndex;
+    use CrudTrait, HasFactory, UpdatesMainSearchIndex, HasTranslations;
 
     /*
     |--------------------------------------------------------------------------
@@ -18,13 +19,10 @@ class Source extends Model
     */
 
     protected $table = 'sources';
-    protected $primaryKey = 'id';
-    // public $timestamps = false;
     protected $guarded = ['id'];
-    // protected $fillable = [];
-    // protected $hidden = [];
-    // protected $dates = [];
     protected $casts = ['file' => 'array'];
+
+    protected $translations = ['name', 'reference', 'description'];
 
     /*
     |--------------------------------------------------------------------------

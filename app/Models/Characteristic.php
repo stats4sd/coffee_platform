@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Traits\HasUploadFields;
+use Backpack\CRUD\app\Models\Traits\SpatieTranslatable\HasTranslations;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
@@ -10,7 +11,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Characteristic extends Model
 {
-    use CrudTrait, HasFactory, HasUploadFields;
+    use CrudTrait, HasFactory, HasUploadFields, HasTranslations;
 
     /*
     |--------------------------------------------------------------------------
@@ -20,11 +21,9 @@ class Characteristic extends Model
 
     protected $table = 'characteristics';
     protected $primaryKey = 'id';
-    // public $timestamps = false;
     protected $guarded = [];
-    // protected $fillable = [];
-    // protected $hidden = [];
-    // protected $dates = [];
+
+    protected $translatable = ['name'];
 
     public static function boot()
     {

@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
+use Backpack\CRUD\app\Models\Traits\SpatieTranslatable\HasTranslations;
 use Illuminate\Database\Eloquent\Model;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Group extends Model
 {
-    use CrudTrait, HasFactory;
+    use CrudTrait, HasFactory, HasTranslations;
 
     /*
     |--------------------------------------------------------------------------
@@ -17,12 +18,9 @@ class Group extends Model
     */
 
     protected $table = 'groups';
-    // protected $primaryKey = 'id';
-    // public $timestamps = false;
     protected $guarded = ['id'];
-    // protected $fillable = [];
-    // protected $hidden = [];
-    // protected $dates = [];
+
+    protected $translations = ['name'];
 
     /*
     |--------------------------------------------------------------------------
