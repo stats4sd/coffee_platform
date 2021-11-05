@@ -7,8 +7,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2021-11-05T13:27:27+00:00\n"
-"PO-Revision-Date: 2021-11-05 14:27+0100\n"
+"POT-Creation-Date: 2021-11-05T16:14:47+00:00\n"
+"PO-Revision-Date: 2021-11-05 17:14+0100\n"
 "Language: es\n"
 "Plural-Forms: nplurals=2; plural=n!=1;\n"
 
@@ -80,6 +80,8 @@ msgstr ""
 #: app/Http/Controllers/Admin/CountryCrudController.php:33
 msgid "country"
 msgstr ""
+"countryES\n"
+""
 
 #: app/Http/Controllers/Admin/CountryCrudController.php:33
 msgid "countries"
@@ -100,7 +102,7 @@ msgstr ""
 #: app/Http/Controllers/Admin/GeoBoundaryCrudController.php:53
 #: app/Http/Controllers/Admin/GeoBoundaryCrudController.php:101
 msgid "Country"
-msgstr ""
+msgstr "CountryES"
 
 #: app/Http/Controllers/Admin/GeoBoundaryCrudController.php:58
 #: app/Http/Controllers/Admin/GeoBoundaryCrudController.php:110
@@ -435,11 +437,11 @@ msgstr ""
 
 #: app/Http/Controllers/Admin/UnitCrudController.php:91
 msgid "1 of this unit equals... "
-msgstr ""
+msgstr "test"
 
 #: app/Http/Controllers/Admin/UnitCrudController.php:92
 msgid "...of the standard unit"
-msgstr ""
+msgstr "test"
 
 #: app/Http/Controllers/Admin/UnitCrudController.php:92
 #: app/Http/Controllers/Admin/UnitCrudController.php:98
@@ -452,11 +454,11 @@ msgstr ""
 
 #: app/Http/Controllers/Admin/UnitCrudController.php:97
 msgid "1 of the standard unit equals... "
-msgstr ""
+msgstr "test"
 
 #: app/Http/Controllers/Admin/UnitCrudController.php:98
 msgid "...of this unit"
-msgstr ""
+msgstr "test"
 
 #: app/Http/Controllers/Admin/UnitCrudController.php:102
 msgid ""
@@ -472,7 +474,7 @@ msgstr ""
 
 #: app/Http/Controllers/Admin/UnitCrudController.php:109
 msgid "1 of this unit equals X of the standard unit"
-msgstr ""
+msgstr "test"
 
 #: app/Http/Controllers/Admin/UnitCrudController.php:110
 msgid "Year (YYYY)"
@@ -525,4 +527,326 @@ msgstr ""
 
 #: app/Http/Controllers/Admin/YearCrudController.php:31
 msgid "years"
+msgstr ""
+
+#: app/Http/Controllers/IndicatorValueController.php:81
+msgid "Could not export data - please try again or contact the website support team"
+msgstr ""
+
+#: resources/views/about.blade.php:9
+#: resources/views/layouts/header.blade.php:16
+msgid "About"
+msgstr "Acerca de"
+
+#: resources/views/about.blade.php:10
+msgid ""
+"<p>The State of the Smallholder Coffee Farmer is an open access resource, connecting indicator data about smallholder coffee farmers – particularly the economic, social and environmental characteristics of farmer households and their livelihoods.</p>\n"
+"                    <p>With an explicit emphasis on producers, this initial pilot seeks to draw a more holistic picture of many realities of coffee smallholders, their livelihoods, and challenges. Ultimately, the initiative attempts to remove barriers to equitable information sharing, including those structures preventing producers from accessing data about themselves and their farms.</p>"
+msgstr ""
+
+#: resources/views/about.blade.php:19
+msgid "Nicaraguan farmer with her coffee plants. Credit: Heifer International/Phillip Davis"
+msgstr ""
+
+#: resources/views/about.blade.php:24
+msgid ""
+"<p> This interactive site and accompanying <a href=\"reports\" style=\"color: #66AC47\">report</a>\n"
+"        are based on initial results stemming from extensive review, analysis and synthesis of existing\n"
+"        data about coffee smallholders in Guatemala, Honduras and Nicaragua, with the goal of expanding\n"
+"        into a larger, more permanent effort with broader industry support.\n"
+"    </p>"
+msgstr ""
+
+#: resources/views/about.blade.php:31
+msgid "Partners"
+msgstr ""
+
+#: resources/views/about.blade.php:33
+msgid ""
+" This pilot stems from a partnership between Heifer International, Lutheran World Relief, the Agroecology\n"
+"            and\n"
+"            Livelihoods Collaborative at the University of Vermont and Statistics for Sustainable Development\n"
+"            (Stats4SD).\n"
+"            As a component of this pilot includes collaborative ways of identifying information gaps and envisioning\n"
+"            more impactful (yet less burdensome) ways of data collection, several other organizations have already\n"
+"            contributed ideas and/or data."
+msgstr "test"
+
+#: resources/views/about.blade.php:69
+msgid "Contact Us"
+msgstr "Contáctenos"
+
+#: resources/views/about.blade.php:71
+msgid " If you would like to get in contact with us please email :link"
+msgstr "test"
+
+#: resources/views/errors/400.blade.php:6
+msgid "Bad request."
+msgstr ""
+
+#: resources/views/errors/400.blade.php:12
+#: resources/views/errors/401.blade.php:12
+#: resources/views/errors/403.blade.php:12
+#: resources/views/errors/404.blade.php:12
+#: resources/views/errors/405.blade.php:12
+msgid "\"Please :go-back or return to :our-homepage"
+msgstr "test"
+
+#: resources/views/errors/401.blade.php:6
+msgid "Unauthorized action."
+msgstr ""
+
+#: resources/views/errors/403.blade.php:6
+msgid "Forbidden."
+msgstr ""
+
+#: resources/views/errors/404.blade.php:6
+msgid "Page not found."
+msgstr ""
+
+#: resources/views/errors/405.blade.php:6
+msgid "Method not allowed."
+msgstr ""
+
+#: resources/views/errors/408.blade.php:6
+msgid "Request timeout."
+msgstr ""
+
+#: resources/views/errors/408.blade.php:12
+msgid "\"Please :go-back, refresh the page and try again."
+msgstr "test"
+
+#: resources/views/errors/429.blade.php:6
+msgid "Too many requests."
+msgstr ""
+
+#: resources/views/errors/429.blade.php:12
+msgid "\"Please :go-back, wait a minute, refresh the page and try again."
+msgstr "test"
+
+#: resources/views/errors/500.blade.php:6
+#: resources/views/errors/503.blade.php:6
+msgid "It's not you, it's me."
+msgstr ""
+
+#: resources/views/errors/500.blade.php:12
+msgid "An internal server error has occurred. If the error persists please contact the development team."
+msgstr ""
+
+#: resources/views/errors/503.blade.php:12
+msgid "The server is overloaded or down for maintenance. Please try again later."
+msgstr ""
+
+#: resources/views/errors/layout.blade.php:2
+msgid "Error "
+msgstr ""
+
+#: resources/views/home.blade.php:6
+msgid "Connecting the data dots"
+msgstr ""
+
+#: resources/views/home.blade.php:7
+msgid ""
+"Explore indicators and data visualizations about the economic,\n"
+"                environmental, and social characteristics and implications of smallholder coffee farming in\n"
+"                Guatemala, Honduras and Nicaragua."
+msgstr ""
+
+#: resources/views/home.blade.php:13
+msgid "Browse Indicators"
+msgstr ""
+
+#: resources/views/home.blade.php:17
+msgid " Farmer holding freshly picked coffee berries in Guatemala. Credit: Heifer International/Phillip Davis"
+msgstr "test"
+
+#: resources/views/home.blade.php:24
+msgid "What is it?"
+msgstr ""
+
+#: resources/views/home.blade.php:25
+msgid ""
+"<p>The State of the Smallholder Coffee Farmer is an open access data resource, designed to drive more informed,\n"
+"        inclusive, and democratic decision making across the value chain.\n"
+"    </p>\n"
+"        <p>This interactive site brings together indicator data from a variety of sources, which can be used to draw a\n"
+"            more holistic picture of smallholder coffee livelihoods, challenges and outcomes.\n"
+"            These are available to explore and download from the <a href=\"indicators\" style=\"color: #66AC47\">Indicator\n"
+"                Hub.</a>\n"
+"        </p>"
+msgstr ""
+
+#: resources/views/home.blade.php:35
+msgid "Find Out More"
+msgstr ""
+
+#: resources/views/home.blade.php:40
+#: resources/views/layouts/header.blade.php:22
+#: resources/views/reports.blade.php:9
+msgid "Report"
+msgstr ""
+
+#: resources/views/home.blade.php:41
+msgid "Alongside the platform, a report describes key findings and the data collection process in detail."
+msgstr ""
+
+#: resources/views/home.blade.php:45
+msgid "View the Report"
+msgstr ""
+
+#: resources/views/home.blade.php:51
+msgid ""
+"Guatemalan farmer holding freshly picked coffee berries. Credit: Heifer International/Phillip\n"
+"                    Davis"
+msgstr ""
+
+#: resources/views/indicators.blade.php:8
+#: resources/views/layouts/header.blade.php:25
+msgid "Indicator Hub"
+msgstr ""
+
+#: resources/views/indicators.blade.php:9
+msgid ""
+"Coffee flowers. Credit:\n"
+"                    Janica Anderzén"
+msgstr ""
+
+#: resources/views/indicators.blade.php:24
+msgid "User Guide"
+msgstr ""
+
+#: resources/views/indicators.blade.php:45
+msgid ""
+"<h2>Step 1: What are you looking for?</h2>\n"
+"                <p class=\"mb-3\">\n"
+"                    There are different ways to explore the available data:</p>\n"
+"                <p><strong>Search:</strong> Use the search box below to find indicators by keyword.</p>\n"
+"                <p><strong>Browse:</strong> Select a category and subcategory to explore by subject.</p>\n"
+"                <p><strong>Filter:</strong> Narrow down your search using the filter bar on the left to find exactly what\n"
+"                    you want.</p>\n"
+"                <h2>Step 2: View Indicators</h2>\n"
+"                <p class=\"mb-3\">\n"
+"                    Scroll down to view the table of available indicators that match the options selected. You have a few\n"
+"                    options:</p>\n"
+"                <p><strong>Preview:</strong> Quick, simplified view of the indicator data.</p>\n"
+"                <p><strong>Add to selection:</strong> You can add multiple indicators to your selection as you browse. You\n"
+"                    can later download them all together, rather than one at a time.</p>\n"
+"\n"
+"                <p><strong>Quick download:</strong> Download data for a single indicator</p>\n"
+"\n"
+"                <h2>Step 3: Download Data</h2>\n"
+"                <p>\n"
+"                    Click the download button at the top right to review and download data for all indicators added to your\n"
+"                    selection.</p>"
+msgstr ""
+
+#: resources/views/layouts/app.blade.php:23
+#: resources/views/layouts/header.blade.php:4
+msgid "State of the Smallholder Coffee Farmer"
+msgstr ""
+
+#: resources/views/layouts/app.blade.php:46
+msgid "Contact:"
+msgstr ""
+
+#: resources/views/layouts/app.blade.php:49
+msgid "Developed by :stats4sd"
+msgstr ""
+
+#: resources/views/layouts/app.blade.php:50
+msgid "Admin Login"
+msgstr ""
+
+#: resources/views/layouts/header.blade.php:5
+msgid "Toggle navigation"
+msgstr ""
+
+#: resources/views/layouts/header.blade.php:11
+msgid "Home"
+msgstr "Inicio"
+
+#: resources/views/layouts/header.blade.php:19
+#: resources/views/webinar.blade.php:9
+msgid "Webinar"
+msgstr ""
+
+#: resources/views/reports.blade.php:10
+msgid ""
+"<p>Alongside the platform, a report has been produced, describing the key findings and data\n"
+"                    collection process in detail.</p>\n"
+"                    <p>In this report, you can also read more about our efforts to identify data gaps and envision how\n"
+"                        we could improve\n"
+"                        data collection and sharing among a variety of actors along the coffee value chain, including\n"
+"                        the farmers and\n"
+"                        their organizations.</p>"
+msgstr ""
+
+#: resources/views/reports.blade.php:21
+msgid "Guatemalan farmer with his coffee plants. Credit: Heifer International/Phillip Davis"
+msgstr ""
+
+#: resources/views/reports.blade.php:27
+msgid "Download the report"
+msgstr ""
+
+#: resources/views/reports.blade.php:28
+msgid "The report is currently available to download in English and will be released in Spanish soon."
+msgstr ""
+
+#: resources/views/reports.blade.php:31
+msgid "Download in English"
+msgstr ""
+
+#: resources/views/reports.blade.php:36
+msgid "Download in Spanish"
+msgstr ""
+
+#: resources/views/reports.blade.php:36
+msgid "coming soon..."
+msgstr ""
+
+#: resources/views/webinar.blade.php:10
+msgid ""
+"On October 20th 2021, the State of the Smallholder Coffee Farmer held a live webinar and Q&A to\n"
+"                        launch the open access platform coffeesmallholder.org and accompanying\n"
+"                        report, State of the Smallholder Coffee Farmer: An Initiative Towards a More Equitable and\n"
+"                        Democratic Information Landscape."
+msgstr ""
+
+#: resources/views/webinar.blade.php:19
+msgid "Coffee plantation at dusk in Chiapas, México. Credit: Janica Anderzén"
+msgstr ""
+
+#: resources/views/webinar.blade.php:26
+msgid ">Missed the live webinar?"
+msgstr ""
+
+#: resources/views/webinar.blade.php:27
+msgid "The full recording (passcode: ahJ0iG$K) and presentation slides are now available."
+msgstr ""
+
+#: resources/views/webinar.blade.php:31
+msgid "Watch the webinar"
+msgstr ""
+
+#: resources/views/webinar.blade.php:35
+msgid "Download presentation"
+msgstr ""
+
+#: resources/views/webinar.blade.php:42
+msgid ""
+"<h2 class=\"mt-5 text-green\">Panelists</h2>\n"
+"            <ul><strong>Rick Peyser,</strong> Senior Manager for Coffee and Cocoa, Lutheran World Relief</ul>\n"
+"            <ul><strong>Carlos Barahona,</strong> Managing Director at Statistics for Sustainable Development (Stats4SD)\n"
+"            </ul>\n"
+"            <ul><strong>Janica Anderzén,</strong> PhD candidate in Agroecology, Agroecology & Livelihoods Collaborative,\n"
+"                University of Vermont\n"
+"            </ul>\n"
+"            <ul><strong>Ernesto Méndez,</strong> Professor of Agroecology and Co-Director, Agroecology & Livelihoods\n"
+"                Collaborative (ALC) at University of Vermont\n"
+"            </ul>\n"
+"            <ul><strong>Ciara McHugh,</strong> Statistician at Statistics for Sustainable Development (Stats4SD)</ul>\n"
+"            <ul><strong>Cory Gilman,</strong> Strategic Initiatives Manager: Coffee and Commodities at Heifer\n"
+"                International\n"
+"            </ul>"
 msgstr ""
