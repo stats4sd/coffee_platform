@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\MuncipalityRequest;
+use App\Http\Requests\MunicipalityRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
@@ -30,7 +30,7 @@ class MunicipalityCrudController extends CrudController
     {
         CRUD::setModel(\App\Models\Municipality::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/municipality');
-        CRUD::setEntityNameStrings('municipality', 'municipalities');
+        CRUD::setEntityNameStrings(t('municipalities'), t('municipalities'));
     }
 
     /**
@@ -41,7 +41,7 @@ class MunicipalityCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        CRUD::column('name')->type('text');
+        CRUD::column('name')->type('text')->label(t('Name'));
     }
 
     /**
@@ -52,9 +52,9 @@ class MunicipalityCrudController extends CrudController
      */
     protected function setupCreateOperation()
     {
-        CRUD::setValidation(MuncipalityRequest::class);
+        CRUD::setValidation(MunicipalityRequest::class);
 
-        CRUD::field('name')->type('text');
+        CRUD::field('name')->type('text')->label(t('Name'));
 
     }
 

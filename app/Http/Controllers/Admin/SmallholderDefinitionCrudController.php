@@ -30,7 +30,7 @@ class SmallholderDefinitionCrudController extends CrudController
     {
         CRUD::setModel(\App\Models\SmallholderDefinition::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/smallholder_definition');
-        CRUD::setEntityNameStrings('smallholder definition', 'smallholder definitions');
+        CRUD::setEntityNameStrings(t('smallholder definitions'), t('smallholder definitions'));
     }
 
     /**
@@ -41,7 +41,7 @@ class SmallholderDefinitionCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        CRUD::column('name')->type('text');
+        CRUD::column('name')->type('text')->label(t('Name'));
     }
 
     /**
@@ -54,7 +54,7 @@ class SmallholderDefinitionCrudController extends CrudController
     {
         CRUD::setValidation(SmallholderDefinitionRequest::class);
 
-        CRUD::field('name')->type('text');
+        CRUD::field('name')->type('text')->label(t('Name'));
     }
 
     /**

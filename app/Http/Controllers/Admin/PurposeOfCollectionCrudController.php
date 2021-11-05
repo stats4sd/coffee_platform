@@ -30,7 +30,7 @@ class PurposeOfCollectionCrudController extends CrudController
     {
         CRUD::setModel(\App\Models\PurposeOfCollection::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/purpose_of_collection');
-        CRUD::setEntityNameStrings('purpose of collection', 'purpose of collections');
+        CRUD::setEntityNameStrings(t('purpose of collections'), t('purpose of collections'));
     }
 
     /**
@@ -41,7 +41,7 @@ class PurposeOfCollectionCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        CRUD::column('name')->type('text');
+        CRUD::column('name')->type('text')->label(t('Name'));
     }
 
     /**
@@ -54,7 +54,7 @@ class PurposeOfCollectionCrudController extends CrudController
     {
         CRUD::setValidation(PurposeOfCollectionRequest::class);
 
-        CRUD::column('name')->type('text');
+        CRUD::column('name')->type('text')->label(t('Name'));
     }
 
     /**

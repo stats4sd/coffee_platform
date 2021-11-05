@@ -37,7 +37,7 @@ class IndicatorCrudController extends CrudController
     {
         CRUD::setModel(\App\Models\Indicator::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/indicator');
-        CRUD::setEntityNameStrings('indicator', 'indicators');
+        CRUD::setEntityNameStrings(t('indicators'), t('indicators'));
 
         CRUD::set('import.importer', IndicatorsSheetImport::class);
     }
@@ -53,22 +53,23 @@ class IndicatorCrudController extends CrudController
         $this->crud->addColumns([
             [
                 'name' => 'characteristic_name',
-                'label' => 'Characteristic',
+                'label' => t('Characteristic'),
                 'type' => 'text',
             ],
             [
                 'type' => 'relationship',
                 'name' => 'subCharacteristic',
+                'label' => t('Sub Characteristic'),
             ],
             [
                 'name' => 'code',
                 'type' => 'text',
-                'label' => 'Code'
+                'label' => t('Code'),
             ],
             [
                 'name' => 'name',
                 'type' => 'text',
-                'label' => 'Name'
+                'label' => t('Name'),
             ]
         ]);
     }
@@ -93,6 +94,7 @@ class IndicatorCrudController extends CrudController
                 'placeholder' => 'Select Characteristic',
                 'minimum_input_length' => 0,
                 'method' => 'post',
+                'label' => t('Characteristic'),
             ],
             [
                 'type' => 'relationship',
@@ -103,17 +105,18 @@ class IndicatorCrudController extends CrudController
                 'ajax' => true,
                 'minimum_input_length' => 0,
                 'data_source' => backpack_url('indicator/fetch/sub-characteristic'),
+                'label' => t('Sub Characteristic'),
             ],
             [
                 'name' => 'code',
                 'type' => 'text',
-                'label' => 'Code'
+                'label' => t('Code'),
             ],
             [
                 'name' => 'name',
                 'type' => 'text',
-                'label' => 'Name'
-            ]
+                'label' => t('Name'),
+            ],
         ]);
     }
 

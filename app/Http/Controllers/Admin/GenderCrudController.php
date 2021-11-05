@@ -30,7 +30,7 @@ class GenderCrudController extends CrudController
     {
         CRUD::setModel(\App\Models\Gender::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/gender');
-        CRUD::setEntityNameStrings('gender', 'genders');
+        CRUD::setEntityNameStrings(t('genders'), t('genders'));
     }
 
     /**
@@ -41,7 +41,7 @@ class GenderCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        CRUD::column('name')->type('text');
+        CRUD::column('name')->type('text')->label(t('Name'));
     }
 
     /**
@@ -54,7 +54,7 @@ class GenderCrudController extends CrudController
     {
         CRUD::setValidation(GenderRequest::class);
 
-        CRUD::field('name')->type('text');
+        CRUD::field('name')->type('text')->label(t('Name'));
     }
 
     /**

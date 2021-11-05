@@ -30,7 +30,7 @@ class DepartmentCrudController extends CrudController
     {
         CRUD::setModel(\App\Models\Department::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/department');
-        CRUD::setEntityNameStrings('department', 'departments');
+        CRUD::setEntityNameStrings(t('departments'), t('departments'));
     }
 
     /**
@@ -41,7 +41,7 @@ class DepartmentCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        CRUD::column('name')->type('text');
+        CRUD::column('name')->type('text')->label(t('Name'));
     }
 
     /**
@@ -54,7 +54,7 @@ class DepartmentCrudController extends CrudController
     {
         CRUD::setValidation(DepartmentRequest::class);
 
-        CRUD::field('name')->type('text');
+        CRUD::field('name')->type('text')->label(t('Name'));
 
     }
 

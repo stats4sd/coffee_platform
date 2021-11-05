@@ -28,7 +28,7 @@ class YearCrudController extends CrudController
     {
         CRUD::setModel(\App\Models\Year::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/year');
-        CRUD::setEntityNameStrings('year', 'years');
+        CRUD::setEntityNameStrings(t('years'), t('years'));
     }
 
     /**
@@ -39,7 +39,7 @@ class YearCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        CRUD::addColumn(['name' => 'year', 'type' => 'year']);
+        CRUD::addColumn(['name' => 'year', 'type' => 'year', 'label' => t('Year')]);
     }
 
     /**
@@ -52,7 +52,7 @@ class YearCrudController extends CrudController
     {
         CRUD::setValidation(YearRequest::class);
 
-        CRUD::field('year')->type('number');
+        CRUD::field('year')->type('number')->label(t('Year'));
     }
 
     /**

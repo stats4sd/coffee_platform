@@ -30,7 +30,7 @@ class UnitTypeCrudController extends CrudController
     {
         CRUD::setModel(\App\Models\UnitType::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/unittype');
-        CRUD::setEntityNameStrings('unit-type', 'unit-types');
+        CRUD::setEntityNameStrings(t('unit-types'), t('unit-types'));
     }
 
     /**
@@ -43,9 +43,13 @@ class UnitTypeCrudController extends CrudController
     {
         $this->crud->query->withCount('units');
 
-        CRUD::column('name');
-        CRUD::column('standard_unit');
-        CRUD::column('units_count')->type('text');
+        CRUD::column('name')
+            ->label(t('Name'));
+        CRUD::column('standard_unit')
+            ->label(t('Standard Unit'));
+        CRUD::column('units_count')
+            ->type('text')
+            ->label(t('Number of units'));
     }
 
     /**
@@ -58,11 +62,14 @@ class UnitTypeCrudController extends CrudController
     {
         CRUD::setValidation(UnitTypeRequest::class);
 
-        CRUD::field('name')->label('What is the unit type? (e.g. length, area, volume, time...)');
-        CRUD::field('standard_unit')->label('What is the standard unit for this type?');
-        CRUD::field('split_by_year')->type('checkbox')
-        ->label('If this unit type has a different conversion rate each year, tick this box.')
-        ->hint('This is likely only currency');
+        CRUD::field('name')
+            ->label(t('What is the unit type? (e.g. length, area, volume, time...)'));
+        CRUD::field('standard_unit')
+            ->label(t('What is the standard unit for this type?'));
+        CRUD::field('split_by_year')
+            ->type('checkbox')
+            ->label(t('If this unit type has a different conversion rate each year, tick this box.'))
+            ->hint(t('This is likely only currency'));
     }
 
     /**

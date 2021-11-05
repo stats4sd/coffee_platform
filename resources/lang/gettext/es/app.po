@@ -1,0 +1,528 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Coffee\n"
+"Report-Msgid-Bugs-To: contact@translation.io\n"
+"Last-Translator: \n"
+"Language-Team: Spanish\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2021-11-05T13:27:27+00:00\n"
+"PO-Revision-Date: 2021-11-05 14:27+0100\n"
+"Language: es\n"
+"Plural-Forms: nplurals=2; plural=n!=1;\n"
+
+#: app/Http/Controllers/Admin/ApproachCollectionCrudController.php:40
+#: app/Http/Controllers/Admin/IndicatorValueCrudController.php:141
+msgid "Approach"
+msgstr ""
+
+#: app/Http/Controllers/Admin/ApproachCollectionCrudController.php:40
+msgid "Approaches to collection"
+msgstr ""
+
+#: app/Http/Controllers/Admin/ApproachCollectionCrudController.php:54
+#: app/Http/Controllers/Admin/ApproachCollectionCrudController.php:67
+#: app/Http/Controllers/Admin/CharacteristicCrudController.php:43
+#: app/Http/Controllers/Admin/CharacteristicCrudController.php:57
+#: app/Http/Controllers/Admin/CountryCrudController.php:44
+#: app/Http/Controllers/Admin/CountryCrudController.php:57
+#: app/Http/Controllers/Admin/DepartmentCrudController.php:44
+#: app/Http/Controllers/Admin/DepartmentCrudController.php:57
+#: app/Http/Controllers/Admin/GenderCrudController.php:44
+#: app/Http/Controllers/Admin/GenderCrudController.php:57
+#: app/Http/Controllers/Admin/GroupCrudController.php:44
+#: app/Http/Controllers/Admin/GroupCrudController.php:57
+#: app/Http/Controllers/Admin/IndicatorCrudController.php:72
+#: app/Http/Controllers/Admin/IndicatorCrudController.php:118
+#: app/Http/Controllers/Admin/MunicipalityCrudController.php:44
+#: app/Http/Controllers/Admin/MunicipalityCrudController.php:57
+#: app/Http/Controllers/Admin/PartnerCrudController.php:45
+#: app/Http/Controllers/Admin/PartnerCrudController.php:65
+#: app/Http/Controllers/Admin/PurposeOfCollectionCrudController.php:44
+#: app/Http/Controllers/Admin/PurposeOfCollectionCrudController.php:57
+#: app/Http/Controllers/Admin/RegionCrudController.php:44
+#: app/Http/Controllers/Admin/RegionCrudController.php:57
+#: app/Http/Controllers/Admin/ScopeCrudController.php:44
+#: app/Http/Controllers/Admin/ScopeCrudController.php:57
+#: app/Http/Controllers/Admin/SmallholderDefinitionCrudController.php:44
+#: app/Http/Controllers/Admin/SmallholderDefinitionCrudController.php:57
+#: app/Http/Controllers/Admin/SourceCrudController.php:50
+#: app/Http/Controllers/Admin/SourceCrudController.php:94
+#: app/Http/Controllers/Admin/SubCharacteristicCrudController.php:53
+#: app/Http/Controllers/Admin/SubCharacteristicCrudController.php:81
+#: app/Http/Controllers/Admin/TypeCrudController.php:44
+#: app/Http/Controllers/Admin/TypeCrudController.php:57
+#: app/Http/Controllers/Admin/UnitCrudController.php:46
+#: app/Http/Controllers/Admin/UnitTypeCrudController.php:47
+#: app/Http/Controllers/Admin/UserCrudController.php:43
+#: app/Http/Controllers/Admin/UserCrudController.php:59
+msgid "Name"
+msgstr "Nombre"
+
+#: app/Http/Controllers/Admin/ApproachCollectionCrudController.php:87
+msgid ""
+"<h3>Instructions</h3>\n"
+"            Please upload the Excel file containing new collection approaches.\n"
+"            <ul>\n"
+"                <li>The file should be in the same format as the file downloadable on the main view page.</li>\n"
+"            </ul>"
+msgstr ""
+
+#: app/Http/Controllers/Admin/CharacteristicCrudController.php:32
+msgid "characteristics"
+msgstr ""
+
+#: app/Http/Controllers/Admin/CharacteristicCrudController.php:58
+msgid "Upload a cover image to represent this characteristic on the main search page"
+msgstr ""
+
+#: app/Http/Controllers/Admin/CountryCrudController.php:33
+msgid "country"
+msgstr ""
+
+#: app/Http/Controllers/Admin/CountryCrudController.php:33
+msgid "countries"
+msgstr ""
+
+#: app/Http/Controllers/Admin/DepartmentCrudController.php:33
+msgid "departments"
+msgstr ""
+
+#: app/Http/Controllers/Admin/GenderCrudController.php:33
+msgid "genders"
+msgstr ""
+
+#: app/Http/Controllers/Admin/GeoBoundaryCrudController.php:38
+msgid "geo boundaries"
+msgstr ""
+
+#: app/Http/Controllers/Admin/GeoBoundaryCrudController.php:53
+#: app/Http/Controllers/Admin/GeoBoundaryCrudController.php:101
+msgid "Country"
+msgstr ""
+
+#: app/Http/Controllers/Admin/GeoBoundaryCrudController.php:58
+#: app/Http/Controllers/Admin/GeoBoundaryCrudController.php:110
+msgid "Region"
+msgstr ""
+
+#: app/Http/Controllers/Admin/GeoBoundaryCrudController.php:64
+#: app/Http/Controllers/Admin/GeoBoundaryCrudController.php:119
+msgid "Department"
+msgstr ""
+
+#: app/Http/Controllers/Admin/GeoBoundaryCrudController.php:69
+#: app/Http/Controllers/Admin/GeoBoundaryCrudController.php:128
+msgid "Municipality"
+msgstr ""
+
+#: app/Http/Controllers/Admin/GeoBoundaryCrudController.php:74
+#: app/Http/Controllers/Admin/GeoBoundaryCrudController.php:134
+#: app/Http/Controllers/Admin/SourceCrudController.php:70
+#: app/Http/Controllers/Admin/SourceCrudController.php:118
+msgid "Description"
+msgstr ""
+
+#: app/Http/Controllers/Admin/GeoBoundaryCrudController.php:79
+msgid "altitude"
+msgstr ""
+
+#: app/Http/Controllers/Admin/GeoBoundaryCrudController.php:102
+msgid "If the country is not in the dropdown select <b>+Add</b> to add a new one."
+msgstr ""
+
+#: app/Http/Controllers/Admin/GeoBoundaryCrudController.php:111
+msgid "If the region is not in the dropdown select <b>+Add</b> to add a new one."
+msgstr ""
+
+#: app/Http/Controllers/Admin/GeoBoundaryCrudController.php:120
+msgid "If the department is not in the dropdown select <b>+Add</b> to add a new one."
+msgstr ""
+
+#: app/Http/Controllers/Admin/GeoBoundaryCrudController.php:129
+msgid "If the municipality is not in the dropdown select <b>+Add</b> to add a new one."
+msgstr ""
+
+#: app/Http/Controllers/Admin/GeoBoundaryCrudController.php:139
+msgid "Altitude"
+msgstr ""
+
+#: app/Http/Controllers/Admin/GroupCrudController.php:33
+msgid "groups"
+msgstr ""
+
+#: app/Http/Controllers/Admin/IndicatorCrudController.php:40
+msgid "indicators"
+msgstr ""
+
+#: app/Http/Controllers/Admin/IndicatorCrudController.php:56
+#: app/Http/Controllers/Admin/IndicatorCrudController.php:97
+#: app/Http/Controllers/Admin/SubCharacteristicCrudController.php:48
+#: app/Http/Controllers/Admin/SubCharacteristicCrudController.php:70
+msgid "Characteristic"
+msgstr ""
+
+#: app/Http/Controllers/Admin/IndicatorCrudController.php:62
+#: app/Http/Controllers/Admin/IndicatorCrudController.php:108
+msgid "Sub Characteristic"
+msgstr ""
+
+#: app/Http/Controllers/Admin/IndicatorCrudController.php:67
+#: app/Http/Controllers/Admin/IndicatorCrudController.php:113
+msgid "Code"
+msgstr ""
+
+#: app/Http/Controllers/Admin/IndicatorValueCrudController.php:43
+msgid "indicator values"
+msgstr ""
+
+#: app/Http/Controllers/Admin/IndicatorValueCrudController.php:58
+msgid "Groups"
+msgstr ""
+
+#: app/Http/Controllers/Admin/IndicatorValueCrudController.php:71
+#: app/Http/Controllers/Admin/IndicatorValueCrudController.php:183
+msgid "Indicator"
+msgstr ""
+
+#: app/Http/Controllers/Admin/IndicatorValueCrudController.php:75
+#: app/Http/Controllers/Admin/IndicatorValueCrudController.php:189
+msgid "Value"
+msgstr ""
+
+#: app/Http/Controllers/Admin/IndicatorValueCrudController.php:81
+#: app/Http/Controllers/Admin/IndicatorValueCrudController.php:199
+msgid "Unit"
+msgstr ""
+
+#: app/Http/Controllers/Admin/IndicatorValueCrudController.php:86
+#: app/Http/Controllers/Admin/IndicatorValueCrudController.php:310
+msgid "Group"
+msgstr ""
+
+#: app/Http/Controllers/Admin/IndicatorValueCrudController.php:90
+msgid "Value in Standard Units"
+msgstr ""
+
+#: app/Http/Controllers/Admin/IndicatorValueCrudController.php:95
+#: app/Http/Controllers/Admin/UnitTypeCrudController.php:49
+msgid "Standard Unit"
+msgstr ""
+
+#: app/Http/Controllers/Admin/IndicatorValueCrudController.php:100
+msgid "Conversion Ratio <br/>(original to standard)"
+msgstr ""
+
+#: app/Http/Controllers/Admin/IndicatorValueCrudController.php:105
+#: app/Http/Controllers/Admin/YearCrudController.php:42
+#: app/Http/Controllers/Admin/YearCrudController.php:55
+msgid "Year"
+msgstr ""
+
+#: app/Http/Controllers/Admin/IndicatorValueCrudController.php:111
+msgid "Geo-boundary"
+msgstr ""
+
+#: app/Http/Controllers/Admin/IndicatorValueCrudController.php:116
+#: app/Http/Controllers/Admin/IndicatorValueCrudController.php:239
+msgid "Gender"
+msgstr ""
+
+#: app/Http/Controllers/Admin/IndicatorValueCrudController.php:121
+#: app/Http/Controllers/Admin/IndicatorValueCrudController.php:245
+msgid "Sample Size"
+msgstr ""
+
+#: app/Http/Controllers/Admin/IndicatorValueCrudController.php:126
+msgid "Smallholder Definition"
+msgstr ""
+
+#: app/Http/Controllers/Admin/IndicatorValueCrudController.php:131
+msgid "User"
+msgstr ""
+
+#: app/Http/Controllers/Admin/IndicatorValueCrudController.php:136
+msgid "Purpose of Collection"
+msgstr ""
+
+#: app/Http/Controllers/Admin/IndicatorValueCrudController.php:146
+#: app/Http/Controllers/Admin/IndicatorValueCrudController.php:319
+msgid "Scope"
+msgstr ""
+
+#: app/Http/Controllers/Admin/IndicatorValueCrudController.php:151
+#: app/Http/Controllers/Admin/IndicatorValueCrudController.php:325
+msgid "Calculated by us"
+msgstr ""
+
+#: app/Http/Controllers/Admin/IndicatorValueCrudController.php:156
+#: app/Http/Controllers/Admin/IndicatorValueCrudController.php:330
+msgid "Indicator definition from source"
+msgstr ""
+
+#: app/Http/Controllers/Admin/IndicatorValueCrudController.php:161
+#: app/Http/Controllers/Admin/IndicatorValueCrudController.php:335
+msgid "Indicator name from source"
+msgstr ""
+
+#: app/Http/Controllers/Admin/IndicatorValueCrudController.php:184
+msgid "If the indicator is not in the dropdown select <b>+Add</b> to add a new one."
+msgstr ""
+
+#: app/Http/Controllers/Admin/IndicatorValueCrudController.php:200
+msgid "If the unit is not in the dropdown select <b>+Add</b> to add a new one."
+msgstr ""
+
+#: app/Http/Controllers/Admin/IndicatorValueCrudController.php:205
+msgid "Year(s)"
+msgstr ""
+
+#: app/Http/Controllers/Admin/IndicatorValueCrudController.php:214
+msgid "Source"
+msgstr ""
+
+#: app/Http/Controllers/Admin/IndicatorValueCrudController.php:215
+msgid "If the source is not in the dropdown select <b>+Add</b> to add a new one."
+msgstr ""
+
+#: app/Http/Controllers/Admin/IndicatorValueCrudController.php:230
+msgid "Geo boundary"
+msgstr ""
+
+#: app/Http/Controllers/Admin/IndicatorValueCrudController.php:231
+msgid "If the geo boundary is not in the dropdown select <b>+Add</b> to add a new one.<br>If the locations are incomplete add a new Geo Boundaries using the tab on the left."
+msgstr ""
+
+#: app/Http/Controllers/Admin/IndicatorValueCrudController.php:240
+msgid "If the gender is not in the dropdown select <b>+Add</b> to add a new one."
+msgstr ""
+
+#: app/Http/Controllers/Admin/IndicatorValueCrudController.php:259
+msgid "Smallholder definition"
+msgstr ""
+
+#: app/Http/Controllers/Admin/IndicatorValueCrudController.php:260
+msgid "If the smallholder definition is not in the dropdown select <b>+Add</b> to add a new one."
+msgstr ""
+
+#: app/Http/Controllers/Admin/IndicatorValueCrudController.php:286
+msgid "Purpose of collection"
+msgstr ""
+
+#: app/Http/Controllers/Admin/IndicatorValueCrudController.php:287
+msgid "If the purpose of collection is not in the dropdown select <b>+Add</b> to add a new one."
+msgstr ""
+
+#: app/Http/Controllers/Admin/IndicatorValueCrudController.php:301
+msgid "Collection approach"
+msgstr ""
+
+#: app/Http/Controllers/Admin/IndicatorValueCrudController.php:302
+msgid "If the collection approach is not in the dropdown select <b>+Add</b> to add a new one."
+msgstr ""
+
+#: app/Http/Controllers/Admin/IndicatorValueCrudController.php:311
+msgid "If the group is not in the dropdown select <b>+Add</b> to add a new one."
+msgstr ""
+
+#: app/Http/Controllers/Admin/IndicatorValueCrudController.php:320
+msgid "If the scope is not in the dropdown select <b>+Add</b> to add a new one."
+msgstr ""
+
+#: app/Http/Controllers/Admin/MunicipalityCrudController.php:33
+msgid "municipalities"
+msgstr ""
+
+#: app/Http/Controllers/Admin/PartnerCrudController.php:34
+msgid "partners"
+msgstr ""
+
+#: app/Http/Controllers/Admin/PartnerCrudController.php:46
+#: app/Http/Controllers/Admin/PartnerCrudController.php:73
+msgid "Type"
+msgstr ""
+
+#: app/Http/Controllers/Admin/PurposeOfCollectionCrudController.php:33
+msgid "purpose of collections"
+msgstr ""
+
+#: app/Http/Controllers/Admin/RegionCrudController.php:33
+msgid "regions"
+msgstr ""
+
+#: app/Http/Controllers/Admin/ScopeCrudController.php:33
+msgid "scopes"
+msgstr ""
+
+#: app/Http/Controllers/Admin/SmallholderDefinitionCrudController.php:33
+msgid "smallholder definitions"
+msgstr ""
+
+#: app/Http/Controllers/Admin/SourceCrudController.php:35
+msgid "sources"
+msgstr ""
+
+#: app/Http/Controllers/Admin/SourceCrudController.php:55
+msgid "Reference"
+msgstr ""
+
+#: app/Http/Controllers/Admin/SourceCrudController.php:60
+#: app/Http/Controllers/Admin/SourceCrudController.php:107
+msgid "Partner"
+msgstr ""
+
+#: app/Http/Controllers/Admin/SourceCrudController.php:65
+#: app/Http/Controllers/Admin/SourceCrudController.php:112
+msgid "Keep source anonymous?"
+msgstr ""
+
+#: app/Http/Controllers/Admin/SourceCrudController.php:74
+#: app/Http/Controllers/Admin/SourceCrudController.php:122
+msgid "Files"
+msgstr ""
+
+#: app/Http/Controllers/Admin/SourceCrudController.php:99
+msgid "reference"
+msgstr ""
+
+#: app/Http/Controllers/Admin/SubCharacteristicCrudController.php:33
+msgid "sub characteristics"
+msgstr ""
+
+#: app/Http/Controllers/Admin/TypeCrudController.php:33
+msgid "types"
+msgstr ""
+
+#: app/Http/Controllers/Admin/UnitCrudController.php:35
+msgid "units"
+msgstr ""
+
+#: app/Http/Controllers/Admin/UnitCrudController.php:47
+msgid "Unit measures..."
+msgstr ""
+
+#: app/Http/Controllers/Admin/UnitCrudController.php:48
+msgid "Conversion rate"
+msgstr ""
+
+#: app/Http/Controllers/Admin/UnitCrudController.php:49
+msgid "Standard unit"
+msgstr ""
+
+#: app/Http/Controllers/Admin/UnitCrudController.php:62
+msgid "What is the unit called?"
+msgstr ""
+
+#: app/Http/Controllers/Admin/UnitCrudController.php:69
+msgid "What does this unit measure?"
+msgstr ""
+
+#: app/Http/Controllers/Admin/UnitCrudController.php:80
+msgid "<b>Complete ONE of the tabs below, depending on the unit type.</b>"
+msgstr ""
+
+#: app/Http/Controllers/Admin/UnitCrudController.php:84
+msgid ""
+"<h5>Conversion Rate - Normal Unit Types</h5>\n"
+"        <p>To correctly convert this unit into the standard unit defined for this type of measurement, please enter ONE of the following:</p>\n"
+"        "
+msgstr ""
+
+#: app/Http/Controllers/Admin/UnitCrudController.php:88
+msgid "How many of this unit equals 1 of the standard unit (selected above)?"
+msgstr ""
+
+#: app/Http/Controllers/Admin/UnitCrudController.php:91
+msgid "1 of this unit equals... "
+msgstr ""
+
+#: app/Http/Controllers/Admin/UnitCrudController.php:92
+msgid "...of the standard unit"
+msgstr ""
+
+#: app/Http/Controllers/Admin/UnitCrudController.php:92
+#: app/Http/Controllers/Admin/UnitCrudController.php:98
+msgid "Normal Unit Types"
+msgstr ""
+
+#: app/Http/Controllers/Admin/UnitCrudController.php:94
+msgid "How many of the standard units equals 1 of this unit?"
+msgstr ""
+
+#: app/Http/Controllers/Admin/UnitCrudController.php:97
+msgid "1 of the standard unit equals... "
+msgstr ""
+
+#: app/Http/Controllers/Admin/UnitCrudController.php:98
+msgid "...of this unit"
+msgstr ""
+
+#: app/Http/Controllers/Admin/UnitCrudController.php:102
+msgid ""
+"<h5>For Currency Only - Year-by-year conversion rates</h5>\n"
+"        <p>For a currency unit, please enter the conversion rate for each year needed in the platform.</p>\n"
+"        "
+msgstr ""
+
+#: app/Http/Controllers/Admin/UnitCrudController.php:104
+#: app/Http/Controllers/Admin/UnitCrudController.php:111
+msgid "Types Split By Year"
+msgstr ""
+
+#: app/Http/Controllers/Admin/UnitCrudController.php:109
+msgid "1 of this unit equals X of the standard unit"
+msgstr ""
+
+#: app/Http/Controllers/Admin/UnitCrudController.php:110
+msgid "Year (YYYY)"
+msgstr ""
+
+#: app/Http/Controllers/Admin/UnitTypeCrudController.php:33
+msgid "unit-types"
+msgstr ""
+
+#: app/Http/Controllers/Admin/UnitTypeCrudController.php:52
+msgid "Number of units"
+msgstr ""
+
+#: app/Http/Controllers/Admin/UnitTypeCrudController.php:66
+msgid "What is the unit type? (e.g. length, area, volume, time...)"
+msgstr ""
+
+#: app/Http/Controllers/Admin/UnitTypeCrudController.php:68
+msgid "What is the standard unit for this type?"
+msgstr ""
+
+#: app/Http/Controllers/Admin/UnitTypeCrudController.php:71
+msgid "If this unit type has a different conversion rate each year, tick this box."
+msgstr ""
+
+#: app/Http/Controllers/Admin/UnitTypeCrudController.php:72
+msgid "This is likely only currency"
+msgstr ""
+
+#: app/Http/Controllers/Admin/UserCrudController.php:32
+msgid "users"
+msgstr ""
+
+#: app/Http/Controllers/Admin/UserCrudController.php:44
+#: app/Http/Controllers/Admin/UserCrudController.php:61
+msgid "Email"
+msgstr "Email:"
+
+#: app/Http/Controllers/Admin/UserCrudController.php:64
+msgid "Password"
+msgstr "Contraseña"
+
+#: app/Http/Controllers/Admin/UserCrudController.php:67
+msgid "Password confirmation"
+msgstr ""
+
+#: app/Http/Controllers/Admin/UserCrudController.php:81
+msgid "<h5 class=\"mt-3\">Password Reset</h5><div class=\"alert alert-info\">Entering a new password here will overwrite the existing password.</div>"
+msgstr ""
+
+#: app/Http/Controllers/Admin/YearCrudController.php:31
+msgid "years"
+msgstr ""

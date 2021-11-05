@@ -58,7 +58,7 @@ class GeoBoundary extends Model
         return $this->belongsTo(Department::class);
     }
 
-    public function muncipality()
+    public function municipality()
     {
         return $this->belongsTo(Municipality::class);
     }

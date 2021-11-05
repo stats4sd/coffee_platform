@@ -31,7 +31,7 @@ class PartnerCrudController extends CrudController
     {
         CRUD::setModel(\App\Models\Partner::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/partner');
-        CRUD::setEntityNameStrings('partner', 'partners');
+        CRUD::setEntityNameStrings(t('partners'), t('partners'));
     }
 
     /**
@@ -42,8 +42,8 @@ class PartnerCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        CRUD::addColumn(['name' => 'name', 'type' => 'text']);
-        CRUD::addColumn(['name' => 'type', 'type' => 'relationship']);
+        CRUD::addColumn(['name' => 'name', 'type' => 'text', 'label' => t('Name'),]);
+        CRUD::addColumn(['name' => 'type', 'type' => 'relationship', 'label' => t('Type'),]);
 
     }
 
@@ -62,6 +62,7 @@ class PartnerCrudController extends CrudController
             [
                 'type' => 'text',
                 'name' => 'name',
+                'label' => t('Name'),
             ],
             [
                 'type' => 'relationship',
@@ -69,6 +70,7 @@ class PartnerCrudController extends CrudController
                 'ajax' => true,
                 'inline_create' => [ 'entity' => 'type' ],
                 'minimum_input_length' => 0,
+                'label' => t('Type'),
             ],
         ]);
 

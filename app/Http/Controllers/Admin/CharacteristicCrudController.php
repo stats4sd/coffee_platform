@@ -29,7 +29,7 @@ class CharacteristicCrudController extends CrudController
     {
         CRUD::setModel(\App\Models\Characteristic::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/characteristic');
-        CRUD::setEntityNameStrings('characteristic', 'characteristics');
+        CRUD::setEntityNameStrings(t('characteristics'), t('characteristics'));
     }
 
     /**
@@ -40,7 +40,7 @@ class CharacteristicCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        CRUD::field('name')->type('text');
+        CRUD::field('name')->type('text')->label(t('Name'));
         CRUD::field('cover_image');
     }
 
@@ -54,8 +54,8 @@ class CharacteristicCrudController extends CrudController
     {
         CRUD::setValidation(CharacteristicRequest::class);
 
-        CRUD::field('name');
-        CRUD::field('cover_image')->type('image')->crop(true)->label('Upload a cover image to represent this characteristic on the main search page'); // fields
+        CRUD::field('name')->label(t('Name'));
+        CRUD::field('cover_image')->type('image')->crop(true)->label(t('Upload a cover image to represent this characteristic on the main search page')); // fields
 
     }
 

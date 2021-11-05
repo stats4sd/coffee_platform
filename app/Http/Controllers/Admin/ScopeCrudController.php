@@ -30,7 +30,7 @@ class ScopeCrudController extends CrudController
     {
         CRUD::setModel(\App\Models\Scope::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/scope');
-        CRUD::setEntityNameStrings('scope', 'scopes');
+        CRUD::setEntityNameStrings(t('scopes'), t('scopes'));
     }
 
     /**
@@ -41,7 +41,7 @@ class ScopeCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        CRUD::column('name')->type('text');
+        CRUD::column('name')->type('text')->label(t('Name'));
     }
 
     /**
@@ -54,7 +54,7 @@ class ScopeCrudController extends CrudController
     {
         CRUD::setValidation(ScopeRequest::class);
 
-        CRUD::column('name')->type('text');
+        CRUD::column('name')->type('text')->label(t('Name'));
     }
 
     /**

@@ -35,7 +35,7 @@ class GeoBoundaryCrudController extends CrudController
     {
         CRUD::setModel(\App\Models\GeoBoundary::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/geo_boundary');
-        CRUD::setEntityNameStrings('geo boundary', 'geo boundaries');
+        CRUD::setEntityNameStrings(t('geo boundaries'), t('geo boundaries'));
     }
 
     /**
@@ -50,28 +50,33 @@ class GeoBoundaryCrudController extends CrudController
             [
                 'type' => 'relationship',
                 'name' => 'country',
+                'label' => t('Country'),
             ],
             [
                 'type' => 'relationship',
                 'name' => 'region',
+                'label' => t('Region'),
+
             ],
             [
                 'type' => 'relationship',
                 'name' => 'department',
+                'label' => t('Department'),
             ],
             [
                 'type' => 'relationship',
-                'name' => 'muncipality',
+                'name' => 'municipality',
+                'label' => t('Municipality'),
             ],
             [
                 'name' => 'description',
                 'type' => 'text',
-                'label' => 'Description'
+                'label' => t('Description')
             ],
             [
                 'name' => 'altitude',
                 'type' => 'text',
-                'label' => 'altitude'
+                'label' => t('altitude')
             ]
         ]);
     }
@@ -93,8 +98,8 @@ class GeoBoundaryCrudController extends CrudController
                 'ajax' => true,
                 'inline_create' => [ 'entity' => 'country' ],
                 'minimum_input_length' => 0,
-                'label' => 'Country',
-                'hint' => 'If the country is not in the dropdown select <b>+Add</b> to add a new one.',
+                'label' => t('Country'),
+                'hint' => t('If the country is not in the dropdown select <b>+Add</b> to add a new one.'),
             ],
             [
                 'type' => 'relationship',
@@ -102,8 +107,8 @@ class GeoBoundaryCrudController extends CrudController
                 'ajax' => true,
                 'inline_create' => [ 'entity' => 'region' ],
                 'minimum_input_length' => 0,
-                'label' => 'Region',
-                'hint' => 'If the region is not in the dropdown select <b>+Add</b> to add a new one.',
+                'label' => t('Region'),
+                'hint' => t('If the region is not in the dropdown select <b>+Add</b> to add a new one.'),
             ],
             [
                 'type' => 'relationship',
@@ -111,27 +116,27 @@ class GeoBoundaryCrudController extends CrudController
                 'ajax' => true,
                 'inline_create' => [ 'entity' => 'department' ],
                 'minimum_input_length' => 0,
-                'label' => 'Department',
-                'hint' => 'If the department is not in the dropdown select <b>+Add</b> to add a new one.',
+                'label' => t('Department'),
+                'hint' => t('If the department is not in the dropdown select <b>+Add</b> to add a new one.'),
             ],
             [
                 'type' => 'relationship',
-                'name' => 'muncipality_id',
+                'name' => 'municipality_id',
                 'ajax' => true,
-                'inline_create' => [ 'entity' => 'muncipality' ],
+                'inline_create' => [ 'entity' => 'municipality' ],
                 'minimum_input_length' => 0,
-                'label' => 'Muncipality',
-                'hint' => 'If the muncipality is not in the dropdown select <b>+Add</b> to add a new one.',
+                'label' => t('Municipality'),
+                'hint' => t('If the municipality is not in the dropdown select <b>+Add</b> to add a new one.'),
             ],
             [
                 'name' => 'description',
                 'type' => 'text',
-                'label' => 'Description'
+                'label' => t('Description'),
             ],
             [
                 'name' => 'altitude',
                 'type' => 'text',
-                'label' => 'Altitude'
+                'label' => t('Altitude'),
             ]
         ]);
     }

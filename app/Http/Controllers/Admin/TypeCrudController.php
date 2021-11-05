@@ -30,7 +30,7 @@ class TypeCrudController extends CrudController
     {
         CRUD::setModel(\App\Models\Type::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/type');
-        CRUD::setEntityNameStrings('type', 'types');
+        CRUD::setEntityNameStrings(t('types'), t('types'));
     }
 
     /**
@@ -41,7 +41,7 @@ class TypeCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        CRUD::column('name')->type('text');
+        CRUD::column('name')->type('text')->label(t('Name'));
     }
 
     /**
@@ -54,7 +54,7 @@ class TypeCrudController extends CrudController
     {
         CRUD::setValidation(TypeRequest::class);
 
-        CRUD::field('name')->type('text');
+        CRUD::field('name')->type('text')->label(t('Name'));
     }
 
     /**

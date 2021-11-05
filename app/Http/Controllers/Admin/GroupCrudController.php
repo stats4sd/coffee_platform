@@ -30,7 +30,7 @@ class GroupCrudController extends CrudController
     {
         CRUD::setModel(\App\Models\Group::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/group');
-        CRUD::setEntityNameStrings('group', 'groups');
+        CRUD::setEntityNameStrings(t('groups'), t('groups'));
     }
 
     /**
@@ -41,7 +41,7 @@ class GroupCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        CRUD::column('name')->type('text');
+        CRUD::column('name')->type('text')->label(t('Name'));
     }
 
     /**
@@ -54,7 +54,7 @@ class GroupCrudController extends CrudController
     {
         CRUD::setValidation(GroupRequest::class);
 
-        CRUD::field('name')->type('text');
+        CRUD::field('name')->type('text')->label(t('Name'));
     }
 
     /**

@@ -30,7 +30,7 @@ class CountryCrudController extends CrudController
     {
         CRUD::setModel(\App\Models\Country::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/country');
-        CRUD::setEntityNameStrings('country', 'countries');
+        CRUD::setEntityNameStrings(t('country'), t('countries'));
     }
 
     /**
@@ -41,7 +41,7 @@ class CountryCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        CRUD::column('name')->type('text');
+        CRUD::column('name')->type('text')->label(t('Name'));
     }
 
     /**
@@ -54,13 +54,8 @@ class CountryCrudController extends CrudController
     {
         CRUD::setValidation(CountryRequest::class);
 
-        CRUD::field('name')->type('text');
+        CRUD::field('name')->type('text')->label(t('Name'));
 
-        /**
-         * Fields can be defined using the fluent syntax or array syntax:
-         * - CRUD::field('price')->type('number');
-         * - CRUD::addField(['name' => 'price', 'type' => 'number']));
-         */
     }
 
     /**
