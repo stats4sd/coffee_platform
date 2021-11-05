@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use App\Models\UnitType;
-use Backpack\CRUD\app\Models\Traits\SpatieTranslatable\HasTranslations;
+use App\Models\Traits\HasTranslations;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Traits\UpdatesMainSearchIndex;

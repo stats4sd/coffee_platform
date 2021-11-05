@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use Backpack\CRUD\app\Models\Traits\SpatieTranslatable\HasTranslations;
+use App\Models\Traits\HasTranslations;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Model;

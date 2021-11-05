@@ -18,7 +18,7 @@
                     <sidebar-filter
                         v-model="selectedCountries"
                         :title="$__('Country')"
-                        :options="countries"
+                        :options="countries"d
                     />
                     <sidebar-filter
                         v-model="selectedYears"
@@ -407,7 +407,7 @@
                 }
                 */
 
-                var url = "/indicators/search?by-indicator";
+                var url = "indicators/search?by-indicator";
 
                 if (this.searchTerm) {
                     url += "&search='" + this.searchTerm + "'";
@@ -419,6 +419,7 @@
                 //     })
                 // }
                 this.loading = true;
+                console.log(axios.defaults.baseURL);
                 axios
                     .get(url)
                     .then(result => {

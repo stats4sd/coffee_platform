@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use App\Models\Traits\HasUploadFields;
-use Backpack\CRUD\app\Models\Traits\SpatieTranslatable\HasTranslations;
+use App\Models\Traits\HasTranslations;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;

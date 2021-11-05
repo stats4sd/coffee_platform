@@ -39,6 +39,7 @@ Route::prefix('{locale?}')->middleware(['add.locale', 'set.locale'])->group(func
     Route::post('indicators/download/', [IndicatorValueController::class, 'download'])->name('indicators.download');
     Route::post('indicators/report', [IndicatorValueController::class, 'report'])->name('indicators.report');
 
+    // indexes for main Indicator Hub
     Route::get('country', [CountryController::class, 'index'])->name('country.index');
     Route::get('year', [IndicatorValueController::class, 'getYears'])->name('year.index');
     Route::get('type', [TypeController::class, 'index'])->name('type.index');
