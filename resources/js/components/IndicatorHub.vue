@@ -184,7 +184,9 @@
                             </li>
                         </ul>
                         <div class="flex-grow-1 ml-auto mr-5">
-                            Indicator values can be previewed or downloaded individually. Indicators added to selection can be reviewed on the download icon in the top right corner.
+                            {{
+                                $__('Indicator values can be previewed or downloaded individually. Indicators added to selection can be reviewed on the download icon in the top right corner.')
+                            }}
                         </div>
                     </div>
 

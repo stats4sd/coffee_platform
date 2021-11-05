@@ -60,6 +60,166 @@ namespace App\Models{
 
 namespace App\Models{
 /**
+ * App\Models\Country
+ *
+ * @property int $id
+ * @property array $name
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\GeoBoundary[] $geoBoundaries
+ * @property-read int|null $geo_boundaries_count
+ * @property-read array $translations
+ * @method static \Database\Factories\CountryFactory factory(...$parameters)
+ * @method static \Illuminate\Database\Eloquent\Builder|Country newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Country newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Country query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Country whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Country whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Country whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Country whereUpdatedAt($value)
+ */
+	class Country extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\Department
+ *
+ * @property int $id
+ * @property array $name
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\GeoBoundary[] $geoBoundaries
+ * @property-read int|null $geo_boundaries_count
+ * @property-read array $translations
+ * @method static \Database\Factories\DepartmentFactory factory(...$parameters)
+ * @method static \Illuminate\Database\Eloquent\Builder|Department newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Department newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Department query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Department whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Department whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Department whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Department whereUpdatedAt($value)
+ */
+	class Department extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\Gender
+ *
+ * @property int $id
+ * @property array $name
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read array $translations
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\IndicatorValue[] $indicatorValues
+ * @property-read int|null $indicator_values_count
+ * @method static \Database\Factories\GenderFactory factory(...$parameters)
+ * @method static \Illuminate\Database\Eloquent\Builder|Gender newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Gender newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Gender query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Gender whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Gender whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Gender whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Gender whereUpdatedAt($value)
+ */
+	class Gender extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\GeoBoundary
+ *
+ * @property int $id
+ * @property int|null $country_id
+ * @property int|null $region_id
+ * @property int|null $department_id
+ * @property int|null $muncipality_id
+ * @property array|null $description
+ * @property string|null $altitude
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Country|null $country
+ * @property-read \App\Models\Department|null $department
+ * @property-read mixed $geo_description
+ * @property-read array $translations
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\IndicatorValue[] $indicatorValues
+ * @property-read int|null $indicator_values_count
+ * @property-read \App\Models\Municipality $municipality
+ * @property-read \App\Models\Region|null $region
+ * @method static \Database\Factories\GeoBoundaryFactory factory(...$parameters)
+ * @method static \Illuminate\Database\Eloquent\Builder|GeoBoundary newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|GeoBoundary newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|GeoBoundary query()
+ * @method static \Illuminate\Database\Eloquent\Builder|GeoBoundary whereAltitude($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GeoBoundary whereCountryId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GeoBoundary whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GeoBoundary whereDepartmentId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GeoBoundary whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GeoBoundary whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GeoBoundary whereMuncipalityId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GeoBoundary whereRegionId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GeoBoundary whereUpdatedAt($value)
+ */
+	class GeoBoundary extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\Group
+ *
+ * @property int $id
+ * @property array $name
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read array $translations
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\IndicatorValue[] $indicatorValues
+ * @property-read int|null $indicator_values_count
+ * @method static \Database\Factories\GroupFactory factory(...$parameters)
+ * @method static \Illuminate\Database\Eloquent\Builder|Group newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Group newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Group query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Group whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Group whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Group whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Group whereUpdatedAt($value)
+ */
+	class Group extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\Indicator
+ *
+ * @property int $id
+ * @property int $sub_characteristic_id
+ * @property string $code
+ * @property array $name
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read mixed $characteristic_id
+ * @property-read mixed $characteristic_name
+ * @property-read array $translations
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\IndicatorValue[] $indicatorValues
+ * @property-read int|null $indicator_values_count
+ * @property-read \App\Models\SubCharacteristic $subCharacteristic
+ * @method static \Database\Factories\IndicatorFactory factory(...$parameters)
+ * @method static \Illuminate\Database\Eloquent\Builder|Indicator newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Indicator newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Indicator query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Indicator whereCode($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Indicator whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Indicator whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Indicator whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Indicator whereSubCharacteristicId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Indicator whereUpdatedAt($value)
+ */
+	class Indicator extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\IndicatorValue
  *
  * @property int $id
@@ -131,6 +291,293 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|IndicatorValue whereValue($value)
  */
 	class IndicatorValue extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\Municipality
+ *
+ * @property int $id
+ * @property array $name
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\GeoBoundary[] $geoBoundaries
+ * @property-read int|null $geo_boundaries_count
+ * @property-read array $translations
+ * @method static \Illuminate\Database\Eloquent\Builder|Municipality newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Municipality newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Municipality query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Municipality whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Municipality whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Municipality whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Municipality whereUpdatedAt($value)
+ */
+	class Municipality extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\Partner
+ *
+ * @property int $id
+ * @property array $name
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property int|null $type_id
+ * @property-read array $translations
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Source[] $sources
+ * @property-read int|null $sources_count
+ * @property-read \App\Models\Type|null $type
+ * @method static \Database\Factories\PartnerFactory factory(...$parameters)
+ * @method static \Illuminate\Database\Eloquent\Builder|Partner newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Partner newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Partner query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Partner whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Partner whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Partner whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Partner whereTypeId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Partner whereUpdatedAt($value)
+ */
+	class Partner extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\PurposeOfCollection
+ *
+ * @property int $id
+ * @property array $name
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read array $translations
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\IndicatorValue[] $indicatorValues
+ * @property-read int|null $indicator_values_count
+ * @method static \Database\Factories\PurposeOfCollectionFactory factory(...$parameters)
+ * @method static \Illuminate\Database\Eloquent\Builder|PurposeOfCollection newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|PurposeOfCollection newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|PurposeOfCollection query()
+ * @method static \Illuminate\Database\Eloquent\Builder|PurposeOfCollection whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PurposeOfCollection whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PurposeOfCollection whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PurposeOfCollection whereUpdatedAt($value)
+ */
+	class PurposeOfCollection extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\Region
+ *
+ * @property int $id
+ * @property array $name
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\GeoBoundary[] $geoBoundaries
+ * @property-read int|null $geo_boundaries_count
+ * @property-read array $translations
+ * @method static \Database\Factories\RegionFactory factory(...$parameters)
+ * @method static \Illuminate\Database\Eloquent\Builder|Region newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Region newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Region query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Region whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Region whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Region whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Region whereUpdatedAt($value)
+ */
+	class Region extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\Scope
+ *
+ * @property int $id
+ * @property array $name
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read array $translations
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\IndicatorValue[] $indicatorValues
+ * @property-read int|null $indicator_values_count
+ * @method static \Database\Factories\ScopeFactory factory(...$parameters)
+ * @method static \Illuminate\Database\Eloquent\Builder|Scope newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Scope newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Scope query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Scope whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Scope whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Scope whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Scope whereUpdatedAt($value)
+ */
+	class Scope extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\SmallholderDefinition
+ *
+ * @property int $id
+ * @property array $definition
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read array $translations
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\IndicatorValue[] $indicatorValues
+ * @property-read int|null $indicator_values_count
+ * @method static \Database\Factories\SmallholderDefinitionFactory factory(...$parameters)
+ * @method static \Illuminate\Database\Eloquent\Builder|SmallholderDefinition newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|SmallholderDefinition newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|SmallholderDefinition query()
+ * @method static \Illuminate\Database\Eloquent\Builder|SmallholderDefinition whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|SmallholderDefinition whereDefinition($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|SmallholderDefinition whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|SmallholderDefinition whereUpdatedAt($value)
+ */
+	class SmallholderDefinition extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\Source
+ *
+ * @property int $id
+ * @property array $name
+ * @property array|null $reference
+ * @property int $partner_id
+ * @property int $is_not_public
+ * @property array|null $description
+ * @property array|null $file
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read array $translations
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\IndicatorValue[] $indicatorValues
+ * @property-read int|null $indicator_values_count
+ * @property-read \App\Models\Partner $partner
+ * @method static \Database\Factories\SourceFactory factory(...$parameters)
+ * @method static \Illuminate\Database\Eloquent\Builder|Source newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Source newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Source query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Source whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Source whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Source whereFile($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Source whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Source whereIsNotPublic($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Source whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Source wherePartnerId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Source whereReference($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Source whereUpdatedAt($value)
+ */
+	class Source extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\SubCharacteristic
+ *
+ * @property int $id
+ * @property int $characteristic_id
+ * @property array $name
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Characteristic $characteristic
+ * @property-read mixed $characteristic_label
+ * @property-read array $translations
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Indicator[] $indicators
+ * @property-read int|null $indicators_count
+ * @method static \Database\Factories\SubCharacteristicFactory factory(...$parameters)
+ * @method static \Illuminate\Database\Eloquent\Builder|SubCharacteristic newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|SubCharacteristic newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|SubCharacteristic query()
+ * @method static \Illuminate\Database\Eloquent\Builder|SubCharacteristic whereCharacteristicId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|SubCharacteristic whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|SubCharacteristic whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|SubCharacteristic whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|SubCharacteristic whereUpdatedAt($value)
+ */
+	class SubCharacteristic extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\Type
+ *
+ * @property int $id
+ * @property array $name
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read array $translations
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Partner[] $partners
+ * @property-read int|null $partners_count
+ * @method static \Database\Factories\TypeFactory factory(...$parameters)
+ * @method static \Illuminate\Database\Eloquent\Builder|Type newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Type newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Type query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Type whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Type whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Type whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Type whereUpdatedAt($value)
+ */
+	class Type extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\Unit
+ *
+ * @property int $id
+ * @property array $unit
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property int $unit_type_id
+ * @property string|null $to_standard
+ * @property string|null $from_standard
+ * @property-read mixed $conversion_rate
+ * @property-read mixed $conversion_years
+ * @property-read mixed $name
+ * @property-read array $translations
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\IndicatorValue[] $indicatorValues
+ * @property-read int|null $indicator_values_count
+ * @property-read \App\Models\UnitType $unitType
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Year[] $years
+ * @property-read int|null $years_count
+ * @method static \Database\Factories\UnitFactory factory(...$parameters)
+ * @method static \Illuminate\Database\Eloquent\Builder|Unit newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Unit newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Unit query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Unit whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Unit whereFromStandard($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Unit whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Unit whereToStandard($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Unit whereUnit($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Unit whereUnitTypeId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Unit whereUpdatedAt($value)
+ */
+	class Unit extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\UnitType
+ *
+ * @property int $id
+ * @property array $name
+ * @property array $standard_unit
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property int $split_by_year
+ * @property-read mixed $name_with_unit
+ * @property-read array $translations
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Unit[] $units
+ * @property-read int|null $units_count
+ * @method static \Database\Factories\UnitTypeFactory factory(...$parameters)
+ * @method static \Illuminate\Database\Eloquent\Builder|UnitType newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|UnitType newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|UnitType query()
+ * @method static \Illuminate\Database\Eloquent\Builder|UnitType whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UnitType whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UnitType whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UnitType whereSplitByYear($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UnitType whereStandardUnit($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UnitType whereUpdatedAt($value)
+ */
+	class UnitType extends \Eloquent {}
 }
 
 namespace App\Models{
