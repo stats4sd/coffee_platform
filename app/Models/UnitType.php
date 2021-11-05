@@ -23,7 +23,7 @@ class UnitType extends Model
         'name_with_unit',
     ];
 
-    protected $translations = ['name', 'standard_unit'];
+    protected $translatable = ['name', 'standard_unit'];
     /*
     |--------------------------------------------------------------------------
     | FUNCTIONS

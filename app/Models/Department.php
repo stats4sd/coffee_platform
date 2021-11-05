@@ -20,7 +20,7 @@ class Department extends Model
     protected $table = 'departments';
     protected $guarded = ['id'];
 
-    protected $translations = ['name'];
+    protected $translatable = ['name'];
 
     /*
     |--------------------------------------------------------------------------

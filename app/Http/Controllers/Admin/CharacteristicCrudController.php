@@ -40,13 +40,8 @@ class CharacteristicCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        CRUD::setFromDb(); // columns
-
-        /**
-         * Columns can be defined using the fluent syntax or array syntax:
-         * - CRUD::column('price')->type('number');
-         * - CRUD::addColumn(['name' => 'price', 'type' => 'number']);
-         */
+        CRUD::field('name')->type('text');
+        CRUD::field('cover_image');
     }
 
     /**
@@ -62,11 +57,6 @@ class CharacteristicCrudController extends CrudController
         CRUD::field('name');
         CRUD::field('cover_image')->type('image')->crop(true)->label('Upload a cover image to represent this characteristic on the main search page'); // fields
 
-        /**
-         * Fields can be defined using the fluent syntax or array syntax:
-         * - CRUD::field('price')->type('number');
-         * - CRUD::addField(['name' => 'price', 'type' => 'number']));
-         */
     }
 
     /**

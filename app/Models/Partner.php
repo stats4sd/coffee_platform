@@ -21,7 +21,7 @@ class Partner extends Model
     protected $table = 'partners';
     protected $guarded = ['id'];
 
-    protected $translations = ['name'];
+    protected $translatable = ['name'];
 
     public static function boot()
     {

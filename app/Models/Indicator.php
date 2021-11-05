@@ -21,7 +21,7 @@ class Indicator extends Model
     protected $table = 'indicators';
     protected $guarded = ['id'];
 
-    protected $translations = ['name'];
+    protected $translatable = ['name'];
 
 
     /*

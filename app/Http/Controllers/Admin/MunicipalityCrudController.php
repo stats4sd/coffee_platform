@@ -41,13 +41,7 @@ class MunicipalityCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        CRUD::setFromDb(); // columns
-
-        /**
-         * Columns can be defined using the fluent syntax or array syntax:
-         * - CRUD::column('price')->type('number');
-         * - CRUD::addColumn(['name' => 'price', 'type' => 'number']);
-         */
+        CRUD::column('name')->type('text');
     }
 
     /**
@@ -60,13 +54,8 @@ class MunicipalityCrudController extends CrudController
     {
         CRUD::setValidation(MuncipalityRequest::class);
 
-        CRUD::setFromDb(); // fields
+        CRUD::field('name')->type('text');
 
-        /**
-         * Fields can be defined using the fluent syntax or array syntax:
-         * - CRUD::field('price')->type('number');
-         * - CRUD::addField(['name' => 'price', 'type' => 'number']));
-         */
     }
 
     /**

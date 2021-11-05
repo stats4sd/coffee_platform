@@ -23,7 +23,7 @@ class SubCharacteristic extends Model
         'characteristic_label',
     ];
 
-    protected $translations = ['name'];
+    protected $translatable = ['name'];
 
     public static function boot()
     {

@@ -20,7 +20,7 @@ class Region extends Model
     protected $table = 'regions';
     protected $guarded = ['id'];
 
-    protected $translations = ['name'];
+    protected $translatable = ['name'];
 
     /*
     |--------------------------------------------------------------------------

@@ -27,7 +27,7 @@ class Unit extends Model
         'name',
     ];
 
-    protected $translations = ['unit'];
+    protected $translatable = ['unit'];
 
     /*
     |--------------------------------------------------------------------------

@@ -21,7 +21,7 @@ class SmallholderDefinition extends Model
     protected $table = 'smallholder_definitions';
     protected $guarded = ['id'];
 
-    protected $translations = ['definition'];
+    protected $translatable = ['definition'];
 
     /*
     |--------------------------------------------------------------------------

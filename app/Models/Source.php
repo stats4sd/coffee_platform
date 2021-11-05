@@ -22,7 +22,7 @@ class Source extends Model
     protected $guarded = ['id'];
     protected $casts = ['file' => 'array'];
 
-    protected $translations = ['name', 'reference', 'description'];
+    protected $translatable = ['name', 'reference', 'description'];
 
     /*
     |--------------------------------------------------------------------------

@@ -23,7 +23,7 @@ class Country extends Model
     protected $primaryKey = 'id';
     protected $guarded = ['id'];
 
-    protected $translations = ['name'];
+    protected $translatable = ['name'];
 
     /*
     |--------------------------------------------------------------------------

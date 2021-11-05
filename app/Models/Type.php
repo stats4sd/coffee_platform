@@ -20,7 +20,7 @@ class Type extends Model
     protected $table = 'types';
     protected $guarded = [];
 
-    protected $translations = ['name'];
+    protected $translatable = ['name'];
 
     public static function boot()
     {

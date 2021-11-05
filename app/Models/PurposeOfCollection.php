@@ -21,7 +21,7 @@ class PurposeOfCollection extends Model
     protected $table = 'purpose_of_collections';
     protected $guarded = ['id'];
 
-    protected $translations = ['name'];
+    protected $translatable = ['name'];
 
     /*
     |--------------------------------------------------------------------------

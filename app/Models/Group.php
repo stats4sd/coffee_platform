@@ -20,7 +20,7 @@ class Group extends Model
     protected $table = 'groups';
     protected $guarded = ['id'];
 
-    protected $translations = ['name'];
+    protected $translatable = ['name'];
 
     /*
     |--------------------------------------------------------------------------

@@ -21,7 +21,7 @@ class Scope extends Model
     protected $table = 'scopes';
     protected $guarded = ['id'];
 
-    protected $translations = ['name'];
+    protected $translatable = ['name'];
 
     /*
     |--------------------------------------------------------------------------

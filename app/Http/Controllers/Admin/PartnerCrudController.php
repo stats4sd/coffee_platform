@@ -45,11 +45,6 @@ class PartnerCrudController extends CrudController
         CRUD::addColumn(['name' => 'name', 'type' => 'text']);
         CRUD::addColumn(['name' => 'type', 'type' => 'relationship']);
 
-        /**
-         * Columns can be defined using the fluent syntax or array syntax:
-         * - CRUD::column('price')->type('number');
-         * - CRUD::addColumn(['name' => 'price', 'type' => 'number']);
-         */
     }
 
     /**
@@ -77,11 +72,6 @@ class PartnerCrudController extends CrudController
             ],
         ]);
 
-        /**
-         * Fields can be defined using the fluent syntax or array syntax:
-         * - CRUD::field('price')->type('number');
-         * - CRUD::addField(['name' => 'price', 'type' => 'number']));
-         */
     }
 
     /**

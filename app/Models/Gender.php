@@ -21,7 +21,7 @@ class Gender extends Model
     protected $table = 'genders';
     protected $guarded = ['id'];
 
-    protected $translations = ['name'];
+    protected $translatable = ['name'];
 
     /*
     |--------------------------------------------------------------------------

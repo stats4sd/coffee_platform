@@ -20,7 +20,7 @@ class Municipality extends Model
     protected $table = 'municipalities';
     protected $guarded = ['id'];
 
-    protected $translations = ['name'];
+    protected $translatable = ['name'];
 
     /*
     |--------------------------------------------------------------------------
