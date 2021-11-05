@@ -7,8 +7,9 @@
         <img src="{{ url('images/indicator_hub.jpeg') }}" id="image_hub" class="image_header" />
         <div class="row justify-content-end">
             <div class="text-block " style="padding-bottom: 20px; bottom: 80px">
-                <h1 class="mb-5 pb-5">Indicator Hub</h1>
-                <div id="caption" class="ml-3 ml-lg-5" style="background-color: #00000000;"> Coffee flowers. Credit: Janica Anderzén</div>
+                <h1 class="mb-5 pb-5">{{ t('Indicator Hub') }}</h1>
+                <div id="caption" class="ml-3 ml-lg-5" style="background-color: #00000000;"> {{ t('Coffee flowers. Credit:
+                    Janica Anderzén')}}</div>
 
 
             </div>
@@ -16,13 +17,13 @@
         </div>
         <a class="btn  helpbar" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false"
             aria-controls="collapseExample">
-            <table border="0">
+            <table>
                 <tr>
                     <td>
                         <i class="las la-question-circle la-lg"></i>
                     </td>
                     <td>
-                        <span>&nbsp;User Guide&nbsp;&nbsp;</span>
+                        <span>&nbsp;{{ t('User Guide') }}&nbsp;&nbsp;</span>
                     </td>
                     <td>
                         <i class="las la-angle-down"></i>
@@ -40,7 +41,7 @@
                     </div>
                 </div>
             </div>
-            <h2>Step 1: What are you looking for?</h2>
+            {{ t('<h2>Step 1: What are you looking for?</h2>
             <p class="mb-3">
                 There are different ways to explore the available data:</p>
             <p><strong>Search:</strong> Use the search box below to find indicators by keyword.</p>
@@ -60,7 +61,7 @@
             <h2>Step 3: Download Data</h2>
             <p>
                 Click the download button at the top right to review and download data for all indicators added to your
-                selection.</p>
+                selection.</p>') }}
 
 
 
