@@ -78,7 +78,14 @@ class UpdateDbTranslations extends Command
 
                     // ************** 1. Extract variables from the database + store in placeholder;
                     $entryId = $entry->id;
-                    $value = $value['en'];
+                    $value = $value['en'] ?? null;
+
+                    // if the en value is not set, skip value;
+                    if (!$value) {
+                        continue;
+                    }
+
+
                     $this->addToPlaceholder("
                 [
                     'model' => '${model}',
@@ -91,7 +98,7 @@ class UpdateDbTranslations extends Command
                     // ******* 2. Check if this value is translated and restore to db:
                     $finishedTranslation = $finishedTranslations->find(null, $value);
 
-                    if($finishedTranslation
+                    if ($finishedTranslation
                         && $finishedTranslation->getTranslation()
                         && $finishedTranslation->getTranslation() !== "") {
                         // update translation in database:
