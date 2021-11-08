@@ -28,3 +28,4 @@ yarn-error.log
 .idea
 /resources/lang/VueTranslationPlaceholder.php
 /resources/lang/DbTranslationPlaceholder.php
+/resources/js/translations.json

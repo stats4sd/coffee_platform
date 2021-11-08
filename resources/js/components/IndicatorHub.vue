@@ -177,7 +177,7 @@
                                 </div>
                             </li>
                             <li class="d-flex justify-content-between">
-                                <div>Indicator Values Found:</div>
+                                <div>{{ $__('Indicator Values Found:') }}</div>
                                 <div class="ml-1 font-weight-bold">
                                     {{ filteredIndicatorValuesForDisplay.length }}
                                 </div>

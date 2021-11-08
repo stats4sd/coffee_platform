@@ -49,6 +49,7 @@ class UpdateDbTranslations extends Command
         // for package - should maybe move this to a config that can be set by the developer
         $models = $this->getTranslatableModels();
         $finishedTranslations = Translations::fromPoFile(resource_path('lang/gettext/es/app.po'));
+
         // reset placeholder PHP file
         file_put_contents(resource_path('lang/DbTranslationPlaceholder.php'), "<?php \n");
         $this->addToPlaceholder("class DbTranslationPlaceholder
@@ -97,7 +98,7 @@ class UpdateDbTranslations extends Command
 
                     // ******* 2. Check if this value is translated and restore to db:
                     $finishedTranslation = $finishedTranslations->find(null, $value);
-
+                    dd($finishedTranslation);
                     if ($finishedTranslation
                         && $finishedTranslation->getTranslation()
                         && $finishedTranslation->getTranslation() !== "") {
