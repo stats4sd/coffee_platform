@@ -126,28 +126,28 @@
                 fields: [
                     {
                         key: "geo_boundary.country.name",
-                        label: $__('Country')
+                        label: this.$__('Country')
                     },
                     {
                         key: "all_years",
-                        label: $__('Year')
+                        label: this.$__('Year')
                     },
                     "value",
                     {
                         key: "unit",
-                        label: $__('Unit')
+                        label: this.$__('Unit')
                     },
                     {
                         key: "sample_size",
-                        label: $__('Sample size')
+                        label: this.$__('Sample size')
                     },
                     {
                         key: "gender.name",
-                        label: $__('Gender')
+                        label: this.$__('Gender')
                     },
                     {
                         key: "purpose_of_collection.name",
-                        label: $__('Purpose of collection')
+                        label: this.$__('Purpose of collection')
                     }
                 ]
             };

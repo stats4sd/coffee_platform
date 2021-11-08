@@ -95,7 +95,7 @@
                     </template>
                     <b-form-input
                         class="bg-light"
-                        placeholder="$__('Search for indicators')"
+                        :placeholder="$__('Search for indicators')"
                         @input="searchIndicators"
                     />
                 </b-input-group>
@@ -320,17 +320,17 @@
                 indicatorFields: [
                     {
                         key: "code",
-                        label: "Code",
+                        label: this.$__('code'),
                         sortable: true,
                     },
                     {
                         key: "name",
-                        label: "Indicator",
+                        label: this.$__('Indicator'),
                         sortable: true,
                     },
                     {
                         key: "actions",
-                        label: "Actions",
+                        label: this.$__('Actions'),
                         class: "w-33 w-sm-50"
                     }
                 ],
@@ -584,7 +584,7 @@
                 this.processing = true;
                 this.processingPdf = true;
                 this.$bvToast.toast(
-                    $__('Your download is being prepared. This may take some time - please leave this window open.'),
+                    this.$__('Your download is being prepared. This may take some time - please leave this window open.'),
                     {
                         toaster: "b-toaster-top-center"
                     }
