@@ -32,7 +32,7 @@ class SourceCrudController extends CrudController
     {
         CRUD::setModel(\App\Models\Source::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/source');
-        CRUD::setEntityNameStrings('source', 'sources');
+        CRUD::setEntityNameStrings(t('sources'), t('sources'));
     }
 
     /**
@@ -47,27 +47,31 @@ class SourceCrudController extends CrudController
             [
                 'name' => 'name',
                 'type' => 'text',
+                'label' => t('Name'),
             ],
             [
                 'name' => 'reference',
                 'type' => 'text',
+                'label' => t('Reference'),
             ],
             [
                 'type' => 'relationship',
                 'name' => 'partner',
+                'label' => t('Partner'),
             ],
             [
                 'name' => 'is_not_public',
                 'type' => 'check',
-                'label' => 'Keep source anonymous',
+                'label' => t('Keep source anonymous?'),
             ],
             [
                 'name' => 'description',
                 'type' => 'text',
+                'label' => t('Description'),
             ],
             [
                 'name'      => 'file',
-                'label'     => 'Files',
+                'label'     => t('Files'),
                 'type'      => 'upload_multiple',
             ],
         ]);
@@ -87,10 +91,12 @@ class SourceCrudController extends CrudController
             [
                 'name' => 'name',
                 'type' => 'text',
+                'label' => t('Name'),
             ],
             [
                 'name' => 'reference',
                 'type' => 'text',
+                'label' => t('reference'),
             ],
             [
                 'type' => 'relationship',
@@ -98,19 +104,22 @@ class SourceCrudController extends CrudController
                 'ajax' => true,
                 'inline_create' => [ 'entity' => 'partner' ],
                 'minimum_input_length' => 0,
+                'label' => t('Partner'),
             ],
             [
                 'name' => 'is_not_public',
                 'type' => 'checkbox',
-                'label' => 'Keep source anonymous',
+                'label' => t('Keep source anonymous?'),
+
             ],
             [
                 'name' => 'description',
                 'type' => 'text',
+                'label' => t('Description'),
             ],
             [
                 'name'      => 'file',
-                'label'     => 'Files',
+                'label'     => t('Files'),
                 'type'      => 'upload_multiple',
                 'upload'    => true,
                 'disk'      => 'public',

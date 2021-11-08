@@ -23,19 +23,19 @@ class SubCharacteristicCrudController extends CrudController
 
     /**
      * Configure the CrudPanel object. Apply settings to all operations.
-     * 
+     *
      * @return void
      */
     public function setup()
     {
         CRUD::setModel(\App\Models\SubCharacteristic::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/sub_characteristic');
-        CRUD::setEntityNameStrings('sub characteristic', 'sub characteristics');
+        CRUD::setEntityNameStrings(t('sub characteristics'), t('sub characteristics'));
     }
 
     /**
      * Define what happens when the List operation is loaded.
-     * 
+     *
      * @see  https://backpackforlaravel.com/docs/crud-operation-list-entries
      * @return void
      */
@@ -45,17 +45,19 @@ class SubCharacteristicCrudController extends CrudController
             [
                 'type' => 'relationship',
                 'name' => 'characteristic',
+                'label' => t('Characteristic'),
             ],
             [
                 'name' => 'name',
                 'type' => 'text',
+                'label' => t('Name'),
             ]
         ]);
     }
 
     /**
      * Define what happens when the Create operation is loaded.
-     * 
+     *
      * @see https://backpackforlaravel.com/docs/crud-operation-create
      * @return void
      */
@@ -65,24 +67,25 @@ class SubCharacteristicCrudController extends CrudController
 
         $this->crud->addFields([
             [
-                'label'     => "Characteristic",
+                'label'     => t("Characteristic"),
                 'type'      => 'select',
                 'name'      => 'characteristic_id',
-                'entity'    => 'characteristic', 
+                'entity'    => 'characteristic',
                 'model'     => "App\Models\Characteristic",
                 'attribute' => 'name',
-              
+
             ],
             [
                 'name' => 'name',
                 'type' => 'text',
+                'label' => t('Name'),
             ]
         ]);
     }
 
     /**
      * Define what happens when the Update operation is loaded.
-     * 
+     *
      * @see https://backpackforlaravel.com/docs/crud-operation-update
      * @return void
      */

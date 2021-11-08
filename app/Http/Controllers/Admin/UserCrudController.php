@@ -29,7 +29,7 @@ class UserCrudController extends CrudController
     {
         CRUD::setModel(\App\Models\User::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/user');
-        CRUD::setEntityNameStrings('user', 'users');
+        CRUD::setEntityNameStrings(t('users'), t('users'));
     }
 
     /**
@@ -40,14 +40,9 @@ class UserCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        CRUD::column('name');
-        CRUD::column('email');
+        CRUD::column('name')->label(t('Name'));
+        CRUD::column('email')->label(t('Email'));
 
-        /**
-         * Columns can be defined using the fluent syntax or array syntax:
-         * - CRUD::column('price')->type('number');
-         * - CRUD::addColumn(['name' => 'price', 'type' => 'number']);
-         */
     }
 
     /**
@@ -60,17 +55,17 @@ class UserCrudController extends CrudController
     {
         CRUD::setValidation(UserRequest::class);
 
-        CRUD::field('name');
-        CRUD::field('email');
+        CRUD::field('name')
+            ->label(t('Name'));
+        CRUD::field('email')
+            ->label(t('Email'));
 
-        CRUD::field('password');
-        CRUD::field('password_confirmation')->type('password');
+        CRUD::field('password')
+            ->label(t('Password'));
+        CRUD::field('password_confirmation')
+            ->type('password')
+            ->label(t('Password confirmation'));
 
-        /**
-         * Fields can be defined using the fluent syntax or array syntax:
-         * - CRUD::field('price')->type('number');
-         * - CRUD::addField(['name' => 'price', 'type' => 'number']));
-         */
     }
 
     /**
@@ -81,7 +76,10 @@ class UserCrudController extends CrudController
      */
     protected function setupUpdateOperation()
     {
-        CRUD::field('password_title')->type('custom_html')->value('<h5 class="mt-3">Password Reset</h5><div class="alert alert-info">Entering a new password here will overwrite the existing password.</div>')->after('email');
+        CRUD::field('password_title')
+            ->type('custom_html')
+            ->value(t('<h5 class="mt-3">Password Reset</h5><div class="alert alert-info">Entering a new password here will overwrite the existing password.</div>'))
+            ->after('email');
 
         $this->setupCreateOperation();
     }

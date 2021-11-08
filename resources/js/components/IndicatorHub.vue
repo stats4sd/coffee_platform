@@ -17,12 +17,12 @@
                 <ul class="list-group" style=" border-radius: 0% !important">
                     <sidebar-filter
                         v-model="selectedCountries"
-                        title="Country"
-                        :options="countries"
+                        :title="$__('Country')"
+                        :options="countries"d
                     />
                     <sidebar-filter
                         v-model="selectedYears"
-                        title="Year"
+                        :title="$__('Year')"
                         :options="years"
                         display-field="year"
                         value-field="id"
@@ -77,7 +77,7 @@
                 <h1 class="text-center pb-4">
                     Search or Browse Indicators
                 </h1>
-             
+
                 <b-input-group class="mb-3 mx-4">
                     <template #append>
                         <b-input-group-text>
@@ -91,12 +91,12 @@
                             <i class="las la-times"></i>
                         </b-input-group-text>
                         -->
-                        
+
                     </template>
                     <b-form-input
                         class="bg-light"
                         placeholder="Search for indicators"
-                        @input="searchIndicators"                        
+                        @input="searchIndicators"
                     />
                 </b-input-group>
 
@@ -122,9 +122,9 @@
                         @input="resetSubCharacteristics"
                     />
 
-                    
+
                 </div>
-                
+
                 <!-- </characteristics> -->
                 <!-- <sub-characteristics> -->
 
@@ -184,7 +184,9 @@
                             </li>
                         </ul>
                         <div class="flex-grow-1 ml-auto mr-5">
-                            Indicator values can be previewed or downloaded individually. Indicators added to selection can be reviewed on the download icon in the top right corner.
+                            {{
+                                $__('Indicator values can be previewed or downloaded individually. Indicators added to selection can be reviewed on the download icon in the top right corner.')
+                            }}
                         </div>
                     </div>
 
@@ -198,7 +200,7 @@
                         <input type="button" name="btnClearKeyword" id="btnClearKeyword" value="Clear search" tabindex="-1" class="font-weight-bold btn-primary btn-sm" onClick="document.getElementById('btnClearKeyword').style.display = 'none'; document.getElementById('__BVID__33').value = ''; document.getElementById('__BVID__33').focus(); ">
                     </div>
                     -->
-                    
+
 
 
 
@@ -303,6 +305,7 @@
             IndicatorDownloadOptions
         },
 
+
         data() {
             return {
                 sortBy: 'code',
@@ -404,7 +407,7 @@
                 }
                 */
 
-                var url = "/indicators/search?by-indicator";
+                var url = "indicators/search?by-indicator";
 
                 if (this.searchTerm) {
                     url += "&search='" + this.searchTerm + "'";
@@ -416,6 +419,7 @@
                 //     })
                 // }
                 this.loading = true;
+                console.log(axios.defaults.baseURL);
                 axios
                     .get(url)
                     .then(result => {
@@ -604,7 +608,7 @@
                     })
                     .then(result => {
                         this.makeAndClickLink(result.data);
-                        this.processing = false;                        
+                        this.processing = false;
                         this.processingPdf = false;
                     });
             },

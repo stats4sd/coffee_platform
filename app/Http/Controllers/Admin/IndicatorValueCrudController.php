@@ -40,7 +40,7 @@ class IndicatorValueCrudController extends CrudController
     {
         CRUD::setModel(\App\Models\IndicatorValue::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/indicator_value');
-        CRUD::setEntityNameStrings('indicator value', 'indicator values');
+        CRUD::setEntityNameStrings(t('indicator values'), t('indicator values'));
     }
 
     /**
@@ -55,7 +55,7 @@ class IndicatorValueCrudController extends CrudController
         $this->crud->addFilter([
             'name'  => 'groups',
             'type'  => 'select2_multiple',
-            'label' => 'Groups'
+            'label' => t('Groups'),
         ], function () {
             $groups = Group::all()->pluck('name', 'id')->toArray();
 
@@ -68,86 +68,97 @@ class IndicatorValueCrudController extends CrudController
             [
                 'type' => 'relationship',
                 'name' => 'indicator',
+                'label' => t('Indicator'),
             ],
             [
                 'name' => 'value',
-                'label' => 'Value',
+                'label' => t('Value'),
             ],
             [
                 'type' => 'relationship',
                 'name' => 'unit',
                 'attribute' => 'unit',
+                'label' => t('Unit'),
             ],
             [
                 'type' => 'relationship',
                 'name' => 'group',
+                'label' => t('Group'),
             ],
             [
                 'name' => 'converted_value',
-                'label' => 'Value in Standard Units',
+                'label' => t('Value in Standard Units'),
             ],
             [
                 'name' => 'standard_unit',
                 'type' => 'text',
+                'label' => t('Standard Unit'),
             ],
             [
                 'name' => 'conversion_rate',
                 'type' => 'text',
-                'label' => 'Conversion Ratio <br/>(original to standard)',
+                'label' => t('Conversion Ratio <br/>(original to standard)'),
             ],
             [
                 'name' => 'years',
                 'type' => 'relationship',
-                'label' => 'Year',
+                'label' => t('Year'),
                 'attribute' => 'year',
             ],
             [
                 'type' => 'relationship',
                 'name' => 'geoBoundary',
+                'label' => t('Geo-boundary'),
             ],
             [
                 'type' => 'relationship',
                 'name' => 'gender',
+                'label' => t('Gender'),
             ],
             [
                 'name' => 'sample_size',
                 'type' => 'number',
-                'label' => 'Sample Size'
+                'label' => t('Sample Size'),
             ],
             [
                 'type' => 'relationship',
                 'name' => 'smallholderDefinition',
+                'label' => t('Smallholder Definition'),
             ],
             [
                 'type' => 'relationship',
                 'name' => 'user',
+                'label' => t('User'),
             ],
             [
                 'type' => 'relationship',
                 'name' => 'purposeOfCollection',
+                'label' => t('Purpose of Collection'),
             ],
             [
                 'type' => 'relationship',
                 'name' => 'approachCollection',
+                'label' => t('Approach'),
             ],
             [
                 'type' => 'relationship',
                 'name' => 'scope',
+                'label' => t('Scope'),
             ],
             [
                 'name' => 'calculated_by_us',
                 'type' => 'check',
-                'label' => 'Calculated by us',
+                'label' => t('Calculated by us'),
             ],
             [
                 'type' => 'text',
                 'name' => 'definition',
-                'label' => 'Indicator definition from source'
+                'label' => t('Indicator definition from source'),
             ],
             [
                 'type' => 'text',
                 'name' => 'indicator_name_original',
-                'label' => 'Indicator name from source'
+                'label' => t('Indicator name from source'),
             ],
         ]);
     }
@@ -169,15 +180,14 @@ class IndicatorValueCrudController extends CrudController
                 'ajax' => true,
                 'inline_create' => [ 'entity' => 'indicator' ],
                 'minimum_input_length' => 0,
-                'label' => 'Indicator',
-                'hint' => 'If the indicator is not in the dropdown select <b>+Add</b> to add a new one.',
+                'label' => t('Indicator'),
+                'hint' => t('If the indicator is not in the dropdown select <b>+Add</b> to add a new one.'),
             ],
             [
                 'name' => 'value',
                 'type' => 'number',
-                'label' => 'Value',
+                'label' => t('Value'),
                 'attributes' => ["step" => "any"], // allow decimals
-                'label' => 'Value',
             ],
             [
                 'type' => 'relationship',
@@ -186,13 +196,13 @@ class IndicatorValueCrudController extends CrudController
                 'ajax' => true,
                 'inline_create' => [ 'entity' => 'unit' ],
                 'minimum_input_length' => 0,
-                'label' => 'Unit',
-                'hint' => 'If the unit is not in the dropdown select <b>+Add</b> to add a new one.',
+                'label' => t('Unit'),
+                'hint' => t('If the unit is not in the dropdown select <b>+Add</b> to add a new one.'),
             ],
             [
                 'name' => 'years',
                 'type' => 'relationship',
-                'label' => 'Year(s)',
+                'label' => t('Year(s)'),
                 'attribute' => "year",
             ],
             [
@@ -200,10 +210,9 @@ class IndicatorValueCrudController extends CrudController
                 'name' => 'source_id',
                 'inline_create' => [ 'entity' => 'source' ],
                 'ajax' => true,
-                'inline_create' => true,
                 'minimum_input_length' => 0,
-                'label' => 'Source',
-                'hint' => 'If the source is not in the dropdown select <b>+Add</b> to add a new one.',
+                'label' => t('Source'),
+                'hint' => t('If the source is not in the dropdown select <b>+Add</b> to add a new one.'),
             ],
             [
                 'type' => 'relationship',
@@ -218,8 +227,8 @@ class IndicatorValueCrudController extends CrudController
                 ],
                 'ajax' => true,
                 'minimum_input_length' => 0,
-                'label' => 'Geo boundary',
-                'hint' => 'If the geo boundary is not in the dropdown select <b>+Add</b> to add a new one.<br>If the locations are incompleted add a new Geo Boundaries using the tab on the left.',
+                'label' => t('Geo boundary'),
+                'hint' => t('If the geo boundary is not in the dropdown select <b>+Add</b> to add a new one.<br>If the locations are incomplete add a new Geo Boundaries using the tab on the left.'),
             ],
             [
                 'type' => 'relationship',
@@ -227,13 +236,13 @@ class IndicatorValueCrudController extends CrudController
                 'ajax' => true,
                 'inline_create' => [ 'entity' => 'gender' ],
                 'minimum_input_length' => 0,
-                'label' => 'Gender',
-                'hint' => 'If the gender is not in the dropdown select <b>+Add</b> to add a new one.',
+                'label' => t('Gender'),
+                'hint' => t('If the gender is not in the dropdown select <b>+Add</b> to add a new one.'),
             ],
             [
                 'name' => 'sample_size',
                 'type' => 'number',
-                'label' => 'Sample Size'
+                'label' => t('Sample Size'),
             ],
             [
                 'type' => 'relationship',
@@ -247,8 +256,8 @@ class IndicatorValueCrudController extends CrudController
                     'create_route' =>  route('smallholder_definition-inline-create-save'),
                 ],
                 'minimum_input_length' => 0,
-                'label' => 'Smallholder definition',
-                'hint' => 'If the smallholder definition is not in the dropdown select <b>+Add</b> to add a new one.',
+                'label' => t('Smallholder definition'),
+                'hint' => t('If the smallholder definition is not in the dropdown select <b>+Add</b> to add a new one.'),
             ],
             [
                 'label'     => "User",
@@ -274,8 +283,8 @@ class IndicatorValueCrudController extends CrudController
 
                 ],
                 'minimum_input_length' => 0,
-                'label' => 'Purpose of collection',
-                'hint' => 'If the purpose of collection is not in the dropdown select <b>+Add</b> to add a new one.',
+                'label' => t('Purpose of collection'),
+                'hint' => t('If the purpose of collection is not in the dropdown select <b>+Add</b> to add a new one.'),
             ],
             [
                 'type' => 'relationship',
@@ -289,8 +298,8 @@ class IndicatorValueCrudController extends CrudController
                     'create_route' =>  route('approach_collection-inline-create-save'),
                 ],
                 'minimum_input_length' => 0,
-                'label' => 'Collection approach',
-                'hint' => 'If the collection approach is not in the dropdown select <b>+Add</b> to add a new one.',
+                'label' => t('Collection approach'),
+                'hint' => t('If the collection approach is not in the dropdown select <b>+Add</b> to add a new one.'),
             ],
             [
                 'type' => 'relationship',
@@ -298,8 +307,8 @@ class IndicatorValueCrudController extends CrudController
                 'ajax' => true,
                 'inline_create' => [ 'entity' => 'group' ],
                 'minimum_input_length' => 0,
-                'label' => 'Group',
-                'hint' => 'If the group is not in the dropdown select <b>+Add</b> to add a new one.',
+                'label' => t('Group'),
+                'hint' => t('If the group is not in the dropdown select <b>+Add</b> to add a new one.'),
             ],
             [
                 'type' => 'relationship',
@@ -307,23 +316,23 @@ class IndicatorValueCrudController extends CrudController
                 'ajax' => true,
                 'inline_create' => [ 'entity' => 'scope' ],
                 'minimum_input_length' => 0,
-                'label' => 'Scope',
-                'hint' => 'If the scope is not in the dropdown select <b>+Add</b> to add a new one.',
+                'label' => t('Scope'),
+                'hint' => t('If the scope is not in the dropdown select <b>+Add</b> to add a new one.'),
             ],
             [
                 'name' => 'calculated_by_us',
                 'type' => 'checkbox',
-                'label' => 'Calculated by us',
+                'label' => t('Calculated by us'),
             ],
             [
                 'type' => 'text',
                 'name' => 'definition',
-                'label' => 'Indicator definition from source'
+                'label' => t('Indicator definition from source'),
             ],
             [
                 'type' => 'text',
                 'name' => 'indicator_name_original',
-                'label' => 'Indicator name from source'
+                'label' => t('Indicator name from source'),
             ],
         ]);
     }
