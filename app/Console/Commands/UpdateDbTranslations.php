@@ -98,7 +98,7 @@ class UpdateDbTranslations extends Command
 
                     // ******* 2. Check if this value is translated and restore to db:
                     $finishedTranslation = $finishedTranslations->find(null, $value);
-                    dd($finishedTranslation);
+
                     if ($finishedTranslation
                         && $finishedTranslation->getTranslation()
                         && $finishedTranslation->getTranslation() !== "") {
