@@ -39,7 +39,7 @@
             <img src="{{ url('images/webinar_graphic.jpg') }}" id="image_webinar"/>
         </div>
         <div class="justify-content-center mt-5 mb-5">
-            {{ t('<h2 class="mt-5 text-green">Panelists</h2>
+            {!! t('<h2 class="mt-5 text-green">Panelists</h2>
             <ul><strong>Rick Peyser,</strong> Senior Manager for Coffee and Cocoa, Lutheran World Relief</ul>
             <ul><strong>Carlos Barahona,</strong> Managing Director at Statistics for Sustainable Development (Stats4SD)
             </ul>
@@ -52,7 +52,7 @@
             <ul><strong>Ciara McHugh,</strong> Statistician at Statistics for Sustainable Development (Stats4SD)</ul>
             <ul><strong>Cory Gilman,</strong> Strategic Initiatives Manager: Coffee and Commodities at Heifer
                 International
-            </ul>') }}
+            </ul>') !!}
         </div>
     </div>
 </div>

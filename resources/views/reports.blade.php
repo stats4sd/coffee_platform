@@ -9,13 +9,13 @@
                 <div class=" report-text ml-md-4 mr-5 mt-xl-4">
 
                     <h2 style="color:black">{{t('Report')}}</h2>
-                    {{ t('<p>Alongside the platform, a report has been produced, describing the key findings and data
+                    {!! t('<p>Alongside the platform, a report has been produced, describing the key findings and data
                     collection process in detail.</p>
                     <p>In this report, you can also read more about our efforts to identify data gaps and envision how
                         we could improve
                         data collection and sharing among a variety of actors along the coffee value chain, including
                         the farmers and
-                        their organizations.</p>') }}
+                        their organizations.</p>') !!}
                 </div>
             </div>
             <div id="caption">

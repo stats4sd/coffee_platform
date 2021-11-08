@@ -44,7 +44,7 @@
                         </div>
                     </div>
                 </div>
-                {{ t('<h2>Step 1: What are you looking for?</h2>
+                {!! t('<h2>Step 1: What are you looking for?</h2>
                 <p class="mb-3">
                     There are different ways to explore the available data:</p>
                 <p><strong>Search:</strong> Use the search box below to find indicators by keyword.</p>
@@ -64,7 +64,7 @@
                 <h2>Step 3: Download Data</h2>
                 <p>
                     Click the download button at the top right to review and download data for all indicators added to your
-                    selection.</p>') }}
+                    selection.</p>') !!}
 
 
             </div>
