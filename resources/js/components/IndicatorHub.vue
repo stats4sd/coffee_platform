@@ -5,7 +5,7 @@
         <div class="full-height sidebar shadow sticky-top">
             <div class="sidebar-header bg-primary p-4 mb-0 text-white">
                 <h2 class="p-0 m-0">
-                    Filters
+                    {{ $__('Filters') }}
                     <span
                         class="sidebar-icon"
                     ><i

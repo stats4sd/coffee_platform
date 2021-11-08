@@ -27,7 +27,7 @@
         props: {
             title: {
                 type: String,
-                default: 'Filter List',
+                default: 'Filters',
             },
             options: {
                 type: Array,

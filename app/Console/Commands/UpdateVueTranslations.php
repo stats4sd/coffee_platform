@@ -44,24 +44,33 @@ class UpdateVueTranslations extends Command
     public function handle()
     {
         // ************* 1. Update placeholder PHP file with translations from Vue components
-
+        $vueText = [];
         // find all $__('') translations from vue files:
-        $vueText = file_get_contents(resource_path('js/components/IndicatorHub.vue'));
-
-        $strings = Str::of($vueText)->matchAll('/\$\_\_\([\'\"](.+)[\'\"]\)/');
+        $vueText[] = file_get_contents(resource_path('js/components/IndicatorHub.vue'));
+        $vueText[] = file_get_contents(resource_path('js/components/elements/IndicatorDownloader.vue'));
+        $vueText[] = file_get_contents(resource_path('js/components/elements/IndicatorDownloadOptions.vue'));
+        $vueText[] = file_get_contents(resource_path('js/components/elements/IndicatorValuesPreviewPane.vue'));
+        $vueText[] = file_get_contents(resource_path('js/components/elements/SelectWithImages.vue'));
+        $vueText[] = file_get_contents(resource_path('js/components/elements/SidebarFilter.vue'));
 
         // Clear and rebuild the VueTranslationPlaceholder file
         // This ensures the file is in-sync with the translation strings in the vue components - if something is removed in a vue file, it is removed from the php placeholder too.
         file_put_contents(resource_path('lang/VueTranslationPlaceholder.php'), '<?php ');
 
-        foreach($strings as $string) {
+        foreach ($vueText as $text) {
 
-            file_put_contents(
-                resource_path('lang/VueTranslationPlaceholder.php'),
-                "t('${string}');\n",
-                FILE_APPEND
-            );
+            $strings = Str::of($text)->matchAll('/\$\_\_\([\'\"](.+)[\'\"]\)/');
 
+
+            foreach ($strings as $string) {
+
+                file_put_contents(
+                    resource_path('lang/VueTranslationPlaceholder.php'),
+                    "t('${string}');\n",
+                    FILE_APPEND
+                );
+
+            }
         }
     }
 }

@@ -3,7 +3,7 @@
         :id="id"
         centered
         size="xl"
-        title="Indicator Values"
+        :title="$__('Indicator Values')"
         header-bg-variant="primary"
         header-text-variant="light"
     >
