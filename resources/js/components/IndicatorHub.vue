@@ -29,22 +29,22 @@
                     />
                     <sidebar-filter
                         v-model="selectedTypes"
-                        title="Source Type"
+                        title="$__('Source Type')"
                         :options="types"
                     />
                     <sidebar-filter
                         v-model="selectedPurposes"
-                        title="Purpose"
+                        title="$__('Purpose')"
                         :options="purposes"
                     />
                     <sidebar-filter
                         v-model="selectedGenders"
-                        title="Gender"
+                        title="$__('Gender')"
                         :options="genders"
                     />
                     <sidebar-filter
                         v-model="selectedScopes"
-                        title="Scope"
+                        title="$__('Scope')"
                         :options="scopes"
                     />
                 </ul>
@@ -75,7 +75,7 @@
             <div style="position:relative;bottom:70px;">
             <div class="pt-4 px-lots pb-4">
                 <h1 class="text-center pb-4">
-                    Search or Browse Indicators
+                    {{ $__('Search or Browse Indicators') }}
                 </h1>
 
                 <b-input-group class="mb-3 mx-4">
@@ -95,13 +95,13 @@
                     </template>
                     <b-form-input
                         class="bg-light"
-                        placeholder="Search for indicators"
+                        placeholder="$__('Search for indicators')"
                         @input="searchIndicators"
                     />
                 </b-input-group>
 
                 <h2 class="py-3">
-                        Categories
+                    {{ $__('Categories') }}
                     </h2>
                 <!-- <characteristics> -->
                 <div class="d-flex flex-wrap pb-4">
@@ -134,7 +134,7 @@
                 <div v-if="selectedCharacteristic">
 
                     <h2 class="py-3">
-                      Subcategories
+                        {{ $__('Subcategories') }}
                     </h2>
                     <div class="d-flex flex-wrap ">
 
@@ -171,7 +171,7 @@
                             style="width: 35%; max-width: 24rem !important; min-width: 12rem; padding-left: 0.8rem;"
                         >
                             <li class="d-flex justify-content-between mb-1">
-                                <div>Indicators Found:</div>
+                                <div>{{ $__('Indicators Found:') }}</div>
                                 <div class="ml-1 font-weight-bold">
                                     {{ indicatorsForDisplay.length }}
                                 </div>
@@ -244,8 +244,7 @@
                                             )
                                         "
                                     >
-                                        <i class="las la-plus" /> Add to
-                                        selection
+                                        <i class="las la-plus" /> {{ $__('Add to selection') }}
                                     </span>
                                     <span
                                         v-if="
@@ -254,7 +253,7 @@
                                             )
                                         "
                                     >
-                                        <i class="las la-check mr-5" /> selected
+                                        <i class="las la-check mr-5" /> {{ $__('selected') }}
                                     </span>
                                 </b-button>
                                 <b-button
@@ -585,7 +584,7 @@
                 this.processing = true;
                 this.processingPdf = true;
                 this.$bvToast.toast(
-                    `Your download is being prepared. This may take some time - please leave this window open.`,
+                    $__('Your download is being prepared. This may take some time - please leave this window open.'),
                     {
                         toaster: "b-toaster-top-center"
                     }
