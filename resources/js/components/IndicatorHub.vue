@@ -29,22 +29,22 @@
                     />
                     <sidebar-filter
                         v-model="selectedTypes"
-                        title="$__('Source Type')"
+                        :title="$__('Source Type')"
                         :options="types"
                     />
                     <sidebar-filter
                         v-model="selectedPurposes"
-                        title="$__('Purpose')"
+                        :title="$__('Purpose')"
                         :options="purposes"
                     />
                     <sidebar-filter
                         v-model="selectedGenders"
-                        title="$__('Gender')"
+                        :title="$__('Gender')"
                         :options="genders"
                     />
                     <sidebar-filter
                         v-model="selectedScopes"
-                        title="$__('Scope')"
+                        :title="$__('Scope')"
                         :options="scopes"
                     />
                 </ul>
