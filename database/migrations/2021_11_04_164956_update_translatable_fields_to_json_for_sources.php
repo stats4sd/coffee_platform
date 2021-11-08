@@ -13,6 +13,12 @@ class UpdateTranslatableFieldsToJsonForSources extends Migration
      */
     public function up()
     {
+
+        Schema::table('sources', function (Blueprint $table) {
+            // remove index as unique indexing cannot occur on a json object
+            $table->dropUnique('sources_name_unique');
+        });
+
         //update existing values
         \Illuminate\Support\Facades\DB::unprepared('
             update sources set
@@ -58,6 +64,11 @@ class UpdateTranslatableFieldsToJsonForSources extends Migration
             $table->string('name')->change();
             $table->string('reference')->nullable()->change();
             $table->text('description')->nullable()->change();
+        });
+
+        Schema::table('sources', function (Blueprint $table) {
+            // remove index as unique indexing cannot occur on a json object
+            $table->unique('name', 'sources_name_unique');
         });
     }
 }
