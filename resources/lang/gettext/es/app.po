@@ -7,8 +7,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2021-11-05T17:47:17+00:00\n"
-"PO-Revision-Date: 2021-11-05 18:47+0100\n"
+"POT-Creation-Date: 2021-11-08T11:48:37+00:00\n"
+"PO-Revision-Date: 2021-11-08 12:48+0100\n"
 "Language: es\n"
 "Plural-Forms: nplurals=2; plural=n!=1;\n"
 
@@ -209,7 +209,7 @@ msgid "Value in Standard Units"
 msgstr ""
 
 #: app/Http/Controllers/Admin/IndicatorValueCrudController.php:95
-#: app/Http/Controllers/Admin/UnitTypeCrudController.php:49
+#: app/Http/Controllers/Admin/UnitTypeCrudController.php:50
 msgid "Standard Unit"
 msgstr ""
 
@@ -486,23 +486,23 @@ msgstr ""
 msgid "unit-types"
 msgstr ""
 
-#: app/Http/Controllers/Admin/UnitTypeCrudController.php:52
+#: app/Http/Controllers/Admin/UnitTypeCrudController.php:53
 msgid "Number of units"
 msgstr ""
 
-#: app/Http/Controllers/Admin/UnitTypeCrudController.php:66
+#: app/Http/Controllers/Admin/UnitTypeCrudController.php:68
 msgid "What is the unit type? (e.g. length, area, volume, time...)"
 msgstr ""
 
-#: app/Http/Controllers/Admin/UnitTypeCrudController.php:68
+#: app/Http/Controllers/Admin/UnitTypeCrudController.php:71
 msgid "What is the standard unit for this type?"
 msgstr ""
 
-#: app/Http/Controllers/Admin/UnitTypeCrudController.php:71
+#: app/Http/Controllers/Admin/UnitTypeCrudController.php:74
 msgid "If this unit type has a different conversion rate each year, tick this box."
 msgstr ""
 
-#: app/Http/Controllers/Admin/UnitTypeCrudController.php:72
+#: app/Http/Controllers/Admin/UnitTypeCrudController.php:75
 msgid "This is likely only currency"
 msgstr ""
 
@@ -533,6 +533,772 @@ msgstr ""
 
 #: app/Http/Controllers/IndicatorValueController.php:81
 msgid "Could not export data - please try again or contact the website support team"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:13
+msgid "voluptas"
+msgstr "es-voluptas"
+
+#: resources/lang/DbTranslationPlaceholder.php:21
+msgid "veniam"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:29
+msgid "voluptatum"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:37
+msgid "nemo"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:45
+msgid "repudiandae"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:53
+msgid "molestiae"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:61
+msgid "rerum"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:69
+msgid "similique"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:77
+msgid "iure"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:85
+msgid "placeat"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:93
+msgid "Philippines"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:101
+msgid "Saint Helena"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:109
+msgid "Botswana"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:117
+msgid "Bahamas"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:125
+msgid "South Africa"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:133
+msgid "est"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:141
+msgid "amet"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:149
+msgid "nulla"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:157
+msgid "tempora"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:165
+msgid "quidem"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:173
+msgid "vel"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:181
+msgid "dolorem"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:189
+msgid "sed"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:197
+msgid "quaerat"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:205
+msgid "assumenda"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:213
+msgid "nisi"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:221
+msgid "numquam"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:229
+msgid "voluptates"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:237
+msgid "quis"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:245
+msgid "magnam"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:253
+msgid "quo"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:261
+msgid "harum"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:269
+msgid "soluta"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:277
+msgid "praesentium"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:285
+msgid "in"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:293
+msgid "accusamus"
+msgstr ""
+"es-accusamus\n"
+""
+
+#: resources/lang/DbTranslationPlaceholder.php:301
+msgid "omnis"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:309
+msgid "dicta"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:317
+msgid "ipsum"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:325
+msgid "nihil"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:333
+msgid "corrupti"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:341
+msgid "sunt"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:349
+msgid "recusandae"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:357
+msgid "libero"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:365
+msgid "atque"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:373
+msgid "eum"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:381
+msgid "repellendus"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:389
+msgid "inventore"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:397
+msgid "suscipit"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:405
+msgid "at"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:413
+msgid "possimus"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:421
+msgid "deserunt"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:429
+msgid "error"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:437
+msgid "architecto"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:445
+msgid "neque"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:453
+msgid "Vitae voluptas vero ullam."
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:461
+msgid "Aut natus excepturi aliquid at sit consequatur."
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:469
+msgid "Veritatis voluptas voluptatem temporibus."
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:477
+msgid "Culpa qui quisquam quae modi."
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:485
+msgid "Et voluptas perferendis eveniet hic ab id."
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:493
+msgid "Incidunt veniam odit atque rerum."
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:501
+msgid "Voluptas molestiae et debitis."
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:509
+msgid "Ut doloribus dignissimos nihil doloribus et omnis."
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:517
+msgid "Tempore eveniet dolore alias laborum."
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:525
+msgid "Officia at eligendi in at."
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:533
+msgid "Deserunt aut modi sed aliquid eos."
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:541
+msgid "Cum est pariatur ut est."
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:549
+msgid "Nihil maiores veniam sed est."
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:557
+msgid "Eligendi nesciunt aliquam rerum ea."
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:565
+msgid "Dolorem alias iure enim magni a nisi."
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:573
+msgid "Fuga ut nulla delectus fugiat qui."
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:581
+msgid "Dignissimos quos ad ut repudiandae."
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:589
+msgid "Quis modi omnis consequatur."
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:597
+msgid "Inventore a a aut non voluptatem aspernatur."
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:605
+msgid "Aliquid unde in culpa."
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:613
+msgid "Nulla enim magnam et eum laudantium."
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:621
+msgid "Et omnis molestiae nesciunt quo minima voluptate."
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:629
+msgid "Mollitia nobis ipsam voluptates dolore aut."
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:637
+msgid "A quaerat tempore placeat aut accusamus iusto."
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:645
+msgid "Et esse nisi tempora."
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:653
+msgid "Et officia corrupti enim laudantium corporis ullam."
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:661
+msgid "Vel consectetur consequatur dolorem."
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:669
+msgid "Qui corrupti eos quisquam distinctio fugit."
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:677
+msgid "Occaecati necessitatibus et nisi necessitatibus doloribus velit."
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:685
+msgid "Quis quos est est numquam illo."
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:693
+msgid "Quod aut nesciunt quia qui laudantium officiis."
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:701
+msgid "Consectetur voluptas recusandae in labore."
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:709
+msgid "Vitae voluptates eum sit."
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:717
+msgid "Sit adipisci delectus placeat autem."
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:725
+msgid "Est totam optio quod."
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:733
+msgid "Optio amet nulla in ipsam corrupti voluptas."
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:741
+msgid "Eveniet reiciendis repudiandae aut ad."
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:749
+msgid "Doloremque eum id ut cum."
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:757
+msgid "Repellendus provident accusamus aperiam aliquid."
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:765
+msgid "Sit aperiam totam eius ut reiciendis quia."
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:773
+msgid "Et architecto in et."
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:781
+msgid "A qui libero aut eaque non."
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:789
+msgid "Ratione fuga consequuntur rerum dicta non."
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:797
+msgid "Adipisci laudantium quis recusandae laboriosam."
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:805
+msgid "Animi qui iste illo."
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:813
+msgid "Voluptate necessitatibus est necessitatibus a sit."
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:821
+msgid "Blanditiis numquam autem aliquid neque esse consequatur."
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:829
+msgid "Sint autem excepturi iusto quo unde."
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:837
+msgid "Maxime saepe rem eaque nulla distinctio culpa."
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:845
+msgid "Quo qui exercitationem qui repellendus dolores."
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:853
+msgid "Saepe sequi sapiente exercitationem."
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:861
+msgid "In est id distinctio."
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:869
+msgid "Veritatis sint aliquam animi."
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:877
+msgid "Et sed ut deleniti quisquam esse atque."
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:885
+msgid "Mollitia assumenda voluptas tenetur placeat."
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:893
+msgid "Optio nisi eum nihil modi voluptatibus."
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:901
+msgid "Praesentium veniam non necessitatibus numquam dolor."
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:909
+msgid "Voluptatem exercitationem deserunt sit omnis."
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:917
+msgid "Illo cum accusantium velit suscipit sequi iste."
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:925
+msgid "Provident ut nostrum iusto."
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:933
+msgid "cupiditate"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:941
+msgid "labore"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:949
+msgid "provident"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:957
+msgid "excepturi"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:965
+msgid "porro"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:973
+msgid "totam"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:981
+msgid "iusto"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:989
+msgid "ea"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:997
+msgid "nesciunt"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:1005
+msgid "dignissimos"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:1013
+msgid "quam"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:1021
+msgid "consequatur"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:1029
+msgid "debitis"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:1037
+msgid "velit"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:1045
+msgid "adipisci"
+msgstr "es-adipisci"
+
+#: resources/lang/DbTranslationPlaceholder.php:1053
+msgid "tempore"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:1061
+msgid "laboriosam"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:1069
+msgid "cumque"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:1077
+msgid "minus"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:1085
+msgid "sint"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:1093
+msgid "magni"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:1101
+msgid "optio"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:1109
+msgid "expedita"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:1117
+msgid "tenetur"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:1125
+msgid "accusantium"
+msgstr "es-accusantium"
+
+#: resources/lang/DbTranslationPlaceholder.php:1133
+msgid "delectus"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:1141
+msgid "quas"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:1149
+msgid "aspernatur"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:1157
+msgid "temporibus"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:1165
+msgid "rem"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:1173
+msgid "blanditiis"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:1181
+msgid "officiis"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:1189
+msgid "veritatis"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:1197
+msgid "perferendis"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:1205
+msgid "autem"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:1213
+msgid "distinctio"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:1221
+msgid "modi"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:1229
+msgid "vero"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:1237
+msgid "dolores"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:1245
+msgid "quasi"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:1253
+msgid "dolor"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:1261
+msgid "nostrum"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:1269
+msgid "quibusdam"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:1277
+msgid "fugit"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:1285
+msgid "ipsa"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:1293
+msgid "impedit"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:1301
+msgid "qui"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:1309
+msgid "laudantium"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:1317
+msgid "enim"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:1325
+msgid "voluptatem"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:1333
+msgid "aut"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:1341
+msgid "quia"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:1349
+msgid "et"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:1357
+msgid "eveniet"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:1365
+msgid "quod"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:1373
+msgid "commodi"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:1381
+msgid "vitae"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:1389
+msgid "ratione"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:1397
+msgid "id"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:1405
+msgid "ut"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:1413
+msgid "quos"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:1421
+msgid "ullam"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:1429
+msgid "iste"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:1437
+msgid "nam"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:1445
+msgid "exercitationem"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:1453
+msgid "voluptatibus"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:1461
+msgid "nobis"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:1469
+msgid "corporis"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:1477
+msgid "eos"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:1485
+msgid "eligendi"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:1493
+msgid "sequi"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:1501
+msgid "ex"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:1509
+msgid "non"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:1517
+msgid "hi there"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:1525
+msgid "facere"
+msgstr ""
+
+#: resources/lang/DbTranslationPlaceholder.php:1533
+msgid "itaque"
 msgstr ""
 
 #: resources/lang/VueTranslationPlaceholder.php:3

@@ -17,7 +17,7 @@ class UpdateVueTranslations extends Command
      *
      * @var string
      */
-    protected $signature = 'vue:translate';
+    protected $signature = 'translation:vue';
 
     /**
      * The console command description.
@@ -43,9 +43,7 @@ class UpdateVueTranslations extends Command
      */
     public function handle()
     {
-        //import from a .po file:
-        //$translations = Translations::fromPoFile(resource_path('lang/gettext/es/app.po'));
-
+        // ************* 1. Update placeholder PHP file with translations from Vue components
 
         // find all $__('') translations from vue files:
         $vueText = file_get_contents(resource_path('js/components/IndicatorHub.vue'));
@@ -64,28 +62,6 @@ class UpdateVueTranslations extends Command
                 FILE_APPEND
             );
 
-        }
-
-//        // export back to po file
-//        $saveFile = Po::toFile($translations, resource_path('lang/gettext/es/app.po'));
-//
-//        if(!$saveFile) {
-//            $this->error('could not save po file!');
-//        }
-
-        // run the translation sync - this searches through php files and pulls found gettext (t('')) strings into the po file
-        Artisan::call('translation:sync');
-
-        // convert Po file to json for reading by Vue app:
-        $compileProcess = new Process(["node_modules/.bin/gettext-compile", "--output", "resources/js/translations.json", "resources/lang/gettext/es/app.po"]);
-
-        $compileProcess->mustRun();
-
-        if($compileProcess->isSuccessful()) {
-            $this->info('gettext-compile succeeded!');
-        }
-        else {
-            $this->info('gettext-compile failed with output' . $compileProcess->getErrorOutput());
         }
     }
 }

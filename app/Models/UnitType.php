@@ -23,7 +23,7 @@ class UnitType extends Model
         'name_with_unit',
     ];
 
-    protected $translatable = ['name', 'standard_unit'];
+    protected $translatable = ['name'];
     /*
     |--------------------------------------------------------------------------
     | FUNCTIONS
@@ -45,6 +45,11 @@ class UnitType extends Model
     public function units()
     {
         return $this->hasMany(Unit::class);
+    }
+
+    public function standardUnit()
+    {
+        return $this->belongsTo(Unit::class, 'standard_unit');
     }
 
 

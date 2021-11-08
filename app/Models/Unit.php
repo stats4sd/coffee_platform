@@ -121,7 +121,10 @@ class Unit extends Model
         return $this->belongsToMany(Year::class, '_link_unit_year')->withPivot('to_standard');
     }
 
-
+    public function standardUnit()
+    {
+        return $this->hasOne(UnitType::class, 'standard_unit');
+    }
 
     /*
     |--------------------------------------------------------------------------

@@ -45,7 +45,8 @@ class UnitTypeCrudController extends CrudController
 
         CRUD::column('name')
             ->label(t('Name'));
-        CRUD::column('standard_unit')
+        CRUD::column('standardUnit')
+            ->type('relationship')
             ->label(t('Standard Unit'));
         CRUD::column('units_count')
             ->type('text')
@@ -63,8 +64,10 @@ class UnitTypeCrudController extends CrudController
         CRUD::setValidation(UnitTypeRequest::class);
 
         CRUD::field('name')
+            ->type('text')
             ->label(t('What is the unit type? (e.g. length, area, volume, time...)'));
-        CRUD::field('standard_unit')
+        CRUD::field('standardUnit')
+            ->type('relationship')
             ->label(t('What is the standard unit for this type?'));
         CRUD::field('split_by_year')
             ->type('checkbox')
