@@ -22,6 +22,16 @@ class UpdateTranslatableFieldsToJsonForGeoBoundaries extends Migration
         Schema::table('geo_boundaries', function(Blueprint $table) {
             $table->json('description')->change();
         });
+
+        //update existing values
+        \Illuminate\Support\Facades\DB::unprepared('
+            update geo_boundaries set geo_boundaries.altitude = concat(\'{ "en": "\', geo_boundaries.altitude, \'"}\')
+        ');
+
+        // need seperate call / seperate transaction;
+        Schema::table('geo_boundaries', function(Blueprint $table) {
+            $table->json('altitude')->change();
+        });
     }
 
     /**
@@ -38,12 +48,12 @@ class UpdateTranslatableFieldsToJsonForGeoBoundaries extends Migration
 
         //update existing values
         \Illuminate\Support\Facades\DB::unprepared('
-            update geo_boundaries set geo_boundaries.description = json_unquote(geo_boundaries.description->"$.en");
+            update geo_boundaries set geo_boundaries.altitude = json_unquote(geo_boundaries.altitude->"$.en");
         ');
 
         // need seperate call / seperate transaction;
         Schema::table('geo_boundaries', function(Blueprint $table) {
-            $table->string('description')->change();
+            $table->string('altitude')->change();
         });
 
     }
