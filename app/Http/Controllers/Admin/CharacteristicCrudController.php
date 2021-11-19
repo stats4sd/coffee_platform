@@ -18,7 +18,6 @@ class CharacteristicCrudController extends CrudController
     use \Backpack\CRUD\app\Http\Controllers\Operations\InlineCreateOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
 
     /**
      * Configure the CrudPanel object. Apply settings to all operations.
@@ -40,8 +39,8 @@ class CharacteristicCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        CRUD::field('name')->type('text')->label(t('Name'));
-        CRUD::field('cover_image');
+        CRUD::column('name')->type('text')->label(t('Name'));
+        CRUD::column('cover_image')->type('image')->label(t('Cover Image'));
     }
 
     /**

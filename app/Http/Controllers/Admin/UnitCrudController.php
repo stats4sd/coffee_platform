@@ -83,7 +83,7 @@ class UnitCrudController extends CrudController
         CRUD::field('conversion-text')->type('custom_html')
         ->value(t("<h5>Conversion Rate - Normal Unit Types</h5>
         <p>To correctly convert this unit into the standard unit defined for this type of measurement, please enter ONE of the following:</p>
-        "))->tab('Normal Unit Types');
+        "))->tab(t('Normal Unit Types'));
 
         CRUD::field('to_standard')->label(t("How many of this unit equals 1 of the standard unit (selected above)?"))
         ->type('number')
@@ -96,20 +96,21 @@ class UnitCrudController extends CrudController
         ->attributes(['step' => 'any'])
         ->prefix(t("1 of the standard unit equals... "))
         ->suffix(t("...of this unit"))->tab(t('Normal Unit Types'));
-        ;
+
 
         CRUD::field('conversion-year-text')->type('custom_html')
         ->value(t('<h5>For Currency Only - Year-by-year conversion rates</h5>
         <p>For a currency unit, please enter the conversion rate for each year needed in the platform.</p>
         '))->tab(t('Types Split By Year'));
-        ;
+
 
         CRUD::field('conversion_years')->type('table')
-        ->columns([
+        ->label(t('Conversion Years'))
+            ->columns([
             'to_standard' => t('1 of this unit equals X of the standard unit'),
             'year' => t('Year (YYYY)'),
         ])->tab(t('Types Split By Year'));
-        ;
+
     }
 
     /**

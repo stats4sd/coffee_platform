@@ -32,7 +32,7 @@ class UnitType extends Model
 
     public function getNameWithUnitAttribute()
     {
-        return $this->name . ' ( Standard Unit: ' . $this->standard_unit . ')';
+        return $this->name . ' ( ' . t('Standard Unit') . ': ' . $this->standard_unit . ')';
     }
 
 
