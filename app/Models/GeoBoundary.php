@@ -21,7 +21,7 @@ class GeoBoundary extends Model
     protected $table = 'geo_boundaries';
     protected $guarded = ['id'];
 
-    protected $translatable = ['description'];
+    protected $translatable = ['description', 'altitude'];
 
     protected $with = ['country'];
 
