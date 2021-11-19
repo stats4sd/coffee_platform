@@ -30,6 +30,5 @@ yarn-error.log
 /resources/lang/DbTranslationPlaceholder.php
 /resources/js/translations.json
 /resources/lang/.translation_io
-/resources/lang/es/*
 /resources/lang/gettext/es/LC_MESSAGES/app.mo
 /resources/lang/gettext/es/app.po
