@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Region extends Model
 {
-    use CrudTrait, HasFactory, HasTranslations;
+    use CrudTrait, HasFactory;
 
     /*
     |--------------------------------------------------------------------------
@@ -20,7 +20,6 @@ class Region extends Model
     protected $table = 'regions';
     protected $guarded = ['id'];
 
-    protected $translatable = ['name'];
 
     /*
     |--------------------------------------------------------------------------

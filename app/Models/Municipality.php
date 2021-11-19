@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Municipality extends Model
 {
-    use CrudTrait, HasFactory, HasTranslations;
+    use CrudTrait, HasFactory;
 
     /*
     |--------------------------------------------------------------------------
@@ -20,7 +20,6 @@ class Municipality extends Model
     protected $table = 'municipalities';
     protected $guarded = ['id'];
 
-    protected $translatable = ['name'];
 
     /*
     |--------------------------------------------------------------------------

@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Department extends Model
 {
-    use CrudTrait, HasFactory, HasTranslations;
+    use CrudTrait, HasFactory;
 
     /*
     |--------------------------------------------------------------------------
@@ -20,7 +20,6 @@ class Department extends Model
     protected $table = 'departments';
     protected $guarded = ['id'];
 
-    protected $translatable = ['name'];
 
     /*
     |--------------------------------------------------------------------------

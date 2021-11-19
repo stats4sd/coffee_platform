@@ -26,7 +26,7 @@
                     text-variant="white"
                     header-text-variant="white"
                 >
-                    <b{{ >$__('Indicators added to selection') }}</b><br><br>
+                    <b>>{{ $__('Indicators added to selection') }}</b><br><br>
                     {{ $__('Click for options') }}
                 </b-card>
             </transition>

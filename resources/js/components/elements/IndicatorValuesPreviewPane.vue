@@ -43,7 +43,7 @@
                         v-if="row.item.sample_size && row.item.sample_size < 21"
                         class="mr-2"
                     >
-                        (Note: Small sample!)
+                        ({{ $__('Note: Small sample!') }})
                     </small>
                 </span>
             </template>
@@ -132,7 +132,10 @@
                         key: "all_years",
                         label: this.$__('Year')
                     },
-                    "value",
+                    {
+                        key: "value",
+                        label: this.$__('Value')
+                    },
                     {
                         key: "unit",
                         label: this.$__('Unit')

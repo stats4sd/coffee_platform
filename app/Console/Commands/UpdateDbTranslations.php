@@ -98,11 +98,13 @@ class UpdateDbTranslations extends Command
 
                     // ******* 2. Check if this value is translated and restore to db:
                     $finishedTranslation = $finishedTranslations->find(null, $value);
-
+                    $this->comment('finished?');
+                    $this->comment($finishedTranslation->getTranslation());
                     if ($finishedTranslation
                         && $finishedTranslation->getTranslation()
                         && $finishedTranslation->getTranslation() !== "") {
                         // update translation in database:
+
                         $dbEntry = $model::find($entryId);
                         $dbEntry->setTranslation($field, 'es', $finishedTranslation->getTranslation());
                         $dbEntry->save();

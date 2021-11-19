@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Partner extends Model
 {
-    use CrudTrait, HasFactory, HasTranslations;
+    use CrudTrait, HasFactory;
 
     /*
     |--------------------------------------------------------------------------
@@ -21,7 +21,6 @@ class Partner extends Model
     protected $table = 'partners';
     protected $guarded = ['id'];
 
-    protected $translatable = ['name'];
 
     public static function boot()
     {

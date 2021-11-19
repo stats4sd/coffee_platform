@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Source extends Model
 {
-    use CrudTrait, HasFactory, UpdatesMainSearchIndex, HasTranslations;
+    use CrudTrait, HasFactory, UpdatesMainSearchIndex;
 
     /*
     |--------------------------------------------------------------------------
@@ -22,7 +22,6 @@ class Source extends Model
     protected $guarded = ['id'];
     protected $casts = ['file' => 'array'];
 
-    protected $translatable = ['name', 'reference', 'description'];
 
     /*
     |--------------------------------------------------------------------------

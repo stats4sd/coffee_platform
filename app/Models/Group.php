@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Group extends Model
 {
-    use CrudTrait, HasFactory, HasTranslations;
+    use CrudTrait, HasFactory;
 
     /*
     |--------------------------------------------------------------------------
@@ -20,7 +20,6 @@ class Group extends Model
     protected $table = 'groups';
     protected $guarded = ['id'];
 
-    protected $translatable = ['name'];
 
     /*
     |--------------------------------------------------------------------------
