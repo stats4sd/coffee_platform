@@ -654,6 +654,8 @@
             prepareIndicators(filterComputedValue) {
                 if (this[filterComputedValue].length < 0) return [];
 
+                console.log(filterComputedValue);
+
                 var valuesByIndicator = this[filterComputedValue].reduce(
                     (result, indicatorValue) => {
                         result[indicatorValue.indicator_id] =
