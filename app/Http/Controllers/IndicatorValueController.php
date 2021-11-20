@@ -107,7 +107,10 @@ class IndicatorValueController extends Controller
         $indicatorValueIds = Collect($request->input('indicator_values'))->pluck('id')->toArray();
         $indicatorValueIds = implode(",", $indicatorValueIds);
 
-        $process = new Process(['Rscript', 'makeReport.R', $excelPath, $indicatorValueIds]);
+        // choose correct R script based on current locale
+        $scriptFile = 'makeReport_' . session('locale') . '.R';
+
+        $process = new Process(['Rscript', $scriptFile, $excelPath, $indicatorValueIds]);
         $process->setWorkingDirectory(base_path('scripts/Rscript'));
 
         $process->run();
@@ -116,7 +119,7 @@ class IndicatorValueController extends Controller
             throw new ProcessFailedException($process);
         }
 
-        $filename = 'indicator-values-exports/indicator-values-report-'.now()->toDateTimeString().'.pdf';
+        $filename = 'indicator-values-exports/indicator-values-report-'.session('locale').'-'.now()->toDateTimeString().'.pdf';
 
         copy(base_path('scripts/Rscript/PDF_Report_Script.pdf'), storage_path('app/public/'.$filename));
 
