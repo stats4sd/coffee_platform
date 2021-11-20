@@ -23,6 +23,13 @@
                 <li class="nav-item">
                     <a class="nav-link @if(Route::currentRouteName() === 'indicators') active @endif" href="{{ route('indicators', session('locale')) }}">{{ t('Indicator Hub') }}</a>
                 </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">{{ t('Change Language') }}</a>
+                    <div class="dropdown-menu">
+                      <a class="dropdown-item" href="{{ route(Route::currentRouteName(), 'en') }}">{{ t('English') }}</a>
+                      <a class="dropdown-item" href="{{ route(Route::currentRouteName(), 'es') }}">{{ t('Spanish') }}</a>
+                    </div>
+                  </li>
             </ul>
         </div>
 </nav>
