@@ -22,6 +22,8 @@ yarn-error.log
 /scripts/Rscript/.RData
 /scripts/Rscript/.Ruserdata
 /scripts/Rscript/PDF-Report-Script.pdf
+/scripts/Rscript/*.log
+/scripts/Rscript/*.tex
 **/~$*.docx
 *.DS_Store
 /public/docs
@@ -32,3 +34,4 @@ yarn-error.log
 /resources/lang/.translation_io
 /resources/lang/gettext/es/LC_MESSAGES/app.mo
 /resources/lang/gettext/es/app.po
+
