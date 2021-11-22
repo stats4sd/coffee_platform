@@ -18,7 +18,6 @@ class CharacteristicCrudController extends CrudController
     use \Backpack\CRUD\app\Http\Controllers\Operations\InlineCreateOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
 
     /**
      * Configure the CrudPanel object. Apply settings to all operations.
@@ -29,7 +28,7 @@ class CharacteristicCrudController extends CrudController
     {
         CRUD::setModel(\App\Models\Characteristic::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/characteristic');
-        CRUD::setEntityNameStrings('characteristic', 'characteristics');
+        CRUD::setEntityNameStrings(t('characteristics'), t('characteristics'));
     }
 
     /**
@@ -40,13 +39,8 @@ class CharacteristicCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        CRUD::setFromDb(); // columns
-
-        /**
-         * Columns can be defined using the fluent syntax or array syntax:
-         * - CRUD::column('price')->type('number');
-         * - CRUD::addColumn(['name' => 'price', 'type' => 'number']);
-         */
+        CRUD::column('name')->type('text')->label(t('Name'));
+        CRUD::column('cover_image')->type('image')->label(t('Cover Image'));
     }
 
     /**
@@ -59,14 +53,9 @@ class CharacteristicCrudController extends CrudController
     {
         CRUD::setValidation(CharacteristicRequest::class);
 
-        CRUD::field('name');
-        CRUD::field('cover_image')->type('image')->crop(true)->label('Upload a cover image to represent this characteristic on the main search page'); // fields
+        CRUD::field('name')->label(t('Name'))->type('text');
+        CRUD::field('cover_image')->type('image')->crop(true)->label(t('Upload a cover image to represent this characteristic on the main search page')); // fields
 
-        /**
-         * Fields can be defined using the fluent syntax or array syntax:
-         * - CRUD::field('price')->type('number');
-         * - CRUD::addField(['name' => 'price', 'type' => 'number']));
-         */
     }
 
     /**

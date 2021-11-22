@@ -15,7 +15,7 @@
     >
         <template #modal-header>
             <h2 class="mb-0">
-                Download Indicators
+                {{ $__('Download Indicators') }}
             </h2>
             <button
                 class="btn btn-link text-white"
@@ -29,9 +29,9 @@
         <div class="d-flex h-100 p-3">
             <div class="w-50 d-flex flex-column">
                 <h3 class="text-center">
-                    Selected Indicators<br>
+                    {{ $__('Selected Indicators') }}<br>
                 </h3>
-                <small class="text-center">(Scroll for more)</small>
+                <small class="text-center">({{ $__('Scroll for more') }})</small>
                 <div class="overflow-auto flex-grow-1 mt-3">
                     <div
                         v-for="(subIndicators, subcharacteristic) in subcharacteristics"
@@ -53,7 +53,7 @@
             </div>
             <div class="w-50">
                 <h3 class="text-center">
-                    Download Options:
+                    {{ $__(' Download Options:') }}
                 </h3>
                 <div class="d-flex flex-column justify-content-space align-items-center">
                     <div class="w-50 align-self-center d-flex flex-column align-items-center my-4">
@@ -64,7 +64,7 @@
                             class="w-75"
                         />
                         <div class="w-100 text-center mb-2">
-                            All seclected indicator data in .xlsx format
+                            {{ $__('All seclected indicator data in .xlsx format') }}
                         </div>
                         <a
                             href="#"
@@ -76,8 +76,8 @@
                                 v-if="processingXls"
                                 class="spinner-border spinner-border-sm align-self-center mr-2"
                                 role="status"
-                            > <span class="sr-only">Loading...</span> </div>
-                            Download XLSX</a>
+                            > <span class="sr-only">{{ $__('Loading...') }}</span> </div>
+                            {{ $__('Download XLSX') }}</a>
                     </div>
                     <div class="w-50 align-self-center d-flex flex-column align-items-center my-4">
                         <b-img
@@ -87,7 +87,7 @@
                             alt="graph image"
                         />
                         <div class="w-100 text-center mb-2">
-                            Generate a graphical summary of values
+                            {{ $__('Generate a graphical summary of values') }}
                         </div>
                         <a
                             href="#"
@@ -99,8 +99,8 @@
                                 v-if="processingPdf"
                                 class="spinner-border spinner-border-sm align-self-center mr-2"
                                 role="status"
-                            > <span class="sr-only">Loading...</span> </div>
-                            Download PDF</a>
+                            > <span class="sr-only">{{ $__('Loading...') }}</span> </div>
+                            {{ $__('Download PDF') }}</a>
                     </div>
                 </div>
             </div>

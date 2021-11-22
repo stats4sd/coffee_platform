@@ -16,6 +16,8 @@ files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(
 Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
 
+Vue.mixin(require('./trans'))
+
 const app = new Vue({
     el: '#app',
 });

@@ -3,10 +3,11 @@
 namespace App\Models;
 
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
+use App\Models\Traits\HasTranslations;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Muncipality extends Model
+class Municipality extends Model
 {
     use CrudTrait, HasFactory;
 
@@ -16,13 +17,9 @@ class Muncipality extends Model
     |--------------------------------------------------------------------------
     */
 
-    protected $table = 'muncipalities';
-    // protected $primaryKey = 'id';
-    // public $timestamps = false;
+    protected $table = 'municipalities';
     protected $guarded = ['id'];
-    // protected $fillable = [];
-    // protected $hidden = [];
-    // protected $dates = [];
+
 
     /*
     |--------------------------------------------------------------------------

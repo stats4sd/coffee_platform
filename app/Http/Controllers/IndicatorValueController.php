@@ -47,38 +47,38 @@ class IndicatorValueController extends Controller
         if ($request->has('indicators')) {
             $export = $export->forIndicators($request->input('indicators'));
         }
-    
+
         if ($request->has('countries') && count($request->input('countries')) > 0) {
             $export = $export->forCountries($request->input('countries'));
         }
-    
+
         if ($request->has('years') && count($request->input('years')) > 0) {
             $export = $export->forYears($request->input('years'));
         }
-    
+
         if ($request->has('types') && count($request->input('types')) > 0) {
             $export = $export->forTypes($request->input('types'));
         }
-    
+
         if ($request->has('purposes') && count($request->input('purposes')) > 0) {
             $export = $export->forPurposes($request->input('purposes'));
         }
-    
+
         if ($request->has('genders') && count($request->input('genders')) > 0) {
             $export = $export->forGenders($request->input('genders'));
         }
-    
+
         if ($request->has('scopes') && count($request->input('scopes')) > 0) {
             $export = $export->forScopes($request->input('scopes'));
         }
-        
+
 
         $filename = 'indicator-values-exports/indicator-values-'.now()->format('Y-M-D_his').'.xlsx';
 
         $success = Excel::store($export, $filename, 'public');
 
         if (! $success) {
-            return response('Could not export data - please check logs', 500);
+            return response(t('Could not export data - please try again or contact the website support team'), 500);
         }
 
         return $filename;
@@ -107,7 +107,10 @@ class IndicatorValueController extends Controller
         $indicatorValueIds = Collect($request->input('indicator_values'))->pluck('id')->toArray();
         $indicatorValueIds = implode(",", $indicatorValueIds);
 
-        $process = new Process(['Rscript', 'makeReport.R', $excelPath, $indicatorValueIds]);
+        // choose correct R script based on current locale
+        $scriptFile = 'makeReport_' . session('locale') . '.R';
+
+        $process = new Process(['Rscript', $scriptFile, $excelPath, $indicatorValueIds]);
         $process->setWorkingDirectory(base_path('scripts/Rscript'));
 
         $process->run();
@@ -116,7 +119,7 @@ class IndicatorValueController extends Controller
             throw new ProcessFailedException($process);
         }
 
-        $filename = 'indicator-values-exports/indicator-values-report-'.now()->toDateTimeString().'.pdf';
+        $filename = 'indicator-values-exports/indicator-values-report-'.session('locale').'-'.now()->toDateTimeString().'.pdf';
 
         copy(base_path('scripts/Rscript/PDF_Report_Script.pdf'), storage_path('app/public/'.$filename));
 

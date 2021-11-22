@@ -20,7 +20,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>State of the Smallholder Coffee Farmer</title>
+    <title>{{ t('State of the Smallholder Coffee Farmer') }}</title>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -43,11 +43,11 @@
         <footer class="py-3 mt-auto bg-dark footer">
             <div class="container d-flex flex-justify-between">
                 <div class="col-sm-3">
-                    <p class="m-0 text-white" ><b>Contact:</b> <a class="m-0 text-white" href="mailto:coffee@stats4sd.org">coffee@stats4sd.org</a></p>
+                    <p class="m-0 text-white" ><b>{{ t('Contact:') }}</b> <a class="m-0 text-white" href="mailto:coffee@stats4sd.org">coffee@stats4sd.org</a></p>
                 </div>
                 <div class="container d-flex justify-content-end flex-column align-items-end">
-                    <p class="m-0 text-white" >Developed by <a class="m-0 text-white" href="https://stats4sd.org/">Stats4SD</a></p>
-                    <a class="m-0 text-white" href="{{ route('backpack') }}">Admin Login</a>
+                    <p class="m-0 text-white" >{{ t('Developed by :stats4sd', ['stats4sd' => '<a class="m-0 text-white" href="https://stats4sd.org/">Stats4SD</a>']) }}</p>
+                    <a class="m-0 text-white" href="{{ route('backpack') }}">{{ t('Admin Login') }}</a>
                 </div>
             </div>
         </footer>
@@ -55,9 +55,9 @@
 
 
 
-    <script src="{{ asset('js/app.js') }}"></script>
     @yield('scripts')
     @stack('scripts')
+    <script src="{{ asset('js/app.js') }}"></script>
 
 </body>
 </html>
