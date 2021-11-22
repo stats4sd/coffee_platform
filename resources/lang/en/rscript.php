@@ -11,5 +11,6 @@ return [
     'indicator_graph' => 'Indicator Graph',
     'indicator_values' => 'Indicator Values',
     'indicator_definitions' => 'Indicator Definitions',
+    'suggested_citation' => 'Suggested citation',
 
 ];
