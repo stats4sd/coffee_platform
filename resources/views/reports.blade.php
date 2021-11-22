@@ -27,7 +27,7 @@
         <div class="row">
             <div class="col-md-6 px-5 pt-5">
                 <div class="d-flex justify-content-center">
-                    <img src="images/report_english.jpg" id="image_report_download"/>
+                    <img src="{{ url('images/report_english.jpg') }}" id="image_report_download_english"/>
                 </div>
                 <div class="d-flex justify-content-center mt-5 mb-5">
                     <a href="docs/State of the Smallholder Coffee Farmer.pdf"><button class="button-green">
@@ -37,7 +37,7 @@
             </div>
             <div class="col-md-6 px-5 pt-5">
                 <div class="d-flex justify-content-center">
-                    <img src="images/report_spanish.jpg" id="image_report_download"/>
+                    <img src="{{ url('images/report_spanish.jpg') }}" id="image_report_download_spanish"/>
                 </div>
                 <div class="d-flex justify-content-center mt-5 mb-5">
                     <a href="docs/Situacion de los pequenos caficultores.pdf"><button class="button-green">
