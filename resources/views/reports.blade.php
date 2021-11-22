@@ -41,7 +41,7 @@
                 </div>
                 <div class="d-flex justify-content-center mt-5 mb-5">
                     <a href="docs/Situacion de los pequenos caficultores.pdf"><button class="button-green">
-                        {{ t('Download Spanish' }} <i
+                        {{ t('Download Spanish') }} <i
                         class='las la-arrow-down'></i></button></a>
                 </div>
             </div>            
