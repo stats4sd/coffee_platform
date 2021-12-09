@@ -30,7 +30,7 @@
                     <img src="{{ url('images/report_english.jpg') }}" id="image_report_download_english"/>
                 </div>
                 <div class="d-flex justify-content-center mt-5 mb-5">
-                    <a href="docs/State of the Smallholder Coffee Farmer.pdf"><button class="button-green">
+                    <a href="{{ url('docs/State of the Smallholder Coffee Farmer.pdf') }}"><button class="button-green">
                         {{ t('Download English') }} <i
                         class='las la-arrow-down'></i></button></a>
                 </div>
@@ -40,11 +40,11 @@
                     <img src="{{ url('images/report_spanish.jpg') }}" id="image_report_download_spanish"/>
                 </div>
                 <div class="d-flex justify-content-center mt-5 mb-5">
-                    <a href="docs/Situacion de los pequenos caficultores.pdf"><button class="button-green">
+                    <a href="{{ url('docs/Situacion de los pequenos caficultores.pdf') }}"><button class="button-green">
                         {{ t('Download Spanish') }} <i
                         class='las la-arrow-down'></i></button></a>
                 </div>
-            </div>            
+            </div>
         </div>
     </div>
 </div>
