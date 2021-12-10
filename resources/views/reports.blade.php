@@ -24,13 +24,25 @@
             </div>
         </div>
     </div>
-    <div class="container px-4 my-5 px-5 py-5">
-        <h2 class="mt-5 text-green">Download the report</h2>
-        <p> The report is currently available to download in English and will be released in Spanish soon.</p>
-            <div class="d-flex justify-content-left mt-5 mb-5">
-                <a href="docs/State of the Smallholder Coffee Farmer.pdf" target="_blank"><button class="button-green">Download in English <i
-                    class='las la-arrow-down'></i></button></a>
+    <div class="container-fluid px-4 my-5 px-5 py-5">
+        <div class="row">
+            <div class="col-md-6 px-5 pt-5">
+                <div class="d-flex justify-content-center">
+                    <img src="images/report_english.png" id="image_report_download_english"/>
+                </div>
+                <div class="d-flex justify-content-center mt-5 mb-5">
+                    <a href="docs/State of the Smallholder Coffee Farmer.pdf" target="_blank"><button class="button-green">Download English<i class='las la-arrow-down'></i></button></a>
+                </div>
             </div>
+            <div class="col-md-6 px-5 pt-5">
+                <div class="d-flex justify-content-center">
+                    <img src="images/report_spanish.png" id="image_report_download_spanish"/>
+                </div>
+                <div class="d-flex justify-content-center mt-5 mb-5">
+                    <a href="docs/Situacion de los pequenos caficultores.pdf" target="_blank"><button class="button-green">Download Spanish <i class='las la-arrow-down'></i></button></a>
+                </div>
+            </div>            
+        </div>
     </div>
 </div>
 
