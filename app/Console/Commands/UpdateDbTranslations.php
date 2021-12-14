@@ -86,6 +86,9 @@ class UpdateDbTranslations extends Command
                         continue;
                     }
 
+                    // sanitise string ready for translation:
+                    $value = Str::of($value)->replace("'", "\\'");
+
 
                     $this->addToPlaceholder("
                 [
