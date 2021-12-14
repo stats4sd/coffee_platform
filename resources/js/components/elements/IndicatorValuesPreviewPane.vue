@@ -57,7 +57,7 @@
             </template>
             <template #cell(unit)="row">
                 <span v-if="!showStandardUnit">{{ row.item.unit.name }}</span>
-                <span v-if="showStandardUnit">{{ row.item.standard_unit }}</span>
+                <span v-if="showStandardUnit">{{ row.item.standard_unit_name }}</span>
             </template>
         </b-table>
 

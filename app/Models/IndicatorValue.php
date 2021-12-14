@@ -38,6 +38,7 @@ class IndicatorValue extends Model
         'country_id',
         'converted_value',
         'standard_unit',
+        'standard_unit_name',
         'conversion_rate',
         'all_years',
         'small_sample',
@@ -112,7 +113,7 @@ class IndicatorValue extends Model
         {
             return $this->geoBoundary->region->name;
         }
-        else 
+        else
         {
             return null;
         }
@@ -124,7 +125,7 @@ class IndicatorValue extends Model
         {
             return $this->geoBoundary->department->name;
         }
-        else 
+        else
         {
             return null;
         }
@@ -148,6 +149,15 @@ class IndicatorValue extends Model
     {
         if (!empty($this->unit)) {
             return $this->unit->unitType->standard_unit;
+        } else {
+            return null;
+        }
+    }
+
+    public function getStandardUnitNameAttribute()
+    {
+        if(!empty($this->unit)) {
+            return Unit::find($this->unit->unitType->standard_unit)->unit;
         } else {
             return null;
         }
