@@ -121,7 +121,9 @@ class IndicatorValueController extends Controller
 
         $filename = 'indicator-values-exports/indicator-values-report-'.session('locale').'-'.now()->toDateTimeString().'.pdf';
 
-        copy(base_path('scripts/Rscript/PDF_Report_Script.pdf'), storage_path('app/public/'.$filename));
+        $pdfPath = 'scripts/Rscript/PDF_Report_Script_' . session('locale') . '.pdf';
+
+        copy(base_path($pdfPath), storage_path('app/public/'.$filename));
 
         return Storage::disk('public')->url($filename);
     }
