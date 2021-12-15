@@ -15,7 +15,7 @@ FitFlextableToPage <- function(ft, pgwidth = 6){
 report_characteristics <- function(data, x){
   
   report_characteristics <- data.frame(
-    col1 = c("Country", "Years", "Source Type", "Purpose", "Gender", "Scope"),
+    col1 = c("País", "Años", "Tipo de fuente", "Propósito", "Género", "Alcance"),
     col2 = c(
       gsub('"', '',paste(shQuote(unique(data$country)), collapse=", ")),
       gsub('"', '',paste(shQuote(unique(data$year)), collapse=", ")),
@@ -27,8 +27,8 @@ report_characteristics <- function(data, x){
   )
   
   report_characteristics <- flextable(report_characteristics)%>%
-    set_header_labels(col1 = "Report Characteristics",
-                      col2 = "Report Characteristics")%>%
+    set_header_labels(col1 = "Características del informe",
+                      col2 = "Características del informe")%>%
     merge_v(j = 1)%>%
     merge_h(part = "header")%>%
     bg(i = 1, bg = "#BED95B", part = "header")%>%
@@ -45,7 +45,7 @@ indicator_details <- function(data, x){
   data <- data%>%filter(code == x)
   
   value_table <- data.frame(
-    "col1" = c("Indicator", "Indicator code", "Indicator unit"),
+    "col1" = c("Indicador", "Código indicador", "Unidad del indicador"),
     "col2" = c(data$name[1], x, data$unit_standard[1])
   )
   
@@ -69,10 +69,10 @@ value_table <- function(data, x, y){
     filter(code == x & country == y)%>%
     select(country,purpose, gender, scope, source_name, value_standard, year, group, sample_size)%>%
     arrange(year)%>%
-    mutate(Purpose = paste0(purpose, "\n",
-                            "Gender: ", gender, "\n",
-                            "Scope: ", scope))%>%
-    mutate(source_name = ifelse(!is.na(group), paste0(source_name, " Group:", group), source_name))%>%
+    mutate("Propósito" = paste0(purpose, "\n",
+                            "Género: ", gender, "\n",
+                            "Alcance: ", scope))%>%
+    mutate(source_name = ifelse(!is.na(group), paste0(source_name, " Grupo:", group), source_name))%>%
     select(-purpose, -scope, -gender, -group)
     
   if(sample_minimum<=20){
@@ -82,20 +82,20 @@ value_table <- function(data, x, y){
       select(-sample_size)%>%
       pivot_wider(names_from = year, values_from = value_standard)%>%
       mutate_all(as.character)%>%
-      rename("Source" = "source_name")%>%
+      rename("Fuente" = "source_name")%>%
       replace(is.na(.), "-")%>%
       select(-country)%>%
-      mutate(Purpose = as.factor(Purpose))%>%
-      arrange(Purpose)%>%
-      as_grouped_data("Purpose")%>%
+      mutate("Propósito" = as.factor("Propósito"))%>%
+      arrange("Propósito")%>%
+      as_grouped_data("Propósito")%>%
       as_flextable()%>%
       add_header_lines(values = y)%>%
-      bold(i = ~!is.na(Purpose))%>%
+      bold(i = ~!is.na("Propósito"))%>%
       bg(i = 1, bg = "#CAE5F5", part = "header")%>%
       bg(i = 2, bg = "#BED95B", part = "header")%>%
-      bg(i = ~!is.na(Purpose), bg = "#E0EDB2")%>%
+      bg(i = ~!is.na("Propósito"), bg = "#E0EDB2")%>%
       theme_box()%>%
-      add_footer_lines(values = "* - Sample size for reported value is 20 or less")%>%
+      add_footer_lines(values = "* - El tamaño de la muestra para este valor es 20 o menor de 20")%>%
       fix_border_issues()%>%
       align(j = 2:(year_n+1), align = "center")%>%
       align(i = 2, j = 2:(year_n+1), align = "center", part = "header")
@@ -114,18 +114,18 @@ value_table <- function(data, x, y){
     select(-sample_size)%>%
     pivot_wider(names_from = year, values_from = value_standard)%>%
     mutate_all(as.character)%>%
-    rename("Source" = "source_name")%>%
+    rename("Fuente" = "source_name")%>%
     replace(is.na(.), "-")%>%
     select(-country)%>%
-    mutate(Purpose = as.factor(Purpose))%>%
-    arrange(Purpose)%>%
-    as_grouped_data("Purpose")%>%
+    mutate("Propósito" = as.factor("Propósito"))%>%
+    arrange("Propósito")%>%
+    as_grouped_data("Propósito")%>%
     as_flextable()%>%
     add_header_lines(values = y)%>%
-    bold(i = ~!is.na(Purpose))%>%
+    bold(i = ~!is.na("Propósito"))%>%
     bg(i = 1, bg = "#CAE5F5", part = "header")%>%
     bg(i = 2, bg = "#BED95B", part = "header")%>%
-    bg(i = ~!is.na(Purpose), bg = "#E0EDB2")%>%
+    bg(i = ~!is.na("Propósito"), bg = "#E0EDB2")%>%
     theme_box()%>%
     fix_border_issues()%>%
     align(j = 2:(year_n+1), align = "center")%>%
@@ -152,8 +152,8 @@ bar_graph <- function(data, x){
     p1 <- data%>%
       ggplot(aes(fill = country, y=value_standard/100, x = year))+
       geom_col(position = position_dodge2(preserve = "single"))+
-      labs(fill = "Country",
-           x = "Year",
+      labs(fill = "País",
+           x = "Año",
            y = paste0(data$name, " (", data$unit_standard[1], ")"),
            title = paste(data$code, " ", data$name))+
       scale_fill_manual(breaks = c("Guatemala", "Honduras", "Nicaragua"), 
@@ -170,8 +170,8 @@ bar_graph <- function(data, x){
   p1 <- data%>%
     ggplot(aes(fill = country, y=value_standard, x = year))+
     geom_col(position = position_dodge2(preserve = "single"))+
-    labs(fill = "Country",
-         x = "Year",
+    labs(fill = "País",
+         x = "Año",
          y = paste0(data$name, " (", data$unit_standard[1], ")"),
          title = paste(data$code, " ", data$name))+
     scale_fill_manual(breaks = c("Guatemala", "Honduras", "Nicaragua"), 
@@ -191,10 +191,10 @@ definition_table <- function(data, x){
     slice(1)
   
   definition_table <- flextable(t)%>%
-    set_header_labels(source_name = "Source",
-                      source_partner = "Source Partner",
-                      indicator_name_original = "Original Indicator Name",
-                      definition_original = "Indicator Definition")%>%
+    set_header_labels(source_name = "Fuente",
+                      source_partner = "Socio fuente",
+                      indicator_name_original = "Nombre del indicador original",
+                      definition_original = "Definición del indicador")%>%
     bg(i = 1, bg = "#BED95B", part = "header")%>%
     theme_box()%>%
     fix_border_issues()%>%
