@@ -66,7 +66,7 @@
         <br>
         <h2 class="mt-5 text-green">{{ t('Contact Us') }}</h2>
         <p>
-            {{ t(' If you would like to get in contact with us please email :link', ['link' => '<a href="mailto:coffee@stats4sd.org" style="color: #66AC47">coffee@stats4sd.org</a>']) }}
+            {{ t(' If you would like to get in contact with us please email: ') }} <a href="mailto:coffee@stats4sd.org" style="color: #66AC47">coffee@stats4sd.org</a>
         </p>
     </div>
 </div>

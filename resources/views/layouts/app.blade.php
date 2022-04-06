@@ -46,7 +46,7 @@
                     <p class="m-0 text-white" ><b>{{ t('Contact:') }}</b> <a class="m-0 text-white" href="mailto:coffee@stats4sd.org">coffee@stats4sd.org</a></p>
                 </div>
                 <div class="container d-flex justify-content-end flex-column align-items-end">
-                    <p class="m-0 text-white" >{{ t('Developed by :stats4sd', ['stats4sd' => '<a class="m-0 text-white" href="https://stats4sd.org/">Stats4SD</a>']) }}</p>
+                    <p class="m-0 text-white" >{{ t('Developed by: ') }} <a class="m-0 text-white" href="https://stats4sd.org/">Stats4SD</a></p>
                     <a class="m-0 text-white" href="{{ route('backpack') }}">{{ t('Admin Login') }}</a>
                 </div>
             </div>
