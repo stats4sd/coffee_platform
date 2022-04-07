@@ -12,6 +12,8 @@ FitFlextableToPage <- function(ft, pgwidth = 6){
   return(ft_out)
 }
 
+#Propósito
+
 report_characteristics <- function(data, x){
   
   report_characteristics <- data.frame(
@@ -85,15 +87,15 @@ value_table <- function(data, x, y){
       rename("Fuente" = "source_name")%>%
       replace(is.na(.), "-")%>%
       select(-country)%>%
-      mutate("Propósito" = as.factor("Propósito"))%>%
+      mutate("Propósito" = as.factor(Propósito))%>%
       arrange("Propósito")%>%
       as_grouped_data("Propósito")%>%
       as_flextable()%>%
       add_header_lines(values = y)%>%
-      bold(i = ~!is.na("Propósito"))%>%
+      bold(i = ~!is.na(Propósito))%>%
       bg(i = 1, bg = "#CAE5F5", part = "header")%>%
       bg(i = 2, bg = "#BED95B", part = "header")%>%
-      bg(i = ~!is.na("Propósito"), bg = "#E0EDB2")%>%
+      bg(i = ~!is.na(Propósito), bg = "#E0EDB2")%>%
       theme_box()%>%
       add_footer_lines(values = "* - El tamaño de la muestra para este valor es 20 o menor de 20")%>%
       fix_border_issues()%>%
@@ -117,15 +119,15 @@ value_table <- function(data, x, y){
     rename("Fuente" = "source_name")%>%
     replace(is.na(.), "-")%>%
     select(-country)%>%
-    mutate("Propósito" = as.factor("Propósito"))%>%
+    mutate("Propósito" = as.factor(Propósito))%>%
     arrange("Propósito")%>%
     as_grouped_data("Propósito")%>%
     as_flextable()%>%
     add_header_lines(values = y)%>%
-    bold(i = ~!is.na("Propósito"))%>%
+    bold(i = ~!is.na(Propósito))%>%
     bg(i = 1, bg = "#CAE5F5", part = "header")%>%
     bg(i = 2, bg = "#BED95B", part = "header")%>%
-    bg(i = ~!is.na("Propósito"), bg = "#E0EDB2")%>%
+    bg(i = ~!is.na(Propósito), bg = "#E0EDB2")%>%
     theme_box()%>%
     fix_border_issues()%>%
     align(j = 2:(year_n+1), align = "center")%>%
