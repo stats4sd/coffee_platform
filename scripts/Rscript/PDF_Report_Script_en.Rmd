@@ -1,5 +1,5 @@
 ---
-output: 
+output:
   pdf_document:
     includes:
       in_header: header.tex
@@ -28,9 +28,15 @@ set_flextable_defaults(fonts_ignore=TRUE)
 ```
 
 ```{r}
-#source("IndicatorStatement.R")
-source("functions.R")
-data <- read.xlsx("example data/Example data 3.xlsx")
+
+## Load Excel file with data
+source("IndicatorStatement.R")
+
+## Reference functions
+# Functions file is language specific as column headers and other label strings are hard-coded in amongst the various generate functions
+source("functions_en.R")
+
+data <- excelData
 
 countries <- unique(data$country)
 
@@ -58,10 +64,9 @@ report_characteristics(data)
 date <- format(Sys.time(), '%m-%d-%Y')
 
 cat("  \n##")
-    
+
 cat("  \n", "\\textbf{\\textcolor{darkgreen}{Suggested citation:}}", " *State of the Smallholder Coffee Farmer - Indicator Report.* Available at:", "  \n", "\\textcolor[HTML]{159FDA}{https://coffeesmallholder.org/indicators}", paste0("(Accessed: ", date, ").", "\n"))
 ```
-
 
 ```{r, results='asis', ft.align='left'}
 cat('\n\n<!-- -->\n\n')
@@ -69,15 +74,15 @@ cat('\n\n<!-- -->\n\n')
 cat("\n\n\\pagebreak\n")
 
 for(i in 1:length(indicator_codes)){
-  
-data_x <- data%>%filter(code == indicator_codes[i])  
+
+data_x <- data%>%filter(code == indicator_codes[i])
 
 cat("  \n#", data_x$code[1], data_x$name[1], "\n")
 
 cat("  \n##", "\\textit{\\textcolor{darkgreen}{Indicator details}}", "\n")
 
   z <- indicator_details(data, indicator_codes[i])
-  
+
   cat(knit_print(z))
 
 cat('\n\n<!-- -->\n\n')
@@ -93,13 +98,18 @@ cat("\n\n\\pagebreak\n")
 cat("  \n##", "\\textit{\\textcolor{darkgreen}{Indicator Values}}", "\n")
 
 for(m in 1:length(countries)){
-  
-  x <- value_table(data, indicator_codes[i], countries[m])
-  
-  cat(knit_print(x))
-  
-  cat('\n\n<!-- -->\n\n')
-  
+
+  data_y <- data%>%filter(code == indicator_codes[i], country == countries[m])
+
+  if(nrow(data_y)>0){
+
+    x <- value_table(data, indicator_codes[i], countries[m])
+
+    cat(knit_print(x))
+
+    cat('\n\n<!-- -->\n\n')
+  }
+
 }
 
 cat('\n\n<!-- -->\n\n')
@@ -107,7 +117,7 @@ cat('\n\n<!-- -->\n\n')
 cat("  \n##",  "\\textit{\\textcolor{darkgreen}{Indicator Definitions}}", "\n")
 
   y <- definition_table(data, indicator_codes[i])
-  
+
   cat(knit_print(y))
 
 cat('\n\n<!-- -->\n\n')

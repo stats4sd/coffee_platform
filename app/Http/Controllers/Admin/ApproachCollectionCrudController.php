@@ -37,7 +37,7 @@ class ApproachCollectionCrudController extends CrudController
     {
         CRUD::setModel(\App\Models\ApproachCollection::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/approach_collection');
-        CRUD::setEntityNameStrings('collection approach', 'approach collections');
+        CRUD::setEntityNameStrings(t('Approach'), t('Approaches to collection'));
 
         CRUD::set('export.exporter', ApproachCollectionsExport::class);
         CRUD::set('import.importer', ApproachCollectionsImport::class);
@@ -51,13 +51,7 @@ class ApproachCollectionCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        CRUD::setFromDb(); // columns
-
-        /**
-         * Columns can be defined using the fluent syntax or array syntax:
-         * - CRUD::column('price')->type('number');
-         * - CRUD::addColumn(['name' => 'price', 'type' => 'number']);
-         */
+        CRUD::column('name')->type('text')->label(t('Name'));
     }
 
     /**
@@ -70,13 +64,8 @@ class ApproachCollectionCrudController extends CrudController
     {
         CRUD::setValidation(ApproachCollectionRequest::class);
 
-        CRUD::setFromDb(); // fields
+        CRUD::field('name')->type('text')->label(t('Name'));
 
-        /**
-         * Fields can be defined using the fluent syntax or array syntax:
-         * - CRUD::field('price')->type('number');
-         * - CRUD::addField(['name' => 'price', 'type' => 'number']));
-         */
     }
 
     /**
@@ -93,14 +82,14 @@ class ApproachCollectionCrudController extends CrudController
     protected function setupImportOperation()
     {
         //CRUD::removeAllFields();
-        CRUD::field('import_instructions')->type('custom_html')->value('
-            <div class="alert">
-            <h3>Instructions</h3>
+        CRUD::field('import_instructions')->type('custom_html')->value(
+            '<div class="alert">' .
+            t('<h3>Instructions</h3>
             Please upload the Excel file containing new collection approaches.
             <ul>
                 <li>The file should be in the same format as the file downloadable on the main view page.</li>
-            </ul>
-            </div>
-        ');
+            </ul>') .
+            '</div>'
+        );
     }
 }

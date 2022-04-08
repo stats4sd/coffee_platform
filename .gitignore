@@ -22,6 +22,16 @@ yarn-error.log
 /scripts/Rscript/.RData
 /scripts/Rscript/.Ruserdata
 /scripts/Rscript/PDF-Report-Script.pdf
+/scripts/Rscript/*.log
+/scripts/Rscript/*.tex
 **/~$*.docx
 *.DS_Store
 /public/docs
+.idea
+/resources/lang/VueTranslationPlaceholder.php
+/resources/lang/DbTranslationPlaceholder.php
+/resources/js/translations.json
+/resources/lang/.translation_io
+/resources/lang/gettext/es/LC_MESSAGES/app.mo
+/resources/lang/gettext/es/app.po
+

@@ -32,7 +32,7 @@ class UnitCrudController extends CrudController
     {
         CRUD::setModel(\App\Models\Unit::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/unit');
-        CRUD::setEntityNameStrings('unit', 'units');
+        CRUD::setEntityNameStrings(t('units'), t('units'));
     }
 
     /**
@@ -43,10 +43,10 @@ class UnitCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        CRUD::column('unit');
-        CRUD::column('unitType')->type('relationship')->label('Unit measures...');
-        CRUD::column('conversion_rate');
-        CRUD::column('unitType')->key('unitTypeStandard')->type('relationship')->attribute('standard_unit')->label('Standard unit');
+        CRUD::column('unit')->label(t('Name'));
+        CRUD::column('unitType')->type('relationship')->label(t('Unit measures...'));
+        CRUD::column('conversion_rate')->label(t('Conversion rate'));
+        CRUD::column('unitType')->key('unitTypeStandard')->type('relationship')->attribute('standard_unit')->label(t('Standard unit'));
     }
 
     /**
@@ -59,20 +59,14 @@ class UnitCrudController extends CrudController
     {
         CRUD::setValidation(UnitRequest::class);
 
-
-        $unit = 'of this unit';
-        $standardUnit = 'of the standard unit';
-
-
-
-        CRUD::field('unit')->label('What is the unit called?');
+        CRUD::field('unit')->label(t('What is the unit called?'));
         CRUD::field('unit_type_id')
         ->entity('unitType')
         ->model(UnitType::class)
         ->multiple(false)
         ->type('relationship')
         ->attribute('name_with_unit')
-        ->label("What does this unit measure?")
+        ->label(t("What does this unit measure?"))
         ->ajax([
             'minimum_input_length' => 0,
 
@@ -83,39 +77,40 @@ class UnitCrudController extends CrudController
             'create_route' => route('unittype-inline-create-save'), //manually specifying these as by default it will try 'unit-type' instead of 'unittype' (which doesn't exist). Seems like a bug in how inline create routes are created.
         ]);
 
-        CRUD::field('tab-text')->type('custom_html')->value('<b>Complete ONE of the tabs below, depending on the unit type.</b>');
+        CRUD::field('tab-text')->type('custom_html')->value(t('<b>Complete ONE of the tabs below, depending on the unit type.</b>'));
 
 
         CRUD::field('conversion-text')->type('custom_html')
-        ->value("<h5>Conversion Rate - Normal Unit Types</h5>
+        ->value(t("<h5>Conversion Rate - Normal Unit Types</h5>
         <p>To correctly convert this unit into the standard unit defined for this type of measurement, please enter ONE of the following:</p>
-        ")->tab('Normal Unit Types');
+        "))->tab(t('Normal Unit Types'));
 
-        CRUD::field('to_standard')->label("How many of this unit equals 1 of the standard unit (selected above)?")
+        CRUD::field('to_standard')->label(t("How many of this unit equals 1 of the standard unit (selected above)?"))
         ->type('number')
         ->attributes(['step' => 'any'])
-        ->prefix("1 of this unit equals... ")
-        ->suffix("of the standard unit")->tab('Normal Unit Types');
+        ->prefix(t("1 of this unit equals... "))
+        ->suffix(t("...of the standard unit"))->tab(t('Normal Unit Types'));
         ;
-        CRUD::field("from_standard")->label("How many of the standard units equals 1 of this unit?")
+        CRUD::field("from_standard")->label(t("How many of the standard units equals 1 of this unit?"))
         ->type("number")
         ->attributes(['step' => 'any'])
-        ->prefix("1 of the standard unit equals... ")
-        ->suffix("of this unit")->tab('Normal Unit Types');
-        ;
+        ->prefix(t("1 of the standard unit equals... "))
+        ->suffix(t("...of this unit"))->tab(t('Normal Unit Types'));
+
 
         CRUD::field('conversion-year-text')->type('custom_html')
-        ->value('<h5>For Currency Only - Year-by-year conversion rates</h5>
+        ->value(t('<h5>For Currency Only - Year-by-year conversion rates</h5>
         <p>For a currency unit, please enter the conversion rate for each year needed in the platform.</p>
-        ')->tab('Types Split By Year');
-        ;
+        '))->tab(t('Types Split By Year'));
+
 
         CRUD::field('conversion_years')->type('table')
-        ->columns([
-            'to_standard' => '1 of this unit equals X of the standard unit',
-            'year' => 'Year (YYYY)',
-        ])->tab('Types Split By Year');
-        ;
+        ->label(t('Conversion Years'))
+            ->columns([
+            'to_standard' => t('1 of this unit equals X of the standard unit'),
+            'year' => t('Year (YYYY)'),
+        ])->tab(t('Types Split By Year'));
+
     }
 
     /**

@@ -23,22 +23,29 @@ use App\Http\Controllers\PurposeOfCollectionController;
 |
 */
 
-Route::view('/', 'home')->name('home');
-Route::view('about', 'about')->name('about');
-Route::view('webinar', 'webinar')->name('webinar');
-Route::view('reports', 'reports')->name('reports');
-Route::view('indicators', 'indicators')->name('indicators');
+
+// surrounding all main front-end routes with local middleware:
+// - check.locale checks if the url is prefixed with a valid locale: if not, it prepends the default locale based on user's browser or session
+Route::prefix('{locale?}')->middleware(['add.locale', 'set.locale'])->group(function () {
+
+    Route::view('/', 'home')->name('home');
+    Route::view('about', 'about')->name('about');
+    Route::view('webinar', 'webinar')->name('webinar');
+    Route::view('reports', 'reports')->name('reports');
+    Route::view('indicators', 'indicators')->name('indicators');
 
 
-Route::get('indicators/search', [IndicatorValueController::class, 'index'])->name('indicators.search');
-Route::post('indicators/download/', [IndicatorValueController::class, 'download'])->name('indicators.download');
-Route::post('indicators/report', [IndicatorValueController::class, 'report'])->name('indicators.report');
+    Route::get('indicators/search', [IndicatorValueController::class, 'index'])->name('indicators.search');
+    Route::post('indicators/download/', [IndicatorValueController::class, 'download'])->name('indicators.download');
+    Route::post('indicators/report', [IndicatorValueController::class, 'report'])->name('indicators.report');
 
-Route::get('country', [CountryController::class, 'index'])->name('country.index');
-Route::get('year', [IndicatorValueController::class, 'getYears'])->name('year.index');
-Route::get('type', [TypeController::class, 'index'])->name('type.index');
-Route::get('purposeofcollection', [PurposeOfCollectionController::class, 'index'])->name('purposeOfCollection.search');
-Route::get('characteristic', [CharacteristicController::class, 'index'])->name('characteristic.index');
-Route::get('subcharacteristic', [SubCharacteristicController::class, 'index'])->name('subcharacteristic.index');
-Route::get('gender', [GenderController::class, 'index'])->name('gender.index');
-Route::get('scope', [ScopeController::class, 'index'])->name('scope.index');
+    // indexes for main Indicator Hub
+    Route::get('country', [CountryController::class, 'index'])->name('country.index');
+    Route::get('year', [IndicatorValueController::class, 'getYears'])->name('year.index');
+    Route::get('type', [TypeController::class, 'index'])->name('type.index');
+    Route::get('purposeofcollection', [PurposeOfCollectionController::class, 'index'])->name('purposeOfCollection.search');
+    Route::get('characteristic', [CharacteristicController::class, 'index'])->name('characteristic.index');
+    Route::get('subcharacteristic', [SubCharacteristicController::class, 'index'])->name('subcharacteristic.index');
+    Route::get('gender', [GenderController::class, 'index'])->name('gender.index');
+    Route::get('scope', [ScopeController::class, 'index'])->name('scope.index');
+});
