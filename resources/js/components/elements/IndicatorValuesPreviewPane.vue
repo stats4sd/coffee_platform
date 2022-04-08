@@ -3,7 +3,7 @@
         :id="id"
         centered
         size="xl"
-        title="Indicator Values"
+        :title="$__('Indicator Values')"
         header-bg-variant="primary"
         header-text-variant="light"
     >
@@ -11,7 +11,7 @@
             #modal-title
         >
             <h2 class="font-weight-bold w-75">
-                Indicator Values Preview
+                {{ $__('Indicator Values Preview') }}
             </h2>
         </template>
 
@@ -29,7 +29,7 @@
             thead-class="bg-light open-top"
         >
             <template #cell(source_public)="row">
-                {{ row.item.source_public == 1 ? "Yes" : "No" }}
+                {{ row.item.source_public == 1 ? $__('Yes') : $__('No') }}
             </template>
             <template #cell(sample_size)="row">
                 <span
@@ -43,7 +43,7 @@
                         v-if="row.item.sample_size && row.item.sample_size < 21"
                         class="mr-2"
                     >
-                        (Note: Small sample!)
+                        ({{ $__('Note: Small sample!') }})
                     </small>
                 </span>
             </template>
@@ -52,26 +52,26 @@
                 <span v-if="showStandardUnit">{{ row.item.conversion_rate ? row.item.converted_value : '-' }}</span>
             </template>
             <template #head(unit)="row">
-                <span v-if="!showStandardUnit">Unit</span>
-                <span v-if="showStandardUnit">Standard Unit</span>
+                <span v-if="!showStandardUnit">{{ $__('Unit') }}</span>
+                <span v-if="showStandardUnit">{{ $__('Standard Unit') }}</span>
             </template>
             <template #cell(unit)="row">
                 <span v-if="!showStandardUnit">{{ row.item.unit.name }}</span>
-                <span v-if="showStandardUnit">{{ row.item.standard_unit }}</span>
+                <span v-if="showStandardUnit">{{ row.item.standard_unit_name }}</span>
             </template>
         </b-table>
 
         <template #modal-footer>
             <template v-if="conversionNeeded">
-                <div>When downloading data to Excel, both original and standardised values will be included.</div>
+                <div>{{ $__('When downloading data to Excel, both original and standardised values will be included.') }}</div>
                 <b-button
                     size="sm"
                     variant="info"
                     class="ml-2 pr-2 font-weight-bold"
                     @click="toggleUnits"
                 >
-                    <span v-if="!showStandardUnit">Show values in standardised units</span>
-                    <span v-if="showStandardUnit">Show values in original unit</span>
+                    <span v-if="!showStandardUnit">{{ $__('Show values in standardised units') }}</span>
+                    <span v-if="showStandardUnit">{{ $__('Show values in original unit') }}</span>
                 </b-button>
             </template>
             <b-button
@@ -81,10 +81,10 @@
                 @click="toggleIndicatorSelection(indicator)"
             >
                 <span v-if="!selected">
-                    <i class="las la-plus" /> Add to selection
+                    <i class="las la-plus" /> {{ $__('Add to selection') }}
                 </span>
                 <span v-if="selected">
-                    <i class="las la-check mr-4" /> selected
+                    <i class="las la-check mr-4" /> {{ $__('selected') }}
                 </span>
             </b-button>
             <b-button
@@ -126,28 +126,31 @@
                 fields: [
                     {
                         key: "geo_boundary.country.name",
-                        label: "Country"
+                        label: this.$__('Country')
                     },
                     {
                         key: "all_years",
-                        label: "Year"
+                        label: this.$__('Year')
                     },
-                    "value",
+                    {
+                        key: "value",
+                        label: this.$__('Value')
+                    },
                     {
                         key: "unit",
-                        label: "Unit"
+                        label: this.$__('Unit')
                     },
                     {
                         key: "sample_size",
-                        label: "Sample size"
+                        label: this.$__('Sample size')
                     },
                     {
                         key: "gender.name",
-                        label: "Gender"
+                        label: this.$__('Gender')
                     },
                     {
                         key: "purpose_of_collection.name",
-                        label: "Purpose of collection"
+                        label: this.$__('Purpose of collection')
                     }
                 ]
             };

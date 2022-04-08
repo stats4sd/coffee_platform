@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\UnitType;
+use App\Models\Traits\HasTranslations;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Traits\UpdatesMainSearchIndex;
@@ -11,7 +12,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Unit extends Model
 {
-    use CrudTrait, HasFactory, UpdatesMainSearchIndex;
+    use CrudTrait, HasFactory, UpdatesMainSearchIndex, HasTranslations;
 
     /*
     |--------------------------------------------------------------------------
@@ -20,16 +21,13 @@ class Unit extends Model
     */
 
     protected $table = 'units';
-    protected $primaryKey = 'id';
-    // public $timestamps = false;
     protected $guarded = ['id'];
-    // protected $fillable = [];
-    // protected $hidden = [];
-    // protected $dates = [];
     protected $appends = [
         'conversion_rate',
         'name',
     ];
+
+    protected $translatable = ['unit'];
 
     /*
     |--------------------------------------------------------------------------
@@ -123,7 +121,10 @@ class Unit extends Model
         return $this->belongsToMany(Year::class, '_link_unit_year')->withPivot('to_standard');
     }
 
-
+    public function standardUnit()
+    {
+        return $this->hasOne(UnitType::class, 'standard_unit');
+    }
 
     /*
     |--------------------------------------------------------------------------
