@@ -1,19 +1,7 @@
-<h1>Coffee Platform</h1>
+# Coffee Platform
+https://coffeesmallholder.org/en/
 
-<h2>Translation Management</h2>
-The platform is linked to translation.io to manage the translations. There are also custom commands that enable translation of Vue component strings *and* DB entries via the service. To sync to translation.io:
-
-1. Run the meta command `php artisan translation:all`. This will do the following:
-   1. Run `php artisan translation:db` to search the database for translatable strings agethow get the back into the databasend add them to the set of strings that get sent to translation.io
-   2. Run `php artisan translation:vue` to search the Vue components from strings and add them.
-   3. Run `php artisan translation:sync` to sync the platform with the strings on the translation.io project
-   4. Run `php artisan translation:extract-json` to extract the translated strings to a JSON file (Vue is setup to read translations from JSON)
-   
-
-
-
-
-<h2>Development</h2>
+# Development
 To setup / test this for development:
 
 1. Pull latest branch (dev, or whichever feature branch you are testing)
@@ -45,3 +33,11 @@ To setup / test this for development:
 
 If you encounter errors when running the migration, that may indicate errors with the migrations, model factories or database seeder. If you encounter errors when running the renv::restore(), that may indicate an issue with renv in the RStudio project.
 
+## Translation Management
+The platform is linked to translation.io to manage the translations. There are also custom commands that enable translation of Vue component strings *and* DB entries via the service. To sync to translation.io:
+
+1. Run the meta command `php artisan translation:all`. This will do the following:
+   1. Run `php artisan translation:db` to search the database for translatable strings agethow get the back into the databasend add them to the set of strings that get sent to translation.io
+   2. Run `php artisan translation:vue` to search the Vue components from strings and add them.
+   3. Run `php artisan translation:sync` to sync the platform with the strings on the translation.io project
+   4. Run `php artisan translation:extract-json` to extract the translated strings to a JSON file (Vue is setup to read translations from JSON)
