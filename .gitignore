@@ -34,4 +34,5 @@ yarn-error.log
 /resources/lang/.translation_io
 /resources/lang/gettext/es/LC_MESSAGES/app.mo
 /resources/lang/gettext/es/app.po
-
+public/css/app.css
+public/js/app.js
