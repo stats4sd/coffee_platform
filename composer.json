@@ -8,7 +8,8 @@
     ],
     "license": "MIT",
     "require": {
-        "php": "^7.3|^8.0",
+        "php": "^8.2",
+        "ext-json": "*",
         "backpack/crud": "4.1.*",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
@@ -19,11 +20,11 @@
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.2",
         "maatwebsite/excel": "^3.1",
+        "sentry/sentry-laravel": "^3.8",
         "spatie/laravel-translatable": "^5.0",
         "stats4sd/laravel-sql-views": "^1.02",
         "teamtnt/laravel-scout-tntsearch-driver": "^11.1",
-        "tio/laravel": "^1.16",
-        "ext-json": "*"
+        "tio/laravel": "^1.16"
     },
     "require-dev": {
         "backpack/generators": "^3.1",
@@ -39,7 +40,10 @@
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "php-http/discovery": true
+        }
     },
     "extra": {
         "laravel": {
