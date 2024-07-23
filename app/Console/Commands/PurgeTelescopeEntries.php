@@ -31,8 +31,8 @@ class PurgeTelescopeEntries extends Command
         Artisan::call('telescope:prune --hours 168');
 
         // optimise the tables to reclaim disk space (usually not needed; included here because the first time this is run there might be actual GBs of data to clean up / reclaim);
-        DB::statement('OPTIMISE TABLE telescope_entries');
-        DB::statement('OPTIMISE TABLE telescope_entries_tags');
-        DB::statement('OPTIMISE TABLE telescope_monitoring');
+        DB::statement('OPTIMIZE TABLE telescope_entries');
+        DB::statement('OPTIMIZE TABLE telescope_entries_tags');
+        DB::statement('OPTIMIZE TABLE telescope_monitoring');
     }
 }
