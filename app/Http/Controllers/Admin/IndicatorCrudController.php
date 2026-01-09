@@ -100,7 +100,7 @@ class IndicatorCrudController extends CrudController
                 'name' => 'sub_characteristic_id',
                 'attribute' => 'name',
                 'entity' => 'subCharacteristic',
-                'model' => "App\Models\SubCharacteristic",
+                'model' => \App\Models\SubCharacteristic::class,
                 'ajax' => true,
                 'minimum_input_length' => 0,
                 'data_source' => backpack_url('indicator/fetch/sub-characteristic'),

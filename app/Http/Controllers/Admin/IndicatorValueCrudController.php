@@ -268,7 +268,7 @@ class IndicatorValueCrudController extends CrudController
 
                 // optional
                 'entity' => 'user',
-                'model' => "App\Models\User",
+                'model' => \App\Models\User::class,
                 'attribute' => 'name',
             ],
             [

@@ -71,7 +71,7 @@ class SubCharacteristicCrudController extends CrudController
                 'type' => 'select',
                 'name' => 'characteristic_id',
                 'entity' => 'characteristic',
-                'model' => "App\Models\Characteristic",
+                'model' => \App\Models\Characteristic::class,
                 'attribute' => 'name',
 
             ],
