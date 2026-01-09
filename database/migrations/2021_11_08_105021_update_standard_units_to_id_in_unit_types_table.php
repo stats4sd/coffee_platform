@@ -5,7 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
-class UpdateStandardUnitsToIdInUnitTypesTable extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
@@ -46,4 +46,4 @@ class UpdateStandardUnitsToIdInUnitTypesTable extends Migration
             $table->unsignedBigInteger('standard_unit')->change();
         });
     }
-}
+};

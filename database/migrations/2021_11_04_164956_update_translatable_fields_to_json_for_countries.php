@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class UpdateTranslatableFieldsToJsonForCountries extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
@@ -56,4 +56,4 @@ class UpdateTranslatableFieldsToJsonForCountries extends Migration
             $table->unique('name', 'countries_name_unique');
         });
     }
-}
+};

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class MoveTypeFromSourcesToParteners extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
@@ -43,4 +43,4 @@ class MoveTypeFromSourcesToParteners extends Migration
             $table->foreign('type_id')->references('id')->on('types')->onDelete('cascade');
         });
     }
-}
+};

@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateIndicatorValuesTable extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
@@ -39,4 +39,4 @@ class CreateIndicatorValuesTable extends Migration
     {
         Schema::dropIfExists('indicator_values');
     }
-}
+};

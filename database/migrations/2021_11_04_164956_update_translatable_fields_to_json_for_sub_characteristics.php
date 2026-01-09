@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class UpdateTranslatableFieldsToJsonForSubCharacteristics extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
@@ -56,4 +56,4 @@ class UpdateTranslatableFieldsToJsonForSubCharacteristics extends Migration
             $table->unique('name', 'sub_characteristics_name_unique');
         });
     }
-}
+};
