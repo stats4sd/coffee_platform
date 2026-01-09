@@ -10,32 +10,31 @@
     "require": {
         "php": "^8.2",
         "ext-json": "*",
-        "backpack/crud": "4.1.*",
-        "fideloper/proxy": "^4.4",
-        "guzzlehttp/guzzle": "^7.0.1",
+        "backpack/crud": "^5.0",
+        "guzzlehttp/guzzle": "^7.2",
         "intervention/image": "^2.5",
-        "laravel/framework": "^8.12",
+        "laravel/framework": "^9.52",
         "laravel/telescope": "^5.1.1",
-        "laravel/tinker": "^2.5",
-        "laravel/ui": "^3.2",
+        "laravel/tinker": "^2.7",
+        "laravel/ui": "^3.3",
         "maatwebsite/excel": "^3.1",
         "sentry/sentry-laravel": "^3.8",
-        "spatie/laravel-translatable": "^5.0",
+        "spatie/laravel-translatable": "^5.2",
         "stats4sd/laravel-sql-views": "^1.02",
-        "teamtnt/laravel-scout-tntsearch-driver": "^11.1",
-        "tio/laravel": "^1.16",
+        "teamtnt/laravel-scout-tntsearch-driver": "^11.6",
+        "tio/laravel": "^1.17",
         "league/flysystem-aws-s3-v3": "^3.0"
     },
     "require-dev": {
-        "backpack/generators": "^3.1",
-        "barryvdh/laravel-ide-helper": "^2.9",
-        "facade/ignition": "^2.5",
+        "backpack/generators": "^3.3",
+        "barryvdh/laravel-ide-helper": "^2.12",
         "fakerphp/faker": "^1.9.1",
         "laracasts/generators": "^2.0",
-        "laravel/sail": "^1.0.1",
-        "mockery/mockery": "^1.4.2",
-        "nunomaduro/collision": "^5.0",
-        "phpunit/phpunit": "^9.3.3"
+        "laravel/sail": "^1.15",
+        "mockery/mockery": "^1.4.4",
+        "nunomaduro/collision": "^6.3",
+        "phpunit/phpunit": "^9.5.10",
+        "spatie/laravel-ignition": "^1.4"
     },
     "config": {
         "optimize-autoloader": true,
@@ -74,6 +73,9 @@
         ],
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
+        ],
+        "post-update-cmd": [
+            "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
         ]
     }
 }
