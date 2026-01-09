@@ -4,15 +4,10 @@
 
 // Route::prefix('{locale?}')->middleware(['check.locale', 'set.locale'])->group(function () {
 
-Route::group(
-    [
-        'prefix' => config('backpack.base.route_prefix', 'admin'),
-        'middleware' => array_merge(
+Route::prefix(config('backpack.base.route_prefix', 'admin'))->middleware(array_merge(
             (array) config('backpack.base.web_middleware', 'web'),
             ['set.locale'],
-        ),
-        'namespace' => 'Backpack\CRUD\app\Http\Controllers',
-    ],
+        ))->namespace('Backpack\CRUD\app\Http\Controllers')->group(
     function () {
         // if not otherwise configured, setup the auth routes
         if (config('backpack.base.setup_auth_routes')) {
