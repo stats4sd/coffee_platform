@@ -7,7 +7,6 @@ use App\Models\Gender;
 use App\Models\GeoBoundary;
 use App\Models\Group;
 use App\Models\Indicator;
-use App\Models\IndicatorValue;
 use App\Models\PurposeOfCollection;
 use App\Models\Scope;
 use App\Models\SmallholderDefinition;

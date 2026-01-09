@@ -3,7 +3,6 @@
 namespace Database\Factories;
 
 use App\Models\Partner;
-use App\Models\Source;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class SourceFactory extends Factory

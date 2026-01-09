@@ -2,7 +2,6 @@
 
 namespace Database\Factories;
 
-use App\Models\Indicator;
 use App\Models\SubCharacteristic;
 use Illuminate\Database\Eloquent\Factories\Factory;
 

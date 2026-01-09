@@ -2,7 +2,6 @@
 
 namespace Database\Factories;
 
-use App\Models\Year;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class YearFactory extends Factory

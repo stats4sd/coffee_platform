@@ -2,7 +2,6 @@
 
 namespace Database\Factories;
 
-use App\Models\PurposeOfCollection;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class PurposeOfCollectionFactory extends Factory

@@ -2,7 +2,6 @@
 
 namespace Database\Factories;
 
-use App\Models\Scope;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ScopeFactory extends Factory

@@ -8,9 +8,9 @@ use Illuminate\Support\Facades\Route;
 // Route::prefix('{locale?}')->middleware(['check.locale', 'set.locale'])->group(function () {
 
 Route::prefix(config('backpack.base.route_prefix', 'admin'))->middleware(array_merge(
-            (array) config('backpack.base.web_middleware', 'web'),
-            ['set.locale'],
-        ))->group(
+    (array) config('backpack.base.web_middleware', 'web'),
+    ['set.locale'],
+))->group(
     function () {
         // if not otherwise configured, setup the auth routes
         if (config('backpack.base.setup_auth_routes')) {

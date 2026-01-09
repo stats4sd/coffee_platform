@@ -4,7 +4,6 @@ namespace Database\Factories;
 
 use App\Models\Country;
 use App\Models\Department;
-use App\Models\GeoBoundary;
 use App\Models\Municipality;
 use App\Models\Region;
 use Illuminate\Database\Eloquent\Factories\Factory;
