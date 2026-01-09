@@ -10,7 +10,7 @@ Route::prefix(config('backpack.base.route_prefix', 'admin'))->middleware(array_m
         (array) config('backpack.base.web_middleware', 'web'),
         ['set.locale'],
         (array) config('backpack.base.middleware_key', 'admin'),
-    ))->namespace('App\Http\Controllers\Admin')->group(function () { // custom admin routes
+    ))->group(function () { // custom admin routes
     Route::crud('characteristic', 'CharacteristicCrudController');
     Route::crud('sub_characteristic', 'SubCharacteristicCrudController');
     Route::crud('indicator', 'IndicatorCrudController');
