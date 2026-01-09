@@ -18,13 +18,13 @@ class UpdateTranslatableFieldsToJsonForCharacteristics extends Migration
             $table->dropUnique('characteristics_name_unique');
         });
 
-        //update existing values
+        // update existing values
         \Illuminate\Support\Facades\DB::unprepared('
             update characteristics set characteristics.name = concat(\'{ "en": "\', characteristics.name, \'"}\')
         ');
 
         // need seperate call / seperate transaction;
-        Schema::table('characteristics', function(Blueprint $table) {
+        Schema::table('characteristics', function (Blueprint $table) {
             $table->json('name')->change();
         });
     }
@@ -41,13 +41,13 @@ class UpdateTranslatableFieldsToJsonForCharacteristics extends Migration
             $table->text('name')->change();
         });
 
-        //update existing values
+        // update existing values
         \Illuminate\Support\Facades\DB::unprepared('
             update characteristics set characteristics.name = json_unquote(characteristics.name->"$.en");
         ');
 
         // need seperate call / seperate transaction;
-        Schema::table('characteristics', function(Blueprint $table) {
+        Schema::table('characteristics', function (Blueprint $table) {
             $table->string('name')->change();
         });
 

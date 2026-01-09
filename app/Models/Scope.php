@@ -3,14 +3,13 @@
 namespace App\Models;
 
 use App\Models\Traits\HasTranslations;
-use Illuminate\Database\Eloquent\Model;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
 class Scope extends Model
 {
     use CrudTrait, HasFactory, HasTranslations;
-
 
     /*
     |--------------------------------------------------------------------------
@@ -19,6 +18,7 @@ class Scope extends Model
     */
 
     protected $table = 'scopes';
+
     protected $guarded = ['id'];
 
     protected $translatable = ['name'];

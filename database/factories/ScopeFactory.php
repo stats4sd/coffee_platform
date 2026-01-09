@@ -14,7 +14,6 @@ class ScopeFactory extends Factory
      */
     protected $model = Scope::class;
 
-
     /**
      * Define the model's default state.
      *

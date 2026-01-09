@@ -2,13 +2,13 @@
 
 // Overwrites the default backpack\Base routes file to add the custom locale handling:
 
-//Route::prefix('{locale?}')->middleware(['check.locale', 'set.locale'])->group(function () {
+// Route::prefix('{locale?}')->middleware(['check.locale', 'set.locale'])->group(function () {
 
 Route::group(
     [
         'prefix' => config('backpack.base.route_prefix', 'admin'),
         'middleware' => array_merge(
-            (array)config('backpack.base.web_middleware', 'web'),
+            (array) config('backpack.base.web_middleware', 'web'),
             ['set.locale'],
         ),
         'namespace' => 'Backpack\CRUD\app\Http\Controllers',
@@ -48,4 +48,4 @@ Route::group(
             Route::post('change-password', 'MyAccountController@postChangePasswordForm')->name('backpack.account.password');
         }
     });
-//});
+// });

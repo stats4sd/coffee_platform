@@ -2,15 +2,15 @@
 
 namespace App\Models;
 
-use App\Models\Traits\UpdatesMainSearchIndex;
 use App\Models\Traits\HasTranslations;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Traits\UpdatesMainSearchIndex;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class GeoBoundary extends Model
 {
-    use CrudTrait, HasFactory, UpdatesMainSearchIndex, HasTranslations;
+    use CrudTrait, HasFactory, HasTranslations, UpdatesMainSearchIndex;
 
     /*
     |--------------------------------------------------------------------------
@@ -19,6 +19,7 @@ class GeoBoundary extends Model
     */
 
     protected $table = 'geo_boundaries';
+
     protected $guarded = ['id'];
 
     protected $translatable = ['description', 'altitude'];
@@ -82,10 +83,11 @@ class GeoBoundary extends Model
     */
     public function getGeoDescriptionAttribute()
     {
-        $CountryName= $this->country_id ? Country::find($this->country_id)->name : 'null';
+        $CountryName = $this->country_id ? Country::find($this->country_id)->name : 'null';
         $RegionName = $this->region_id ? Region::find($this->region_id)->name : 'null';
         $DepartmentName = $this->department_id ? Department::find($this->department_id)->name : 'null';
         $MuncipalityName = $this->munciplaity_id ? Municipality::find($this->muncipality_id)->name : 'null';
+
         return "{$CountryName} - {$RegionName} - {$DepartmentName} - {$MuncipalityName} - {$this->altitude} - {$this->description}";
     }
 }

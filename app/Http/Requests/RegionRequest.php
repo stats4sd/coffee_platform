@@ -3,9 +3,8 @@
 namespace App\Http\Requests;
 
 use App\Models\Region;
-use App\Http\Requests\Request;
-use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class RegionRequest extends FormRequest
 {
@@ -28,7 +27,7 @@ class RegionRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required','max:255', Rule::unique('regions', 'name')->ignore(Region::find(request()->id))],
+            'name' => ['required', 'max:255', Rule::unique('regions', 'name')->ignore(Region::find(request()->id))],
         ];
     }
 

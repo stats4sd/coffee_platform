@@ -9,8 +9,8 @@ use Maatwebsite\Excel\Concerns\WithHeadings;
 class ApproachCollectionsExport implements FromCollection, WithHeadings
 {
     /**
-    * @return \Illuminate\Support\Collection
-    */
+     * @return \Illuminate\Support\Collection
+     */
     public function collection()
     {
         return ApproachCollection::select('id', 'name')->get();
@@ -20,7 +20,7 @@ class ApproachCollectionsExport implements FromCollection, WithHeadings
     {
         return [
             'id',
-            'name'
+            'name',
         ];
     }
 }

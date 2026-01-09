@@ -2,15 +2,15 @@
 
 namespace App\Models;
 
-use App\Models\Traits\UpdatesMainSearchIndex;
 use App\Models\Traits\HasTranslations;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Traits\UpdatesMainSearchIndex;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class SmallholderDefinition extends Model
 {
-    use CrudTrait, HasFactory, UpdatesMainSearchIndex, HasTranslations;
+    use CrudTrait, HasFactory, HasTranslations, UpdatesMainSearchIndex;
 
     /*
     |--------------------------------------------------------------------------
@@ -19,6 +19,7 @@ class SmallholderDefinition extends Model
     */
 
     protected $table = 'smallholder_definitions';
+
     protected $guarded = ['id'];
 
     protected $translatable = ['definition'];

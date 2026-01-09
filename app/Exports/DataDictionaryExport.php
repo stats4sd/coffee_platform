@@ -4,19 +4,17 @@ namespace App\Exports;
 
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\FromCollection;
-use Maatwebsite\Excel\Concerns\WithColumnWidths;
+use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithStyles;
-use PhpOffice\PhpSpreadsheet\Style\Border;
+use Maatwebsite\Excel\Concerns\WithTitle;
 use PhpOffice\PhpSpreadsheet\Style\Fill;
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
-use Maatwebsite\Excel\Concerns\WithTitle;
-use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 
-class DataDictionaryExport implements FromCollection, WithTitle, ShouldAutoSize, WithStyles
+class DataDictionaryExport implements FromCollection, ShouldAutoSize, WithStyles, WithTitle
 {
     /**
-    * @return \Illuminate\Support\Collection
-    */
+     * @return \Illuminate\Support\Collection
+     */
     public function collection()
     {
         return new Collection([
@@ -51,9 +49,6 @@ class DataDictionaryExport implements FromCollection, WithTitle, ShouldAutoSize,
         ]);
     }
 
-        /**
-     * @return string
-     */
     public function title(): string
     {
         return 'variables';
@@ -63,7 +58,7 @@ class DataDictionaryExport implements FromCollection, WithTitle, ShouldAutoSize,
     {
         $wrap = [
             'alignment' => [
-                'wrapText' => true
+                'wrapText' => true,
             ],
         ];
 
@@ -76,8 +71,7 @@ class DataDictionaryExport implements FromCollection, WithTitle, ShouldAutoSize,
         ];
 
         return [
-            1 => $h1
+            1 => $h1,
         ];
     }
-
 }

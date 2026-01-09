@@ -2,11 +2,9 @@
 
 namespace App\Http\Requests;
 
-use App\Http\Requests\Request;
-use App\Models\Unit;
 use App\Models\UnitType;
-use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 use Validator;
 
 class UnitRequest extends FormRequest
@@ -38,15 +36,15 @@ class UnitRequest extends FormRequest
             'unit_type_id' => ['required', 'exists:unit_types,id'],
             'to_standard' => [
                 Rule::requiredIf(function () use ($splitByYear) {
-                    return (!$splitByYear && request()->from_standard == null);
+                    return ! $splitByYear && request()->from_standard == null;
                 }),
                 'prohibited_unless:from_standard,null',
             ],
             'from_standard' => [
                 Rule::requiredIf(function () use ($splitByYear) {
-                    return (!$splitByYear && request()->to_standard == null);
+                    return ! $splitByYear && request()->to_standard == null;
                 }),
-                'prohibited_unless:to_standard,null'
+                'prohibited_unless:to_standard,null',
             ],
             'conversion_years' => [
                 Rule::requiredIf(function () use ($splitByYear) {
@@ -54,12 +52,12 @@ class UnitRequest extends FormRequest
                 }),
                 function ($attribute, $value, $fail) {
                     $years = json_decode($value, true);
-                    if (!$years) {
+                    if (! $years) {
                         return;
                     }
                     foreach ($years as $year) {
                         $validator = Validator::make((array) $year, [
-                            'to_standard' => ['numeric','required'],
+                            'to_standard' => ['numeric', 'required'],
                             'year' => ['required', 'exists:years,year'],
                         ]);
 
@@ -71,8 +69,8 @@ class UnitRequest extends FormRequest
                             return $fail($messages);
                         }
                     }
-                }
-            ]
+                },
+            ],
         ];
     }
 

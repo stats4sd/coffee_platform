@@ -15,18 +15,18 @@ class TelescopeServiceProvider extends TelescopeApplicationServiceProvider
      */
     public function register(): void
     {
-    $this->hideSensitiveRequestDetails();
+        $this->hideSensitiveRequestDetails();
 
-    $isDebugMode = config('app.debug');
+        $isDebugMode = config('app.debug');
 
-    Telescope::filter(function (IncomingEntry $entry) use ($isDebugMode) {
-        return $isDebugMode ||
-                $entry->isReportableException() ||
-                $entry->isFailedRequest() ||
-                $entry->isFailedJob() ||
-                $entry->isScheduledTask() ||
-                $entry->hasMonitoredTag();
-    });
+        Telescope::filter(function (IncomingEntry $entry) use ($isDebugMode) {
+            return $isDebugMode ||
+                    $entry->isReportableException() ||
+                    $entry->isFailedRequest() ||
+                    $entry->isFailedJob() ||
+                    $entry->isScheduledTask() ||
+                    $entry->hasMonitoredTag();
+        });
     }
 
     /**

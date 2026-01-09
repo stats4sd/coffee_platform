@@ -9,13 +9,11 @@ use Maatwebsite\Excel\Concerns\WithBatchInserts;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Maatwebsite\Excel\Concerns\WithValidation;
 
-class ApproachCollectionsImport implements ToModel, WithHeadingRow, WithValidation, WithBatchInserts
+class ApproachCollectionsImport implements ToModel, WithBatchInserts, WithHeadingRow, WithValidation
 {
     /**
-    * @param array $row
-    *
-    * @return \Illuminate\Database\Eloquent\Model|null
-    */
+     * @return \Illuminate\Database\Eloquent\Model|null
+     */
     public function model(array $row)
     {
         return new ApproachCollection([

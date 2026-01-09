@@ -14,13 +14,13 @@ class UpdateTranslatableFieldsToJsonForIndicators extends Migration
     public function up()
     {
 
-        //update existing values
+        // update existing values
         \Illuminate\Support\Facades\DB::unprepared('
             update indicators set indicators.name = concat(\'{ "en": "\', indicators.name, \'"}\')
         ');
 
         // need seperate call / seperate transaction;
-        Schema::table('indicators', function(Blueprint $table) {
+        Schema::table('indicators', function (Blueprint $table) {
             $table->json('name')->change();
         });
     }
@@ -37,13 +37,13 @@ class UpdateTranslatableFieldsToJsonForIndicators extends Migration
             $table->text('name')->change();
         });
 
-        //update existing values
+        // update existing values
         \Illuminate\Support\Facades\DB::unprepared('
             update indicators set indicators.name = json_unquote(indicators.name->"$.en");
         ');
 
         // need seperate call / seperate transaction;
-        Schema::table('indicators', function(Blueprint $table) {
+        Schema::table('indicators', function (Blueprint $table) {
             $table->string('name')->change();
         });
 

@@ -2,16 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\IndicatorValuesWorkbookExport;
+use App\Models\IndicatorValue;
 use App\Models\Year;
 use Illuminate\Http\Request;
-use App\Models\IndicatorValue;
-use Illuminate\Support\Facades\DB;
-use Maatwebsite\Excel\Facades\Excel;
-use App\Exports\IndicatorValuesWorkbookExport;
-use Symfony\Component\Process\Process;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Database\Eloquent\Builder;
+use Maatwebsite\Excel\Facades\Excel;
 use Symfony\Component\Process\Exception\ProcessFailedException;
+use Symfony\Component\Process\Process;
 
 class IndicatorValueController extends Controller
 {
@@ -71,7 +69,6 @@ class IndicatorValueController extends Controller
             $export = $export->forScopes($request->input('scopes'));
         }
 
-
         $filename = 'indicator-values-exports/indicator-values-'.now()->format('Y-M-D_his').'.xlsx';
 
         $success = Excel::store($export, $filename, 'public');
@@ -97,30 +94,28 @@ class IndicatorValueController extends Controller
         return Storage::disk('public')->path($filename);
     }
 
-
-
     public function report(Request $request)
     {
         $excelPath = $this->getExcel($request);
 
         $indicatorValueIds = Collect($request->input('indicator_values'))->pluck('id')->toArray();
-        $indicatorValueIds = implode(",", $indicatorValueIds);
+        $indicatorValueIds = implode(',', $indicatorValueIds);
 
         // choose correct R script based on current locale
-        $scriptFile = 'makeReport_' . session('locale') . '.R';
+        $scriptFile = 'makeReport_'.session('locale').'.R';
 
         $process = new Process(['Rscript', $scriptFile, $excelPath, $indicatorValueIds]);
         $process->setWorkingDirectory(base_path('scripts/Rscript'));
 
         $process->run();
 
-        if (!$process->isSuccessful()) {
+        if (! $process->isSuccessful()) {
             throw new ProcessFailedException($process);
         }
 
         $filename = 'indicator-values-exports/indicator-values-report-'.session('locale').'-'.now()->toDateTimeString().'.pdf';
 
-        $pdfPath = 'scripts/Rscript/PDF_Report_Script_' . session('locale') . '.pdf';
+        $pdfPath = 'scripts/Rscript/PDF_Report_Script_'.session('locale').'.pdf';
 
         copy(base_path($pdfPath), storage_path('app/public/'.$filename));
 

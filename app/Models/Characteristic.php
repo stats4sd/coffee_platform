@@ -2,16 +2,16 @@
 
 namespace App\Models;
 
-use App\Models\Traits\HasUploadFields;
 use App\Models\Traits\HasTranslations;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Storage;
+use App\Models\Traits\HasUploadFields;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class Characteristic extends Model
 {
-    use CrudTrait, HasFactory, HasUploadFields, HasTranslations;
+    use CrudTrait, HasFactory, HasTranslations, HasUploadFields;
 
     /*
     |--------------------------------------------------------------------------
@@ -20,7 +20,9 @@ class Characteristic extends Model
     */
 
     protected $table = 'characteristics';
+
     protected $primaryKey = 'id';
+
     protected $guarded = [];
 
     protected $translatable = ['name'];
@@ -78,9 +80,9 @@ class Characteristic extends Model
 
     public function setCoverImageAttribute($value)
     {
-        $attribute_name = "cover_image";
-        $disk = "public";
-        $destination_path = "characteristics/";
+        $attribute_name = 'cover_image';
+        $disk = 'public';
+        $destination_path = 'characteristics/';
 
         $this->uploadImageWithNames($value, $attribute_name, $disk, $destination_path);
     }

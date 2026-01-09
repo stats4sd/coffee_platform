@@ -14,13 +14,13 @@ class UpdateTranslatableFieldsToJsonForSmallholderDefinitions extends Migration
     public function up()
     {
 
-        //update existing values
+        // update existing values
         \Illuminate\Support\Facades\DB::unprepared('
             update smallholder_definitions set smallholder_definitions.definition = concat(\'{ "en": "\', smallholder_definitions.definition, \'"}\')
         ');
 
         // need seperate call / seperate transaction;
-        Schema::table('smallholder_definitions', function(Blueprint $table) {
+        Schema::table('smallholder_definitions', function (Blueprint $table) {
             $table->json('definition')->change();
         });
     }
@@ -37,11 +37,10 @@ class UpdateTranslatableFieldsToJsonForSmallholderDefinitions extends Migration
             $table->text('definition')->change();
         });
 
-        //update existing values
+        // update existing values
         \Illuminate\Support\Facades\DB::unprepared('
             update smallholder_definitions set smallholder_definitions.definition = json_unquote(smallholder_definitions.definition->"$.en");
         ');
-
 
     }
 }

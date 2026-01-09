@@ -2,13 +2,10 @@
 
 namespace App\Console\Commands;
 
-use Gettext\Generators\Po;
 use Gettext\Translation;
-use Illuminate\Console\Command;
 use Gettext\Translations;
-use Illuminate\Support\Facades\Artisan;
+use Illuminate\Console\Command;
 use Illuminate\Support\Str;
-use Symfony\Component\Process\Process;
 
 class UpdateVueTranslations extends Command
 {
@@ -60,7 +57,6 @@ class UpdateVueTranslations extends Command
         foreach ($vueText as $text) {
 
             $strings = Str::of($text)->matchAll('/\$\_\_\([\'\"](.+)[\'\"]\)/');
-
 
             foreach ($strings as $string) {
 

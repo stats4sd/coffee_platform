@@ -17,6 +17,7 @@ class Year extends Model
     */
 
     protected $table = 'years';
+
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     protected $guarded = ['id'];
@@ -44,7 +45,6 @@ class Year extends Model
     {
         return $this->belongsToMany(Unit::class, '_link_unit_year')->withPivot('to_standard');
     }
-
 
     /*
     |--------------------------------------------------------------------------

@@ -39,11 +39,10 @@ class UpdateDbTranslations extends Command
      */
     public function handle()
     {
-//        if(! $this->confirm('This may overwrite translated strings stored in the database with translations pulled from Translation.io. Any translated strings in the db that are *not* translated in translation.io will be synced back to translation.io and tagged with 'translated-on-platform')) {
-//            $this->info("terminating");
-//            return 'terminated';
-//        }
-
+        //        if(! $this->confirm('This may overwrite translated strings stored in the database with translations pulled from Translation.io. Any translated strings in the db that are *not* translated in translation.io will be synced back to translation.io and tagged with 'translated-on-platform')) {
+        //            $this->info("terminating");
+        //            return 'terminated';
+        //        }
 
         // list translatable models;
         // for package - should maybe move this to a config that can be set by the developer
@@ -62,15 +61,15 @@ class UpdateDbTranslations extends Command
         foreach ($models as $model) {
             $model = Str::of($model)->replace('.php', '');
 
-            $model = 'App\\Models\\' . $model;
+            $model = 'App\\Models\\'.$model;
 
             $translatable = (new $model)->getTranslatableAttributes();
-            $this->comment('###################### lets gooooo...' . $model);
+            $this->comment('###################### lets gooooo...'.$model);
 
             $models = $model::all();
 
             foreach ($models as $entry) {
-                //extract exportable entries into PHP placeholder class
+                // extract exportable entries into PHP placeholder class
                 $values = $entry->getTranslations();
                 $this->comment(json_encode($values));
 
@@ -82,13 +81,12 @@ class UpdateDbTranslations extends Command
                     $value = $value['en'] ?? null;
 
                     // if the en value is not set, skip value;
-                    if (!$value) {
+                    if (! $value) {
                         continue;
                     }
 
                     // sanitise string ready for translation:
                     $value = Str::of($value)->replace("'", "\\'");
-
 
                     $this->addToPlaceholder("
                 [
@@ -104,9 +102,9 @@ class UpdateDbTranslations extends Command
 
                     if ($finishedTranslation
                         && $finishedTranslation->getTranslation()
-                        && $finishedTranslation->getTranslation() !== "") {
+                        && $finishedTranslation->getTranslation() !== '') {
                         // update translation in database:
-                        $this->comment('updating db with new translation for ' . $model . ' - ' . $field);
+                        $this->comment('updating db with new translation for '.$model.' - '.$field);
                         $dbEntry = $model::find($entryId);
                         $dbEntry->setTranslation($field, 'es', $finishedTranslation->getTranslation());
                         $dbEntry->save();
@@ -115,17 +113,17 @@ class UpdateDbTranslations extends Command
             }
         }
 
-        $this->addToPlaceholder("];
+        $this->addToPlaceholder('];
             }
         }
-        ");
-
+        ');
 
         return true;
     }
 
     /**
      * Gets array of models with translatable fields;
+     *
      * @return string[]
      */
     public function getTranslatableModels()
@@ -135,16 +133,16 @@ class UpdateDbTranslations extends Command
             'ApproachCollection',
             'Characteristic',
             'Country',
-//            'Department',
+            //            'Department',
             'Gender',
             'GeoBoundary',
-           // 'Group',
+            // 'Group',
             'Indicator',
-//            'IndicatorValue',
-            //'Municipality',
-           // 'Partner',
+            //            'IndicatorValue',
+            // 'Municipality',
+            // 'Partner',
             'PurposeOfCollection',
-//            'Region',
+            //            'Region',
             'Scope',
             'SubCharacteristic',
             'Type',

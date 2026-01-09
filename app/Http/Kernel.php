@@ -6,7 +6,6 @@ use App\Http\Middleware\AddLocaleToUrlMiddleware;
 use App\Http\Middleware\SetLocaleMiddleware;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
-
 class Kernel extends HttpKernel
 {
     /**

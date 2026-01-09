@@ -14,13 +14,13 @@ class UpdateTranslatableFieldsToJsonForUnitTypes extends Migration
     public function up()
     {
 
-        //update existing values
+        // update existing values
         \Illuminate\Support\Facades\DB::unprepared('
             update unit_types set unit_types.name = concat(\'{ "en": "\', unit_types.name, \'"}\')
         ');
 
         // need seperate call / seperate transaction;
-        Schema::table('unit_types', function(Blueprint $table) {
+        Schema::table('unit_types', function (Blueprint $table) {
             $table->json('name')->change();
         });
     }
@@ -37,13 +37,13 @@ class UpdateTranslatableFieldsToJsonForUnitTypes extends Migration
             $table->text('name')->change();
         });
 
-        //update existing values
+        // update existing values
         \Illuminate\Support\Facades\DB::unprepared('
             update unit_types set unit_types.name = json_unquote(unit_types.name->"$.en");
         ');
 
         // need seperate call / seperate transaction;
-        Schema::table('unit_types', function(Blueprint $table) {
+        Schema::table('unit_types', function (Blueprint $table) {
             $table->string('name')->change();
         });
 

@@ -13,23 +13,23 @@ class UpdateTranslatableFieldsToJsonForGeoBoundaries extends Migration
      */
     public function up()
     {
-        //update existing values
+        // update existing values
         \Illuminate\Support\Facades\DB::unprepared('
             update geo_boundaries set geo_boundaries.description = concat(\'{ "en": "\', geo_boundaries.description, \'"}\')
         ');
 
         // need seperate call / seperate transaction;
-        Schema::table('geo_boundaries', function(Blueprint $table) {
+        Schema::table('geo_boundaries', function (Blueprint $table) {
             $table->json('description')->change();
         });
 
-        //update existing values
+        // update existing values
         \Illuminate\Support\Facades\DB::unprepared('
             update geo_boundaries set geo_boundaries.altitude = concat(\'{ "en": "\', geo_boundaries.altitude, \'"}\')
         ');
 
         // need seperate call / seperate transaction;
-        Schema::table('geo_boundaries', function(Blueprint $table) {
+        Schema::table('geo_boundaries', function (Blueprint $table) {
             $table->json('altitude')->change();
         });
     }
@@ -46,22 +46,20 @@ class UpdateTranslatableFieldsToJsonForGeoBoundaries extends Migration
             $table->text('description')->change();
         });
 
-        //update existing values
+        // update existing values
         \Illuminate\Support\Facades\DB::unprepared('
             update geo_boundaries set geo_boundaries.descroption = json_unquote(geo_boundaries.descroption->"$.en");
         ');
 
-
         // need seperate call / seperate transaction;
-        Schema::table('geo_boundaries', function(Blueprint $table) {
+        Schema::table('geo_boundaries', function (Blueprint $table) {
             $table->string('altitude')->change();
         });
 
-        //update existing values
+        // update existing values
         \Illuminate\Support\Facades\DB::unprepared('
             update geo_boundaries set geo_boundaries.altitude = json_unquote(geo_boundaries.altitude->"$.en");
         ');
-
 
     }
 }

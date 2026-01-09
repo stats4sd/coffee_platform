@@ -3,10 +3,10 @@
 namespace App\Models\Traits;
 
 use DB;
-use Illuminate\Support\Arr;
-use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Str;
 use Intervention\Image\ImageManagerStatic;
 
 /*
@@ -26,10 +26,10 @@ trait HasUploadFields
      *     - if the value is null, deletes the file and sets null in the DB
      *     - if the value is different, stores the different file and updates DB value.
      *
-     * @param string $value            Value for that column sent from the input.
-     * @param string $attribute_name   Model attribute name (and column in the db).
-     * @param string $disk             Filesystem disk used to store files.
-     * @param string $destination_path Path in disk where to store the files.
+     * @param  string  $value  Value for that column sent from the input.
+     * @param  string  $attribute_name  Model attribute name (and column in the db).
+     * @param  string  $disk  Filesystem disk used to store files.
+     * @param  string  $destination_path  Path in disk where to store the files.
      */
     public function uploadFileWithNames($value, $attribute_name, $disk, $destination_path)
     {
@@ -49,9 +49,7 @@ trait HasUploadFields
 
         Log::info('valid = '.request()->file($attribute_name)->isValid());
 
-        Log::info('has file '. request()->hasFile($attribute_name));
-
-
+        Log::info('has file '.request()->hasFile($attribute_name));
 
         // if a new file is uploaded, store it on disk and its filename in the database
         if (request()->hasFile($attribute_name) && request()->file($attribute_name)->isValid()) {
@@ -80,10 +78,10 @@ trait HasUploadFields
      *     - deletes the file
      *     - removes that file from the DB.
      *
-     * @param string $value            Value for that column sent from the input.
-     * @param string $attribute_name   Model attribute name (and column in the db).
-     * @param string $disk             Filesystem disk used to store files.
-     * @param string $destination_path Path in disk where to store the files.
+     * @param  string  $value  Value for that column sent from the input.
+     * @param  string  $attribute_name  Model attribute name (and column in the db).
+     * @param  string  $disk  Filesystem disk used to store files.
+     * @param  string  $destination_path  Path in disk where to store the files.
      */
     public function uploadMultipleFilesWithNames($value, $attribute_name, $disk, $destination_path)
     {
@@ -131,7 +129,7 @@ trait HasUploadFields
     {
 
         // if the image was erased
-        if ($value==null) {
+        if ($value == null) {
             // delete the image from disk
             \Storage::disk($disk)->delete($this->{$attribute_name});
 

@@ -3,7 +3,6 @@
 return [
 
     /** Strings from the main PDF_Report_Script for translation */
-
     'title' => 'State of the Smallholder Coffee Farmer - Indicator Report',
     'note' => 'Values may have been converted to standard units, original values and conversion rates available in indicator excel download.',
     'available_at' => 'Available at:',

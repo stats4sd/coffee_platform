@@ -2,27 +2,27 @@
 
 namespace Database\Seeders;
 
+use App\Models\ApproachCollection;
+use App\Models\Characteristic;
+use App\Models\Country;
+use App\Models\Gender;
+use App\Models\GeoBoundary;
+use App\Models\Group;
+use App\Models\Indicator;
+use App\Models\IndicatorValue;
+use App\Models\Partner;
+use App\Models\PurposeOfCollection;
+use App\Models\Scope;
+use App\Models\SmallholderDefinition;
+use App\Models\Source;
+use App\Models\SubCharacteristic;
 use App\Models\Type;
 use App\Models\Unit;
+use App\Models\UnitType;
 use App\Models\User;
 use App\Models\Year;
-use App\Models\Group;
-use App\Models\Scope;
-use App\Models\Gender;
-use App\Models\Source;
-use App\Models\Country;
-use App\Models\Partner;
-use App\Models\UnitType;
-use App\Models\Indicator;
-use App\Models\GeoBoundary;
-use App\Models\Characteristic;
-use App\Models\IndicatorValue;
-use Illuminate\Database\Seeder;
-use App\Models\SubCharacteristic;
-use App\Models\ApproachCollection;
-use App\Models\PurposeOfCollection;
-use App\Models\SmallholderDefinition;
 use Illuminate\Database\Eloquent\Factories\Sequence;
+use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -53,12 +53,11 @@ class DatabaseSeeder extends Seeder
         ))->create();
 
         Characteristic::factory()->count(5)
-        ->has(
-            SubCharacteristic::factory()->count(3)
-            ->has(Indicator::factory()->count(4))
-        )
-        ->create();
-
+            ->has(
+                SubCharacteristic::factory()->count(3)
+                    ->has(Indicator::factory()->count(4))
+            )
+            ->create();
 
         $users = User::factory()->count(5)->create();
         $unitTypes = UnitType::factory()->count(3)->has(
@@ -73,40 +72,39 @@ class DatabaseSeeder extends Seeder
         $scopes = Scope::factory()->count(5)->create();
         $groups = Group::factory()->count(5)->create();
 
-
         $types = Type::factory()->count(3)
-        ->has(Partner::factory()->count(2)
-            ->has(Source::factory(5)))->create();
+            ->has(Partner::factory()->count(2)
+                ->has(Source::factory(5)))->create();
 
         $sources = Source::all();
         $units = Unit::all();
 
         // Using for loop to ensure each value is assigned a different random relationship
-        for ($i=0; $i < 500; $i++) {
+        for ($i = 0; $i < 500; $i++) {
             $selectedYear = $years->random();
 
-            $numberOfYears = collect([1,2])->random();
+            $numberOfYears = collect([1, 2])->random();
 
             if ($numberOfYears == 2) {
                 $year2 = $years->where('year', $selectedYear->year + 1)->first() ?? $years->where('year', $selectedYear->year - 1)->first();
-                $selectedYears = collect([$selectedYear->id,$year2->id]);
+                $selectedYears = collect([$selectedYear->id, $year2->id]);
             } else {
                 $selectedYears = collect([$selectedYear->id]);
             }
 
             $indicatorValue = IndicatorValue::factory()
-            ->for($users->random())
-            ->for($units->random())
-            ->for($genders->random())
-            ->for($approachCollections->random())
-            ->for($smallholderDefinitions->random())
-            ->for($purposeOfCollections->random())
-            ->for(GeoBoundary::all()->random())
-            ->for(Indicator::all()->random())
-            ->for($sources->random())
-            ->for($scopes->random())
-            ->for($groups->random())
-            ->create();
+                ->for($users->random())
+                ->for($units->random())
+                ->for($genders->random())
+                ->for($approachCollections->random())
+                ->for($smallholderDefinitions->random())
+                ->for($purposeOfCollections->random())
+                ->for(GeoBoundary::all()->random())
+                ->for(Indicator::all()->random())
+                ->for($sources->random())
+                ->for($scopes->random())
+                ->for($groups->random())
+                ->create();
 
             $indicatorValue->years()->sync($selectedYears);
         }

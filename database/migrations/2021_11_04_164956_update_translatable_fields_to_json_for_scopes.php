@@ -14,13 +14,13 @@ class UpdateTranslatableFieldsToJsonForScopes extends Migration
     public function up()
     {
 
-        //update existing values
+        // update existing values
         \Illuminate\Support\Facades\DB::unprepared('
             update scopes set scopes.name = concat(\'{ "en": "\', scopes.name, \'"}\')
         ');
 
         // need seperate call / seperate transaction;
-        Schema::table('scopes', function(Blueprint $table) {
+        Schema::table('scopes', function (Blueprint $table) {
             $table->json('name')->change();
         });
     }
@@ -37,13 +37,13 @@ class UpdateTranslatableFieldsToJsonForScopes extends Migration
             $table->text('name')->change();
         });
 
-        //update existing values
+        // update existing values
         \Illuminate\Support\Facades\DB::unprepared('
             update scopes set scopes.name = json_unquote(scopes.name->"$.en");
         ');
 
         // need seperate call / seperate transaction;
-        Schema::table('scopes', function(Blueprint $table) {
+        Schema::table('scopes', function (Blueprint $table) {
             $table->string('name')->change();
         });
 

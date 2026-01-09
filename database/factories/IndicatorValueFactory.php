@@ -2,18 +2,18 @@
 
 namespace Database\Factories;
 
+use App\Models\ApproachCollection;
+use App\Models\Gender;
+use App\Models\GeoBoundary;
+use App\Models\Group;
+use App\Models\Indicator;
+use App\Models\IndicatorValue;
+use App\Models\PurposeOfCollection;
+use App\Models\Scope;
+use App\Models\SmallholderDefinition;
+use App\Models\Source;
 use App\Models\Unit;
 use App\Models\User;
-use App\Models\Group;
-use App\Models\Scope;
-use App\Models\Gender;
-use App\Models\Source;
-use App\Models\Indicator;
-use App\Models\GeoBoundary;
-use App\Models\IndicatorValue;
-use App\Models\ApproachCollection;
-use App\Models\PurposeOfCollection;
-use App\Models\SmallholderDefinition;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class IndicatorValueFactory extends Factory
