@@ -22,7 +22,7 @@ class CountryFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->unique()->country,
+            'name' => $this->faker->unique()->country(),
         ];
     }
 }

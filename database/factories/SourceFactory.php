@@ -27,7 +27,7 @@ class SourceFactory extends Factory
             'reference' => $this->faker->sentence(2),
             'partner_id' => Partner::factory(),
             'description' => $this->faker->paragraph(5),
-            'is_not_public' => $this->faker->boolean,
+            'is_not_public' => $this->faker->boolean(),
         ];
     }
 }
