@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
-use App\Models\Traits\HasTranslations;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -18,8 +17,8 @@ class Region extends Model
     */
 
     protected $table = 'regions';
-    protected $guarded = ['id'];
 
+    protected $guarded = ['id'];
 
     /*
     |--------------------------------------------------------------------------

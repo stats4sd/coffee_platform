@@ -2,18 +2,17 @@
 
 namespace App\Imports;
 
-use App\Models\Indicator;
 use App\Models\Characteristic;
-use Illuminate\Validation\Rule;
+use App\Models\Indicator;
 use App\Models\SubCharacteristic;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Validator;
 use Maatwebsite\Excel\Concerns\ToCollection;
+use Maatwebsite\Excel\Concerns\WithBatchInserts;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Maatwebsite\Excel\Concerns\WithValidation;
-use Maatwebsite\Excel\Concerns\WithBatchInserts;
 
-class IndicatorsSheetImport implements ToCollection, WithHeadingRow, WithValidation, WithBatchInserts
+class IndicatorsSheetImport implements ToCollection, WithBatchInserts, WithHeadingRow, WithValidation
 {
     public function collection(Collection $collection)
     {
@@ -37,7 +36,7 @@ class IndicatorsSheetImport implements ToCollection, WithHeadingRow, WithValidat
             ]);
 
             $indicator = Indicator::firstOrCreate([
-                'code' => $row['code']
+                'code' => $row['code'],
             ], [
                 'name' => $row['name'],
                 'sub_characteristic_id' => $subCharacteristic->id,
@@ -55,8 +54,6 @@ class IndicatorsSheetImport implements ToCollection, WithHeadingRow, WithValidat
             '*.characteristic' => ['required', 'string', 'max:255'], // expecting name of characteristic
         ];
     }
-
-
 
     public function batchSize(): int
     {

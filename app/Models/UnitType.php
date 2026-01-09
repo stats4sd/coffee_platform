@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use App\Models\Traits\HasTranslations;
+use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -18,7 +18,9 @@ class UnitType extends Model
     */
 
     protected $table = 'unit_types';
+
     protected $guarded = ['id'];
+
     protected $appends = [
         'name_with_unit',
     ];
@@ -32,9 +34,8 @@ class UnitType extends Model
 
     public function getNameWithUnitAttribute()
     {
-        return $this->name . ' ( ' . t('Standard Unit') . ': ' . $this->standard_unit . ')';
+        return $this->name.' ( '.t('Standard Unit').': '.$this->standard_unit.')';
     }
-
 
     /*
     |--------------------------------------------------------------------------
@@ -51,7 +52,6 @@ class UnitType extends Model
     {
         return $this->belongsTo(Unit::class, 'standard_unit');
     }
-
 
     /*
     |--------------------------------------------------------------------------

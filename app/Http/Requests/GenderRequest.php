@@ -3,9 +3,8 @@
 namespace App\Http\Requests;
 
 use App\Models\Gender;
-use App\Http\Requests\Request;
-use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class GenderRequest extends FormRequest
 {

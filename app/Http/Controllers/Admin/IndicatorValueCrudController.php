@@ -2,33 +2,33 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Unit;
-use App\Models\Group;
-use App\Models\Scope;
-use App\Models\Gender;
-use App\Models\Source;
-use App\Models\Indicator;
-use App\Models\GeoBoundary;
-use App\Models\ApproachCollection;
-use App\Models\PurposeOfCollection;
-use App\Models\SmallholderDefinition;
 use App\Http\Requests\IndicatorValueRequest;
+use App\Models\ApproachCollection;
+use App\Models\Gender;
+use App\Models\GeoBoundary;
+use App\Models\Group;
+use App\Models\Indicator;
+use App\Models\PurposeOfCollection;
+use App\Models\Scope;
+use App\Models\SmallholderDefinition;
+use App\Models\Source;
+use App\Models\Unit;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
 /**
  * Class IndicatorValueCrudController
- * @package App\Http\Controllers\Admin
+ *
  * @property-read \Backpack\CRUD\app\Library\CrudPanel\CrudPanel $crud
  */
 class IndicatorValueCrudController extends CrudController
 {
-    use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\InlineCreateOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\FetchOperation;
+    use \Backpack\CRUD\app\Http\Controllers\Operations\InlineCreateOperation;
+    use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
+    use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
 
     /**
      * Configure the CrudPanel object. Apply settings to all operations.
@@ -38,7 +38,7 @@ class IndicatorValueCrudController extends CrudController
     public function setup()
     {
         CRUD::setModel(\App\Models\IndicatorValue::class);
-        CRUD::setRoute(config('backpack.base.route_prefix') . '/indicator_value');
+        CRUD::setRoute(config('backpack.base.route_prefix').'/indicator_value');
         CRUD::setEntityNameStrings(t('indicator values'), t('indicator values'));
     }
 
@@ -46,14 +46,15 @@ class IndicatorValueCrudController extends CrudController
      * Define what happens when the List operation is loaded.
      *
      * @see  https://backpackforlaravel.com/docs/crud-operation-list-entries
+     *
      * @return void
      */
     protected function setupListOperation()
     {
         // select2_multiple filter
         $this->crud->addFilter([
-            'name'  => 'groups',
-            'type'  => 'select2_multiple',
+            'name' => 'groups',
+            'type' => 'select2_multiple',
             'label' => t('Groups'),
         ], function () {
             $groups = Group::all()->pluck('name', 'id')->toArray();
@@ -166,6 +167,7 @@ class IndicatorValueCrudController extends CrudController
      * Define what happens when the Create operation is loaded.
      *
      * @see https://backpackforlaravel.com/docs/crud-operation-create
+     *
      * @return void
      */
     protected function setupCreateOperation()
@@ -177,7 +179,7 @@ class IndicatorValueCrudController extends CrudController
                 'type' => 'relationship',
                 'name' => 'indicator_id',
                 'ajax' => true,
-                'inline_create' => [ 'entity' => 'indicator' ],
+                'inline_create' => ['entity' => 'indicator'],
                 'minimum_input_length' => 0,
                 'label' => t('Indicator'),
                 'hint' => t('If the indicator is not in the dropdown select <b>+Add</b> to add a new one.'),
@@ -186,14 +188,14 @@ class IndicatorValueCrudController extends CrudController
                 'name' => 'value',
                 'type' => 'number',
                 'label' => t('Value'),
-                'attributes' => ["step" => "any"], // allow decimals
+                'attributes' => ['step' => 'any'], // allow decimals
             ],
             [
                 'type' => 'relationship',
                 'name' => 'unit_id',
-                'attribute' => "unit",
+                'attribute' => 'unit',
                 'ajax' => true,
-                'inline_create' => [ 'entity' => 'unit' ],
+                'inline_create' => ['entity' => 'unit'],
                 'minimum_input_length' => 0,
                 'label' => t('Unit'),
                 'hint' => t('If the unit is not in the dropdown select <b>+Add</b> to add a new one.'),
@@ -202,12 +204,12 @@ class IndicatorValueCrudController extends CrudController
                 'name' => 'years',
                 'type' => 'relationship',
                 'label' => t('Year(s)'),
-                'attribute' => "year",
+                'attribute' => 'year',
             ],
             [
                 'type' => 'relationship',
                 'name' => 'source_id',
-                'inline_create' => [ 'entity' => 'source' ],
+                'inline_create' => ['entity' => 'source'],
                 'ajax' => true,
                 'minimum_input_length' => 0,
                 'label' => t('Source'),
@@ -216,13 +218,13 @@ class IndicatorValueCrudController extends CrudController
             [
                 'type' => 'relationship',
                 'name' => 'geo_boundary_id',
-                'entity' => 'geoBoundary' ,
-                'attribute' => "geo_description",
+                'entity' => 'geoBoundary',
+                'attribute' => 'geo_description',
                 'data_source' => route('indicator_value.fetchGeoBoundary'),
                 'inline_create' => [
                     'entity' => 'geo_boundary',
                     'modal_route' => route('geo_boundary-inline-create'),
-                    'create_route' =>  route('geo_boundary-inline-create-save'),
+                    'create_route' => route('geo_boundary-inline-create-save'),
                 ],
                 'ajax' => true,
                 'minimum_input_length' => 0,
@@ -233,7 +235,7 @@ class IndicatorValueCrudController extends CrudController
                 'type' => 'relationship',
                 'name' => 'gender_id',
                 'ajax' => true,
-                'inline_create' => [ 'entity' => 'gender' ],
+                'inline_create' => ['entity' => 'gender'],
                 'minimum_input_length' => 0,
                 'label' => t('Gender'),
                 'hint' => t('If the gender is not in the dropdown select <b>+Add</b> to add a new one.'),
@@ -246,27 +248,27 @@ class IndicatorValueCrudController extends CrudController
             [
                 'type' => 'relationship',
                 'name' => 'smallholder_definition_id',
-                'entity' => 'smallholderDefinition' ,
+                'entity' => 'smallholderDefinition',
                 'ajax' => true,
                 'data_source' => route('indicator_value.fetchSmallholderDefinition'),
                 'inline_create' => [
-                    'entity' => 'smallholder_definition' ,
+                    'entity' => 'smallholder_definition',
                     'modal_route' => route('smallholder_definition-inline-create'),
-                    'create_route' =>  route('smallholder_definition-inline-create-save'),
+                    'create_route' => route('smallholder_definition-inline-create-save'),
                 ],
                 'minimum_input_length' => 0,
                 'label' => t('Smallholder definition'),
                 'hint' => t('If the smallholder definition is not in the dropdown select <b>+Add</b> to add a new one.'),
             ],
             [
-                'label'     => "User",
-                'type'      => 'select2',
-                'name'      => 'user_id',
-                'default'  => backpack_user()->id,
+                'label' => 'User',
+                'type' => 'select2',
+                'name' => 'user_id',
+                'default' => backpack_user()->id,
 
                 // optional
-                'entity'    => 'user',
-                'model'     => "App\Models\User",
+                'entity' => 'user',
+                'model' => \App\Models\User::class,
                 'attribute' => 'name',
             ],
             [
@@ -274,11 +276,11 @@ class IndicatorValueCrudController extends CrudController
                 'name' => 'purpose_of_collection_id',
                 'ajax' => true,
                 'data_source' => route('indicator_value.fetchPurposeOfCollection'),
-                'entity' => 'purposeOfCollection' ,
+                'entity' => 'purposeOfCollection',
                 'inline_create' => [
-                    'entity' => 'purpose_of_collection' ,
+                    'entity' => 'purpose_of_collection',
                     'modal_route' => route('purpose_of_collection-inline-create'),
-                    'create_route' =>  route('purpose_of_collection-inline-create-save'),
+                    'create_route' => route('purpose_of_collection-inline-create-save'),
 
                 ],
                 'minimum_input_length' => 0,
@@ -294,7 +296,7 @@ class IndicatorValueCrudController extends CrudController
                 'inline_create' => [
                     'entity' => 'approach_collection',
                     'modal_route' => route('approach_collection-inline-create'),
-                    'create_route' =>  route('approach_collection-inline-create-save'),
+                    'create_route' => route('approach_collection-inline-create-save'),
                 ],
                 'minimum_input_length' => 0,
                 'label' => t('Collection approach'),
@@ -304,7 +306,7 @@ class IndicatorValueCrudController extends CrudController
                 'type' => 'relationship',
                 'name' => 'group_id',
                 'ajax' => true,
-                'inline_create' => [ 'entity' => 'group' ],
+                'inline_create' => ['entity' => 'group'],
                 'minimum_input_length' => 0,
                 'label' => t('Group'),
                 'hint' => t('If the group is not in the dropdown select <b>+Add</b> to add a new one.'),
@@ -313,7 +315,7 @@ class IndicatorValueCrudController extends CrudController
                 'type' => 'relationship',
                 'name' => 'scope_id',
                 'ajax' => true,
-                'inline_create' => [ 'entity' => 'scope' ],
+                'inline_create' => ['entity' => 'scope'],
                 'minimum_input_length' => 0,
                 'label' => t('Scope'),
                 'hint' => t('If the scope is not in the dropdown select <b>+Add</b> to add a new one.'),
@@ -340,6 +342,7 @@ class IndicatorValueCrudController extends CrudController
      * Define what happens when the Update operation is loaded.
      *
      * @see https://backpackforlaravel.com/docs/crud-operation-update
+     *
      * @return void
      */
     protected function setupUpdateOperation()
@@ -391,6 +394,7 @@ class IndicatorValueCrudController extends CrudController
     {
         return $this->fetch(Scope::class);
     }
+
     public function fetchGroup()
     {
         return $this->fetch(Group::class);

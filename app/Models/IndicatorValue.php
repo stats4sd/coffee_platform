@@ -2,11 +2,11 @@
 
 namespace App\Models;
 
-use Laravel\Scout\Searchable;
-use Illuminate\Database\Eloquent\Model;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
+use Laravel\Scout\Searchable;
 
 class IndicatorValue extends Model
 {
@@ -19,9 +19,12 @@ class IndicatorValue extends Model
     */
 
     protected $table = 'indicator_values';
+
     protected $primaryKey = 'id';
+
     // public $timestamps = false;
     protected $guarded = ['id'];
+
     // protected $fillable = [];
     // protected $hidden = [];
     // protected $dates = [];
@@ -44,7 +47,6 @@ class IndicatorValue extends Model
         'small_sample',
     ];
 
-
     /*
     |--------------------------------------------------------------------------
     | FUNCTIONS
@@ -56,7 +58,7 @@ class IndicatorValue extends Model
         // handling attributes and relations seperately to avoid issue where an array cannot be tokenised by Scout.
         $array = $this->attributesToArray();
 
-        //for full-text search;
+        // for full-text search;
         $array['code'] = $this->indicator->code;
         $array['name'] = $this->indicator->name;
         $array['indicator_name_original'] = $this->indicator_name_original;
@@ -73,7 +75,6 @@ class IndicatorValue extends Model
     {
         return $this->sample_size < 21;
     }
-
 
     public function getAllYearsAttribute()
     {
@@ -109,24 +110,18 @@ class IndicatorValue extends Model
 
     public function getRegionAttribute()
     {
-        if ($this->geoBoundary != null && $this->geoBoundary->region != null)
-        {
+        if ($this->geoBoundary != null && $this->geoBoundary->region != null) {
             return $this->geoBoundary->region->name;
-        }
-        else
-        {
+        } else {
             return null;
         }
     }
 
     public function getDepartmentAttribute()
     {
-        if ($this->geoBoundary != null && $this->geoBoundary->department != null)
-        {
+        if ($this->geoBoundary != null && $this->geoBoundary->department != null) {
             return $this->geoBoundary->department->name;
-        }
-        else
-        {
+        } else {
             return null;
         }
     }
@@ -138,7 +133,7 @@ class IndicatorValue extends Model
 
     public function getOriginalUnitAttribute()
     {
-        if (!empty($this->unit->unitType)) {
+        if (! empty($this->unit->unitType)) {
             return $this->unit->name;
         } else {
             return null;
@@ -147,7 +142,7 @@ class IndicatorValue extends Model
 
     public function getStandardUnitAttribute()
     {
-        if (!empty($this->unit)) {
+        if (! empty($this->unit)) {
             return $this->unit->unitType->standard_unit;
         } else {
             return null;
@@ -156,7 +151,7 @@ class IndicatorValue extends Model
 
     public function getStandardUnitNameAttribute()
     {
-        if(!empty($this->unit)) {
+        if (! empty($this->unit)) {
             return Unit::find($this->unit->unitType->standard_unit)->unit;
         } else {
             return null;
@@ -184,12 +179,6 @@ class IndicatorValue extends Model
 
     //     return 0;
     // }
-
-
-
-
-
-
 
     /*
     |--------------------------------------------------------------------------

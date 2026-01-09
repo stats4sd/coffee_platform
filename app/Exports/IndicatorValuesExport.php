@@ -3,20 +3,19 @@
 namespace App\Exports;
 
 use App\Models\IndicatorValue;
-use App\Exports\IndicatorValuesWorkbookExport;
 use Illuminate\Database\Eloquent\Builder;
 use Maatwebsite\Excel\Concerns\FromCollection;
+use Maatwebsite\Excel\Concerns\ShouldAutoSize;
+use Maatwebsite\Excel\Concerns\WithColumnWidths;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithMapping;
 use Maatwebsite\Excel\Concerns\WithStrictNullComparison;
-use Maatwebsite\Excel\Concerns\WithTitle;
-use Maatwebsite\Excel\Concerns\WithColumnWidths;
-use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
-use PhpOffice\PhpSpreadsheet\Style\Fill;
 use Maatwebsite\Excel\Concerns\WithStyles;
-use Maatwebsite\Excel\Concerns\ShouldAutoSize;
+use Maatwebsite\Excel\Concerns\WithTitle;
+use PhpOffice\PhpSpreadsheet\Style\Fill;
+use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 
-class IndicatorValuesExport implements FromCollection, WithHeadings, WithMapping, WithStrictNullComparison, WithTitle, WithStyles, ShouldAutoSize, WithColumnWidths
+class IndicatorValuesExport implements FromCollection, ShouldAutoSize, WithColumnWidths, WithHeadings, WithMapping, WithStrictNullComparison, WithStyles, WithTitle
 {
     public function __construct($indicators, $countries, $years, $types, $purposes, $genders, $scopes)
     {
@@ -91,7 +90,7 @@ class IndicatorValuesExport implements FromCollection, WithHeadings, WithMapping
         return $query->get();
     }
 
-    public function map($value) : array
+    public function map($value): array
     {
         return [
             $value->indicator->code,
@@ -114,7 +113,7 @@ class IndicatorValuesExport implements FromCollection, WithHeadings, WithMapping
             $value->geoBoundary->altitude ? $value->geoBoundary->altitude : 'null',
             $value->geoBoundary->description,
             $value->source->is_not_public ? 'Not available' : $value->source->partner->name,
-            $value->source->is_not_public ? 'Not available' : ($value->source->partner->type ? $value->source->partner->type->name : "null"),
+            $value->source->is_not_public ? 'Not available' : ($value->source->partner->type ? $value->source->partner->type->name : 'null'),
             $value->source->is_not_public ? 'Not available' : $value->source->name,
             $value->source->is_not_public ? 'Not available' : $value->source->reference,
             $value->source->is_not_public ? 'Not available' : $value->source->description,
@@ -124,7 +123,7 @@ class IndicatorValuesExport implements FromCollection, WithHeadings, WithMapping
         ];
     }
 
-    public function headings() : array
+    public function headings(): array
     {
         return [
             'code',
@@ -157,9 +156,6 @@ class IndicatorValuesExport implements FromCollection, WithHeadings, WithMapping
         ];
     }
 
-    /**
-     * @return string
-     */
     public function title(): string
     {
         return 'indicator_values';
@@ -176,7 +172,7 @@ class IndicatorValuesExport implements FromCollection, WithHeadings, WithMapping
         ];
 
         return [
-            1 => $h1
+            1 => $h1,
         ];
     }
 
@@ -187,7 +183,7 @@ class IndicatorValuesExport implements FromCollection, WithHeadings, WithMapping
             'C' => 50,
             'G' => 14,
             'I' => 14,
-            'N' => 35
+            'N' => 35,
         ];
     }
 }

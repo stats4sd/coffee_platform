@@ -2,29 +2,27 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\ApproachCollection;
 use App\Exports\ApproachCollectionsExport;
-use App\Imports\ApproachCollectionsImport;
-use App\Http\Requests\ApproachCollectionRequest;
 use App\Http\Controllers\Operations\ExportOperation;
 use App\Http\Controllers\Operations\ImportOperation;
+use App\Http\Requests\ApproachCollectionRequest;
+use App\Imports\ApproachCollectionsImport;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
 /**
  * Class ApproachCollectionCrudController
- * @package App\Http\Controllers\Admin
+ *
  * @property-read \Backpack\CRUD\app\Library\CrudPanel\CrudPanel $crud
  */
 class ApproachCollectionCrudController extends CrudController
 {
-    use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\InlineCreateOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\FetchOperation;
-
+    use \Backpack\CRUD\app\Http\Controllers\Operations\InlineCreateOperation;
+    use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
+    use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
     use ExportOperation;
     use ImportOperation;
 
@@ -36,7 +34,7 @@ class ApproachCollectionCrudController extends CrudController
     public function setup()
     {
         CRUD::setModel(\App\Models\ApproachCollection::class);
-        CRUD::setRoute(config('backpack.base.route_prefix') . '/approach_collection');
+        CRUD::setRoute(config('backpack.base.route_prefix').'/approach_collection');
         CRUD::setEntityNameStrings(t('Approach'), t('Approaches to collection'));
 
         CRUD::set('export.exporter', ApproachCollectionsExport::class);
@@ -47,6 +45,7 @@ class ApproachCollectionCrudController extends CrudController
      * Define what happens when the List operation is loaded.
      *
      * @see  https://backpackforlaravel.com/docs/crud-operation-list-entries
+     *
      * @return void
      */
     protected function setupListOperation()
@@ -58,6 +57,7 @@ class ApproachCollectionCrudController extends CrudController
      * Define what happens when the Create operation is loaded.
      *
      * @see https://backpackforlaravel.com/docs/crud-operation-create
+     *
      * @return void
      */
     protected function setupCreateOperation()
@@ -72,6 +72,7 @@ class ApproachCollectionCrudController extends CrudController
      * Define what happens when the Update operation is loaded.
      *
      * @see https://backpackforlaravel.com/docs/crud-operation-update
+     *
      * @return void
      */
     protected function setupUpdateOperation()
@@ -81,14 +82,14 @@ class ApproachCollectionCrudController extends CrudController
 
     protected function setupImportOperation()
     {
-        //CRUD::removeAllFields();
+        // CRUD::removeAllFields();
         CRUD::field('import_instructions')->type('custom_html')->value(
-            '<div class="alert">' .
+            '<div class="alert">'.
             t('<h3>Instructions</h3>
             Please upload the Excel file containing new collection approaches.
             <ul>
                 <li>The file should be in the same format as the file downloadable on the main view page.</li>
-            </ul>') .
+            </ul>').
             '</div>'
         );
     }

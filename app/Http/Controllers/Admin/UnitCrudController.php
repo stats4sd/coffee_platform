@@ -2,26 +2,26 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Unit;
-use App\Models\Year;
-use App\Models\UnitType;
 use App\Http\Requests\UnitRequest;
+use App\Models\Unit;
+use App\Models\UnitType;
+use App\Models\Year;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
 /**
  * Class UnitCrudController
- * @package App\Http\Controllers\Admin
+ *
  * @property-read \Backpack\CRUD\app\Library\CrudPanel\CrudPanel $crud
  */
 class UnitCrudController extends CrudController
 {
-    use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation {store as traitStore;}
-    use \Backpack\CRUD\app\Http\Controllers\Operations\InlineCreateOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation {update as traitUpdate;}
+    use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation {store as traitStore; }
     use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\FetchOperation;
+    use \Backpack\CRUD\app\Http\Controllers\Operations\InlineCreateOperation;
+    use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
+    use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation {update as traitUpdate; }
 
     /**
      * Configure the CrudPanel object. Apply settings to all operations.
@@ -31,7 +31,7 @@ class UnitCrudController extends CrudController
     public function setup()
     {
         CRUD::setModel(\App\Models\Unit::class);
-        CRUD::setRoute(config('backpack.base.route_prefix') . '/unit');
+        CRUD::setRoute(config('backpack.base.route_prefix').'/unit');
         CRUD::setEntityNameStrings(t('units'), t('units'));
     }
 
@@ -39,6 +39,7 @@ class UnitCrudController extends CrudController
      * Define what happens when the List operation is loaded.
      *
      * @see  https://backpackforlaravel.com/docs/crud-operation-list-entries
+     *
      * @return void
      */
     protected function setupListOperation()
@@ -53,6 +54,7 @@ class UnitCrudController extends CrudController
      * Define what happens when the Create operation is loaded.
      *
      * @see https://backpackforlaravel.com/docs/crud-operation-create
+     *
      * @return void
      */
     protected function setupCreateOperation()
@@ -61,55 +63,52 @@ class UnitCrudController extends CrudController
 
         CRUD::field('unit')->label(t('What is the unit called?'));
         CRUD::field('unit_type_id')
-        ->entity('unitType')
-        ->model(UnitType::class)
-        ->multiple(false)
-        ->type('relationship')
-        ->attribute('name_with_unit')
-        ->label(t("What does this unit measure?"))
-        ->ajax([
-            'minimum_input_length' => 0,
+            ->entity('unitType')
+            ->model(UnitType::class)
+            ->multiple(false)
+            ->type('relationship')
+            ->attribute('name_with_unit')
+            ->label(t('What does this unit measure?'))
+            ->ajax([
+                'minimum_input_length' => 0,
 
-        ])
-        ->inline_create([
-            'entity' => 'unittype',
-            'modal_route' => route('unittype-inline-create'),
-            'create_route' => route('unittype-inline-create-save'), //manually specifying these as by default it will try 'unit-type' instead of 'unittype' (which doesn't exist). Seems like a bug in how inline create routes are created.
-        ]);
+            ])
+            ->inline_create([
+                'entity' => 'unittype',
+                'modal_route' => route('unittype-inline-create'),
+                'create_route' => route('unittype-inline-create-save'), // manually specifying these as by default it will try 'unit-type' instead of 'unittype' (which doesn't exist). Seems like a bug in how inline create routes are created.
+            ]);
 
         CRUD::field('tab-text')->type('custom_html')->value(t('<b>Complete ONE of the tabs below, depending on the unit type.</b>'));
 
-
         CRUD::field('conversion-text')->type('custom_html')
-        ->value(t("<h5>Conversion Rate - Normal Unit Types</h5>
+            ->value(t('<h5>Conversion Rate - Normal Unit Types</h5>
         <p>To correctly convert this unit into the standard unit defined for this type of measurement, please enter ONE of the following:</p>
-        "))->tab(t('Normal Unit Types'));
+        '))->tab(t('Normal Unit Types'));
 
-        CRUD::field('to_standard')->label(t("How many of this unit equals 1 of the standard unit (selected above)?"))
-        ->type('number')
-        ->attributes(['step' => 'any'])
-        ->prefix(t("1 of this unit equals... "))
-        ->suffix(t("...of the standard unit"))->tab(t('Normal Unit Types'));
-        ;
-        CRUD::field("from_standard")->label(t("How many of the standard units equals 1 of this unit?"))
-        ->type("number")
-        ->attributes(['step' => 'any'])
-        ->prefix(t("1 of the standard unit equals... "))
-        ->suffix(t("...of this unit"))->tab(t('Normal Unit Types'));
+        CRUD::field('to_standard')->label(t('How many of this unit equals 1 of the standard unit (selected above)?'))
+            ->type('number')
+            ->attributes(['step' => 'any'])
+            ->prefix(t('1 of this unit equals... '))
+            ->suffix(t('...of the standard unit'))->tab(t('Normal Unit Types'));
 
+        CRUD::field('from_standard')->label(t('How many of the standard units equals 1 of this unit?'))
+            ->type('number')
+            ->attributes(['step' => 'any'])
+            ->prefix(t('1 of the standard unit equals... '))
+            ->suffix(t('...of this unit'))->tab(t('Normal Unit Types'));
 
         CRUD::field('conversion-year-text')->type('custom_html')
-        ->value(t('<h5>For Currency Only - Year-by-year conversion rates</h5>
+            ->value(t('<h5>For Currency Only - Year-by-year conversion rates</h5>
         <p>For a currency unit, please enter the conversion rate for each year needed in the platform.</p>
         '))->tab(t('Types Split By Year'));
 
-
         CRUD::field('conversion_years')->type('table')
-        ->label(t('Conversion Years'))
+            ->label(t('Conversion Years'))
             ->columns([
-            'to_standard' => t('1 of this unit equals X of the standard unit'),
-            'year' => t('Year (YYYY)'),
-        ])->tab(t('Types Split By Year'));
+                'to_standard' => t('1 of this unit equals X of the standard unit'),
+                'year' => t('Year (YYYY)'),
+            ])->tab(t('Types Split By Year'));
 
     }
 
@@ -117,6 +116,7 @@ class UnitCrudController extends CrudController
      * Define what happens when the Update operation is loaded.
      *
      * @see https://backpackforlaravel.com/docs/crud-operation-update
+     *
      * @return void
      */
     protected function setupUpdateOperation()
@@ -136,7 +136,6 @@ class UnitCrudController extends CrudController
         return $response;
     }
 
-
     public function update()
     {
         $response = $this->traitUpdate();
@@ -150,23 +149,20 @@ class UnitCrudController extends CrudController
 
     public function handleYears($request)
     {
-        //remove existing entries
+        // remove existing entries
         $unit = $this->crud->getCurrentEntry();
         if ($unit->years) {
             $unit->years()->detach($unit->years->pluck('id')->toArray());
         }
 
-
         $years = json_decode($request->conversion_years);
 
-        //add new entries
+        // add new entries
         foreach ($years as $year) {
             $yearDb = Year::where('year', $year->year)->first();
             $yearDb->units()->attach(request()->id, ['to_standard' => $year->to_standard]);
         }
     }
-
-
 
     public function fetchUnitType()
     {

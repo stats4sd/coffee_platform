@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class UpdateTranslatableFieldsToJsonForTypes extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
@@ -18,13 +18,13 @@ class UpdateTranslatableFieldsToJsonForTypes extends Migration
             $table->dropUnique('types_name_unique');
         });
 
-        //update existing values
+        // update existing values
         \Illuminate\Support\Facades\DB::unprepared('
             update types set types.name = concat(\'{ "en": "\', types.name, \'"}\')
         ');
 
         // need seperate call / seperate transaction;
-        Schema::table('types', function(Blueprint $table) {
+        Schema::table('types', function (Blueprint $table) {
             $table->json('name')->change();
         });
     }
@@ -41,13 +41,13 @@ class UpdateTranslatableFieldsToJsonForTypes extends Migration
             $table->text('name')->change();
         });
 
-        //update existing values
+        // update existing values
         \Illuminate\Support\Facades\DB::unprepared('
             update types set types.name = json_unquote(types.name->"$.en");
         ');
 
         // need seperate call / seperate transaction;
-        Schema::table('types', function(Blueprint $table) {
+        Schema::table('types', function (Blueprint $table) {
             $table->string('name')->change();
         });
 
@@ -56,4 +56,4 @@ class UpdateTranslatableFieldsToJsonForTypes extends Migration
             $table->unique('name', 'types_name_unique');
         });
     }
-}
+};

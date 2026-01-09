@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateGeoBoundariesTable extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
@@ -12,7 +12,7 @@ class CreateGeoBoundariesTable extends Migration
      * @return void
      */
     public function up()
-    {   
+    {
         Schema::create('geo_boundaries', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('country_id')->nullable();
@@ -22,7 +22,7 @@ class CreateGeoBoundariesTable extends Migration
             $table->integer('altitude')->nullable();
             $table->timestamps();
         });
-        Schema::table('geo_boundaries', function(Blueprint $table) {
+        Schema::table('geo_boundaries', function (Blueprint $table) {
             $table->foreign('country_id')->references('id')->on('countries')->onDelete('restrict');
             $table->foreign('region_id')->references('id')->on('regions')->onDelete('restrict');
             $table->foreign('department_id')->references('id')->on('departments')->onDelete('restrict');
@@ -38,4 +38,4 @@ class CreateGeoBoundariesTable extends Migration
     {
         Schema::dropIfExists('geo_boundaries');
     }
-}
+};

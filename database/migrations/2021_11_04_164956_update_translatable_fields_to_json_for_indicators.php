@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class UpdateTranslatableFieldsToJsonForIndicators extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
@@ -14,13 +14,13 @@ class UpdateTranslatableFieldsToJsonForIndicators extends Migration
     public function up()
     {
 
-        //update existing values
+        // update existing values
         \Illuminate\Support\Facades\DB::unprepared('
             update indicators set indicators.name = concat(\'{ "en": "\', indicators.name, \'"}\')
         ');
 
         // need seperate call / seperate transaction;
-        Schema::table('indicators', function(Blueprint $table) {
+        Schema::table('indicators', function (Blueprint $table) {
             $table->json('name')->change();
         });
     }
@@ -37,15 +37,15 @@ class UpdateTranslatableFieldsToJsonForIndicators extends Migration
             $table->text('name')->change();
         });
 
-        //update existing values
+        // update existing values
         \Illuminate\Support\Facades\DB::unprepared('
             update indicators set indicators.name = json_unquote(indicators.name->"$.en");
         ');
 
         // need seperate call / seperate transaction;
-        Schema::table('indicators', function(Blueprint $table) {
+        Schema::table('indicators', function (Blueprint $table) {
             $table->string('name')->change();
         });
 
     }
-}
+};

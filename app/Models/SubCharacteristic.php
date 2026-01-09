@@ -3,8 +3,8 @@
 namespace App\Models;
 
 use App\Models\Traits\HasTranslations;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class SubCharacteristic extends Model
@@ -18,7 +18,9 @@ class SubCharacteristic extends Model
     */
 
     protected $table = 'sub_characteristics';
+
     protected $guarded = ['id'];
+
     protected $appends = [
         'characteristic_label',
     ];
@@ -44,9 +46,8 @@ class SubCharacteristic extends Model
 
     public function getCharacteristicLabelAttribute()
     {
-        return $this->characteristic ? $this->characteristic->name . " (" . $this->name . ")" : null;
+        return $this->characteristic ? $this->characteristic->name.' ('.$this->name.')' : null;
     }
-
 
     /*
     |--------------------------------------------------------------------------

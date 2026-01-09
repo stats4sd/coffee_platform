@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class UpdateTranslatableFieldsToJsonForCountries extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
@@ -18,13 +18,13 @@ class UpdateTranslatableFieldsToJsonForCountries extends Migration
             $table->dropUnique('countries_name_unique');
         });
 
-        //update existing values
+        // update existing values
         \Illuminate\Support\Facades\DB::unprepared('
             update countries set countries.name = concat(\'{ "en": "\', countries.name, \'"}\')
         ');
 
         // need seperate call / seperate transaction;
-        Schema::table('countries', function(Blueprint $table) {
+        Schema::table('countries', function (Blueprint $table) {
             $table->json('name')->change();
         });
     }
@@ -41,13 +41,13 @@ class UpdateTranslatableFieldsToJsonForCountries extends Migration
             $table->text('name')->change();
         });
 
-        //update existing values
+        // update existing values
         \Illuminate\Support\Facades\DB::unprepared('
             update countries set countries.name = json_unquote(countries.name->"$.en");
         ');
 
         // need seperate call / seperate transaction;
-        Schema::table('countries', function(Blueprint $table) {
+        Schema::table('countries', function (Blueprint $table) {
             $table->string('name')->change();
         });
 
@@ -56,4 +56,4 @@ class UpdateTranslatableFieldsToJsonForCountries extends Migration
             $table->unique('name', 'countries_name_unique');
         });
     }
-}
+};

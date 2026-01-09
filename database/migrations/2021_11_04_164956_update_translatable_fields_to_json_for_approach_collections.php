@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class UpdateTranslatableFieldsToJsonForApproachCollections extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
@@ -18,13 +18,13 @@ class UpdateTranslatableFieldsToJsonForApproachCollections extends Migration
             $table->dropUnique('approach_collections_name_unique');
         });
 
-        //update existing values
+        // update existing values
         \Illuminate\Support\Facades\DB::unprepared('
             update approach_collections set approach_collections.name = concat(\'{ "en": "\', approach_collections.name, \'"}\')
         ');
 
         // need seperate call / seperate transaction;
-        Schema::table('approach_collections', function(Blueprint $table) {
+        Schema::table('approach_collections', function (Blueprint $table) {
             $table->json('name')->change();
         });
     }
@@ -41,13 +41,13 @@ class UpdateTranslatableFieldsToJsonForApproachCollections extends Migration
             $table->text('name')->change();
         });
 
-        //update existing values
+        // update existing values
         \Illuminate\Support\Facades\DB::unprepared('
             update approach_collections set approach_collections.name = json_unquote(approach_collections.name->"$.en");
         ');
 
         // need seperate call / seperate transaction;
-        Schema::table('approach_collections', function(Blueprint $table) {
+        Schema::table('approach_collections', function (Blueprint $table) {
             $table->string('name')->change();
         });
 
@@ -56,4 +56,4 @@ class UpdateTranslatableFieldsToJsonForApproachCollections extends Migration
             $table->unique('name', 'approach_collections_name_unique');
         });
     }
-}
+};

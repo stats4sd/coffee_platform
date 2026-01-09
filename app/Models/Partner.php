@@ -2,10 +2,8 @@
 
 namespace App\Models;
 
-use App\Models\Traits\UpdatesMainSearchIndex;
-use App\Models\Traits\HasTranslations;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Partner extends Model
@@ -19,8 +17,8 @@ class Partner extends Model
     */
 
     protected $table = 'partners';
-    protected $guarded = ['id'];
 
+    protected $guarded = ['id'];
 
     public static function boot()
     {

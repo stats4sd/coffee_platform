@@ -2,17 +2,16 @@
 
 namespace App\Models;
 
-use App\Models\UnitType;
 use App\Models\Traits\HasTranslations;
-use Illuminate\Support\Str;
-use Illuminate\Database\Eloquent\Model;
 use App\Models\Traits\UpdatesMainSearchIndex;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Unit extends Model
 {
-    use CrudTrait, HasFactory, UpdatesMainSearchIndex, HasTranslations;
+    use CrudTrait, HasFactory, HasTranslations, UpdatesMainSearchIndex;
 
     /*
     |--------------------------------------------------------------------------
@@ -21,7 +20,9 @@ class Unit extends Model
     */
 
     protected $table = 'units';
+
     protected $guarded = ['id'];
+
     protected $appends = [
         'conversion_rate',
         'name',
@@ -41,12 +42,13 @@ class Unit extends Model
         return Str::before($this->unit, '-');
     }
 
-    public function getConversionRate(Year $year = null)
+    public function getConversionRate(?Year $year = null)
     {
         if ($this->unitType && $this->unitType->split_by_year) {
             if ($year == null) {
                 return 'varies-by-year';
             }
+
             return $this->clean_num($this->getConverstionRateForYear($year));
         }
 
@@ -64,11 +66,10 @@ class Unit extends Model
         return $this->getConversionRate(null);
     }
 
-
     // Getter for Crud Field
     public function getConversionYearsAttribute()
     {
-        if ($this->unitType && !$this->unitType->split_by_year) {
+        if ($this->unitType && ! $this->unitType->split_by_year) {
             return null;
         }
 
@@ -98,8 +99,6 @@ class Unit extends Model
             return rtrim(rtrim($value, '0'), '.');
         }
     }
-
-
 
     /*
     |--------------------------------------------------------------------------

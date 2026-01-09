@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class UpdateTranslatableFieldsToJsonForSubCharacteristics extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
@@ -18,13 +18,13 @@ class UpdateTranslatableFieldsToJsonForSubCharacteristics extends Migration
             $table->dropUnique('sub_characteristics_name_unique');
         });
 
-        //update existing values
+        // update existing values
         \Illuminate\Support\Facades\DB::unprepared('
             update sub_characteristics set sub_characteristics.name = concat(\'{ "en": "\', sub_characteristics.name, \'"}\')
         ');
 
         // need seperate call / seperate transaction;
-        Schema::table('sub_characteristics', function(Blueprint $table) {
+        Schema::table('sub_characteristics', function (Blueprint $table) {
             $table->json('name')->change();
         });
     }
@@ -41,13 +41,13 @@ class UpdateTranslatableFieldsToJsonForSubCharacteristics extends Migration
             $table->text('name')->change();
         });
 
-        //update existing values
+        // update existing values
         \Illuminate\Support\Facades\DB::unprepared('
             update sub_characteristics set sub_characteristics.name = json_unquote(sub_characteristics.name->"$.en");
         ');
 
         // need seperate call / seperate transaction;
-        Schema::table('sub_characteristics', function(Blueprint $table) {
+        Schema::table('sub_characteristics', function (Blueprint $table) {
             $table->string('name')->change();
         });
 
@@ -56,4 +56,4 @@ class UpdateTranslatableFieldsToJsonForSubCharacteristics extends Migration
             $table->unique('name', 'sub_characteristics_name_unique');
         });
     }
-}
+};

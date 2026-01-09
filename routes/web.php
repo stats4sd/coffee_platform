@@ -1,16 +1,14 @@
 <?php
 
-use App\Models\Characteristic;
-use App\Models\PurposeOfCollection;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\TypeController;
-use App\Http\Controllers\ScopeController;
-use App\Http\Controllers\GenderController;
-use App\Http\Controllers\CountryController;
 use App\Http\Controllers\CharacteristicController;
+use App\Http\Controllers\CountryController;
+use App\Http\Controllers\GenderController;
 use App\Http\Controllers\IndicatorValueController;
-use App\Http\Controllers\SubCharacteristicController;
 use App\Http\Controllers\PurposeOfCollectionController;
+use App\Http\Controllers\ScopeController;
+use App\Http\Controllers\SubCharacteristicController;
+use App\Http\Controllers\TypeController;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,7 +21,6 @@ use App\Http\Controllers\PurposeOfCollectionController;
 |
 */
 
-
 // surrounding all main front-end routes with local middleware:
 // - check.locale checks if the url is prefixed with a valid locale: if not, it prepends the default locale based on user's browser or session
 Route::prefix('{locale?}')->middleware(['add.locale', 'set.locale'])->group(function () {
@@ -33,7 +30,6 @@ Route::prefix('{locale?}')->middleware(['add.locale', 'set.locale'])->group(func
     Route::view('webinar', 'webinar')->name('webinar');
     Route::view('reports', 'reports')->name('reports');
     Route::view('indicators', 'indicators')->name('indicators');
-
 
     Route::get('indicators/search', [IndicatorValueController::class, 'index'])->name('indicators.search');
     Route::post('indicators/download/', [IndicatorValueController::class, 'download'])->name('indicators.download');

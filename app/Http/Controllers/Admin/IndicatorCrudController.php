@@ -12,20 +12,18 @@ use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
 /**
  * Class IndicatorCrudController
- * @package App\Http\Controllers\Admin
+ *
  * @property-read \Backpack\CRUD\app\Library\CrudPanel\CrudPanel $crud
  */
 class IndicatorCrudController extends CrudController
 {
-    use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\InlineCreateOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\FetchOperation;
-
+    use \Backpack\CRUD\app\Http\Controllers\Operations\InlineCreateOperation;
+    use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
+    use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
     use ImportOperation;
-
 
     /**
      * Configure the CrudPanel object. Apply settings to all operations.
@@ -35,7 +33,7 @@ class IndicatorCrudController extends CrudController
     public function setup()
     {
         CRUD::setModel(\App\Models\Indicator::class);
-        CRUD::setRoute(config('backpack.base.route_prefix') . '/indicator');
+        CRUD::setRoute(config('backpack.base.route_prefix').'/indicator');
         CRUD::setEntityNameStrings(t('indicators'), t('indicators'));
 
         CRUD::set('import.importer', IndicatorsSheetImport::class);
@@ -45,6 +43,7 @@ class IndicatorCrudController extends CrudController
      * Define what happens when the List operation is loaded.
      *
      * @see  https://backpackforlaravel.com/docs/crud-operation-list-entries
+     *
      * @return void
      */
     protected function setupListOperation()
@@ -69,7 +68,7 @@ class IndicatorCrudController extends CrudController
                 'name' => 'name',
                 'type' => 'text',
                 'label' => t('Name'),
-            ]
+            ],
         ]);
     }
 
@@ -77,6 +76,7 @@ class IndicatorCrudController extends CrudController
      * Define what happens when the Create operation is loaded.
      *
      * @see https://backpackforlaravel.com/docs/crud-operation-create
+     *
      * @return void
      */
     protected function setupCreateOperation()
@@ -87,7 +87,7 @@ class IndicatorCrudController extends CrudController
             [
                 'type' => 'select2_from_ajax',
                 'name' => 'characteristic_id',
-                'attribute' => "name",
+                'attribute' => 'name',
                 'data_source' => backpack_url('indicator/fetch/characteristic'),
                 'model' => Characteristic::class,
                 'placeholder' => 'Select Characteristic',
@@ -100,7 +100,7 @@ class IndicatorCrudController extends CrudController
                 'name' => 'sub_characteristic_id',
                 'attribute' => 'name',
                 'entity' => 'subCharacteristic',
-                'model' => "App\Models\SubCharacteristic",
+                'model' => \App\Models\SubCharacteristic::class,
                 'ajax' => true,
                 'minimum_input_length' => 0,
                 'data_source' => backpack_url('indicator/fetch/sub-characteristic'),
@@ -123,6 +123,7 @@ class IndicatorCrudController extends CrudController
      * Define what happens when the Update operation is loaded.
      *
      * @see https://backpackforlaravel.com/docs/crud-operation-update
+     *
      * @return void
      */
     protected function setupUpdateOperation()
@@ -142,11 +143,12 @@ class IndicatorCrudController extends CrudController
         return $this->fetch([
             'model' => SubCharacteristic::class,
             'query' => function ($model) use ($form) {
-                if (!isset($form['characteristic_id'])) {
+                if (! isset($form['characteristic_id'])) {
                     return $model;
                 }
+
                 return $model->where('characteristic_id', $form['characteristic_id']);
-            }
+            },
         ]);
     }
 }

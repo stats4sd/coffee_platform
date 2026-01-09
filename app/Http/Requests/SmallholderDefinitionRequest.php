@@ -2,8 +2,6 @@
 
 namespace App\Http\Requests;
 
-use App\Http\Requests\Request;
-use App\Models\SmallholderDefinition;
 use Illuminate\Foundation\Http\FormRequest;
 
 class SmallholderDefinitionRequest extends FormRequest

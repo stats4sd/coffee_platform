@@ -2,18 +2,10 @@
 
 namespace Database\Factories;
 
-use App\Models\SmallholderDefinition;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class SmallholderDefinitionFactory extends Factory
 {
-    /**
-     * The name of the factory's corresponding model.
-     *
-     * @var string
-     */
-    protected $model = SmallholderDefinition::class;
-
     /**
      * Define the model's default state.
      *

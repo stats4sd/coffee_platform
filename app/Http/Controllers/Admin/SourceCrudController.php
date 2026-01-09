@@ -2,26 +2,24 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Type;
-use App\Models\Partner;
 use App\Http\Requests\SourceRequest;
+use App\Models\Partner;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
 /**
  * Class SourceCrudController
- * @package App\Http\Controllers\Admin
+ *
  * @property-read \Backpack\CRUD\app\Library\CrudPanel\CrudPanel $crud
  */
 class SourceCrudController extends CrudController
 {
-    use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\InlineCreateOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
-
     use \Backpack\CRUD\app\Http\Controllers\Operations\FetchOperation;
+    use \Backpack\CRUD\app\Http\Controllers\Operations\InlineCreateOperation;
+    use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
+    use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
 
     /**
      * Configure the CrudPanel object. Apply settings to all operations.
@@ -31,7 +29,7 @@ class SourceCrudController extends CrudController
     public function setup()
     {
         CRUD::setModel(\App\Models\Source::class);
-        CRUD::setRoute(config('backpack.base.route_prefix') . '/source');
+        CRUD::setRoute(config('backpack.base.route_prefix').'/source');
         CRUD::setEntityNameStrings(t('sources'), t('sources'));
     }
 
@@ -39,6 +37,7 @@ class SourceCrudController extends CrudController
      * Define what happens when the List operation is loaded.
      *
      * @see  https://backpackforlaravel.com/docs/crud-operation-list-entries
+     *
      * @return void
      */
     protected function setupListOperation()
@@ -70,9 +69,9 @@ class SourceCrudController extends CrudController
                 'label' => t('Description'),
             ],
             [
-                'name'      => 'file',
-                'label'     => t('Files'),
-                'type'      => 'upload_multiple',
+                'name' => 'file',
+                'label' => t('Files'),
+                'type' => 'upload_multiple',
             ],
         ]);
     }
@@ -81,6 +80,7 @@ class SourceCrudController extends CrudController
      * Define what happens when the Create operation is loaded.
      *
      * @see https://backpackforlaravel.com/docs/crud-operation-create
+     *
      * @return void
      */
     protected function setupCreateOperation()
@@ -102,7 +102,7 @@ class SourceCrudController extends CrudController
                 'type' => 'relationship',
                 'name' => 'partner_id',
                 'ajax' => true,
-                'inline_create' => [ 'entity' => 'partner' ],
+                'inline_create' => ['entity' => 'partner'],
                 'minimum_input_length' => 0,
                 'label' => t('Partner'),
             ],
@@ -118,11 +118,11 @@ class SourceCrudController extends CrudController
                 'label' => t('Description'),
             ],
             [
-                'name'      => 'file',
-                'label'     => t('Files'),
-                'type'      => 'upload_multiple',
-                'upload'    => true,
-                'disk'      => 'public',
+                'name' => 'file',
+                'label' => t('Files'),
+                'type' => 'upload_multiple',
+                'upload' => true,
+                'disk' => 'public',
             ],
         ]);
     }
@@ -131,6 +131,7 @@ class SourceCrudController extends CrudController
      * Define what happens when the Update operation is loaded.
      *
      * @see https://backpackforlaravel.com/docs/crud-operation-update
+     *
      * @return void
      */
     protected function setupUpdateOperation()

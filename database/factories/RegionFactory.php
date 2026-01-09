@@ -2,18 +2,10 @@
 
 namespace Database\Factories;
 
-use App\Models\Region;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class RegionFactory extends Factory
 {
-    /**
-     * The name of the factory's corresponding model.
-     *
-     * @var string
-     */
-    protected $model = Region::class;
-
     /**
      * Define the model's default state.
      *
@@ -22,7 +14,7 @@ class RegionFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->unique()->word,
+            'name' => $this->faker->unique()->word(),
         ];
     }
 }

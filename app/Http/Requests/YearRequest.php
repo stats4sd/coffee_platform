@@ -3,9 +3,8 @@
 namespace App\Http\Requests;
 
 use App\Models\Year;
-use App\Http\Requests\Request;
-use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class YearRequest extends FormRequest
 {
@@ -28,7 +27,7 @@ class YearRequest extends FormRequest
     public function rules()
     {
         return [
-            'year' => ['required','date_format:Y', Rule::unique('years', 'year')->ignore(Year::find(request()->id))],
+            'year' => ['required', 'date_format:Y', Rule::unique('years', 'year')->ignore(Year::find(request()->id))],
         ];
     }
 
